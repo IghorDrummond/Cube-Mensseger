@@ -42,7 +42,6 @@ main{
 .front {
 	-webkit-transform: rotateY(0deg) translateZ(100px);
 	transform: rotateY(0deg) translateZ(100px);
-	background: yellow;
 }
 
 .back {
@@ -71,13 +70,14 @@ main{
 	align-items: start;
 }
 
-	
+.front,	
 .bottom,
 .left,
 .right,
 .top,
 .back {
-	background: linear-gradient(to bottom, #144cf4, #1454f4, #184cf4);
+	/*background: linear-gradient(to bottom, #144cf4, #1454f4, #184cf4);*/
+	border: 2px solid white;
 }
 
 /* Animação */
@@ -105,30 +105,17 @@ main{
 		opacity: 0;
 	}
 }
-@keyframes encurta{
-	0% {
-		height: 100%;
-	}
-	100% {
-		height: 30%;
-	}	
-}
-
-
 
 /* Dispositivos Mobiles */
-
 /* Dispositivos extra small (telefones em modo retrato, com menos de 576px)*/
 @media (max-width: 575.98px) {
 	#Titulo {
 		font-size: 2em;
 	}
-
 	.cena {
 		width: 100px;
 		height: 100px;
 	}
-
 	.front {
 		-webkit-transform: rotateY(0deg) translateZ(50px);
 		transform: rotateY(0deg) translateZ(50px);
@@ -164,7 +151,33 @@ main{
 		font-size: 0.8em;
 		padding: 0 !important;
 	}
+	.formulario{
+		font-size: 1em;
+	}
+	.formulario legend{
+		font-size: 0.8em;
+	}	
+	.formulario input{
+		width: 90%;
+		height: 20px;
+		margin: auto;
+	}		
 }
+
+@media(max-width: 240px){
+	.formulario{
+		font-size: 0.5em;
+	}
+	.formulario legend{
+		font-size: 1em;
+	}	
+	.formulario input{
+		width: 90%;
+		height: 10px;
+		margin: auto;
+	}
+}
+
 
 /* Dispositivos small (telefones em modo paisagem, com 576px ou mais)*/
 @media (min-width: 576px) and (max-width: 767.98px) {

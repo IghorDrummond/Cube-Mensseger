@@ -11,48 +11,68 @@ var rotacao = [0, 90, 180, -90, 90, -90];
 var nCont = 0;
 //Arrays
 
-
 //==================================Escopo============================================
 Cena[0].style.animation = "surgi 2s";
 Cena[0].className = "cena d-block";
 EstruturaCubo[0].style.animation = "rotacionar 2s"
 Cena[0].style.transform = " translateY(0px)";
 
-if(window.innerWidth <= 1199.99){
-
-	var x = setInterval(function(){
-
-		if(nCont === 0){
-			desligaBalao();
-		}
-		if(nCont === 1){
-			expandeTela()
-		}
-		if(nCont === 2){
-			clearInterval(x);
-		}
-		nCont++;
-	},2000);
+if(window.innerWidth <= 575.98){
+	Tamanho = 100;
+}else if(window.innerWidth >= 576 && window.innerWidth <= 767.98){
+	Tamanho = 150;
 }
+else{
+	Tamanho = 200;
+}
+
+var x = setInterval(function(){
+
+	if(nCont === 0){
+		desligaBalao();
+	}
+	if(nCont === 1){
+		//expande(nLimite, Tamanho);
+		expande(Tamanho);
+	}
+	if(nCont === 2){
+		clearInterval(x);
+	}	
+	nCont++;
+},1000);
 
 //===================================Funções==========================================
 function desligaBalao(){
-	//imagem[0].style.animation = "some 1s";
+	imagem[0].style.animation = "some 1s";
 
 	var Z = setTimeout(function(){
-		//imagem[0].style.display = "none";
+		imagem[0].style.display = "none";
 		clearTimeout(Z);
 	}, 1000);
 }
 
-function expandeTela(){
+function expande(Limite){
+	tamanho = 500;
 
-	tamanho = (window.innerWidth - 100);
-
-	Cena[0].style.width = tamanho.toString() + 'px';
-	Cena[0].style.height = (window.innerHeight - 250) + 'px';
-
-	for(nCont = 0; nCont <= Cubo.length -1; nCont++){
-		Cubo[nCont].style.transform = "rotateY("+ rotacao[nCont].toString() +"deg) translateZ("+ (tamanho / 2).toString() +"px)";
+	if(window.innerWidth < 600){
+		tamanho = window.innerWidth - 100;
 	}
+	nCont = Limite;
+
+	var y = setInterval(() => {
+		if(nCont === tamanho){
+			formulario[0].className = "form-group text-center d-block formulario";
+			formulario[1].className = "form-group text-center d-block formulario";		
+			clearInterval(y);
+		}
+
+		Cena[0].style.width = nCont.toString() + "px";
+		Cena[0].style.height = nCont.toString() + "px";
+
+
+		for(nCont2 = 0; nCont2 <= Cubo.length -1; nCont2 ++){
+			Cubo[nCont2].style.transform = "rotateY("+ rotacao[nCont2] +"deg)translateZ(" + (nCont / 2) + "px)";
+			Cubo[nCont2].style.webkitTransform = "rotateY("+ rotacao[nCont2] +"deg)translateZ(" + (nCont / 2) + "px)";		}
+		nCont++;	
+	}, 0.5);	
 }
