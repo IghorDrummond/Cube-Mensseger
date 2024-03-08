@@ -11,9 +11,9 @@
 </head>
 
 <body>
-	<main class="d-flex justify-content-center align-items-center h-100">
+	<main class="d-flex justify-content-center align-items-center ">
 		<!-- Cubo -->
-		<div class="cena d-none">
+		<div class="cena d-none mt-5">
 			<div class="cubo">
 				<div class="cubo-face front d-flex justify-content-center align-items-center">
 					<div>

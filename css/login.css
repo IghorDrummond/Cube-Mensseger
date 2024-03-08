@@ -13,6 +13,9 @@ body {
 	height: 100vh;
 	overflow: hidden;
 }
+main{
+	height: 100%;
+}
 
 /* Cubo */
 .cena{
@@ -39,6 +42,7 @@ body {
 .front {
 	-webkit-transform: rotateY(0deg) translateZ(100px);
 	transform: rotateY(0deg) translateZ(100px);
+	background: yellow;
 }
 
 .back {
@@ -64,9 +68,10 @@ body {
 .right {
 	-webkit-transform: rotateX(-90deg) translateZ(100px);
 	transform: rotateX(-90deg) translateZ(100px);
+	align-items: start;
 }
 
-.front,
+	
 .bottom,
 .left,
 .right,
@@ -100,3 +105,107 @@ body {
 		opacity: 0;
 	}
 }
+@keyframes encurta{
+	0% {
+		height: 100%;
+	}
+	100% {
+		height: 30%;
+	}	
+}
+
+
+
+/* Dispositivos Mobiles */
+
+/* Dispositivos extra small (telefones em modo retrato, com menos de 576px)*/
+@media (max-width: 575.98px) {
+	#Titulo {
+		font-size: 2em;
+	}
+
+	.cena {
+		width: 100px;
+		height: 100px;
+	}
+
+	.front {
+		-webkit-transform: rotateY(0deg) translateZ(50px);
+		transform: rotateY(0deg) translateZ(50px);
+	}
+
+	.back {
+		-webkit-transform: rotateY(90deg) translateZ(50px);
+		transform: rotateY(90deg) translateZ(50px);
+	}
+
+	.top {
+		-webkit-transform: rotateY(180deg) translateZ(50px);
+		transform: rotateY(180deg) translateZ(50px);
+	}
+
+	.bottom {
+		-webkit-transform: rotateY(-90deg) translateZ(50px);
+		transform: rotateY(-90deg) translateZ(50px);
+	}
+
+	.left {
+		-webkit-transform: rotateX(90deg) translateZ(50px);
+		transform: rotateX(90deg) translateZ(50px);
+	}
+
+	.right {
+		-webkit-transform: rotateX(-90deg) translateZ(50px);
+		transform: rotateX(-90deg) translateZ(50px);
+	}
+
+	.btn {
+		width: 50% !important;
+		font-size: 0.8em;
+		padding: 0 !important;
+	}
+}
+
+/* Dispositivos small (telefones em modo paisagem, com 576px ou mais)*/
+@media (min-width: 576px) and (max-width: 767.98px) {
+	#Titulo {
+		font-size: 4em;
+	}
+
+	.cena {
+		width: 150px;
+		height: 150px;
+	}
+
+	.front {
+		-webkit-transform: rotateY(0deg) translateZ(75px);
+		transform: rotateY(0deg) translateZ(75px);
+	}
+
+	.back {
+		-webkit-transform: rotateY(90deg) translateZ(75px);
+		transform: rotateY(90deg) translateZ(75px);
+	}
+
+	.top {
+		-webkit-transform: rotateY(180deg) translateZ(75px);
+		transform: rotateY(180deg) translateZ(75px);
+	}
+
+	.bottom {
+		-webkit-transform: rotateY(-90deg) translateZ(75px);
+		transform: rotateY(-90deg) translateZ(75px);
+	}
+
+	.left {
+		-webkit-transform: rotateX(90deg) translateZ(75px);
+		transform: rotateX(90deg) translateZ(75px);
+	}
+
+	.right {
+		-webkit-transform: rotateX(-90deg) translateZ(75px);
+		transform: rotateX(-90deg) translateZ(75px);
+	}
+
+}
+
