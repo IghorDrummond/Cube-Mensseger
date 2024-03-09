@@ -6,10 +6,13 @@ var Corpo = document.getElementsByTagName('main');
 var EstruturaCubo = document.getElementsByClassName('cubo');
 var formulario = document.getElementsByClassName('formulario');
 var imagem = document.getElementsByClassName('balao');
+var tela = document.getElementById('Tela');
 var rotacao = [0, 90, 180, -90, 90, -90];
 //Numero
 var nCont = 0;
-//Arrays
+//Booleano
+var lAjusta = false;
+
 
 //==================================Escopo============================================
 Cena[0].style.animation = "surgi 2s";
@@ -40,7 +43,11 @@ var x = setInterval(function(){
 	}	
 	nCont++;
 },1000);
-
+//===================================Eventos==========================================
+window.addEventListener("scroll", function() {
+    // Função a ser executada quando ocorrer o evento de scroll
+    alert("Rolou a página!");
+});
 //===================================Funções==========================================
 function desligaBalao(){
 	imagem[0].style.animation = "some 1s";
@@ -54,15 +61,16 @@ function desligaBalao(){
 function expande(Limite){
 	tamanho = 500;
 
-	if(window.innerWidth < 600){
-		tamanho = window.innerWidth - 100;
+	if(window.innerWidth < 650){
+		tamanho = window.innerWidth - 80;
 	}
 	nCont = Limite;
 
 	var y = setInterval(() => {
 		if(nCont === tamanho){
-			formulario[0].className = "form-group text-center d-block formulario";
-			formulario[1].className = "form-group text-center d-block formulario";		
+			formulario[0].className = "text-center d-block formulario";
+			formulario[1].className = "text-center d-block formulario";
+			lAjusta = true;
 			clearInterval(y);
 		}
 
@@ -72,7 +80,17 @@ function expande(Limite){
 
 		for(nCont2 = 0; nCont2 <= Cubo.length -1; nCont2 ++){
 			Cubo[nCont2].style.transform = "rotateY("+ rotacao[nCont2] +"deg)translateZ(" + (nCont / 2) + "px)";
-			Cubo[nCont2].style.webkitTransform = "rotateY("+ rotacao[nCont2] +"deg)translateZ(" + (nCont / 2) + "px)";		}
+			Cubo[nCont2].style.webkitTransform = "rotateY("+ rotacao[nCont2] +"deg)translateZ(" + (nCont / 2) + "px)";		
+		}
 		nCont++;	
 	}, 0.5);	
+}
+
+function Fechar(){
+
+	Tela.style.animation = "sumir 1s"
+	var P = setTimeout(() =>{
+		Tela.style.display = 'none';
+		clearTimeout(P);
+	}, 1000);
 }
