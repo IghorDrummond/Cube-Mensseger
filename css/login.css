@@ -31,6 +31,7 @@ main{
 	position: relative;
 	-webkit-transform-style: preserve-3d;
 	transform-style: preserve-3d;
+	transform: rotateY(45deg);
 }
 
 .cubo-face {
@@ -78,9 +79,12 @@ main{
 .right,
 .top,
 .back {
+	/*
 	background: -webkit-gradient(linear, left top, left bottom, from(#144cf4), color-stop(#1454f4), to(#184cf4));
 	background: -o-linear-gradient(top, #144cf4, #1454f4, #184cf4);
 	background: linear-gradient(to bottom, #144cf4, #1454f4, #184cf4);
+	*/
+	border: 2px solid white;
 }
 
 #Tela{
@@ -161,34 +165,6 @@ main{
 	}
 	to{
 		opacity: 0;
-	}
-}
-@-webkit-keyframes errado{
-	0%{
-		transform: rotateY(45deg);
-		-webkit-transform: rotateY(45deg);
-	}
-	50%{
-		transform: rotateY(-45deg);
-		-webkit-transform: rotateY(-45deg);
-	}
-	100%{
-		transform: rotateY(0deg);
-		-webkit-transform: rotateY(0deg);
-	}
-}
-@keyframes errado{
-	0%{
-		transform: rotateY(45deg);
-		-webkit-transform: rotateY(45deg);
-	}
-	50%{
-		transform: rotateY(-45deg);
-		-webkit-transform: rotateY(-45deg);
-	}
-	100%{
-		transform: rotateY(0deg);
-		-webkit-transform: rotateY(0deg);
 	}
 }
 
@@ -301,5 +277,8 @@ main{
 	.right {
 		-webkit-transform: rotateX(-90deg) translateZ(75px);
 		transform: rotateX(-90deg) translateZ(75px);
+	}
+	.cubo{
+		animation: errado 2s infinite;
 	}
 }

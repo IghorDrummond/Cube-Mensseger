@@ -49,6 +49,14 @@ window.addEventListener("scroll", function() {
     alert("Rolou a página!");
 });
 //===================================Funções==========================================
+/*
+================================================================
+Função: desligaBalao()
+Descrição: responsavel por desligar o balão branco para ativar logo em seguida, o formulario
+Data: 9/03/2024
+Progamador(a): Ighor Drummond
+================================================================
+*/
 function desligaBalao(){
 	imagem[0].style.animation = "some 1s";
 
@@ -85,7 +93,14 @@ function expande(Limite){
 		nCont++;	
 	}, 0.5);	
 }
-
+/*
+================================================================
+Função: Fechar()
+Descrição: responsavel por fechar a janela pop up de usuario incorreto ou inexistente
+Data: 9/03/2024
+Progamador(a): Ighor Drummond
+================================================================
+*/
 function Fechar(){
 
 	Tela.style.animation = "sumir 1s"

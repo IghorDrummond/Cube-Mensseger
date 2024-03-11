@@ -25,7 +25,7 @@
 			<p>
 				Caso Esqueceu a senha, seleciona "Esqueci a Senha".
 			</p>
-			<button class="mt-2 p-2 btn btn-info w-25" onclick="Fechar()">Ok</button>
+			<button class="my-2 p-2 btn btn-info w-25" onclick="Fechar()">Ok</button>
 		</div>
 
 	<?php
@@ -38,7 +38,7 @@
 			<p>
 				Usuário não Existe em Nossos Registro, caso queira cadastrar, selecione a opção "Cadastrar".
 			</p>
-			<button class="mt-2 p-2 btn btn-info w-25" onclick="Fechar()">Ok</button>
+			<button class="my-2 p-2 btn btn-info w-25" onclick="Fechar()">Ok</button>
 		</div>
 	<?php
 			}

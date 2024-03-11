@@ -18,6 +18,14 @@ var y = setInterval(function () {
 }, 1000);
 
 //=====================================Funções================================
+/*
+================================================================
+Função: Entrar()
+Descrição: Responsavel por direcionar para a página de Login
+Data: 9/03/2024
+Progamador(a): Ighor Drummond
+================================================================
+*/
 function Entrar(){
 	//Limpa o Intervalo
 	clearInterval(y);
