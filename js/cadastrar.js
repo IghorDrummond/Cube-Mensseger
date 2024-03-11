@@ -7,10 +7,14 @@ var Inputs = document.getElementsByTagName('input');
 //Numerico
 var nCont = 0;
 var nOpc = 1;
+//Array
+var rotacao = [0, 90, 180, -90, 90, -90];
+var classes = ["cubo-face front d-flex justify-content-center align-items-center ",
+	"cubo-face front ", "cubo-face back ", "cubo-face right ", "cubo-face left", "cubo-face top",
+	"cubo-face bottom "];
 //Booleano
 var lSaida = false;
 
-//=====================================Escopo==================================
 //Deixa os Inputs em Vermelho
 Inputs[0].style.border = "1px solid red";
 Inputs[1].style.border = "1px solid red";
