@@ -1,5 +1,6 @@
 <?php 
 	require_once('script/validador_acesso.php');
+	session_start();
 ?>
 <!DOCTYPE html>
 <html>
@@ -13,6 +14,38 @@
 </head>
 
 <body onscroll="rotacionaCubo()">
+	<?php 
+		$opc = 1;
+		if(isset($_SESSION['Erro'])){
+			if($_SESSION['Erro'] === 'Senha'){
+				$opc = 0;
+	?>
+		<div id="Tela" class="bg-danger text-center font-weight-bold w-100 border border-dark ">
+			<h6>Usuário ou Senha Incorretas!</h6>
+			<p>
+				Caso Esqueceu a senha, seleciona "Esqueci a Senha".
+			</p>
+			<button class="my-2 p-2 btn btn-info w-25" onclick="Fechar()">Ok</button>
+		</div>
+
+	<?php
+			}
+			else if($_SESSION['Erro'] === 'Email'){
+				$opc = 0;
+	?>
+		<div id="Tela" class="bg-warning text-center font-weight-bold w-100 border border-dark ">
+			<h6>Usuário não Existe!</h6>
+			<p>
+				Usuário não Existe em Nossos Registro, caso queira cadastrar, selecione a opção "Cadastrar".
+			</p>
+			<button class="my-2 p-2 btn btn-info w-25" onclick="Fechar()">Ok</button>
+		</div>
+	<?php
+			}
+			//Limpa dados de Erros após ser utilizados
+			$_SESSION['Erro'] = '';
+		}
+	?>	
 	<main class="d-flex justify-content-center align-items-center ">
 		<!-- Cubo -->
 		<div class="cena d-none">
@@ -29,7 +62,7 @@
 								<legend for="Senha">Senha:</legend>
 								<input class="form-control text-dark" type="password" name="Senha" required>
 							</fieldset>
-							<input type="submit" class="btn btn-info" name="Acesso" value="Entrar">					
+							<input type="submit" class="btn btn-info" name="Acesso" value="Entrar">
 						</form>
 						<form class="d-none formulario text-center" action="cadastrar.php">
 							<fieldset>
@@ -52,7 +85,21 @@
 	<!-- Scripts Obrigatórios -->
 	<?php require_once('script/scripts.php'); ?>
 
-	<script type="text/javascript" src="js/ajustaTamanho.js"></script>			
+	<?php
+		switch ($opc) {
+			case 0:
+	?>		
+		<script type="text/javascript" src="js/ajustaTamanho.js"></script>			
+		<script type="text/javascript" src="js/erradoCubo.js"></script>	
+	<?php
+				break;
+			default:
+	?>		
+		<script type="text/javascript" src="js/login.js"></script>	
+	<?php			
+				break;
+		}
+	?>		
 </body>
 
 </html>

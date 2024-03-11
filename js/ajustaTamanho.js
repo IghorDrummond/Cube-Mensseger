@@ -12,7 +12,7 @@ var nCont = 0;
 var rotacao = [0, 90, 180, -90, 90, -90];
 
 //==================================Escopo==========================
-//tamanho para telas acima de 650
+//tamanho para telas acima de 650px
 tamanho = 500;
 //define o tamanho do cubo caso a tela é menor que 650
 if (window.innerWidth < 650) {

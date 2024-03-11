@@ -9,7 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="css/login.css">
 
 	<!-- Título da Página -->
-	<title>Cube Mensseger - Login</title>
+	<title>Cube Mensseger - Cadastrar</title>
 </head>
 
 <body onscroll="rotacionaCubo()">
@@ -41,11 +41,20 @@
 					</div>
 				</div>
 				<div class="cubo-face back">
+					back
 				</div>
-				<div class="cubo-face right"></div>
-				<div class="cubo-face left"></div>
-				<div class="cubo-face top"></div>
-				<div class="cubo-face bottom"></div>
+				<div class="cubo-face right">
+					right
+				</div>
+				<div class="cubo-face left">
+					left
+				</div>
+				<div class="cubo-face top">
+					top
+				</div>
+				<div class="cubo-face bottom">
+					bottom
+				</div>
 			</div>
 		</div>
 	</main>

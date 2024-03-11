@@ -72,17 +72,9 @@ main{
 	        align-items: start;
 }
 
-.front,	
-.bottom,
-.left,
-.right,
-.top,
-.back {
-	background: -o-linear-gradient(top, #144cf4, #1454f4, #184cf4);
-	background: -webkit-gradient(linear, left top, left bottom, from(#144cf4), color-stop(#1454f4), to(#184cf4));
-	background: linear-gradient(to bottom, #144cf4, #1454f4, #184cf4);
-}
 
+
+/*Tela para Pop Ups*/
 #Tela{
 	position: absolute;
 	z-index: 5;
@@ -91,122 +83,11 @@ main{
 }
 
 /* Animação */
-@-webkit-keyframes surgi{
-	from {
-		-webkit-transform: translateY(-1000px) ;
-		        transform: translateY(-1000px) ;
-	}
-	to {
-		-webkit-transform: translateY(0px) ;
-		        transform: translateY(0px) ;
-	}
-}
-@keyframes surgi{
-	from {
-		-webkit-transform: translateY(-1000px) ;
-		        transform: translateY(-1000px) ;
-	}
-	to {
-		-webkit-transform: translateY(0px) ;
-		        transform: translateY(0px) ;
-	}
-}
-@-webkit-keyframes rotacionar{
-	from {
-		-webkit-transform: rotateY(360deg);
-		        transform: rotateY(360deg);
-	}
-	to {
-		-webkit-transform: rotateY(0deg) ;
-		        transform: rotateY(0deg) ;
-	}
-}
-@keyframes rotacionar{
-	from {
-		-webkit-transform: rotateY(360deg);
-		        transform: rotateY(360deg);
-	}
-	to {
-		-webkit-transform: rotateY(0deg) ;
-		        transform: rotateY(0deg) ;
-	}
-}
-@-webkit-keyframes some{
-	from {
-		opacity: 1.0;
-	}
-	to {
-		opacity: 0;
-	}
-}
-@keyframes some{
-	from {
-		opacity: 1.0;
-	}
-	to {
-		opacity: 0;
-	}
-}
-@-webkit-keyframes sumir{
-	from{
-		opacity: 1;
-	}
-	to{
-		opacity: 0;
-	}
-}
 @keyframes sumir{
 	from{
-		opacity: 1;
-	}
-	to{
 		opacity: 0;
 	}
 }
-@-webkit-keyframes errado{
-	0%{
-		background: -webkit-gradient(linear, left top, left bottom, from(#144cf4), color-stop(#1454f4), to(#184cf4));
-		background: linear-gradient(to bottom, #144cf4, #1454f4, #184cf4);
-	}
-	25%{
-		background: red;
-	}
-	50%{
-		background: -webkit-gradient(linear, left top, left bottom, from(#144cf4), color-stop(#1454f4), to(#184cf4));
-		background: linear-gradient(to bottom, #144cf4, #1454f4, #184cf4);
-	}
-	75%{
-		background: red;
-	}
-	100%{
-		background: -webkit-gradient(linear, left top, left bottom, from(#144cf4), color-stop(#1454f4), to(#184cf4));
-		background: linear-gradient(to bottom, #144cf4, #1454f4, #184cf4);
-	}
-}
-@keyframes errado{
-	0%{
-		background: -webkit-gradient(linear, left top, left bottom, from(#144cf4), color-stop(#1454f4), to(#184cf4)) !important;
-		background: -o-linear-gradient(top, #144cf4, #1454f4, #184cf4) !important;
-		background: linear-gradient(to bottom, #144cf4, #1454f4, #184cf4) !important;
-	}
-	25%{
-		background: red;
-	}
-	50%{
-		background: -webkit-gradient(linear, left top, left bottom, from(#144cf4), color-stop(#1454f4), to(#184cf4)) !important;
-		background: -o-linear-gradient(top, #144cf4, #1454f4, #184cf4) !important;
-		background: linear-gradient(to bottom, #144cf4, #1454f4, #184cf4) !important;
-	}
-	75%{
-		background: red;
-	}
-	100%{
-		background: -webkit-gradient(linear, left top, left bottom, from(#144cf4), color-stop(#1454f4), to(#184cf4)) !important;
-		background: -o-linear-gradient(top, #144cf4, #1454f4, #184cf4) !important;
-		background: linear-gradient(to bottom, #144cf4, #1454f4, #184cf4) !important;
-	}
-}
-
 /* Dispositivos Mobiles */
 /* Dispositivos extra small (telefones em modo retrato, com menos de 576px)*/
 @media (max-width: 575.98px) {
