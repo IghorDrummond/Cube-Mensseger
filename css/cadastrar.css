@@ -72,6 +72,9 @@ main{
 	        align-items: start;
 }
 
+.fonte legend, .fonte input, .fonte label{
+	font-size: 0.5em !important;
+}
 
 
 /*Tela para Pop Ups*/

@@ -40,21 +40,33 @@
 						</form>
 					</div>
 				</div>
-				<div class="cubo-face back">
-					back
-				</div>
-				<div class="cubo-face right">
-					right
-				</div>
-				<div class="cubo-face left">
-					left
-				</div>
+				<div class="cubo-face back"></div>
+				<div class="cubo-face right"></div>
+				<div class="cubo-face left"></div>
 				<div class="cubo-face top">
-					top
+					<form class=" text-center formulario w-50 m-auto pt-1 fonte" action="script/cadastra.php" action="POST">
+						<fieldset >
+							<legend for="Email">Email:</legend>
+							<input class="form-control text-dark" name="Email" placeholder="seuemail@email.com" required>				
+						</fieldset>
+						<fieldset >
+							<legend>Apelido</legend>
+							<label for="Nome">Insira o Nome: </label>
+							<input class="form-control text-dark" name="Nome" type="text" required placeholder="Nome">
+							<label for="Sobrenome">Insira o Sobrenome: </label>
+							<input class="form-control text-dark" name="Sobrenome" type="text" required placeholder="Sobrenome">														
+						</fieldset>
+						<fieldset >
+							<legend for="Senha">Senha:</legend>
+							<label for="Senha">Insira a Senha: </label>
+							<input class="form-control text-dark" name="Senha" type="password" required>
+							<label for="ConfirmeSenha">Confirme a Senha: </label>
+							<input class="form-control text-dark" name="ConfirmeSenha" type="password" required>							
+						</fieldset>
+						<input type="submit" class="btn btn-info" name="Acesso" value="Cadastrar" >
+					</form>
 				</div>
-				<div class="cubo-face bottom">
-					bottom
-				</div>
+				<div class="cubo-face bottom"></div>
 			</div>
 		</div>
 	</main>
