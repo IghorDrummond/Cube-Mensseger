@@ -7,7 +7,7 @@
 <head>
 	<?php require_once('script/estilos.php'); ?>
 	<!-- Estilo da Página -->
-	<link rel="stylesheet" type="text/css" href="css/login.css">
+	<link rel="stylesheet" type="text/css" href="css/esqueciSenha.css">
 
 	<!-- Título da Página -->
 	<title>Cube Mensseger - Recupera Senha</title>
@@ -15,17 +15,21 @@
 
 <body onscroll="rotacionaCubo()">
 		<?php
+			$opc = 99;
 			if(isset($_SESSION['Erro']) and $_SESSION['Erro'] != ''){
-				if($_SESSION['Erro'] === 'Email'){
+				if($_SESSION['Erro'] === 'NotEmail'){
+					$opc = 1;
 		?>
 			<div id="Tela" class="w-100 bg-warning text-center p-2 fixed">
 				<p>
 					Usuário não Existe em Nossos Bancos, insira um email valido ou cadastre uma conta.
 				</p>
-				<button class="btn btn-info p-2 my-1" onclick="Voltar()">Voltar</button>
+				<button class="btn btn-info p-2 m-1" onclick="VoltarDir()">Voltar</button>
+				<button id="Tela" class="btn btn-info p-2 m-1" onclick="Fechar()">Ok</button>
 			</div>
 		<?php
 				}
+				$_SESSION['Erro'] = "";
 			}
 		?>	
 	
@@ -77,9 +81,23 @@
 	<?php require_once('script/scripts.php'); ?>
 
 	<!-- Scripts da Página -->
+	<?php
+		switch($opc){
+
+			case 1:
+	?>
+				<script type="text/javascript" src="js/esqueciSenha_fixado.js"></script>	
+				<script type="text/javascript" src="js/erradoCuboSenha.js"></script>	
+	<?php
+				break;
+			default:
+	?>
+				<script type="text/javascript" src="js/esqueciSenha.js"></script>	
+	<?php
+				break;
+		}	
+	?>	
 	<script type="text/javascript" src="js/ajustaTamanho.js"></script>
-	<script type="text/javascript" src="js/janelas.js"></script>
-	<script type="text/javascript" src="js/esqueciSenha.js"></script>	
-	
+	<script type="text/javascript" src="js/janelas.js"></script>	
 </body>
 </html>

@@ -70,7 +70,7 @@
 			$_SESSION['Validacao'] = "";
 		}
 	?>
-	<main class="d-flex justify-content-center align-items-center ">
+	<main class="d-flex justify-content-center align-items-center flex-column ">	
 		<!-- Cubo -->
 		<div class="cena d-none">
 			<div class="cubo">
@@ -91,8 +91,8 @@
 						<form class="d-none formulario text-center">
 							<fieldset>
 								<p>Está com Dificuldade para acessar? Tente Isso:</p>
-								<a class="btn btn-success  border border-light" href="cadastrar.php">Cadastrar</a>
-								<a class="btn btn-success border border-light" href="esqueciSenha.php">Esqueci a Senha</a>
+								<a class="btn btn-info" href="cadastrar.php">Cadastrar</a>
+								<a class="btn btn-info" href="esqueciSenha.php">Esqueci a Senha</a>
 							</fieldset>		
 						</form>
 					</div>
@@ -106,6 +106,7 @@
 			</div>
 		</div>
 	</main>
+
 	<!-- Scripts Obrigatórios -->
 	<?php require_once('script/scripts.php'); ?>
 

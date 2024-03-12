@@ -2,7 +2,7 @@
 //Elementos
 var CorpoForm = document.getElementsByClassName('formularios');
 var EstruturaCubo = document.getElementsByClassName('cubo');
-var tela = document.getElementById('Tela');
+var Tela = document.getElementById('Tela');
 
 /*
 ================================================================
@@ -44,7 +44,6 @@ function Voltar(){
 		}
 
 		nCont++;
-		console.log(nCont);
 		EstruturaCubo[0].style.transform = "rotateY(" + nCont.toString() +"deg)";
 		EstruturaCubo[0].style.webkitTransform = "rotateY(" + nCont.toString() +"deg)";		
 	}, 15);
@@ -66,13 +65,11 @@ function VoltarDir(){
 			//Redireciona para a página de Login
 			window.location.href = "login.php";
 		}else if(nCont === -70){
-			CorpoForm[0].style.animation = "none";	
-			CorpoForm[0].style.webkitAnimation = "none";	
 			CorpoForm[0].style.display = "block";
 		}
+		console.log(CorpoForm);
 
 		nCont--;
-		console.log(nCont);
 		EstruturaCubo[0].style.transform = "rotateY(" + nCont.toString() +"deg)";
 		EstruturaCubo[0].style.webkitTransform = "rotateY(" + nCont.toString() +"deg)";		
 	}, 15);

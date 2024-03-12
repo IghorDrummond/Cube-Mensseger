@@ -3,31 +3,30 @@
 var EstruturaCubo = document.getElementsByClassName('cubo');
 var Inputs = document.getElementsByTagName('input');
 //Numerico
-var nCont = 0;
+var nCont2 = 90;
 var nOpc = 1;
 //Booleano
 var lSaida = false;
 
 //=====================================Escopo==================================
 //Deixa os Inputs em Vermelho
-Inputs[0].style.border = "1px solid red";
-Inputs[1].style.border = "1px solid red";
+Inputs[5].style.border = "1px solid red";
 
 //Balança o Cubo Negativamente
 var x = setInterval(function(){
 
-	if(nCont === 15){
+	if(nCont2 === 105){
 		nOpc = 2;
-	}else if(nCont === -15){
+	}else if(nCont2 === 75){
 		nOpc = 1;
 		lSaida = true;
-	}else if(nCont === -1 && lSaida){
+	}else if(nCont2 === 89 && lSaida){
 		clearTimeout(x);
 	}
 
-	nCont = operacao(nOpc, nCont);
-	EstruturaCubo[0].style.transform = "rotateY(" + nCont.toString() +"deg)";
-	EstruturaCubo[0].style.webkitTransform = "rotateY(" + nCont.toString() +"deg)";
+	nCont2 = operacao(nOpc, nCont2);
+	EstruturaCubo[0].style.transform = "rotateY(" + nCont2.toString() +"deg)";
+	EstruturaCubo[0].style.webkitTransform = "rotateY(" + nCont2.toString() +"deg)";
 },25);
 
 //===================================Funções=======================================
@@ -35,7 +34,7 @@ var x = setInterval(function(){
 ================================================================
 Função: operacao(opção matemática, valor a ser alterado)
 Descrição: faz subtração ou adição de acordo com a opção matemática
-Data: 11/03/2024
+Data: 12/03/2024
 Progamador(a): Ighor Drummond
 ================================================================
 */

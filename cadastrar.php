@@ -7,7 +7,7 @@
 <head>
 	<?php require_once('script/estilos.php'); ?>
 	<!-- Estilo da Página -->
-	<link rel="stylesheet" type="text/css" href="css/login.css">
+	<link rel="stylesheet" type="text/css" href="css/cadastrar.css">
 
 	<!-- Título da Página -->
 	<title>Cube Mensseger - Cadastrar</title>
@@ -71,7 +71,7 @@
 				<div class="cubo-face back"></div>
 				<div class="cubo-face right"></div>
 				<div class="cubo-face left"></div>
-				<div class="cubo-face top">
+				<div class="cubo-face top d-flex justify-content-center align-items-center">
 					<form class=" text-center formulario w-50 m-auto pt-1 fonte" action="script/cadastra.php" method="POST">
 						<fieldset >
 							<legend for="Email">Email:</legend>

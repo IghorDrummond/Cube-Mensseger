@@ -70,10 +70,13 @@
 		}	
 		//Envia o Email para Usuário
 		EnviaEmail($Dados[1] , $Dados[2], $Codigo);
+		$Ret = '../esqueciSenha.php';
 	}else{
 		$_SESSION['Erro'] = 'NotEmail';
+		$Ret = '../esqueciSenha.php';
 	}
 
+	header('Location: ' . $Ret);
 
 //===============================Função==========================
 
@@ -123,7 +126,7 @@
 			    )
 			);
 			$mail->CharSet="UTF-8";
-			$mail->Host       = 'smtp.email.com';                     
+			$mail->Host       = 'smtp.gmail.com';                     
 			$mail->Port       = 587;
 			//Destinatário e Remetente
 			$mail->setFrom('seuemail', 'Nao Responda - Código');
@@ -193,7 +196,7 @@
 			</header>
 			<main>
 				<section>
-					<h3>Olá! '. $Nome .'</h3>
+					<h3>Olá! '. $Nome .'.</h3>
 					<h1>'. $Codigo .'</h1>
 				</section>
 				<section>

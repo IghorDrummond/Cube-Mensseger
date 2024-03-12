@@ -51,8 +51,8 @@ function Voltar(){
 			//Redireciona para a página de Login
 			window.location.href = "login.php";
 		}else if(nCont === -70){
-			CorpoForm[0].style.animation = "none";	
-			CorpoForm[0].style.webkitAnimation = "none";	
+			CorpoForm[0].style.animation = "aparecer 2s";	
+			CorpoForm[0].style.webkitAnimation = "aparecer 2s";	
 			CorpoForm[0].style.display = "block";
 		}
 

@@ -82,14 +82,6 @@ main{
 	background: linear-gradient(to bottom, #144cf4, #1454f4, #184cf4);
 }
 
-/* Formatação do Formulario */
-.fonte legend, .fonte input, .fonte label{
-	font-size: 0.5em !important;
-}
-
-.fonte input{
-	height: 20px !important;
-}
 
 /*Tela para Pop Ups*/
 #Tela{
@@ -102,11 +94,17 @@ main{
 /* Animação */
 @-webkit-keyframes sumir{
 	from{
+		opacity: 1;
+	}
+	to{
 		opacity: 0;
 	}
 }
 @keyframes sumir{
 	from{
+		opacity: 1;
+	}
+	to{
 		opacity: 0;
 	}
 }
