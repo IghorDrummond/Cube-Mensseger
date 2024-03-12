@@ -14,8 +14,9 @@
 	if(verificaExistencia($Email) === false){
 		echo('Foi');
 	}else{
-		//Nada por enquanto...
-		header('Location: ../cadastrar.php?Validacao=Email');
+		//Volta para página de Cadastro por já exitir o email
+		$_SESSION['Erro'] = 'Email';
+		header('Location: ../cadastrar.php');
 	}
 
 //===============================Função==========================

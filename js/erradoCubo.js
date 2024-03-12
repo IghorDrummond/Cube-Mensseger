@@ -54,18 +54,3 @@ function operacao(nOpc, valor){
 
 	return lRet;
 }
-/*
-================================================================
-Função: Fechar()
-Descrição: responsavel por fechar a janela pop up de usuario incorreto ou inexistente
-Data: 9/03/2024
-Progamador(a): Ighor Drummond
-================================================================
-*/
-function Fechar(){
-	Tela.style.animation = "sumir 1s"
-	var P = setTimeout(() =>{
-		Tela.style.display = 'none';
-		clearTimeout(P);
-	}, 1000);
-}

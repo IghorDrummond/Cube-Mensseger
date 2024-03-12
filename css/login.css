@@ -163,49 +163,23 @@ main{
 		opacity: 0;
 	}
 }
-@-webkit-keyframes errado{
-	0%{
-		background: -webkit-gradient(linear, left top, left bottom, from(#144cf4), color-stop(#1454f4), to(#184cf4));
-		background: linear-gradient(to bottom, #144cf4, #1454f4, #184cf4);
+@-webkit-keyframes aparecer{
+	from{
+		opacity: 0;
 	}
-	25%{
-		background: red;
-	}
-	50%{
-		background: -webkit-gradient(linear, left top, left bottom, from(#144cf4), color-stop(#1454f4), to(#184cf4));
-		background: linear-gradient(to bottom, #144cf4, #1454f4, #184cf4);
-	}
-	75%{
-		background: red;
-	}
-	100%{
-		background: -webkit-gradient(linear, left top, left bottom, from(#144cf4), color-stop(#1454f4), to(#184cf4));
-		background: linear-gradient(to bottom, #144cf4, #1454f4, #184cf4);
+	to{
+		opacity: 1;
 	}
 }
-@keyframes errado{
-	0%{
-		background: -webkit-gradient(linear, left top, left bottom, from(#144cf4), color-stop(#1454f4), to(#184cf4)) !important;
-		background: -o-linear-gradient(top, #144cf4, #1454f4, #184cf4) !important;
-		background: linear-gradient(to bottom, #144cf4, #1454f4, #184cf4) !important;
+@keyframes aparecer{
+	from{
+		opacity: 0;
 	}
-	25%{
-		background: red;
-	}
-	50%{
-		background: -webkit-gradient(linear, left top, left bottom, from(#144cf4), color-stop(#1454f4), to(#184cf4)) !important;
-		background: -o-linear-gradient(top, #144cf4, #1454f4, #184cf4) !important;
-		background: linear-gradient(to bottom, #144cf4, #1454f4, #184cf4) !important;
-	}
-	75%{
-		background: red;
-	}
-	100%{
-		background: -webkit-gradient(linear, left top, left bottom, from(#144cf4), color-stop(#1454f4), to(#184cf4)) !important;
-		background: -o-linear-gradient(top, #144cf4, #1454f4, #184cf4) !important;
-		background: linear-gradient(to bottom, #144cf4, #1454f4, #184cf4) !important;
+	to{
+		opacity: 1;
 	}
 }
+
 
 /* Dispositivos Mobiles */
 /* Dispositivos extra small (telefones em modo retrato, com menos de 576px)*/
