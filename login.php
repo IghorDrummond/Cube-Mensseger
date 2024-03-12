@@ -13,10 +13,10 @@
 	<title>Cube Mensseger - Login</title>
 </head>
 
-<body onscroll="rotacionaCubo()">
+<body>
 	<?php 
-		$opc = 1;
-		if(isset($_SESSION['Erro'])){
+		$opc = 99;
+		if(isset($_SESSION['Erro']) and $_SESSION['Erro'] != ''){
 			if($_SESSION['Erro'] === 'Senha'){
 				$opc = 0;
 	?>
@@ -44,6 +44,9 @@
 			}
 			//Limpa dados de Erros após ser utilizados
 			$_SESSION['Erro'] = '';
+		}else if(isset($_SESSION['Pagina']) and $_SESSION['Pagina'] === 'Cadastrar'){
+			$opc = 1;
+			$_SESSION['Pagina'] = '';
 		}
 	?>	
 	<main class="d-flex justify-content-center align-items-center ">
@@ -88,18 +91,28 @@
 	<?php
 		switch ($opc) {
 			case 0:
+				echo('Foi no 0');
 	?>		
 		<script type="text/javascript" src="js/ajustaTamanho.js"></script>			
 		<script type="text/javascript" src="js/erradoCubo.js"></script>	
+	<?php
+				break;
+			case 1:
+				echo('Foi no 1');
+	?>			
+		<script type="text/javascript" src="js/ajustaTamanho.js"></script>	
 	<?php
 				break;
 			default:
 	?>		
 		<script type="text/javascript" src="js/login.js"></script>	
 	<?php			
+				echo('Foi no Default');
 				break;
 		}
-	?>		
+	?>	
+
+	<script type="text/javascript" src="js/janelas.js"></script>	
 </body>
 
 </html>

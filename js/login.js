@@ -13,7 +13,6 @@ var nCont = 0;
 //Booleano
 var lAjusta = false;
 
-
 //==================================Escopo============================================
 Cena[0].style.animation = "surgi 2s";
 Cena[0].className = "cena d-block";
@@ -92,20 +91,4 @@ function expande(Limite){
 		}
 		nCont++;	
 	}, 0.5);	
-}
-/*
-================================================================
-Função: Fechar()
-Descrição: responsavel por fechar a janela pop up de usuario incorreto ou inexistente
-Data: 9/03/2024
-Progamador(a): Ighor Drummond
-================================================================
-*/
-function Fechar(){
-
-	Tela.style.animation = "sumir 1s"
-	var P = setTimeout(() =>{
-		Tela.style.display = 'none';
-		clearTimeout(P);
-	}, 1000);
 }

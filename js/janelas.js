@@ -2,38 +2,25 @@
 //Elementos
 var CorpoForm = document.getElementsByClassName('formularios');
 var EstruturaCubo = document.getElementsByClassName('cubo');
+var tela = document.getElementById('Tela');
 
-//===================================Escopo========================================
-CorpoForm[0].style.animation = "sumir 1s";
-CorpoForm[0].style.webkitAnimation = "sumir 1s";
-var Z = setInterval(() =>{
-	CorpoForm[0].style.display = "none";
-	//Chama função para girar o cubo
-	giraCubo();
-	clearInterval(Z);
-}, 1000);
-//===================================Funções=======================================
 /*
 ================================================================
-Função: giraCubo()
-Descrição: faz a rotação do cubo para o formulario existente
-Data: 11/03/2024
+Função: Fechar()
+Descrição: responsavel por fechar a janela pop up de usuario incorreto ou inexistente
+Data: 9/03/2024
 Progamador(a): Ighor Drummond
 ================================================================
 */
-function giraCubo(){
-	var nCont = 0;
+function Fechar(){
 
-	var Y = setInterval(() =>{
-		if(nCont === -89){
-			clearInterval(Y);
-		}
-
-		nCont--;
-		EstruturaCubo[0].style.transform = "rotateY(" + nCont.toString() +"deg)";
-		EstruturaCubo[0].style.webkitTransform = "rotateY(" + nCont.toString() +"deg)";		
-	}, 15);
+	Tela.style.animation = "sumir 1s"
+	var P = setTimeout(() =>{
+		Tela.style.display = 'none';
+		clearTimeout(P);
+	}, 1000);
 }
+
 /*
 ================================================================
 Função: Voltar()
@@ -57,6 +44,7 @@ function Voltar(){
 		}
 
 		nCont++;
+		console.log(nCont);
 		EstruturaCubo[0].style.transform = "rotateY(" + nCont.toString() +"deg)";
 		EstruturaCubo[0].style.webkitTransform = "rotateY(" + nCont.toString() +"deg)";		
 	}, 15);
