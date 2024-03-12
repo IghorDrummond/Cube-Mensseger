@@ -24,7 +24,7 @@ function Fechar(){
 /*
 ================================================================
 Função: Voltar()
-Descrição: Rotaciona o Cubo novamente para o formulario e Login
+Descrição: Rotaciona o Cubo novamente para Esquerda para o formulario e Login
 Data: 11/03/2024
 Progamador(a): Ighor Drummond
 ================================================================
@@ -44,6 +44,34 @@ function Voltar(){
 		}
 
 		nCont++;
+		console.log(nCont);
+		EstruturaCubo[0].style.transform = "rotateY(" + nCont.toString() +"deg)";
+		EstruturaCubo[0].style.webkitTransform = "rotateY(" + nCont.toString() +"deg)";		
+	}, 15);
+}
+/*
+================================================================
+Função: VoltarDir()
+Descrição: Rotaciona o Cubo novamente para Direita para o formulario e Login
+Data: 12/03/2024
+Progamador(a): Ighor Drummond
+================================================================
+*/
+function VoltarDir(){
+	var nCont = 90;
+
+	var Y = setInterval(() =>{
+		if(nCont === 1){	
+			clearInterval(Y);
+			//Redireciona para a página de Login
+			window.location.href = "login.php";
+		}else if(nCont === -70){
+			CorpoForm[0].style.animation = "none";	
+			CorpoForm[0].style.webkitAnimation = "none";	
+			CorpoForm[0].style.display = "block";
+		}
+
+		nCont--;
 		console.log(nCont);
 		EstruturaCubo[0].style.transform = "rotateY(" + nCont.toString() +"deg)";
 		EstruturaCubo[0].style.webkitTransform = "rotateY(" + nCont.toString() +"deg)";		

@@ -1,6 +1,5 @@
 <?php 
 	require_once('script/validador_acesso.php');
-	session_start();
 	$_SESSION['Pagina'] = 'Cadastrar';
 ?>
 <!DOCTYPE html>
@@ -32,7 +31,7 @@
 		?>
 			<div id="Tela" class="w-100 bg-warning text-center p-2 fixed">
 				<p>
-					Usuário já cadastrado em Nossos Bancos, volte ao inicio para trocar senha caso tenha perdido a mesma.
+					As Senhas não se Correspondem, insira novamente as Senhas.
 				</p>
 				<button class="btn btn-info p-2 my-1" onclick="Voltar()">Voltar</button>
 			</div>		

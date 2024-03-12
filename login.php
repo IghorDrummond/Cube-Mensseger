@@ -1,6 +1,5 @@
 <?php 
 	require_once('script/validador_acesso.php');
-	session_start();
 ?>
 <!DOCTYPE html>
 <html>
@@ -44,10 +43,19 @@
 			}
 			//Limpa dados de Erros após ser utilizados
 			$_SESSION['Erro'] = '';
-		}else if(isset($_SESSION['Pagina']) and $_SESSION['Pagina'] === 'Cadastrar'){
-			$opc = 1;
-			$_SESSION['Pagina'] = '';
-		}else if(isset($_SESSION['Validacao']) and $_SESSION['Validacao'] === 'Cadastrado'){
+		}
+		//Valida se veio de páginas direcionada para login
+		if(isset($_SESSION['Pagina'])){
+			//Valida se veio de páginas direcionada para login
+			if($_SESSION['Pagina'] === 'Cadastrar'){
+				$opc = 1;
+			}else if($_SESSION['Pagina'] === 'Senha'){
+				$opc = 1;
+			}
+			//Reseta a página
+			$_SESSION['Pagina'] = "";
+		}
+		if(isset($_SESSION['Validacao']) and $_SESSION['Validacao'] === 'Cadastrado'){
 			$opc = 1;
 	?>	
 		<div id="Tela" class="bg-success text-center font-weight-bold w-100 border border-dark fixed ">
@@ -58,6 +66,7 @@
 			<button class="my-2 p-2 btn btn-info w-25" onclick="Fechar()">Ok</button>
 		</div>
 	<?php
+			//Reseta a validação
 			$_SESSION['Validacao'] = "";
 		}
 	?>
@@ -79,11 +88,11 @@
 							</fieldset>
 							<input type="submit" class="btn btn-info" name="Acesso" value="Entrar">
 						</form>
-						<form class="d-none formulario text-center" action="cadastrar.php">
+						<form class="d-none formulario text-center">
 							<fieldset>
 								<p>Está com Dificuldade para acessar? Tente Isso:</p>
-								<input type="submit" class="btn btn-transparent border border-light" name="Acesso" value="Cadastrar">
-								<input type="submit" class="btn btn-transparent border border-light" name="Acesso" value="Esqueci a Senha">
+								<a class="btn btn-success  border border-light" href="cadastrar.php">Cadastrar</a>
+								<a class="btn btn-success border border-light" href="esqueciSenha.php">Esqueci a Senha</a>
 							</fieldset>		
 						</form>
 					</div>
