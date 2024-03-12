@@ -47,8 +47,20 @@
 		}else if(isset($_SESSION['Pagina']) and $_SESSION['Pagina'] === 'Cadastrar'){
 			$opc = 1;
 			$_SESSION['Pagina'] = '';
-		}
+		}else if(isset($_SESSION['Validacao']) and $_SESSION['Validacao'] === 'Cadastrado'){
+			$opc = 1;
 	?>	
+		<div id="Tela" class="bg-success text-center font-weight-bold w-100 border border-dark fixed ">
+			<h6>Usuário Cadastrado!</h6>
+			<p>
+				Faça seu Primeiro Acesso logando no cubo abaixo.
+			</p>
+			<button class="my-2 p-2 btn btn-info w-25" onclick="Fechar()">Ok</button>
+		</div>
+	<?php
+			$_SESSION['Validacao'] = "";
+		}
+	?>
 	<main class="d-flex justify-content-center align-items-center ">
 		<!-- Cubo -->
 		<div class="cena d-none">
@@ -91,14 +103,12 @@
 	<?php
 		switch ($opc) {
 			case 0:
-				echo('Foi no 0');
 	?>		
 		<script type="text/javascript" src="js/ajustaTamanho.js"></script>			
 		<script type="text/javascript" src="js/erradoCubo.js"></script>	
 	<?php
 				break;
 			case 1:
-				echo('Foi no 1');
 	?>			
 		<script type="text/javascript" src="js/ajustaTamanho.js"></script>	
 	<?php
@@ -107,7 +117,6 @@
 	?>		
 		<script type="text/javascript" src="js/login.js"></script>	
 	<?php			
-				echo('Foi no Default');
 				break;
 		}
 	?>	

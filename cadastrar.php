@@ -16,7 +16,7 @@
 
 <body onscroll="rotacionaCubo()">
 		<?php
-			if(isset($_SESSION['Erro'])){
+			if(isset($_SESSION['Erro']) and $_SESSION['Erro'] != ''){
 				if($_SESSION['Erro'] === 'Email'){
 		?>
 			<div id="Tela" class="w-100 bg-warning text-center p-2 fixed">
@@ -27,8 +27,20 @@
 			</div>
 		<?php
 					$opc = 1;
+				}else if($_SESSION['Erro'] === 'Senha'){
+					$opc = 1;
+		?>
+			<div id="Tela" class="w-100 bg-warning text-center p-2 fixed">
+				<p>
+					Usuário já cadastrado em Nossos Bancos, volte ao inicio para trocar senha caso tenha perdido a mesma.
+				</p>
+				<button class="btn btn-info p-2 my-1" onclick="Voltar()">Voltar</button>
+			</div>		
+		<?php		
 				}
 				$_SESSION['Erro'] = "";
+			}else if(isset($_SESSION['Validacao']) and $_SESSION['Validacao'] === 'Cadastrado'){
+				$opc = 2;
 			}
 		?>
 	<main class="d-flex justify-content-center align-items-center ">
@@ -100,6 +112,11 @@
 			case 1:
 	?>
 				<script type="text/javascript" src="js/telaCadastrar.js"></script>	
+	<?php	
+				break;
+			case 2:
+	?>					
+				<script type="text/javascript" src="js/telaLogin.js"></script>	
 	<?php	
 				break;
 			default:
