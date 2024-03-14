@@ -15,17 +15,17 @@
 
 <body>
 	<?php ?>
-
-	
-	<main class="d-flex justify-content-center align-items-center ">
+	<main class="d-flex justify-content-center align-items-center">
 		<!-- Cubo -->
 		<div class="cena d-none">
 			<div class="cubo">
 				<div class="cubo-face front"></div>
 				<div class="cubo-face back"></div>
-				<div class="cubo-face right bg-success">
+				<div class="cubo-face right">
 					<!-- Alterar Aqui --->
-					<button onclick="Voltar()">Voltar</button>
+					<div class="codigo bg-warning">
+						<button onclick="Voltar()">Voltar</button>
+					</div>
 				</div>
 				<div class="cubo-face left"></div>
 				<div class="cubo-face top"></div>
@@ -34,10 +34,10 @@
 						<fieldset class="container-fluid">
 							<legend for="Email">Email:</legend>
 							<label for="Info">Insira seu Email ou Nome e Sobrenome cadastrado no Site:</label>
-							<input class="form-control text-dark w-100" name="Info" placeholder="Email ou Nome e Sobrenome" readonly disabled="disabled">				
+							<input class="form-control text-dark w-100" name="Info" placeholder="Email ou Nome e Sobrenome" required>				
 						</fieldset>
-						<input type="submit" class="btn btn-info" name="Acesso" value="Enviar" readonly disabled="disabled">
-						<input type="button" class="btn btn-info" value="Voltar" readonly disabled="disabled" >
+						<input type="submit" class="btn btn-info" name="Acesso" value="Enviar" >
+						<input type="button" class="btn btn-info" onclick="VoltarDir()"  value="Voltar" >
 					</form>
 				</div>
 			</div>
@@ -47,23 +47,8 @@
 	<?php require_once('script/scripts.php'); ?>
 
 	<!-- Scripts da Página -->
-	<?php
-		switch($opc){
-
-			case 1:
-	?>
-				<script type="text/javascript" src="js/codigo_fixado.js"></script>	
-				<script type="text/javascript" src="js/erradoCuboCodigo.js"></script>	
-	<?php
-				break;
-			default:
-	?>
-				<script type="text/javascript" src="js/codigo.js"></script>	
-	<?php
-				break;
-		}	
-	?>	
 	<script type="text/javascript" src="js/ajustaTamanho.js"></script>
+	<script type="text/javascript" src="js/codigo_fixado.js"></script>
 	<script type="text/javascript" src="js/janelas.js"></script>	
 </body>
 </html>

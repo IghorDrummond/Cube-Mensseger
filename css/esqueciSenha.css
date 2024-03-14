@@ -67,9 +67,6 @@ main{
 .right {
 	-webkit-transform: rotateX(-90deg) translateZ(100px);
 	transform: rotateX(-90deg) translateZ(100px);
-	-webkit-box-align: start;
-	    -ms-flex-align: start;
-	        align-items: start;
 }
 .front,	
 .bottom,

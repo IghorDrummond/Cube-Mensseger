@@ -23,7 +23,6 @@ Cena[0].style.transform = " translateY(0px)";
 Cena[0].style.webkitTransform = " translateY(0px)";
 Cena[0].style.width = tamanho.toString() + "px";
 Cena[0].style.height = tamanho.toString() + "px";
-console.log(imagem);
 //Verifica se existe Balão no arquivo Php	
 if(typeof imagem[0] === 'object' ){
 	//Desliga o Balão

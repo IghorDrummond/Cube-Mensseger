@@ -12,7 +12,6 @@ var rotacao = [0, 90, -90, 90, 180, -90];//front, back, right, left, top, bottom
 
 
 //===================================Escopo========================================
-EstruturaCubo[0].style.transform = "rotateY(90deg)";
 CorpoForm[0].style.animation = "sumir 1s";
 
 var Z = setInterval(() =>{
