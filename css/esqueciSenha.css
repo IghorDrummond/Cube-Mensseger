@@ -105,6 +105,14 @@ main{
 		opacity: 0;
 	}
 }
+@-webkit-keyframes aparecer{
+	from{
+		opacity: 0;
+	}
+	to{
+		opacity: 1;
+	}
+}
 @keyframes aparecer{
 	from{
 		opacity: 0;

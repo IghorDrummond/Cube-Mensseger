@@ -12,7 +12,6 @@
 	<!-- Título da Página -->
 	<title>Cube Mensseger - Recupera Senha</title>
 </head>
-
 <body onscroll="rotacionaCubo()">
 		<?php
 			$opc = 99;
@@ -31,7 +30,6 @@
 				$_SESSION['Erro'] = "";
 			}
 		?>	
-	
 	<main class="d-flex justify-content-center align-items-center ">
 		<!-- Cubo -->
 		<div class="cena d-none">
@@ -63,7 +61,7 @@
 				<div class="cubo-face left"></div>
 				<div class="cubo-face top"></div>
 				<div class="cubo-face bottom d-flex justify-content-center align-items-center">
-					<form class=" text-center formulario w-50 m-auto pt-1 fonte" action="script/recuperaSenha.php" method="POST">
+					<form class=" text-center formulario w-50 m-auto pt-1" action="script/recuperaSenha.php" method="POST">
 						<fieldset class="container-fluid">
 							<legend for="Email">Email:</legend>
 							<label for="Info">Insira seu Email ou Nome e Sobrenome cadastrado no Site:</label>
@@ -93,7 +91,7 @@
 			default:
 	?>
 				<script type="text/javascript" src="js/esqueciSenha.js"></script>	
-	<?php
+	<?php 
 				break;
 		}	
 	?>	

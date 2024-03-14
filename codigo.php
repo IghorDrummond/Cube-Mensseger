@@ -30,14 +30,14 @@
 				<div class="cubo-face left"></div>
 				<div class="cubo-face top"></div>
 				<div class="cubo-face bottom d-flex justify-content-center align-items-center">
-					<form class=" text-center formulario w-50 m-auto pt-1 fonte">
+					<form class=" text-center formulario m-auto pt-1">
 						<fieldset class="container-fluid">
 							<legend for="Email">Email:</legend>
 							<label for="Info">Insira seu Email ou Nome e Sobrenome cadastrado no Site:</label>
-							<input class="form-control text-dark w-100" name="Info" placeholder="Email ou Nome e Sobrenome" required>				
+							<input class="form-control text-dark w-100" name="Info" placeholder="<? echo($_GET['Email']) ?>" readonly disabled="disabled">				
 						</fieldset>
-						<input type="submit" class="btn btn-info" name="Acesso" value="Enviar" >
-						<input type="button" class="btn btn-info" onclick="VoltarDir()"  value="Voltar" >
+						<input type="submit" class="btn btn-info" name="Acesso" value="Enviar" readonly disabled="disabled">
+						<input type="button" class="btn btn-info"  value="Voltar" readonly disabled="disabled">
 					</form>
 				</div>
 			</div>

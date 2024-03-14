@@ -80,6 +80,10 @@ main{
 	background: linear-gradient(to bottom, #144cf4, #1454f4, #184cf4);
 }
 
+.formulario{
+	width: 50%;
+}
+
 /*Tela para Pop Ups*/
 #Tela{
 	position: absolute;
@@ -103,6 +107,14 @@ main{
 	}
 	to{
 		opacity: 0;
+	}
+}
+@-webkit-keyframes aparecer{
+	from{
+		opacity: 0;
+	}
+	to{
+		opacity: 1;
 	}
 }
 @keyframes aparecer{
