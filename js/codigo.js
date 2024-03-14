@@ -56,19 +56,15 @@ function Voltar(){
 	var nContX = 90;
 
 	var Y = setInterval(() =>{
-		if(nCont === -1){	
+		if(nContX === 1 && nContY === 1){	
 			clearInterval(Y);
 			//Redireciona para a página de Login
 			window.location.href = "login.php";
-		}else if(nCont === -70){
-			CorpoForm[0].style.display = "block";
-			CorpoForm[0].style.animation = "aparecer 2s";	
-			CorpoForm[0].style.webkitAnimation = "aparecer 2s";	
 		}
 
-		nCont++;
-		console.log(nCont);
-		EstruturaCubo[0].style.transform = "rotateY(" + nCont.toString() +"deg)";
-		EstruturaCubo[0].style.webkitTransform = "rotateY(" + nCont.toString() +"deg)";		
+		nContX--;
+		nContY--;
+		EstruturaCubo[0].style.transform = "rotateY(" + nContY.toString() +"deg) rotateX("+nContX.toString()+"deg)";
+		EstruturaCubo[0].style.webkitTransform = "rotateY(" + nContY.toString() +"deg) rotateX("+nContX.toString()+"deg)";		
 	}, 15);
 }

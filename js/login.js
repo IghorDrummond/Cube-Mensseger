@@ -15,8 +15,10 @@ var lAjusta = false;
 
 //==================================Escopo============================================
 Cena[0].style.animation = "surgi 2s";
+Cena[0].style.webkitAnimation = "surgi 2s";
 Cena[0].className = "cena d-block";
-EstruturaCubo[0].style.animation = "rotacionar 2s"
+EstruturaCubo[0].style.animation = "rotacionar 2s";
+EstruturaCubo[0].style.webkitAnimation = "rotacionar 2s";
 Cena[0].style.transform = " translateY(0px)";
 
 if(window.innerWidth <= 575.98){
@@ -58,6 +60,7 @@ Progamador(a): Ighor Drummond
 */
 function desligaBalao(){
 	imagem[0].style.animation = "some 1s";
+	imagem[0].style.webkitAnimation = "some 1s";
 
 	var Z = setTimeout(function(){
 		imagem[0].style.display = "none";

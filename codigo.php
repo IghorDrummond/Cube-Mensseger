@@ -23,12 +23,12 @@
 			<div class="cubo">
 				<div class="cubo-face front"></div>
 				<div class="cubo-face back"></div>
-				<div class="cubo-face right">
+				<div class="cubo-face right bg-success">
 					<!-- Alterar Aqui --->
-
+					<button onclick="Voltar()">Voltar</button>
 				</div>
 				<div class="cubo-face left"></div>
-				<div class="cubo-face top "></div>
+				<div class="cubo-face top"></div>
 				<div class="cubo-face bottom d-flex justify-content-center align-items-center">
 					<form class=" text-center formulario w-50 m-auto pt-1 fonte">
 						<fieldset class="container-fluid">

@@ -224,11 +224,7 @@ main{
 	}
 
 	.right {
-		-webkit-transform: rotateX(-90deg) translateZ(75px);
-		transform: rotateX(-90deg) translateZ(75px);
-	}
-	.cubo{
-		-webkit-animation: errado 2s infinite;
-		        animation: errado 2s infinite;
+		-webkit-transform: rotateX(90deg) translateZ(75px);
+		transform: rotateX(90deg) translateZ(75px);
 	}
 }
