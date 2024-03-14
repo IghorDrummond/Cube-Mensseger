@@ -110,12 +110,13 @@
 		switch($opc){
 			case 1:
 	?>
-				<script type="text/javascript" src="js/telaCadastrar.js"></script>	
+				<script type="text/javascript" src="js/telaCadastrar.js"></script>
+				<script type="text/javascript" src="js/erradoCuboCadastrar.js"></script>	
 	<?php	
 				break;
 			case 2:
 	?>					
-				<script type="text/javascript" src="js/telaLogin.js"></script>	
+				<script type="text/javascript" src="js/telaLogin.js"></script>
 	<?php	
 				break;
 			default:

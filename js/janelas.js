@@ -67,8 +67,9 @@ function VoltarDir(){
 		}else if(nCont === 60){
 			CorpoForm[0].style.animation = "aparecer 2s";
 			CorpoForm[0].style.webkitAnimation = "aparecer 2s";
-			CorpoForm[0].style.display = "block";
+			CorpoForm[0].style.display = "block";	
 		}
+		
 		nCont--;
 		EstruturaCubo[0].style.transform = "rotateY(" + nCont.toString() +"deg)";
 		EstruturaCubo[0].style.webkitTransform = "rotateY(" + nCont.toString() +"deg)";		

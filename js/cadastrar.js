@@ -47,9 +47,6 @@ Progamador(a): Ighor Drummond
 function Voltar(){
 	var nCont = -90;
 
-	//Formata as animações para nulas
-	CorpoForm[0].style.animation = "none";	
-	CorpoForm[0].style.webkitAnimation = "none";
 	var Y = setInterval(() =>{
 		if(nCont === -1){	
 			clearInterval(Y);
@@ -59,10 +56,10 @@ function Voltar(){
 			CorpoForm[0].style.display = "block";
 			CorpoForm[0].style.animation = "aparecer 2s";	
 			CorpoForm[0].style.webkitAnimation = "aparecer 2s";	
-			console.log('entrei');
 		}
 
 		nCont++;
+		console.log(nCont);
 		EstruturaCubo[0].style.transform = "rotateY(" + nCont.toString() +"deg)";
 		EstruturaCubo[0].style.webkitTransform = "rotateY(" + nCont.toString() +"deg)";		
 	}, 15);
