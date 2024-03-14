@@ -64,11 +64,11 @@ function VoltarDir(){
 			clearInterval(Y);
 			//Redireciona para a página de Login
 			window.location.href = "login.php";
-		}else if(nCont === -70){
+		}else if(nCont === 60){
+			CorpoForm[0].style.animation = "aparecer 2s";
+			CorpoForm[0].style.webkitAnimation = "aparecer 2s";
 			CorpoForm[0].style.display = "block";
 		}
-		console.log(CorpoForm);
-
 		nCont--;
 		EstruturaCubo[0].style.transform = "rotateY(" + nCont.toString() +"deg)";
 		EstruturaCubo[0].style.webkitTransform = "rotateY(" + nCont.toString() +"deg)";		

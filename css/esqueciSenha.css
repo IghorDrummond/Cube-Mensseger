@@ -108,6 +108,14 @@ main{
 		opacity: 0;
 	}
 }
+@keyframes aparecer{
+	from{
+		opacity: 0;
+	}
+	to{
+		opacity: 1;
+	}
+}
 
 /* Dispositivos Mobiles */
 /* Dispositivos extra small (telefones em modo retrato, com menos de 576px)*/

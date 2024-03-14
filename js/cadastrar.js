@@ -4,8 +4,10 @@ var CorpoForm = document.getElementsByClassName('formularios');
 var EstruturaCubo = document.getElementsByClassName('cubo');
 
 //===================================Escopo========================================
+
 CorpoForm[0].style.animation = "sumir 1s";
 CorpoForm[0].style.webkitAnimation = "sumir 1s";
+
 var Z = setInterval(() =>{
 	CorpoForm[0].style.display = "none";
 	//Chama função para girar o cubo
@@ -45,15 +47,19 @@ Progamador(a): Ighor Drummond
 function Voltar(){
 	var nCont = -90;
 
+	//Formata as animações para nulas
+	CorpoForm[0].style.animation = "none";	
+	CorpoForm[0].style.webkitAnimation = "none";
 	var Y = setInterval(() =>{
 		if(nCont === -1){	
 			clearInterval(Y);
 			//Redireciona para a página de Login
 			window.location.href = "login.php";
 		}else if(nCont === -70){
+			CorpoForm[0].style.display = "block";
 			CorpoForm[0].style.animation = "aparecer 2s";	
 			CorpoForm[0].style.webkitAnimation = "aparecer 2s";	
-			CorpoForm[0].style.display = "block";
+			console.log('entrei');
 		}
 
 		nCont++;
