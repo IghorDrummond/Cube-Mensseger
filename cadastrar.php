@@ -13,7 +13,7 @@
 	<title>Cube Mensseger - Cadastrar</title>
 </head>
 
-<body onscroll="rotacionaCubo()">
+<body onresize="adaptar()">
 		<?php
 			if(isset($_SESSION['Erro']) and $_SESSION['Erro'] != ''){
 				if($_SESSION['Erro'] === 'Email'){

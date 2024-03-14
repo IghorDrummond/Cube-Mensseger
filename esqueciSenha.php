@@ -12,7 +12,7 @@
 	<!-- Título da Página -->
 	<title>Cube Mensseger - Recupera Senha</title>
 </head>
-<body onscroll="rotacionaCubo()">
+<body onresize="adaptar()">
 		<?php
 			$opc = 99;
 			if(isset($_SESSION['Erro']) and $_SESSION['Erro'] != ''){
@@ -68,7 +68,7 @@
 							<input class="form-control text-dark w-100" name="Info" placeholder="Email ou Nome e Sobrenome" required>				
 						</fieldset>
 						<input type="submit" class="btn btn-info" name="Acesso" value="Enviar" >
-						<input type="button" class="btn btn-info" onclick="VoltarDir()"  value="Voltar" >
+						<input type="button" class="btn btn-info mt-1" onclick="VoltarDir()"  value="Voltar" >
 					</form>
 				</div>
 			</div>

@@ -13,8 +13,10 @@
 	<title>Cube Mensseger - Recupera Senha</title>
 </head>
 
-<body>
-	<?php ?>
+<body onresize="adaptar()">
+	<?php
+
+	?>
 	<main class="d-flex justify-content-center align-items-center">
 		<!-- Cubo -->
 		<div class="cena d-none">
@@ -37,7 +39,7 @@
 							<input class="form-control text-dark w-100" name="Info" placeholder="<? echo($_GET['Email']) ?>" readonly disabled="disabled">				
 						</fieldset>
 						<input type="submit" class="btn btn-info" name="Acesso" value="Enviar" readonly disabled="disabled">
-						<input type="button" class="btn btn-info"  value="Voltar" readonly disabled="disabled">
+						<input type="button" class="btn btn-info mt-1"  value="Voltar" readonly disabled="disabled">
 					</form>
 				</div>
 			</div>
@@ -50,5 +52,9 @@
 	<script type="text/javascript" src="js/ajustaTamanho.js"></script>
 	<script type="text/javascript" src="js/codigo_fixado.js"></script>
 	<script type="text/javascript" src="js/janelas.js"></script>	
+
+	<?php
+
+	?>
 </body>
 </html>
