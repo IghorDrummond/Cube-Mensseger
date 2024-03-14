@@ -20,11 +20,11 @@
 				$opc = 0;
 	?>
 		<div id="Tela" class="bg-danger text-center font-weight-bold w-100 border border-dark ">
-			<h6>Usuário ou Senha Incorretas!</h6>
-			<p>
+			<h6 class="mt-3">Usuário ou Senha Incorretas!</h6>
+			<p class="mt-3">
 				Caso Esqueceu a senha, seleciona "Esqueci a Senha".
 			</p>
-			<button class="my-2 p-2 btn btn-info w-25" onclick="Fechar()">Ok</button>
+			<button class="my-2 p-2 btn btn-info m-2 w-50" onclick="Fechar()">Ok</button>
 		</div>
 
 	<?php

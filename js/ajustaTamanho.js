@@ -1,7 +1,6 @@
 //Declaração de Variaveis Globais
 //Elementos
 var Cubo = document.getElementsByClassName('cubo-face');
-var EstruturaCubo = document.getElementsByClassName('cubo');
 var Cena = document.getElementsByClassName('cena');
 var imagem = document.getElementsByClassName('balao');
 var formulario = document.getElementsByClassName('formulario');

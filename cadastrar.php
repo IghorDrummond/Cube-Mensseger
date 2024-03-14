@@ -19,10 +19,10 @@
 				if($_SESSION['Erro'] === 'Email'){
 		?>
 			<div id="Tela" class="w-100 bg-warning text-center p-2 fixed">
-				<p>
+				<p class="mt-3">
 					Usuário já cadastrado em Nossos Bancos, volte ao inicio para trocar senha caso tenha perdido a mesma.
 				</p>
-				<button class="btn btn-info p-2 my-1" onclick="Voltar()">Voltar</button>
+				<button class="btn btn-info p-2 m-2 w-50" onclick="Fechar()">Ok</button>
 			</div>
 		<?php
 					$opc = 1;
@@ -30,10 +30,10 @@
 					$opc = 1;
 		?>
 			<div id="Tela" class="w-100 bg-warning text-center p-2 fixed">
-				<p>
+				<p class="mt-3">
 					As Senhas não se Correspondem, insira novamente as Senhas.
 				</p>
-				<button class="btn btn-info p-2 my-1" onclick="Voltar()">Voltar</button>
+				<button class="btn btn-info p-2 m-2 w-50" onclick="Fechar()">Ok</button>
 			</div>		
 		<?php		
 				}
@@ -68,10 +68,7 @@
 						</form>
 					</div>
 				</div>
-				<div class="cubo-face back"></div>
-				<div class="cubo-face right"></div>
-				<div class="cubo-face left"></div>
-				<div class="cubo-face top d-flex justify-content-center align-items-center">
+				<div class="cubo-face back d-flex justify-content-center align-items-center">
 					<form class=" text-center formulario w-50 m-auto pt-1 fonte" action="script/cadastra.php" method="POST">
 						<fieldset >
 							<legend for="Email">Email:</legend>
@@ -94,6 +91,10 @@
 						<input type="submit" class="btn btn-info" name="Acesso" value="Cadastrar" >
 						<input type="button" class="btn btn-info" onclick="Voltar()"  value="Voltar" >
 					</form>
+				</div>
+				<div class="cubo-face right"></div>
+				<div class="cubo-face left"></div>
+				<div class="cubo-face top">
 				</div>
 				<div class="cubo-face bottom"></div>
 			</div>

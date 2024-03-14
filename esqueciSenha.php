@@ -21,11 +21,10 @@
 					$opc = 1;
 		?>
 			<div id="Tela" class="w-100 bg-warning text-center p-2 fixed">
-				<p>
+				<p class="mt-3">
 					Usuário não Existe em Nossos Bancos, insira um email valido ou cadastre uma conta.
 				</p>
-				<button class="btn btn-info p-2 m-1" onclick="VoltarDir()">Voltar</button>
-				<button id="Tela" class="btn btn-info p-2 m-1" onclick="Fechar()">Ok</button>
+				<button class="btn btn-info p-2 m-2 w-50" onclick="Fechar()">Ok</button>
 			</div>
 		<?php
 				}
@@ -81,6 +80,8 @@
 	<?php require_once('script/scripts.php'); ?>
 
 	<!-- Scripts da Página -->
+	<script type="text/javascript" src="js/ajustaTamanho.js"></script>
+	<script type="text/javascript" src="js/janelas.js"></script>
 	<?php
 		switch($opc){
 
@@ -96,8 +97,6 @@
 	<?php
 				break;
 		}	
-	?>	
-	<script type="text/javascript" src="js/ajustaTamanho.js"></script>
-	<script type="text/javascript" src="js/janelas.js"></script>	
+	?>		
 </body>
 </html>

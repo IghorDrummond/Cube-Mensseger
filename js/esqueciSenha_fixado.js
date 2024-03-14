@@ -1,6 +1,5 @@
 //Declaração de Variaveis Globais
 //Elementos
-var CorpoForm = document.getElementsByClassName('formularios');
 var EstruturaCubo = document.getElementsByClassName('cubo');
 
 //===================================Escopo========================================		

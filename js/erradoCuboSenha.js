@@ -8,6 +8,7 @@ var nOpc = 1;
 //Booleano
 var lSaida = false;
 
+console.log('Entrei no errado Cubo Senha');
 //=====================================Escopo==================================
 //Deixa os Inputs em Vermelho
 Inputs[5].style.border = "1px solid red";
@@ -23,7 +24,6 @@ var x = setInterval(function(){
 	}else if(nCont2 === 89 && lSaida){
 		clearTimeout(x);
 	}
-
 	nCont2 = operacao(nOpc, nCont2);
 	EstruturaCubo[0].style.transform = "rotateY(" + nCont2.toString() +"deg)";
 	EstruturaCubo[0].style.webkitTransform = "rotateY(" + nCont2.toString() +"deg)";
