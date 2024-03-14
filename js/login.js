@@ -7,7 +7,7 @@ var EstruturaCubo = document.getElementsByClassName('cubo');
 var formulario = document.getElementsByClassName('formulario');
 var imagem = document.getElementsByClassName('balao');
 var tela = document.getElementById('Tela');
-var rotacao = [0, 90, 180, -90, 90, -90];
+var rotacao = [0, 90, -90, 90, 180, -90];//front, back, right, left, top, bottom
 //Numero
 var nCont = 0;
 //Booleano
@@ -84,10 +84,9 @@ function expande(Limite){
 		Cena[0].style.width = nCont.toString() + "px";
 		Cena[0].style.height = nCont.toString() + "px";
 
-
 		for(nCont2 = 0; nCont2 <= Cubo.length -1; nCont2 ++){
-			Cubo[nCont2].style.transform = "rotateY("+ rotacao[nCont2] +"deg)translateZ(" + (nCont / 2) + "px)";
-			Cubo[nCont2].style.webkitTransform = "rotateY("+ rotacao[nCont2] +"deg)translateZ(" + (nCont / 2) + "px)";		
+			Cubo[nCont2].style.transform = (nCont2 == 2 || nCont2 == 3 ? "rotateX(" : "rotateY(") + rotacao[nCont2] +"deg)translateZ(" + (nCont / 2) + "px)";
+			Cubo[nCont2].style.webkitTransform = (nCont2 == 2 || nCont2 == 3 ? "rotateX(" : "rotateY(") + rotacao[nCont2] +"deg)translateZ(" + (nCont / 2) + "px)";		
 		}
 		nCont++;	
 	}, 0.5);	

@@ -8,8 +8,8 @@ var formulario = document.getElementsByClassName('formulario');
 //Numerico
 var tamanho = 0;
 var nCont = 0;
-//Array
-var rotacao = [0, 90, 180, -90, 90, -90];
+//Array			
+var rotacao = [0, 90, -90, 90, 180, -90];//front, back, right, left, top, bottom
 
 //==================================Escopo==========================
 //tamanho para telas acima de 650px
@@ -30,12 +30,16 @@ if(typeof imagem[0] === 'object' ){
 	//Desliga o Balão
 	imagem[0].style.display = "none";
 }
-//Liga Formulario
-formulario[0].className = "text-center d-block formulario";
-formulario[1].className = "text-center d-block formulario";
-//Pega o tamanho do cubo e divide por 2 para colocar no tamanho correto	
-for (nCont = 0; nCont <= Cubo.length - 1; nCont++) {
-	Cubo[nCont].style.transform = "rotateY(" + rotacao[nCont] + "deg)translateZ(" + (tamanho / 2) + "px)";
-	Cubo[nCont].style.webkitTransform = "rotateY(" + rotacao[nCont] + "deg)translateZ(" + (tamanho / 2) + "px)";
+//Verifica se existe Balão no arquivo Php	
+if(typeof formulario[0] === 'object'){
+	formulario[0].className = "text-center d-block formulario";
+	//Liga Formulario
+	if(formulario.length > 1 ){
+		formulario[1].className = "text-center d-block formulario";
+	}
 }
-
+//Pega o tamanho do cubo e divide por 2 para colocar no tamanho correto	
+for(nCont2 = 0; nCont2 <= Cubo.length -1; nCont2 ++){
+	Cubo[nCont2].style.transform = (nCont2 >= 2 && nCont2 <= 3 ? "rotateX(" : "rotateY(") + rotacao[nCont2] +"deg)translateZ(" + (tamanho / 2) + "px)";
+	Cubo[nCont2].style.webkitTransform = (nCont2 >= 2 && nCont2 <= 3 ? "rotateX(" : "rotateY(") + rotacao[nCont2] +"deg)translateZ(" + (tamanho / 2) + "px)";		
+}
