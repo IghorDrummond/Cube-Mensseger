@@ -21,21 +21,23 @@
 		<!-- Cubo -->
 		<div class="cena d-none">
 			<div class="cubo">
-				<div class="cubo-face front">front</div>
-				<div class="cubo-face back ">back</div>
-				<div class="cubo-face right ">right</div>
-				<div class="cubo-face left">left</div>
-				<div class="cubo-face top ">top</div>
-				<div class="cubo-face bottom d-flex justify-content-center align-items-center ">
-					bottom
-					<form class=" text-center formulario w-50 m-auto pt-1 fonte" action="script/recuperaSenha.php" method="POST">
+				<div class="cubo-face front"></div>
+				<div class="cubo-face back"></div>
+				<div class="cubo-face right">
+					<!-- Alterar Aqui --->
+
+				</div>
+				<div class="cubo-face left"></div>
+				<div class="cubo-face top "></div>
+				<div class="cubo-face bottom d-flex justify-content-center align-items-center">
+					<form class=" text-center formulario w-50 m-auto pt-1 fonte">
 						<fieldset class="container-fluid">
 							<legend for="Email">Email:</legend>
 							<label for="Info">Insira seu Email ou Nome e Sobrenome cadastrado no Site:</label>
 							<input class="form-control text-dark w-100" name="Info" placeholder="Email ou Nome e Sobrenome" readonly disabled="disabled">				
 						</fieldset>
 						<input type="submit" class="btn btn-info" name="Acesso" value="Enviar" readonly disabled="disabled">
-						<input type="button" class="btn btn-info"  value="Voltar" readonly disabled="disabled">
+						<input type="button" class="btn btn-info" value="Voltar" readonly disabled="disabled" >
 					</form>
 				</div>
 			</div>

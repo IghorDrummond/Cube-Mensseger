@@ -31,7 +31,6 @@ main{
 	position: relative;
 	-webkit-transform-style: preserve-3d;
 	transform-style: preserve-3d;
-	border: 2px solid white;
 }
 
 .cubo-face {
@@ -63,7 +62,6 @@ main{
 .left {
 	-webkit-transform: rotateX(90deg) translateZ(100px);
 	transform: rotateX(90deg) translateZ(100px);
-	background-color: gray;
 }
 
 .right {
@@ -72,7 +70,6 @@ main{
 	-webkit-box-align: start;
 	    -ms-flex-align: start;
 	        align-items: start;
-	        background-color: gray;
 }
 .front,	
 .bottom,
@@ -80,13 +77,9 @@ main{
 .right,
 .top,
 .back {
-	/*
 	background: -o-linear-gradient(top, #144cf4, #1454f4, #184cf4);
 	background: -webkit-gradient(linear, left top, left bottom, from(#144cf4), color-stop(#1454f4), to(#184cf4));
 	background: linear-gradient(to bottom, #144cf4, #1454f4, #184cf4);
-	*/
-
-	border: 2px solid black;
 }
 
 
