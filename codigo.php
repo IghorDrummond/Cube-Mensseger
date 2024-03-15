@@ -21,18 +21,39 @@
 		<!-- Cubo -->
 		<div class="cena d-none">
 			<div class="cubo">
-				<div class="cubo-face front"></div>
+				<div class="cubo-face front d-flex justify-content-center align-items-center">
+					<div>
+						<form class=" text-center d-none formulario">
+							<fieldset class="form-group">
+								<legend for="Email">Email:</legend>
+								<input class="form-control text-dark" type="email" name="Email" placeholder="seuemail@email.com" readonly disabled="disabled">				
+							</fieldset>
+							<fieldset class="form-group">
+								<legend for="Senha">Senha:</legend>
+								<input class="form-control text-dark" type="password" name="Senha" readonly disabled="disabled">
+							</fieldset>
+							<input type="submit" class="btn btn-info" name="Acesso" value="Entrar" readonly disabled="disabled">
+						</form>
+						<form class="d-none formulario text-center">
+							<fieldset>
+								<p>Está com Dificuldade para acessar? Tente Isso:</p>
+								<a class="btn btn-info" readonly disabled="disabled">Cadastrar</a>
+								<a class="btn btn-info" readonly disabled="disabled">Esqueci a Senha</a>
+							</fieldset>		
+						</form>
+					</div>
+				</div>
 				<div class="cubo-face back"></div>
-				<div class="cubo-face right">
+				<div class="cubo-face right d-flex justify-content-center align-items-center">
 					<!-- Alterar Aqui --->
 					<div class="codigo bg-warning">
-						<button onclick="Voltar()">Voltar</button>
+						<button onclick="VoltarXY()">Voltar</button>
 					</div>
 				</div>
 				<div class="cubo-face left"></div>
 				<div class="cubo-face top"></div>
 				<div class="cubo-face bottom d-flex justify-content-center align-items-center">
-					<form class=" text-center formulario m-auto pt-1">
+					<form class=" text-center codigo m-auto pt-1">
 						<fieldset class="container-fluid">
 							<legend for="Email">Email:</legend>
 							<label for="Info">Insira seu Email ou Nome e Sobrenome cadastrado no Site:</label>
@@ -51,8 +72,7 @@
 	<!-- Scripts da Página -->
 	<script type="text/javascript" src="js/ajustaTamanho.js"></script>
 	<script type="text/javascript" src="js/codigo_fixado.js"></script>
-	<script type="text/javascript" src="js/janelas.js"></script>	
-
+	<script type="text/javascript" src="js/codigo.js"></script>
 	<?php
 
 	?>

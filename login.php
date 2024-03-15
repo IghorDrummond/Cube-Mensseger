@@ -130,8 +130,6 @@
 				break;
 		}
 	?>	
-
-	<script type="text/javascript" src="js/janelas.js"></script>	
 </body>
 
 </html>

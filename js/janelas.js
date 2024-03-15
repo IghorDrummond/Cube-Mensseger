@@ -75,3 +75,26 @@ function VoltarDir(){
 		EstruturaCubo[0].style.webkitTransform = "rotateY(" + nCont.toString() +"deg)";		
 	}, 15);
 }
+/*
+================================================================
+Função: Voltar()
+Descrição: Rotaciona o Cubo novamente para o formulario e Login
+Data: 14/03/2024
+Progamador(a): Ighor Drummond
+================================================================
+*/
+function VoltarXY(){
+	var nCont = 90;
+
+	var Y = setInterval(() =>{
+		if(nCont === 1){	
+			clearInterval(Y);		
+			//Redireciona para a página de Login
+			window.location.href = "login.php";
+		}
+
+		nCont--;
+		EstruturaCubo[0].style.transform = "rotateX(" +  nCont.toString() +"deg) rotateY("+nCont.toString()+"deg)";
+		EstruturaCubo[0].style.webkitTransform = "rotateX(" +  nCont.toString() +"deg) rotateY("+nCont.toString()+"deg)";		
+	}, 15);
+}

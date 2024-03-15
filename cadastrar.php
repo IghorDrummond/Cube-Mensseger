@@ -105,8 +105,7 @@
 
 	<!-- Scripts da Página -->
 	<script type="text/javascript" src="js/ajustaTamanho.js"></script>
-	<script type="text/javascript" src="js/janelas.js"></script>
-
+	
 	<?php
 		switch($opc){
 			case 1:

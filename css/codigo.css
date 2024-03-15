@@ -80,7 +80,14 @@ main{
 	background: linear-gradient(to bottom, #144cf4, #1454f4, #184cf4);
 }
 
-.formulario{
+#Tela{
+	position: absolute;
+	z-index: 5;
+	-webkit-animation: aparecer 1s;
+	        animation: aparecer 1s;
+}
+
+.codigo{
 	width: 50%;
 }
 
