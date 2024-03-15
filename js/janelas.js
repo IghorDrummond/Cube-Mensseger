@@ -59,15 +59,16 @@ Progamador(a): Ighor Drummond
 function VoltarDir(){
 	var nCont = 90;
 
+
 	var Y = setInterval(() =>{
 		if(nCont === 1){	
 			clearInterval(Y);
 			//Redireciona para a página de Login
 			window.location.href = "login.php";
-		}else if(nCont === 60){
+		}else if(nCont === 80){
+			CorpoForm[0].style.display = "block";	
 			CorpoForm[0].style.animation = "aparecer 2s";
 			CorpoForm[0].style.webkitAnimation = "aparecer 2s";
-			CorpoForm[0].style.display = "block";	
 		}
 		
 		nCont--;
@@ -91,6 +92,10 @@ function VoltarXY(){
 			clearInterval(Y);		
 			//Redireciona para a página de Login
 			window.location.href = "login.php";
+		}else if(nCont === 40){
+			CorpoForm[0].style.animation = "aparecer 1s";
+			CorpoForm[0].style.webkitAnimation = "aparecer 1s";			
+			CorpoForm[0].className = "d-block formulario";	
 		}
 
 		nCont--;

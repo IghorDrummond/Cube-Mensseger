@@ -23,7 +23,7 @@
 			<div class="cubo">
 				<div class="cubo-face front d-flex justify-content-center align-items-center">
 					<div class="formulario">
-						<form class=" text-center d-none">
+						<form class="text-center">
 							<fieldset class="form-group">
 								<legend for="Email">Email:</legend>
 								<input class="form-control text-dark" type="email" name="Email" placeholder="seuemail@email.com" readonly disabled="disabled">				
@@ -34,7 +34,7 @@
 							</fieldset>
 							<input type="submit" class="btn btn-info" name="Acesso" value="Entrar" readonly disabled="disabled">
 						</form>
-						<form class="d-none text-center">
+						<form class="text-center">
 							<fieldset>
 								<p>Está com Dificuldade para acessar? Tente Isso:</p>
 								<a class="btn btn-info" readonly disabled="disabled">Cadastrar</a>
