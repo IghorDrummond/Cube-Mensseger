@@ -18,10 +18,9 @@
 	$Codigo = "";
 	$KeyCod = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890#_@%;";
 	$ChaveBanco = "";
+	$Linha = "";
 	//Data
 	$DataHoje = null;
-	//Array
-	$Nova_Linha = array();
 	//Numerico
 	$nCont = 0;
 	//Constantes
@@ -40,34 +39,15 @@
 		date_default_timezone_set('America/Sao_Paulo');
 		//Define data atual
 		$DataHoje = date('Y-m-d H:i:s');
+		//Remove o Email caso houver no banco para evitar repetições
+		retiraRepetido($Dados[1]);
 		//Abre Banco de Dados para Leitura e Escrita
-		$ChaveBanco = fopen(BD_CODIGO, 'a+');
+		$ChaveBanco = fopen(BD_CODIGO, 'r+');		
 		//Escreve Novo Código no Banco de Dados
-		while (!feof($ChaveBanco)) {
-			$Linha = explode(';', fgets($ChaveBanco));
-
-			if (isset($Linha[1]) === false) {
-				continue;
-			}
-
-			if($Linha[0] != $Dados[1]){
-				$Nova_Linha[$nCont] = implode(';', $Linha);
-			}else{
-				$Nova_Linha[$nCont] = $Linha[0] .';'. $Codigo  .';'. strtotime($DataHoje) . PHP_EOL;
-			}
-
-			$nCont++;
-		}
-		//Fecha o Banco de Dados
+		$Linha = $Dados[1] .';'. $Codigo  .';'. strtotime($DataHoje) . PHP_EOL;
+		fwrite($ChaveBanco, $Linha);
+		//Fecha Conexão com o Banco de Dados
 		fclose($ChaveBanco);
-		//Deleta o Arquivo Anterior
-		unlink(BD_CODIGO);
-		//Cria um Novo Banco
-		$ChaveBanco = fopen(BD_CODIGO, 'x+');
-		//Escreve os Novos Dados no Arquivo
-		for($nCont = 0; $nCont <= count($Nova_Linha) -1; $nCont++){
-			fwrite($ChaveBanco, $Nova_Linha[$nCont]);
-		}	
 		//Envia o Email para Usuário
 		EnviaEmail($Dados[1] , $Dados[2], $Codigo);
 		$Ret = '../codigo.php?Email='. $Dados[1];
@@ -77,7 +57,6 @@
 	}
 
 	header('Location: ' . $Ret);
-
 //===============================Função==========================
 
 	function verificaExistencia($Email){
@@ -129,12 +108,12 @@
 			$mail->Host       = 'smtp.email.com';                     
 			$mail->Port       = 587;
 			//Destinatário e Remetente
-			$mail->setFrom('seuemail', 'Nao Responda - Código');
+			$mail->setFrom('seuemail', 'Não Responda - Código');
 			$mail->addAddress($Email, $Nome);     
 
 			//Corpo do Email
 			$mail->isHTML(true);                                  
-			$mail->Subject = 'Não Responda';
+			$mail->Subject = 'Envio do Código de Recuperação da Senha';
 			$mail->Body    = MontaCorpo($Codigo, $Nome);
 			$mail->AltBody = 'Este é o seu Código para Recuperar a Senha: ' . $Codigo;
 			//Envio do Email
@@ -240,4 +219,43 @@
 
 		return $Ret;
 	}	
+
+	function retiraRepetido($Email){
+		//Declaração de Variaveis
+		//Numerico
+		$nCont = 0;
+		//Array
+		$Nova_Linha = array();
+		//Objeto
+		$ChaveBanco2 = "";
+		//Abre conexão com o banco para leitura
+		$ChaveBanco2 = fopen(BD_CODIGO, 'a');
+		//Lê cada linha do banco
+		while (!feof($ChaveBanco2)) {
+			$Linha = explode(';', fgets($ChaveBanco2));
+
+			if (isset($Linha[1]) === false) {
+				continue;
+			}
+
+			if($Linha[0] != $Email){
+				$Nova_Linha[$nCont] = implode(';', $Linha);
+			}
+
+			$nCont++;
+		}
+		//Fecha Conexão com o Banco
+		fclose($ChaveBanco2);
+		//Deleta o Arquivo Anterior
+		unlink(BD_CODIGO);
+		//Cria um Novo Banco
+		$ChaveBanco2 = fopen(BD_CODIGO, 'x+');
+		//Escreve os dados não repetidos
+		for($nCont = 0; $nCont <= count($Nova_Linha) -1; $nCont++){
+			fwrite($ChaveBanco2, $Nova_Linha[$nCont]);
+		}
+		//Fecha Conexão com o Banco
+		fclose($ChaveBanco2);
+	}
+
 ?>
