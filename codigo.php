@@ -71,8 +71,8 @@
 
 	<!-- Scripts da Página -->
 	<script type="text/javascript" src="js/ajustaTamanho.js"></script>
-	<script type="text/javascript" src="js/codigo_fixado.js"></script>
 	<script type="text/javascript" src="js/codigo.js"></script>
+
 	<?php
 
 	?>

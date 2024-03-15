@@ -12,8 +12,10 @@ var tamanho = 0;
 var rotacao = [0, 90, -90, 90, 180, -90];//front, back, right, left, top, bottom
 
 //===================================Escopo========================================
+EstruturaCubo[0].style.transform = "rotateY(90deg)";
+EstruturaCubo[0].style.webkitTransform = "rotateY(90deg)";
 CorpoForm[0].className = "d-none";
-CampoEmail[0].style.animation = "sumir 1s !important";
+CampoEmail[0].style.animation = "sumir 1s";
 
 var Z = setInterval(() =>{
 	CampoEmail[0].className = "d-none";
