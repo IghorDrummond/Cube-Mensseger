@@ -22,8 +22,8 @@
 		<div class="cena d-none">
 			<div class="cubo">
 				<div class="cubo-face front d-flex justify-content-center align-items-center">
-					<div>
-						<form class=" text-center d-none formulario">
+					<div class="formulario">
+						<form class=" text-center d-none">
 							<fieldset class="form-group">
 								<legend for="Email">Email:</legend>
 								<input class="form-control text-dark" type="email" name="Email" placeholder="seuemail@email.com" readonly disabled="disabled">				
@@ -34,7 +34,7 @@
 							</fieldset>
 							<input type="submit" class="btn btn-info" name="Acesso" value="Entrar" readonly disabled="disabled">
 						</form>
-						<form class="d-none formulario text-center">
+						<form class="d-none text-center">
 							<fieldset>
 								<p>Está com Dificuldade para acessar? Tente Isso:</p>
 								<a class="btn btn-info" readonly disabled="disabled">Cadastrar</a>
@@ -46,14 +46,14 @@
 				<div class="cubo-face back"></div>
 				<div class="cubo-face right d-flex justify-content-center align-items-center">
 					<!-- Alterar Aqui --->
-					<div class="codigo bg-warning">
+					<div class="bg-warning">
 						<button onclick="VoltarXY()">Voltar</button>
 					</div>
 				</div>
 				<div class="cubo-face left"></div>
 				<div class="cubo-face top"></div>
 				<div class="cubo-face bottom d-flex justify-content-center align-items-center">
-					<form class=" text-center codigo m-auto pt-1">
+					<form class="codigo text-center m-auto pt-1">
 						<fieldset class="container-fluid">
 							<legend for="Email">Email:</legend>
 							<label for="Info">Insira seu Email ou Nome e Sobrenome cadastrado no Site:</label>
