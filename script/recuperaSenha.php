@@ -42,7 +42,7 @@
 		//Remove o Email caso houver no banco para evitar repetições
 		retiraRepetido($Dados[1]);
 		//Abre Banco de Dados para Leitura e Escrita
-		$ChaveBanco = fopen(BD_CODIGO, 'r+');		
+		$ChaveBanco = fopen(BD_CODIGO, 'a+');		
 		//Escreve Novo Código no Banco de Dados
 		$Linha = $Dados[1] .';'. $Codigo  .';'. strtotime($DataHoje) . PHP_EOL;
 		fwrite($ChaveBanco, $Linha);
@@ -229,7 +229,7 @@
 		//Objeto
 		$ChaveBanco2 = "";
 		//Abre conexão com o banco para leitura
-		$ChaveBanco2 = fopen(BD_CODIGO, 'a');
+		$ChaveBanco2 = fopen(BD_CODIGO, 'r');
 		//Lê cada linha do banco
 		while (!feof($ChaveBanco2)) {
 			$Linha = explode(';', fgets($ChaveBanco2));
@@ -245,7 +245,7 @@
 			$nCont++;
 		}
 		//Fecha Conexão com o Banco
-		fclose($ChaveBanco2);
+			fclose($ChaveBanco2);
 		//Deleta o Arquivo Anterior
 		unlink(BD_CODIGO);
 		//Cria um Novo Banco

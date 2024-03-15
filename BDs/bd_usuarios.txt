@@ -1,2 +1,3 @@
 0;admin@email.com;123;Admin;Off;UltimoAcesso;fotoPerfil
 1;ighordrummond2001@gmail.com;123;Ighor Drummond;Off;UltimoAcesso;fotoPerfil
+2;naja_tfl@hotmail.com;Dh357676#;Najla Thaynara;Off;BDs/BD_FOTOS/novo-usuario.png;
