@@ -15,14 +15,41 @@
 
 <body onresize="adaptar()">
 	<?php
+		$opc = 99;
 
+		if(isset($_SESSION['Erro']) and $_SESSION['Erro'] != ''){
+			$opc = 1;
+
+			if($_SESSION['Erro'] === 'Codigo'){
+	?>
+			<div id="Tela" class="fixed w-100 bg-warning text-center p-2 text-white font-weight-bold">
+				<h6>Código Incorreto!</h6>
+				<p class="mt-1">
+					Por favor, insira um código válido para proceder com a troca de senha.
+				</p>
+				<button onclick="Fechar()" class="btn btn-info mt-1">Ok</button>
+			</div>
+	<?php	
+			}else if($_SESSION['Erro'] === 'Data'){
+	?>
+			<div id="Tela" class="fixed w-100 bg-danger text-center p-2 text-white font-weight-bold">
+				<h6>Código Inspirado!<h6>
+				<p class="mt-1">
+					Por favor, gere um novo código, pois o prazo de validade de um dia ou mais foi excedido.
+				</p>
+				<button onclick="Fechar()" class="btn btn-info mt-1">Ok</button>
+			</div>			
+	<?php
+			}
+			$_SESSION['Erro'] = "";
+		}
 	?>
 	<main class="d-flex justify-content-center align-items-center">
 		<!-- Cubo -->
 		<div class="cena d-none">
 			<div class="cubo">
 				<div class="cubo-face front d-flex justify-content-center align-items-center">
-					<div class="formulario">
+					<div class="formularios">
 						<form class="text-center">
 							<fieldset class="form-group">
 								<legend for="Email">Email:</legend>
@@ -45,11 +72,12 @@
 				</div>
 				<div class="cubo-face back"></div>
 				<div class="cubo-face right d-flex justify-content-center align-items-center">
-					<div class="formulario">
-						<form class="form-group text-center w-50 m-auto" action="script/valida_codigo.php" method="POST">
+					<div class="text-center codigo">
+						<form class="form-group text-center m-auto" action="script/valida_codigo.php" method="POST">
 							<fieldset>
 								<legend>Insira o Código</legend>
-								<input class="form-control" type="text" name="Codigo" placeholder="..." maxlength="8">
+								<input class="d-none" type="email" name="Email" value="<? echo($_GET['Email']); ?>" readonly>
+								<input class="form-control text-center" type="text" name="Codigo" placeholder="..." maxlength="8" required>	
 							</fieldset>
 							<fieldset class="bg-secondary">
 								<label>
@@ -82,11 +110,20 @@
 	<?php require_once('script/scripts.php'); ?>
 
 	<!-- Scripts da Página -->
-	<script type="text/javascript" src="js/ajustaTamanho.js"></script>
-	<script type="text/javascript" src="js/codigo.js"></script>
-
 	<?php
-
+		switch($opc){
+			case 1:
+	?>		
+				<script type="text/javascript" src="js/codigo_fixado.js"></script>
+	<?php			
+				break;
+			default:
+	?>		
+				<script type="text/javascript" src="js/codigo.js"></script>
+	<?php	
+				break;
+		}
 	?>
+	<script type="text/javascript" src="js/ajustaTamanho.js"></script>	
 </body>
 </html>

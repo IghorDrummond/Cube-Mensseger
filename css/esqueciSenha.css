@@ -135,7 +135,6 @@ main{
 	}
 	.formulario{
 		font-size: 0.7em;
-		width: 90% !important;
 	}
 	.formulario legend{
 		font-size: 0.8em;
@@ -144,8 +143,7 @@ main{
 		width: 90%;
 		height: 20px;
 		margin: auto;
-	}	
-
+	}		
 }
 
 @media(max-width: 240px){
@@ -154,7 +152,6 @@ main{
 	}
 	.formulario legend{
 		font-size: 0.8em;
-		width: 90% !important;
 	}	
 	.formulario input{
 		width: 90%;

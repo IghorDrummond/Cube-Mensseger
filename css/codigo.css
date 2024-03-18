@@ -86,7 +86,6 @@ main{
 	-webkit-animation: aparecer 1s;
 	        animation: aparecer 1s;
 }
-
 .codigo{
 	width: 50%;
 }
@@ -136,14 +135,14 @@ main{
 		font-size: 0.8em;
 		padding: 0 !important;
 	}
-	.formulario{
+	.formulario, .codigo{
 		font-size: 0.7em;
 		width: 90% !important;
 	}
-	.formulario legend{
+	.formulario legend, .codigo legend{
 		font-size: 0.8em;
 	}	
-	.formulario input{
+	.formulario input, .codigo input{
 		width: 90%;
 		height: 20px;
 		margin: auto;
@@ -152,14 +151,14 @@ main{
 }
 
 @media(max-width: 240px){
-	.formulario{
+	.formulario, .codigo{
 		font-size: 0.5em;
 	}
-	.formulario legend{
+	.formulario legend , .codigo legend{
 		font-size: 0.8em;
 		width: 90% !important;
 	}	
-	.formulario input{
+	.formulario input, .codigo input{
 		width: 90%;
 		height: 10px;
 		margin: auto;

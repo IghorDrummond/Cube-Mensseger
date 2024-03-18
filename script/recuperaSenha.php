@@ -44,7 +44,7 @@
 		//Abre Banco de Dados para Leitura e Escrita
 		$ChaveBanco = fopen(BD_CODIGO, 'a+');		
 		//Escreve Novo Código no Banco de Dados
-		$Linha = $Dados[1] .';'. $Codigo  .';'. strtotime($DataHoje) . PHP_EOL;
+		$Linha = $Dados[1] .';'. $Codigo  .';'. $DataHoje . PHP_EOL;
 		fwrite($ChaveBanco, $Linha);
 		//Fecha Conexão com o Banco de Dados
 		fclose($ChaveBanco);
@@ -245,7 +245,7 @@
 			$nCont++;
 		}
 		//Fecha Conexão com o Banco
-			fclose($ChaveBanco2);
+		fclose($ChaveBanco2);
 		//Deleta o Arquivo Anterior
 		unlink(BD_CODIGO);
 		//Cria um Novo Banco

@@ -36,7 +36,7 @@
 			<div class="cubo">
 				<div class="cubo-face front d-flex justify-content-center align-items-center">
 					<div class="formularios">
-						<form class=" text-center d-none formulario">
+						<form class="text-center m-auto d-none formulario">
 							<fieldset class="form-group">
 								<legend for="Email">Email:</legend>
 								<input class="form-control text-dark" name="Email" placeholder="seuemail@email.com"disabled="disabled" readonly>				

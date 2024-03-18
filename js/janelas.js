@@ -95,7 +95,7 @@ function VoltarXY(){
 		}else if(nCont === 40){
 			CorpoForm[0].style.animation = "aparecer 1s";
 			CorpoForm[0].style.webkitAnimation = "aparecer 1s";			
-			CorpoForm[0].className = "d-block formulario";	
+			CorpoForm[0].className = "d-block formularios";	
 		}
 
 		nCont--;
