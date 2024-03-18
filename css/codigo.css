@@ -91,14 +91,6 @@ main{
 	width: 50%;
 }
 
-/*Tela para Pop Ups*/
-#Tela{
-	position: absolute;
-	z-index: 5;
-	-webkit-animation: aparecer 1s;
-	        animation: aparecer 1s;
-}
-
 /* Animação */
 @-webkit-keyframes sumir{
 	from{

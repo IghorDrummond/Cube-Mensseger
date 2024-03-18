@@ -45,10 +45,22 @@
 				</div>
 				<div class="cubo-face back"></div>
 				<div class="cubo-face right d-flex justify-content-center align-items-center">
-					<!-- Alterar Aqui --->
-					<div class="bg-warning">
-						<button onclick="VoltarXY()">Voltar</button>
-					</div>
+					<div class="formulario">
+						<form class="form-group text-center w-50 m-auto" action="script/valida_codigo.php" method="POST">
+							<fieldset>
+								<legend>Insira o Código</legend>
+								<input class="form-control" type="text" name="Codigo" placeholder="..." maxlength="8">
+							</fieldset>
+							<fieldset class="bg-secondary">
+								<label>
+									<span class="text-warning">Atenção:</span>
+									O código é válido por um dia útil para utilização; caso contrário, não será aceito e será necessário gerar um novo.
+								</label>
+							</fieldset>
+							<input type="submit" name="Acesso" value="Enviar" class="btn btn-info mt-2">
+						</form>
+						<button class="btn btn-info mt-2" onclick="VoltarXY()">Voltar</button>
+					</div>	
 				</div>
 				<div class="cubo-face left"></div>
 				<div class="cubo-face top"></div>
