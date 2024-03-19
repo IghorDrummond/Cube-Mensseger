@@ -96,7 +96,7 @@
 						<fieldset >
 							<legend for="Senha">Senha:</legend>
 							<label for="Senha">Insira a Senha: </label>
-							<input class="form-control text-dark" onchange="DesligaCabecalho()" onkeydown="ValidaSenha()" name="Senha" type="password" required pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\W+)(?=^.{8,50}$).*$">
+							<input class="form-control text-dark" onchange="DesligaCabecalho()" onkeyup="ValidaSenha()" name="Senha" type="password" required pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\W+)(?=^.{8,50}$).*$">
 							<label for="ConfirmeSenha">Confirme a Senha: </label>
 							<input class="form-control text-dark" name="ConfirmeSenha" type="password" required pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\W+)(?=^.{8,50}$).*$">							
 						</fieldset>
