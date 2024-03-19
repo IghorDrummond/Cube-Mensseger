@@ -116,6 +116,7 @@ function ValidaSenha(){
 	//Elementos
 	var Lista = document.getElementsByTagName('li');
 	var Input = document.getElementsByName('Senha');
+	var Cabecalho = document.getElementsByTagName('header');
 	//String
 	var Carac = "";
 	//Array
@@ -123,6 +124,11 @@ function ValidaSenha(){
 	//Numerico
 	var nCont = 0;
 	var nCont2 = 0;
+
+	//Liga o Cabeçalho
+	Cabecalho[0].style.animation = "aparecer 1s";
+	Cabecalho[0].style.webkitAnimation = "aparecer 1s";
+	Cabecalho[0].style.display = 'block';
 
 	//Recupera o valor Digitado no Campo Senha
 	Carac = Input[0].value;
@@ -134,7 +140,6 @@ function ValidaSenha(){
 		Lista[0].className = "text-warning";
 	}
 
-	console.log(Simbolo);
 	//Verifica os Caracteres existentes dentro da String
 	for(nCont = 0; nCont <= Simbolo.length -1; nCont++){
 		for(nCont2 = 0; nCont2 <= Simbolo[nCont][0].length -1; nCont2++){
@@ -147,4 +152,25 @@ function ValidaSenha(){
 			}
 		}
 	}
+}
+
+/*
+================================================================
+Função: DesligaCabecalho()
+Descrição: Desliga o Cabeçalho quando não será mais usado o campo Senha
+Data: 19/03/2024
+Progamador(a): Ighor Drummond
+================================================================
+*/
+function DesligaCabecalho(){
+	//Declaração de Variaveis
+	//Elementos
+	var Cabecalho = document.getElementsByTagName('header');
+
+	Cabecalho[0].style.animation = "sumir 1s";
+	Cabecalho[0].style.webkitAnimation = "sumir 1s";
+	//Liga o Cabeçalho
+	var Z = setTimeout(function(){
+		Cabecalho[0].style.display = 'none';
+	}, 1000);
 }

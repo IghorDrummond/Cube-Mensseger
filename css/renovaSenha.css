@@ -92,7 +92,6 @@ main{
 
 header{
 	display: none;
-	animation: aparecer 1s;
 	position: absolute;
 	z-index: 1;
 }

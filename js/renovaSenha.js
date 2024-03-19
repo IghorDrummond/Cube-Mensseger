@@ -3,7 +3,6 @@
 var EstruturaCubo = document.getElementsByClassName('cubo');
 var CorpoForm = document.getElementsByClassName('formularios');
 var CampoEmail = document.getElementsByClassName('codigo');
-var Cabecalho = document.getElementsByTagName('header');
 //=====================Escopo============================
 EstruturaCubo[0].style.transform = "rotateX(90deg)";
 CorpoForm[0].className = "d-none formulario";
@@ -16,7 +15,6 @@ var Y = setTimeout(() =>{
 	CampoEmail[0].className = "d-none codigo";
 	CampoEmail[1].style.animation = "aparecer 1s";
 	CampoEmail[1].className = "d-block codigo";
-	Cabecalho[0].style.display = 'block';
 
 	//Limpa o Tempo
 	clearTimeout(Y);
