@@ -54,7 +54,8 @@
 		}
 		//Redireciona para Página de troca de Senha
 		$_SESSION['DataCodigo'] = $Info[2];
-		header('Location: ../trocaSenha.php?Email='. $Info[0]);
+		$_SESSION['EmailRecupera'] = $Email;
+		header('Location: ../trocaSenha.php');
 	}
 
 	function calculaData($Data){

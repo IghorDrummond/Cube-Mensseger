@@ -42,6 +42,7 @@
 				$opc = 2;
 			}
 		?>
+		
 	<main class="d-flex justify-content-center align-items-center ">
 		<!-- Cubo -->
 		<div class="cena d-none">

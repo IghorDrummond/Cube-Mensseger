@@ -103,3 +103,48 @@ function VoltarXY(){
 		EstruturaCubo[0].style.webkitTransform = "rotateX(" +  nCont.toString() +"deg) rotateY("+nCont.toString()+"deg)";		
 	}, 15);
 }
+/*
+================================================================
+Função: ValidaSenha()
+Descrição: Analisa se o Usuário Inseriu os caracteres exigidos
+Data: 19/03/2024
+Progamador(a): Ighor Drummond
+================================================================
+*/
+function ValidaSenha(){
+	//Declaração de Variaveis
+	//Elementos
+	var Lista = document.getElementsByTagName('li');
+	var Input = document.getElementsByName('Senha');
+	//String
+	var Carac = "";
+	//Array
+	var Simbolo = [['ABCDEFGHIJKLMNOPQRSTUVWXYZ'], ['@#_-%¨&;?!$()*><:Ç~´^,.=\/{}`´|[]+""£'] ,['0123456789'] ];
+	//Numerico
+	var nCont = 0;
+	var nCont2 = 0;
+
+	//Recupera o valor Digitado no Campo Senha
+	Carac = Input[0].value;
+
+	//Verifica o Tamanho da Senha
+	if((Carac.length +1) >= 8){
+		Lista[0].className = "text-success";
+	}else{
+		Lista[0].className = "text-warning";
+	}
+
+	console.log(Simbolo);
+	//Verifica os Caracteres existentes dentro da String
+	for(nCont = 0; nCont <= Simbolo.length -1; nCont++){
+		for(nCont2 = 0; nCont2 <= Simbolo[nCont][0].length -1; nCont2++){
+			if( Carac.indexOf(Simbolo[nCont][0].charAt(nCont2)) >= 0 ){
+				Lista[nCont +1].className = "text-success";
+				break;
+			}
+			else{
+				Lista[nCont +1].className = "text-warning";
+			}
+		}
+	}
+}

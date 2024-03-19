@@ -89,14 +89,12 @@ main{
 .codigo{
 	width: 50%;
 }
-.codigo:ntd-child(2){
-	animation: aparecer 1s;
-}
 
 header{
-	height: 140px;
 	display: none;
-	animation: expandir 1s;
+	animation: aparecer 1s;
+	position: absolute;
+	z-index: 1;
 }
 
 /* Animação */
@@ -130,15 +128,6 @@ header{
 	}
 	to{
 		opacity: 1;
-	}
-}
-@keyframes expandir{
-	from{
-		opacity: 0;
-		height: 0px;
-	}to{
-		opacity: 1;
-		height: 140px;
 	}
 }
 
