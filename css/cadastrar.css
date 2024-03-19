@@ -96,6 +96,13 @@ main{
 	        animation: aparecer 1s;
 }
 
+header{
+	display: none;
+	position: absolute;
+	z-index: 1;
+}
+
+
 /* Animação */
 @-webkit-keyframes sumir{
 	from{

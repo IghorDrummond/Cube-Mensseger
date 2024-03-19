@@ -75,7 +75,7 @@
 							<input type="email" name="Email" readonly class="d-none" value="email">
 							<fieldset class="form-group">
 								<legend for="Senha">Digite a nova Senha:</legend>
-								<input onchange="DesligaCabecalho()"  onkeyup="ValidaSenha()" type="password" name="Senha" class="form-control" pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\W+)(?=^.{8,50}$).*$" maxlength="12" required>
+								<input onchange="DesligaCabecalho()" onkeydown="ValidaSenha()" type="password" name="Senha" class="form-control" pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\W+)(?=^.{8,50}$).*$" maxlength="12" required>
 							</fieldset>
 							<fieldset class="form-group">
 								<legend for="ConfirmeSenha">Confirme a Senha:</legend>

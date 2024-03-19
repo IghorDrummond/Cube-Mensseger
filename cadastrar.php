@@ -15,6 +15,7 @@
 
 <body onresize="adaptar()">
 		<?php
+			$opc = 99;
 			if(isset($_SESSION['Erro']) and $_SESSION['Erro'] != ''){
 				if($_SESSION['Erro'] === 'Email'){
 		?>
@@ -42,7 +43,17 @@
 				$opc = 2;
 			}
 		?>
-		
+	<header class="w-100 border border-dark bg-secondary font-weight-bold text-center">
+		<nav>
+			<h6>Digite a Nova Senha respeitando a Regra listadas abaixo:</h6>
+			<ul>
+				<li class="text-warning">Maxímo de 8 Caracteres</li>
+				<li class="text-warning">Um ou Mais Letra Maíscula</li>
+				<li class="text-warning">Um ou Mais Símbolo</li>
+				<li class="text-warning">Um ou Mais Numero</li>
+			</ul>
+		</nav>
+	</header>
 	<main class="d-flex justify-content-center align-items-center ">
 		<!-- Cubo -->
 		<div class="cena d-none">
@@ -56,7 +67,7 @@
 							</fieldset>
 							<fieldset class="form-group">
 								<legend for="Senha">Senha:</legend>
-								<input class="form-control text-dark"  name="Senha"disabled="disabled" readonly>
+								<input class="form-control text-dark" disabled="disabled" readonly>
 							</fieldset>
 							<input type="submit" class="btn btn-info" name="Acesso" value="Entrar" disabled="disabled">					
 						</form>
@@ -85,7 +96,7 @@
 						<fieldset >
 							<legend for="Senha">Senha:</legend>
 							<label for="Senha">Insira a Senha: </label>
-							<input class="form-control text-dark" name="Senha" type="password" required pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\W+)(?=^.{8,50}$).*$">
+							<input class="form-control text-dark" onchange="DesligaCabecalho()" onkeydown="ValidaSenha()" name="Senha" type="password" required pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\W+)(?=^.{8,50}$).*$">
 							<label for="ConfirmeSenha">Confirme a Senha: </label>
 							<input class="form-control text-dark" name="ConfirmeSenha" type="password" required pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\W+)(?=^.{8,50}$).*$">							
 						</fieldset>

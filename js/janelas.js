@@ -174,3 +174,4 @@ function DesligaCabecalho(){
 		Cabecalho[0].style.display = 'none';
 	}, 1000);
 }
+	
