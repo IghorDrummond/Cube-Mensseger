@@ -95,9 +95,8 @@ function VoltarXY(){
 		}else if(nCont === 40){
 			CorpoForm[0].style.animation = "aparecer 1s";
 			CorpoForm[0].style.webkitAnimation = "aparecer 1s";			
-			CorpoForm[0].className = "d-block formularios";	
+			CorpoForm[0].className = "d-block formularios w-100 m-auto";	
 		}
-
 		nCont--;
 		EstruturaCubo[0].style.transform = "rotateX(" +  nCont.toString() +"deg) rotateY("+nCont.toString()+"deg)";
 		EstruturaCubo[0].style.webkitTransform = "rotateX(" +  nCont.toString() +"deg) rotateY("+nCont.toString()+"deg)";		

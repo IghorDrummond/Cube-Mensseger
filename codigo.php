@@ -50,7 +50,7 @@
 			<div class="cubo">
 				<div class="cubo-face front d-flex justify-content-center align-items-center">
 					<div class="formularios">
-						<form class="text-center">
+						<form class="text-center formulario">
 							<fieldset class="form-group">
 								<legend for="Email">Email:</legend>
 								<input class="form-control text-dark" type="email" name="Email" placeholder="seuemail@email.com" readonly disabled="disabled">				
@@ -61,7 +61,7 @@
 							</fieldset>
 							<input type="submit" class="btn btn-info" name="Acesso" value="Entrar" readonly disabled="disabled">
 						</form>
-						<form class="text-center">
+						<form class="text-center formulario">
 							<fieldset>
 								<p>Está com Dificuldade para acessar? Tente Isso:</p>
 								<a class="btn btn-info" readonly disabled="disabled">Cadastrar</a>
@@ -115,6 +115,7 @@
 			case 1:
 	?>		
 				<script type="text/javascript" src="js/codigo_fixado.js"></script>
+				<script type="text/javascript" src="js/erradoCuboCodigo.js"></script>
 	<?php			
 				break;
 			default:
