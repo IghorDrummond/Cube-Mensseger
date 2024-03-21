@@ -113,7 +113,6 @@
 	<?php require_once('script/scripts.php'); ?>
 
 	<!-- Scripts da Página -->	
-	<script type="text/javascript" src="js/ajustaTamanho.js"></script>	
 	<?php
 		switch($opc){
 			case 1:
@@ -127,8 +126,6 @@
 				<script type="text/javascript" src="js/renovaSenha_fixado.js"></script>	
 				<script type="text/javascript" src="js/saidaLogin.js"></script>					
 	<?php	
-				unset($_SESSION['EmailRecupera']);
-				unset($_SESSION['DataCodigo']);
 				break;
 			default:
 	?>
@@ -137,6 +134,7 @@
 			break;	
 		}
 	?>
+	<script type="text/javascript" src="js/ajustaTamanho.js"></script>	
 	<script type="text/javascript" src="js/janelas.js"></script>	
 </body>
 </html>

@@ -3,6 +3,10 @@
 
 	if(calculaData($_SESSION['DataCodigo']) or isset($_SESSION['EmailRecupera']) === false){
 		header('Location: login.php');
+	}else if(isset($_SESSION['EmailRecupera']) and $_SESSION['EmailRecupera'] === 'DELETE'){
+		//Remove Dados para Recuperação de Senha
+		unset($_SESSION['EmailRecupera']);
+		unset($_SESSION['DataCodigo']);
 	}else if(isset($_SESSION['Login']) and $_SESSION['Login']){
 		header('Location: home.php');
 	}

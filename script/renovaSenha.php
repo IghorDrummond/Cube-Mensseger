@@ -57,6 +57,8 @@
 	//Apaga os Índices que não serão mais necessarios
 	unset($_SESSION['Nome']);
 	unset($_SESSION['Email']);
+	//Da comando de deletar o Email para Recuperação + a Data do Código
+	$_SESSION['EmailRecupera'] = "DELETE";
 	
 	//Redireciona para o Login
 	$_SESSION['Validacao'] = 'Login';
