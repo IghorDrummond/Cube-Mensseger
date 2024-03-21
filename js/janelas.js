@@ -171,6 +171,7 @@ function DesligaCabecalho(){
 	//Liga o Cabeçalho
 	var Z = setTimeout(function(){
 		Cabecalho[0].style.display = 'none';
+		clearTimeout(Z);	
 	}, 1000);
 }
 	

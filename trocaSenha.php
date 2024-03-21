@@ -14,6 +14,23 @@
 </head>
 
 <body onresize="adaptar()">
+	<?php
+		if(isset($_SESSION['Validacao']) and $_SESSION['Validacao'] === 'Login'){
+			$opc = 2;
+			$_SESSION['Validacao'] = '';
+		}else if(isset($_SESSION['Erro']) and $_SESSION['Erro'] === 'Senha'){
+			$opc = 1
+	?>	
+			<div id="Tela" class="w-100 bg-warning text-center p-2 fixed">
+				<p class="mt-3">
+					As Senhas não se Correspondem, insira novamente as Senhas.
+				</p>
+				<button class="btn btn-info p-2 m-2 w-50" onclick="Fechar()">Ok</button>
+			</div>			
+	<?php
+			$_SESSION['Erro'] = "";
+		}
+	?>
 	<header class="w-100 border border-dark bg-secondary font-weight-bold text-center">
 		<nav>
 			<h6>Digite a Nova Senha respeitando a Regra listadas abaixo:</h6>
@@ -94,9 +111,30 @@
 	<!-- Scripts Obrigatórios -->
 	<?php require_once('script/scripts.php'); ?>
 
-	<!-- Scripts da Página -->
-	<script type="text/javascript" src="js/renovaSenha.js"></script>
+	<!-- Scripts da Página -->	
+	<?php
+		switch($opc){
+			case 1:
+	?>	
+				<script type="text/javascript" src="js/renovaSenha_fixado.js"></script>	
+				<script type="text/javascript" src="js/erradoCuboCodigo.js"></script>	
+	<?php	
+				break;
+			case 2:
+	?>
+				<script type="text/javascript" src="js/renovaSenha_fixado.js"></script>	
+				<script type="text/javascript" src="js/renovaSenha_fixado.js"></script>					
+	<?php	
+				break;
+			default:
+	?>
+				<script type="text/javascript" src="js/renovaSenha.js"></script>
+	<?php	
+			break;	
+		}
+	?>
+
 	<script type="text/javascript" src="js/ajustaTamanho.js"></script>	
-	<script type="text/javascript" src="js/janelas.js"></script>
+	<script type="text/javascript" src="js/janelas.js"></script>	
 </body>
 </html>

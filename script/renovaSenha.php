@@ -16,7 +16,8 @@
 	//Verifica se as senhas são iguais
 	if($Senha[0] != $Senha[1]){
 		$_SESSION['Erro'] = "Senha";
-		header('Location: trocaSenha.php');
+		header('Location: ../trocaSenha.php');
+		exit(0);//Encerra o Programa
 	}
 
 	//Abre um novo arquivo
@@ -58,4 +59,6 @@
 	unset($_SESSION['EmailRecupera']);
 
 	//Redireciona para o Login
+	$_SESSION['Validacao'] = 'Login';
+	header('Location: ../trocaSenha.php');
 ?>

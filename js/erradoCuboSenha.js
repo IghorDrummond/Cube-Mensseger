@@ -8,7 +8,6 @@ var nOpc = 1;
 //Booleano
 var lSaida = false;
 
-console.log('Entrei no errado Cubo Senha');
 //=====================================Escopo==================================
 //Deixa os Inputs em Vermelho
 Inputs[5].style.border = "1px solid red";
