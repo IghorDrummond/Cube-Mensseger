@@ -55,9 +55,9 @@
 	fclose($ChaveBanco);
 
 	//Apaga os Índices que não serão mais necessarios
-	unset($_SESSION['DataCodigo']);
-	unset($_SESSION['EmailRecupera']);
-
+	unset($_SESSION['Nome']);
+	unset($_SESSION['Email']);
+	
 	//Redireciona para o Login
 	$_SESSION['Validacao'] = 'Login';
 	header('Location: ../trocaSenha.php');

@@ -90,7 +90,7 @@
 						</form>
 						<form class="d-none formulario text-center">
 							<fieldset>
-								<p>Está com Dificuldade para acessar? Tente Isso:</p>
+								<p class="w-100">Está com Dificuldade para acessar? Tente Isso:</p>
 								<a class="btn btn-info" href="cadastrar.php">Cadastrar</a>
 								<a class="btn btn-info" href="esqueciSenha.php">Esqueci a Senha</a>
 							</fieldset>		

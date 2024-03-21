@@ -5,7 +5,7 @@ var CorpoForm = document.getElementsByClassName('formularios');
 var CampoEmail = document.getElementsByClassName('codigo');
 //=====================Escopo============================
 EstruturaCubo[0].style.transform = "rotateX(90deg)";
-CorpoForm[0].className = "d-none formulario";
+CorpoForm[0].className = "d-none formularios";
 //Desliga o Campo Email
 CampoEmail[0].style.animation = "sumir 1s";
 CampoEmail[0].style.webkitAnimation = "sumir 1s";

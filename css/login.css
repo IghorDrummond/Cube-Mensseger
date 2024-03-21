@@ -217,7 +217,6 @@ main{
 		-webkit-transform: rotateX(-90deg) translateZ(50px);
 		transform: rotateX(-90deg) translateZ(50px);
 	}
-
 	.btn {
 		width: 50% !important;
 		font-size: 0.8em;
@@ -235,7 +234,6 @@ main{
 		margin: auto;
 	}		
 }
-
 @media(max-width: 240px){
 	.formulario{
 		font-size: 0.5em;

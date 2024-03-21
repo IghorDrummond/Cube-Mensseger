@@ -50,22 +50,22 @@
 			<div class="cubo">
 				<div class="cubo-face front d-flex justify-content-center align-items-center">
 					<div class="formularios">
-						<form class="text-center formulario">
+						<form class=" text-center d-none formulario">
 							<fieldset class="form-group">
 								<legend for="Email">Email:</legend>
-								<input class="form-control text-dark" type="email" name="Email" placeholder="seuemail@email.com" readonly disabled="disabled">				
+								<input class="form-control text-dark" type="email" placeholder="seuemail@email.com" readonly disabled="disabled">				
 							</fieldset>
 							<fieldset class="form-group">
 								<legend for="Senha">Senha:</legend>
-								<input class="form-control text-dark" type="password" name="Senha" readonly disabled="disabled">
+								<input class="form-control text-dark" type="password" readonly disabled="disabled">
 							</fieldset>
-							<input type="submit" class="btn btn-info" name="Acesso" value="Entrar" readonly disabled="disabled">
+							<input type="submit" class="btn btn-info" value="Entrar" disabled="disabled">
 						</form>
-						<form class="text-center formulario">
+						<form class="formulario text-center">
 							<fieldset>
 								<p>Está com Dificuldade para acessar? Tente Isso:</p>
-								<a class="btn btn-info" readonly disabled="disabled">Cadastrar</a>
-								<a class="btn btn-info" readonly disabled="disabled">Esqueci a Senha</a>
+								<a class="btn btn-info" href="" disabled="disabled">Cadastrar</a>
+								<a class="btn btn-info" href="" disabled="disabled">Esqueci a Senha</a>
 							</fieldset>		
 						</form>
 					</div>

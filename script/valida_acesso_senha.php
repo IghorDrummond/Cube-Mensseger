@@ -2,7 +2,6 @@
 	session_start();
 
 	if(calculaData($_SESSION['DataCodigo']) or isset($_SESSION['EmailRecupera']) === false){
-		$_SESSION['EmailRecupera'] = "";
 		header('Location: login.php');
 	}else if(isset($_SESSION['Login']) and $_SESSION['Login']){
 		header('Location: home.php');

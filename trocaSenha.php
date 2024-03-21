@@ -15,9 +15,10 @@
 
 <body onresize="adaptar()">
 	<?php
+		$opc = 99;
 		if(isset($_SESSION['Validacao']) and $_SESSION['Validacao'] === 'Login'){
 			$opc = 2;
-			$_SESSION['Validacao'] = '';
+			$_SESSION['Validacao'] = 'Cadastrado';
 		}else if(isset($_SESSION['Erro']) and $_SESSION['Erro'] === 'Senha'){
 			$opc = 1
 	?>	
@@ -48,22 +49,22 @@
 			<div class="cubo">
 				<div class="cubo-face front d-flex justify-content-center align-items-center">
 					<div class="formularios">
-						<form class="text-center">
+						<form class=" text-center formulario">
 							<fieldset class="form-group">
 								<legend for="Email">Email:</legend>
-								<input class="form-control text-dark" type="email" name="Email" placeholder="seuemail@email.com" readonly disabled="disabled">				
+								<input class="form-control text-dark" type="email"  placeholder="seuemail@email.com" readonly disabled="disabled">				
 							</fieldset>
 							<fieldset class="form-group">
 								<legend for="Senha">Senha:</legend>
 								<input class="form-control text-dark" type="password" readonly disabled="disabled">
 							</fieldset>
-							<input type="submit" class="btn btn-info" name="Acesso" value="Entrar" readonly disabled="disabled">
+							<input type="submit" class="btn btn-info" value="Entrar">
 						</form>
-						<form class="text-center">
+						<form class="d-none formulario text-center">
 							<fieldset>
 								<p>Está com Dificuldade para acessar? Tente Isso:</p>
-								<a class="btn btn-info" readonly disabled="disabled">Cadastrar</a>
-								<a class="btn btn-info" readonly disabled="disabled">Esqueci a Senha</a>
+								<a class="btn btn-info" href="" disabled="disabled">Cadastrar</a>
+								<a class="btn btn-info" href="" disabled="disabled">Esqueci a Senha</a>
 							</fieldset>		
 						</form>
 					</div>
@@ -112,6 +113,7 @@
 	<?php require_once('script/scripts.php'); ?>
 
 	<!-- Scripts da Página -->	
+	<script type="text/javascript" src="js/ajustaTamanho.js"></script>	
 	<?php
 		switch($opc){
 			case 1:
@@ -123,8 +125,10 @@
 			case 2:
 	?>
 				<script type="text/javascript" src="js/renovaSenha_fixado.js"></script>	
-				<script type="text/javascript" src="js/renovaSenha_fixado.js"></script>					
+				<script type="text/javascript" src="js/saidaLogin.js"></script>					
 	<?php	
+				unset($_SESSION['EmailRecupera']);
+				unset($_SESSION['DataCodigo']);
 				break;
 			default:
 	?>
@@ -133,8 +137,6 @@
 			break;	
 		}
 	?>
-
-	<script type="text/javascript" src="js/ajustaTamanho.js"></script>	
 	<script type="text/javascript" src="js/janelas.js"></script>	
 </body>
 </html>

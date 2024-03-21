@@ -63,19 +63,19 @@
 						<form class=" text-center d-none formulario">
 							<fieldset class="form-group">
 								<legend for="Email">Email:</legend>
-								<input class="form-control text-dark" name="Email" placeholder="seuemail@email.com"disabled="disabled" readonly>				
+								<input class="form-control text-dark" placeholder="seuemail@email.com"disabled="disabled" readonly>				
 							</fieldset>
 							<fieldset class="form-group">
 								<legend for="Senha">Senha:</legend>
 								<input class="form-control text-dark" disabled="disabled" readonly>
 							</fieldset>
-							<input type="submit" class="btn btn-info" name="Acesso" value="Entrar" disabled="disabled">					
+							<input type="submit" class="btn btn-info" value="Entrar" disabled="disabled">					
 						</form>
 						<form class="d-none formulario text-center">
 							<fieldset>
 								<p>Está com Dificuldade para acessar? Tente Isso:</p>
-								<input type="submit" class="btn btn-transparent" name="Acesso" value="Cadastrar" disabled="disabled" readonly>
-								<input type="submit" class="btn btn-transparent" name="Acesso" value="Esqueci a Senha" disabled="disabled" readonly>
+								<input type="submit" class="btn btn-transparent" value="Cadastrar" disabled="disabled" readonly>
+								<input type="submit" class="btn btn-transparent" value="Esqueci a Senha" disabled="disabled" readonly>
 							</fieldset>		
 						</form>
 					</div>
