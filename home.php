@@ -24,10 +24,10 @@
 	?>
 
 	<!--Inicio da Navegação -->
-	<header class="d-none w-100 bg-light my-1 p-1">
+	<header class="d-none w-100 bg-light my-1 p-2">
 		<nav>
 			<ul class="nav justify-content-center">
-				<li class="nav-item active" title="Página Inicial">
+				<li class="nav-item actived" title="Página Inicial">
 					<a href="" class="nav-link">
 						<i class="fa-solid fa-house-user fa-xl"></i>
 					</a>

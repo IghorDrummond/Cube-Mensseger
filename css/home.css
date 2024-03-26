@@ -23,7 +23,8 @@ header{
 	position: absolute;
 	height: 50px;
 	border-radius: 25px;
-	animation: surgi 1s;
+	-webkit-animation: surgi 1s;
+	        animation: surgi 1s;
 }
 li{
 	margin: 0 5rem !important;
@@ -100,6 +101,13 @@ li{
 	z-index: 5;
 	-webkit-animation: aparecer 1s;
 	        animation: aparecer 1s;
+}
+.actived{
+	background-color: rgba(173,216,230, 0.5);
+	border: 1px solid #add8e6;
+	border-radius: 50px 0px !important;
+	-webkit-animation: selecionado 2s infinite;
+	        animation: selecionado 2s infinite;
 }
 
 /* Tela de Carregamento */
@@ -202,7 +210,46 @@ li{
 		opacity: 1;
 	}
 }
+@-webkit-keyframes selecionado{
+	0%{
+		background-color: rgba(173,216,230, 0.5);
+	}
+	50%{
+		background-color: rgba(114,188,212, 0.5);
+	}
+	100%{
+		background-color: rgba(173,216,230, 0.5);
+	}
+}
+@keyframes selecionado{
+	0%{
+		background-color: rgba(173,216,230, 0.5);
+	}
+	50%{
+		background-color: rgba(114,188,212, 0.5);
+	}
+	100%{
+		background-color: rgba(173,216,230, 0.5);
+	}
+}
 
+/* Hovers */
+li:hover{
+	border: 1px solid #add8e6;
+	border-radius: 50px 0px;
+	background-color: rgba(0, 0, 0, 0.2);
+	-webkit-transition: all 1s;
+	-o-transition: all 1s;
+	transition: all 1s;
+}
+li:not(:hover){
+	border: 0;
+	border-radius: 0px;
+	background-color: rgba(0, 0, 0, 0);
+	-webkit-transition: all 1s;
+	-o-transition: all 1s;
+	transition: all 1s;
+}
 
 /* Dispositivos Mobiles */
 /* Dispositivos extra small (telefones em modo retrato, com menos de 576px)*/
