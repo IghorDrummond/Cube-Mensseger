@@ -16,12 +16,15 @@ body {
 main{
 	height: 100%;
 }
+pre{
+    background-color: #eeeeee;
+}
 
 /* Navegação */
 header{
 	z-index: 5;
 	position: absolute;
-	height: 50px;
+	height: auto;
 	border-radius: 25px;
 	-webkit-animation: surgi 1s;
 	        animation: surgi 1s;
@@ -32,6 +35,7 @@ li{
 .imagem{
 	border-radius: 25px;
 }
+
 
 /* Cubo */
 .cena{
@@ -119,6 +123,27 @@ li{
 	background-color: rgba(0, 0, 0, 0.3);
 }
 
+/* Novidades */
+#Novidades{
+	width: 90%;
+	height: 90%;
+	text-align: center;
+	background-color: white;
+	padding: 5px;
+	box-sizing: border-box;	
+}
+#Novidades img{
+	width: 150px;
+	height: 150px;
+	border-radius: 90px;
+	border: 2px solid black;
+}
+
+#Novidades{
+	animation: aparecer 2s;
+	color: black;
+	display: none;
+}
 
 
 /* Animação */
@@ -289,6 +314,10 @@ li:not(:hover){
 	.right {
 		-webkit-transform: rotateX(-90deg) translateZ(50px);
 		transform: rotateX(-90deg) translateZ(50px);
+	}	
+	#Novidades img{
+		width: 50px;
+		height: 50px;
 	}		
 }
 @media(max-width: 240px){

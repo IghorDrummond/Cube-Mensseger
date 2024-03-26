@@ -24,7 +24,7 @@
 	?>
 
 	<!--Inicio da Navegação -->
-	<header class="d-none w-100 bg-light my-1 p-2">
+	<header class="d-none w-100 bg-light my-1">
 		<nav>
 			<ul class="nav justify-content-center">
 				<li class="nav-item actived" title="Página Inicial">
@@ -49,7 +49,7 @@
 				</li>	
 				<li class="nav-item">
 					<a href="acesso_sair.php" class="nav-link">
-						<img src="BDs/BD_FOTOS/novo-usuario.png" class="imagem border p-1" width="30px" title="Conectado: Ighor"></div>
+						<img src="BDs/BD_FOTOS/foto_user.png" class="imagem border p-1" width="30" height="30" title="Conectado: Ighor"></div>
 						<i class="fa-solid fa-right-from-bracket fa-xl" title="Sair"></i>
 					</a>
 				</li>																	
@@ -71,15 +71,21 @@
 		<section><!-- Inicio do Cubo -->
 			<div class="cena">
 				<div class="cubo">
-					<div class="cubo-face front d-flex justify-content-center align-items-center">
-						front
+					<div class="cubo-face front d-flex align-items-center justify-content-center">
+						<div id="Novidades">
+							<img src="BDs/BD_FOTOS/foto_user.png" class="img-fluid">
+							<h5 class="mt-1">Olá, <?php echo('Ighor Drummond'); ?>!</h5>
+							<pre><span class="text-warning">Atenção!</span> O Site se Encontra Ainda em uma Versão apenas de Desenvolvimento, As Tecnologias ainda estão sendo empregadas pouco-a-pouco no mesmo. Por enquanto, deslumbre do Design e funcionamento do <span class="text-info">Cube Mensseger!</span>
+							</pre>
+						</div>
 					</div>
 					<div class="cubo-face back">
+						
 					</div>
-					<div class="cubo-face right"></div>
-					<div class="cubo-face left"></div>
-					<div class="cubo-face top"></div>
-					<div class="cubo-face bottom"></div>
+					<div class="cubo-face right">right</div>
+					<div class="cubo-face left">left</div>
+					<div class="cubo-face top">top</div>
+					<div class="cubo-face bottom">bottom</div>
 				</div>
 			</div>				
 		</section><!-- Fim do Cubo -->

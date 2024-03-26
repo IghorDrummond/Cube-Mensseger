@@ -5,6 +5,9 @@ var barra = document.getElementsByClassName('progress-bar');
 var porcentagem = document.getElementById('Loading');
 var Carregamento = document.getElementById('Carregamento');
 var Navegacao = document.getElementsByTagName('header');
+var Telas = [
+		document.getElementById('Novidades')
+];
 
 //===================================Escopo=========================================
 carregamento();//Ativa a tela de carregamento
@@ -14,9 +17,11 @@ function carregamento(){
 	var nCont = 20;
 	var nCont2 = 0;
 
+	Telas[0].style.display = 'block';
+
 	var Z = setInterval(() =>{
 		nCont += 20;
-		nCont2 -= 90;
+		nCont2 += 90;
 
 		//Fixa na posição que ja foi rotacionada
 		EstruturaCubo[0].style.transform = "rotateY(" + (nCont2).toString() +"deg)";
