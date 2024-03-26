@@ -6,7 +6,8 @@ var porcentagem = document.getElementById('Loading');
 var Carregamento = document.getElementById('Carregamento');
 var Navegacao = document.getElementsByTagName('header');
 var Telas = [
-		document.getElementById('Novidades')
+		document.getElementById('Novidades'),
+		document.getElementById('Amigos')
 ];
 
 //===================================Escopo=========================================
@@ -18,6 +19,7 @@ function carregamento(){
 	var nCont2 = 0;
 
 	Telas[0].style.display = 'block';
+	Telas[1].style.display = 'block';
 
 	var Z = setInterval(() =>{
 		nCont += 20;

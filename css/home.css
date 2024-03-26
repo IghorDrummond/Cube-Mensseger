@@ -17,7 +17,10 @@ main{
 	height: 100%;
 }
 pre{
-    background-color: #eeeeee;
+	background-color: #eeeeee;
+}
+i{
+	color: blue;
 }
 
 /* Navegação */
@@ -29,7 +32,7 @@ header{
 	-webkit-animation: surgi 1s;
 	        animation: surgi 1s;
 }
-li{
+header ul>li{
 	margin: 0 5rem !important;
 }
 .imagem{
@@ -139,7 +142,29 @@ li{
 	border: 2px solid black;
 }
 
-#Novidades{
+/* Amigos */
+#Amigos{
+	width: 100%;
+	height: 100%;
+}
+#Amigos pre{
+	overflow: auto;
+    background-color: transparent;
+    word-break: normal !important;
+    word-wrap: normal !important;
+    white-space: pre !important;
+    white-space: pre-line !important;
+    padding: 0 25px;
+    box-sizing: border-box;
+}
+.Amigos-lista{
+	width: 90%;
+	height: 90%;
+	margin: auto;
+	border: 2px solid white;
+}
+
+#Novidades, #Amigos{
 	animation: aparecer 2s;
 	color: black;
 	display: none;
@@ -259,7 +284,7 @@ li{
 }
 
 /* Hovers */
-li:hover{
+header ul>li:hover{
 	border: 1px solid #add8e6;
 	border-radius: 50px 0px;
 	background-color: rgba(0, 0, 0, 0.2);
@@ -267,7 +292,7 @@ li:hover{
 	-o-transition: all 1s;
 	transition: all 1s;
 }
-li:not(:hover){
+header ul>li:not(:hover){
 	border: 0;
 	border-radius: 0px;
 	background-color: rgba(0, 0, 0, 0);

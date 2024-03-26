@@ -28,9 +28,11 @@
 			if($Linha[1] === $Email){
 				if($Linha[2] === $Senha){	
 					$_SESSION['Login'] = true;
-					$_SESSION['Nome'] = $Linha[3];
+					$_SESSION['Nome'] = $Linha[5];
 					$_SESSION['Email'] = $Linha[1];
-					//$lRet = '../home.php';
+					$_SESSION['FotoPerfil'] = $Linha[7];
+					$_SESSION['Disponibilidade'] = $Linha[6];
+					$lRet = '../home.php';
 				}	
 				else{
 					$_SESSION['Erro'] = 'Senha';

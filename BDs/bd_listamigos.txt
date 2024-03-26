@@ -1,0 +1,1 @@
+usuario;email;emailamigo;nomedaconversadosdois;data_amizade + php_eol
