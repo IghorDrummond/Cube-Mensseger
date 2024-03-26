@@ -17,6 +17,21 @@ main{
 	height: 100%;
 }
 
+/* Navegação */
+header{
+	z-index: 5;
+	position: absolute;
+	height: 50px;
+	border-radius: 25px;
+	animation: surgi 1s;
+}
+li{
+	margin: 0 5rem !important;
+}
+.imagem{
+	border-radius: 25px;
+}
+
 /* Cubo */
 .cena{
 	width: 200px;
@@ -87,16 +102,14 @@ main{
 	        animation: aparecer 1s;
 }
 
-header{
-	z-index: 5;
+/* Tela de Carregamento */
+#Carregamento{
 	position: absolute;
-	height: 50px;
-	border-radius: 25px;
+	height: 100vh;
+	width: 100%;
+	z-index: 6;
+	background-color: rgba(0, 0, 0, 0.3);
 }
-li{
-	margin: 0 5rem !important;
-}
-
 
 
 

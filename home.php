@@ -1,5 +1,6 @@
 <?php 
 	require_once('script/validador_acesso_home.php');
+	$_SESSION['Pagina'] = 'Home';
 ?>
 <!DOCTYPE html>
 <html>
@@ -12,37 +13,57 @@
 	<title>Cube Mensseger</title>
 </head>
 
-<body>
-	<?php ?>
+<body onresize="adaptar()">
+	<?php 
+		//Declaração de Variaveis Globais
+		//String
+		$ChaveBanco = "";
+		//Array
+		$Usuario = [];
+		$Linha = [];
+	?>
 
 	<!--Inicio da Navegação -->
-	<header class=" w-100 bg-light my-1 p-1">
+	<header class="d-none w-100 bg-light my-1 p-1">
 		<nav>
 			<ul class="nav justify-content-center">
-				<li class="nav-item active">
+				<li class="nav-item active" title="Página Inicial">
 					<a href="" class="nav-link">
-						<i class="fa-solid fa-house-user fa-xl" title="Página Inicial"></i>
+						<i class="fa-solid fa-house-user fa-xl"></i>
 					</a>
 				</li>		
-				<li class="nav-item">
+				<li class="nav-item" title="Adicionar Amigos">
 					<a href="" class="nav-link">
-						<i class="fa-solid fa-user-group fa-xl" title="Adicionar Amigos"></i>
+						<i class="fa-solid fa-user-group fa-xl"></i>
+					</a>
+				</li>	
+				<li class="nav-item" title="Mensagens">
+					<a href="" class="nav-link">
+						<i class="fa-solid fa-comments fa-xl"></i>
+					</a>
+				</li>		
+				<li class="nav-item"  title="Configuração">
+					<a href="" class="nav-link">
+						<i class="fa-solid fa-gear fa-xl"></i>
 					</a>
 				</li>	
 				<li class="nav-item">
-					<a href="" class="nav-link">
-						<i class="fa-solid fa-comments fa-xl" title="Mensagens"></i>
+					<a href="acesso_sair.php" class="nav-link">
+						<img src="BDs/BD_FOTOS/novo-usuario.png" class="imagem border p-1" width="30px" title="Conectado: Ighor"></div>
+						<i class="fa-solid fa-right-from-bracket fa-xl" title="Sair"></i>
 					</a>
-				</li>		
-				<li class="nav-item">
-					<a href="" class="nav-link">
-						<i class="fa-solid fa-gear fa-xl" title="Configuração"></i>
-					</a>
-				</li>													
+				</li>																	
 			</ul>
 		</nav>
 	</header>
 	<!--Fim da Navegação -->
+
+	<div id="Carregamento" class="d-flex justify-content-center align-items-center m-auto flex-column">
+		<h6 id="Loading">5%</h6>
+		<div class="progress w-50">
+			<div class="progress-bar bg-info progress-bar-striped progress-bar-animated" style="width: 5%;"></div>
+		</div> 
+	</div>
 
 	<!--Inicio do Corpo -->
 	<main class="d-flex justify-content-center align-items-center flex-column">	
@@ -51,7 +72,7 @@
 			<div class="cena">
 				<div class="cubo">
 					<div class="cubo-face front d-flex justify-content-center align-items-center">
-
+						front
 					</div>
 					<div class="cubo-face back">
 					</div>
@@ -68,7 +89,7 @@
 
 	<!-- Scripts Obrigatórios -->
 	<script type="text/javascript" src="js/ajustaTamanho.js"></script>
-	<script src="https://kit.fontawesome.com/c488e9ed48.js" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="js/home.js"></script>
 	<?php ?>	
 </body>
 
