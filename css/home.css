@@ -1,8 +1,8 @@
+/*Estrutura Básica*/
 *{
 	padding: 0;
 	margin: 0;
 }
-
 body {
 	background-image: -o-linear-gradient(bottom, #4facfe 0%, #00f2fe 100%);
 	background-image: -webkit-gradient(linear, left bottom, left top, from(#4facfe), to(#00f2fe));
@@ -18,6 +18,8 @@ main{
 }
 pre{
 	background-color: #eeeeee;
+	overflow: auto;
+    white-space: pre-line !important;	
 }
 i{
 	color: blue;
@@ -141,6 +143,9 @@ header ul>li{
 	border-radius: 90px;
 	border: 2px solid black;
 }
+#Novidades pre{
+	max-height: 200px;
+}
 
 /* Amigos */
 #Amigos{
@@ -152,10 +157,15 @@ header ul>li{
     background-color: transparent;
     word-break: normal !important;
     word-wrap: normal !important;
-    white-space: pre !important;
     white-space: pre-line !important;
-    padding: 0 25px;
+    padding: 0 15px;
     box-sizing: border-box;
+}
+#Amigos pre ul>li{
+	margin-top: 5px;
+}
+#Amigos pre ul>li>img{
+	border-radius: 90px;
 }
 .Amigos-lista{
 	width: 90%;

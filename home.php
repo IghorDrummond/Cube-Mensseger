@@ -86,7 +86,15 @@
 						<div id="Novidades">
 							<img src="<?php echo($Usuario[2]); ?>" class="img-fluid p-1">
 							<h5 class="mt-1">Olá, <?php echo($Usuario[0]); ?>!</h5>
-							<pre><span class="text-warning">Atenção!</span> O Site se Encontra Ainda em uma Versão apenas de Desenvolvimento, As Tecnologias ainda estão sendo empregadas pouco-a-pouco no mesmo. Por enquanto, deslumbre do Design e funcionamento do <span class="text-info">Cube Mensseger!</span>
+							<pre><span class="text-warning">Notas de Atualização!</span> 
+								<time>26/03/2024</time>: Adicionado uma Lista de Amigos ao qual informa se seus amigos estão Onlines.
+								<br>
+								<time>26/03/2024</time>: Adicionado a barra de navegação para orientação do Usuário de acordo com a navegação dentro da página
+								<br>
+								<time>26/03/2024</time>: Adicionado uma tela de carregamento interativa com o usuário.
+								<br>
+								<time>25/03/2024</time>: Adicionado a Página Home.
+								<br>																						
 							</pre>
 						</div>
 					</div>
@@ -112,7 +120,7 @@
 								//Verifica se o usuário é amigo ou não dos outros demais
 								if($Usuario[0] === $Linha[0]){
 
-
+									$Amigos++;
 
 									//Define se está online o Usuário Amigo
 									switch(verificaOnline($Linha[2])){
@@ -124,7 +132,6 @@
 											break;
 									}
 								}
-								$Amigos++;
 								break;
 							}
 
@@ -136,22 +143,23 @@
 							
 							<div class="Amigos-lista d-flex flex-column justify-content-center align-items-center">
 								<pre class="w-100 h-100"><!-- Inicio da Lista de Amigos -->
-								<ul class="list-group"><!-- Inicio da Lista -->
+									<ul class="list-group"><!-- Inicio da Lista -->
 									
 								
 						<?
 								for($nCont = 0; $nCont <= 5; $nCont++){
 						?>
 
-										<li class="list-group-item bg-dark w-100">
-											Lista
+										<li class="list-group-item bg-info text-center w-100">
+											<img src="<?php echo($Usuario[2]); ?>" class="img-fluid p-1 border border-dark" width="50" height="50" class="border" align="left">
+											<h6 class="d-inline">Nome Usuário</h6><span class="badge badge-success ">Online</span>
 										</li>
 						<?
 								}
 						?>	
 									</ul><!-- Fim da Lista  -->
 								</pre><!-- Fim da Lista de Amigos -->
-								<div class="bg-white mt-auto w-100"><!-- Inicio da Metrica de Usuários -->	
+								<div class="bg-white mt-auto w-100"><!-- Inicio da Metrica de Usuários -->
 									<h6 class="d-inline">Online<span class="badge badge-success"><? echo($On) ?></span></h6>
 									<h6 class="d-inline">Offline<span class="badge badge-dark"><? echo($Off) ?></span></h6>
 								</div><!-- Fim da Metrica de Usuários -->	
