@@ -91,7 +91,7 @@
 					</a>
 				</li>	
 				<li class="nav-item">
-					<a href="acesso_sair.php" class="nav-link">
+					<a href="script/validaLogin.php" class="nav-link">
 						<img src="<?php echo($Usuario[2]); ?>"  class="imagem border p-1" width="30" height="30" title="Conectado: <?php echo($Usuario[0]); ?>"></div>
 						<i class="fa-solid fa-right-from-bracket fa-xl" title="Sair"></i>
 					</a>
@@ -119,6 +119,8 @@
 							<img src="<?php echo($Usuario[2]); ?>" class="img-fluid p-1">
 							<h5 class="mt-1">Olá, <?php echo($Usuario[0]); ?>!</h5>
 							<pre><span class="text-warning">Notas de Atualização!</span> 
+								<time>27/03/2024</time>: Adicionado a opção Logoff do Site.
+								<br>
 								<time>27/03/2024</time>: A lista de Amigos agora é funcional! Registra se o usuário está online ou não.
 								<br>								
 								<time>26/03/2024</time>: Adicionado uma Lista de Amigos ao qual informa se seus amigos estão Onlines.
@@ -182,18 +184,14 @@
 
 						?>
 							<h6 class="text-white">Amigos<span class="badge badge-info"><? echo($Amigos) ?></span></h6>
-							
 							<div class="Amigos-lista d-flex flex-column justify-content-center align-items-center">
 								<pre class="w-100 h-100"><!-- Inicio da Lista de Amigos -->
 									<ul class="list-group"><!-- Inicio da Lista -->
-									
-								
 						<?
 								foreach($Dados as $Valor){
 						?>
-
 										<li class="list-group-item bg-info text-center w-100" id="<? echo($Valor[2]) ?>">
-											<img src="<? echo($Valor[4]) ?>" class="img-fluid p-1 border border-dark" width="50" height="50" class="border" align="left">
+											<img src="<? echo($Valor[4]) ?>" class="border border-dark" align="left">
 											<h6 class="d-inline"><? echo($Valor[0]) ?></h6>
 											<?
 												//Valida se o usuário está online

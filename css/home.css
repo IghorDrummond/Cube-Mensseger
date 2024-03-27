@@ -135,7 +135,8 @@ header ul>li{
 	text-align: center;
 	background-color: white;
 	padding: 5px;
-	box-sizing: border-box;	
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;	
 }
 #Novidades img{
 	width: 150px;
@@ -159,13 +160,16 @@ header ul>li{
     word-wrap: normal !important;
     white-space: pre-line !important;
     padding: 0 15px;
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
 }
 #Amigos pre ul>li{
 	margin-top: 5px;
 }
-#Amigos pre ul>li>img{
+.Amigos-lista>pre>ul li>img{
 	border-radius: 90px;
+	width: 50px;
+	height: 50px;
 }
 .Amigos-lista{
 	width: 90%;
@@ -175,7 +179,8 @@ header ul>li{
 }
 
 #Novidades, #Amigos{
-	animation: aparecer 2s;
+	-webkit-animation: aparecer 2s;
+	        animation: aparecer 2s;
 	color: black;
 	display: none;
 }
@@ -353,6 +358,9 @@ header ul>li:not(:hover){
 	#Novidades img{
 		width: 50px;
 		height: 50px;
+	}	
+	#Novidades pre{
+		max-height: 100px;
 	}		
 }
 @media(max-width: 240px){
