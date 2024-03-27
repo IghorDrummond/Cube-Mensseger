@@ -18,10 +18,12 @@
 		//Declaração de Variaveis Globais
 		//String
 		$ChaveBanco = "";
+		$ChaveBanco2 = "";
 		//Numerico
 		$Amigos  = 0;
 		$Off = 0;
 		$On = 0;
+		$nCont = 0;
 		//Array
 		$Usuario = [
 			$_SESSION['Nome'],
@@ -29,8 +31,38 @@
 			$_SESSION['FotoPerfil']
 		];
 		$Linha = [];
+		$Linha2 = [];
+		$Dados = [];
 		//Constantes
 		define('BD_AMIGO', 'BDs/bd_listamigos.txt');
+		define('BD_USUARIO', 'BDs/bd_usuarios.txt');
+
+		function verificaUsuario($Email){
+			$Ret = [false, ''];
+
+			$ChaveBanco3 = fopen(BD_USUARIO, 'r');
+
+			while (!feof($ChaveBanco3)) {
+				$Linha2 = explode(';', fgets($ChaveBanco3)); 
+
+				if(isset($Linha2) === false){
+					continue;
+				}
+
+
+				if($Linha2[1] === $Email){
+					if($Linha2[4] === 'On'){
+						$Ret[0] = true;
+					}
+					$Ret[1] = str_replace(PHP_EOL, '', $Linha2[5]);
+					break;
+				}
+			}
+
+			fclose($ChaveBanco3);
+
+			return $Ret;
+		}
 
 	?>
 
@@ -87,6 +119,8 @@
 							<img src="<?php echo($Usuario[2]); ?>" class="img-fluid p-1">
 							<h5 class="mt-1">Olá, <?php echo($Usuario[0]); ?>!</h5>
 							<pre><span class="text-warning">Notas de Atualização!</span> 
+								<time>27/03/2024</time>: A lista de Amigos agora é funcional! Registra se o usuário está online ou não.
+								<br>								
 								<time>26/03/2024</time>: Adicionado uma Lista de Amigos ao qual informa se seus amigos estão Onlines.
 								<br>
 								<time>26/03/2024</time>: Adicionado a barra de navegação para orientação do Usuário de acordo com a navegação dentro da página
@@ -118,21 +152,29 @@
 								}
 
 								//Verifica se o usuário é amigo ou não dos outros demais
-								if($Usuario[0] === $Linha[0]){
+								if($Usuario[1] === $Linha[0]){
 
 									$Amigos++;
+									//Guarda Informação do Amigo Cadastrado
+									$Dados[$nCont][0] = $Linha[2];//Recebe o Nome do Amigo
+									$Dados[$nCont][1] = $Linha[1];//Recebe o Email do Amigo
+									$Dados[$nCont][2] = $Linha[4];//Recebe o Nome da Conversa do Amigo
+									$Dados[$nCont][3] = false;
+									$Aux = verificaUsuario($Linha[1]);
+									$Dados[$nCont][4] = $Aux[1]; //Recebe a Imagem do Usuário
 
 									//Define se está online o Usuário Amigo
-									switch(verificaOnline($Linha[2])){
+									switch($Aux[0]){
 										case true:
 											$On++;
+											$Dados[$nCont][3] = true;
 											break;
 										default:
 											$Off++;
 											break;
 									}
+									$nCont++;
 								}
-								break;
 							}
 
 							//Fecha Arquivo
@@ -147,12 +189,24 @@
 									
 								
 						<?
-								for($nCont = 0; $nCont <= 5; $nCont++){
+								foreach($Dados as $Valor){
 						?>
 
-										<li class="list-group-item bg-info text-center w-100">
-											<img src="<?php echo($Usuario[2]); ?>" class="img-fluid p-1 border border-dark" width="50" height="50" class="border" align="left">
-											<h6 class="d-inline">Nome Usuário</h6><span class="badge badge-success ">Online</span>
+										<li class="list-group-item bg-info text-center w-100" id="<? echo($Valor[2]) ?>">
+											<img src="<? echo($Valor[4]) ?>" class="img-fluid p-1 border border-dark" width="50" height="50" class="border" align="left">
+											<h6 class="d-inline"><? echo($Valor[0]) ?></h6>
+											<?
+												//Valida se o usuário está online
+												if($Valor[3]){
+											?>
+												<span class="badge badge-success ">Online</span>
+											<?
+												 }else{
+											?>
+												<span class="badge badge-dark ">Offline</span>
+											<?
+												}
+											?>
 										</li>
 						<?
 								}
@@ -171,12 +225,11 @@
 		</section><!-- Fim do Cubo -->
 	</main>
 	<!--Fim do Corpo -->
-	<?php require_once('script/scripts.php'); ?>
-
 	<!-- Scripts Obrigatórios -->
 	<script type="text/javascript" src="js/ajustaTamanho.js"></script>
 	<script type="text/javascript" src="js/home.js"></script>
 	<script type="text/javascript" src="js/posiCubo.js"></script>
+	<?php require_once('script/scripts.php'); ?>
 	<?php ?>	
 </body>
 
