@@ -62,7 +62,6 @@
 		$_SESSION['Login'] = false;
 		$Ret = '../login.php';
 	}
-	echo "este é o ret $Ret";
 	//Direciona para página correspondente
 	header('Location: ' . $Ret);
 

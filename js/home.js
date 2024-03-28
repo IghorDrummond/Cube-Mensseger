@@ -48,9 +48,9 @@ function carregamento(){
 	            { transform: "rotateY(" + (nCont2).toString() +"deg)" }
 	        ], {
 	            // timing options
-	            duration: 1000,
+	            duration: 900,
 	            iterations: 1
 	        });	
 		}			
-	}, 2000)
+	}, 1000)
 }

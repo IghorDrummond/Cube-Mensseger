@@ -40,7 +40,13 @@ header ul>li{
 .imagem{
 	border-radius: 25px;
 }
-
+.navbar-toggler{
+    border-radius: 290px !important;
+}
+.navbar-nav {
+	justify-content: center;
+	align-items: center;
+}
 
 /* Cubo */
 .cena{
@@ -105,6 +111,7 @@ header ul>li{
 	background: linear-gradient(to bottom, #144cf4, #1454f4, #184cf4);
 }
 
+/* Configuração de Telas */
 #Tela{
 	position: absolute;
 	z-index: 5;
@@ -118,6 +125,7 @@ header ul>li{
 	-webkit-animation: selecionado 2s infinite;
 	        animation: selecionado 2s infinite;
 }
+
 
 /* Tela de Carregamento */
 #Carregamento{
@@ -177,6 +185,7 @@ header ul>li{
 	margin: auto;
 	border: 2px solid white;
 }
+
 
 #Novidades, #Amigos{
 	-webkit-animation: aparecer 2s;
@@ -313,6 +322,14 @@ header ul>li:not(:hover){
 	background-color: rgba(0, 0, 0, 0);
 	-webkit-transition: all 1s;
 	-o-transition: all 1s;
+	transition: all 1s;
+}
+.Amigos-lista>pre>ul>li:hover{
+	transform: scale(101%);
+	transition: all 1s;
+}
+.Amigos-lista>pre>ul>li:not(:hover){
+	transform: scale(1.0);
 	transition: all 1s;
 }
 
