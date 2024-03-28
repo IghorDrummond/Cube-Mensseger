@@ -1,6 +1,6 @@
 <?php
-require_once ('script/validador_acesso_home.php');
-$_SESSION['Pagina'] = 'Home';
+	require_once ('script/validador_acesso_home.php');
+	$_SESSION['Pagina'] = 'Home';
 ?>
 <!DOCTYPE html>
 <html>

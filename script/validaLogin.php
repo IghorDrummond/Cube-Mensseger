@@ -11,6 +11,10 @@
 	//Constantes
 	define('BD_USUARIO', '../BDs/bd_usuarios.txt');
 
+
+	//Define um retorno de página padrão
+	$Ret = '../login.php';
+
 	if(isset($_SESSION['Login']) and $_SESSION['Login'] === false){
 		$Email = $_POST['Email'];
 		$Senha = $_POST['Senha'];
@@ -25,7 +29,6 @@
 	
 				if(isset($Linha[1]) === false){
 					$_SESSION['Erro'] = 'Email';
-					$Ret = '../login.php';
 					continue;
 				}
 	
@@ -41,7 +44,6 @@
 					}	
 					else{
 						$_SESSION['Erro'] = 'Senha';
-						$Ret = '../login.php';
 						break;
 					}
 				}
@@ -52,7 +54,6 @@
 			echo('Houve um problema Interno ao Tentar Logar na Sua Conta, Tente Novamente ou Mais Tarde <br>');
 			echo('Você será redirecionado para a página Login em 5 segundos, aguarde.');
 			sleep(5);//Redirecionar para página login depois do 5 segundos
-			$Ret = '../login.php';
 		}
 	}else if(isset($_SESSION['Login']) and $_SESSION['Login']){
 		disponibilidade(false, $_SESSION['Email']);//Coloca usuário como Offline no banco de dados
@@ -60,7 +61,6 @@
 		unset($_SESSION['Email']);
 		unset($_SESSION['FotoPerfil']);
 		$_SESSION['Login'] = false;
-		$Ret = '../login.php';
 	}
 	//Direciona para página correspondente
 	header('Location: ' . $Ret);
@@ -87,7 +87,6 @@
 					case true:
 						$Linha2[4] = 'On';
 						break;
-					
 					default:
 						$Linha2[4] = 'Off';
 						break;

@@ -5,6 +5,8 @@
 		if($_SESSION['Login']){
 			header('Location: home.php');
 		}
+	}else{
+		$_SESSION['Login'] = false;
 	}
 
 ?>
