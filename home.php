@@ -213,6 +213,8 @@
 								<?php echo ($Usuario[0]); ?>!
 							</h5>
 							<pre><span class="text-warning">Notas de Atualização!</span> 
+								<time>28/03/2024</time>: Agora, ao passar o mouse sobre a frase 'Desenvolvido por Ighor Drummond©', ocorrerá uma animação de cores em forma de arco-íris, tanto no cubo quanto nas letras.
+								<br>							
 								<time>28/03/2024</time>: Se você estiver conectado em mais de um navegador e, em um deles, sua conta for desconectada, os demais também serão automaticamente desconectados por motivos de segurança.
 								<br>
 								<time>28/03/2024</time>: Corrigido bug de login em vários navegadores simultaneamente.

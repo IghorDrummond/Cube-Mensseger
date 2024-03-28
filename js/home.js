@@ -53,7 +53,7 @@ function carregamento(){
 	            iterations: 1
 	        });	
 		}			
-	}, 1000)
+	}, 1000);
 }
 
 function animaCubo(opc){
@@ -66,8 +66,6 @@ function animaCubo(opc){
 			animacao = 'none';
 			break;
 	}
-
-	console.log(animacao);
 	Array.from(FacesCubo).forEach(function(Faces){
 		Faces.style.animation = animacao;
 		Faces.style.webkitAnimation = animacao;
