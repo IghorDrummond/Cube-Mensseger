@@ -11,7 +11,6 @@
 	//Constantes
 	define('BD_USUARIO', '../BDs/bd_usuarios.txt');
 
-
 	//Define um retorno de página padrão
 	$Ret = '../login.php';
 

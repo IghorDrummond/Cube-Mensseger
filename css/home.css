@@ -311,6 +311,29 @@ header ul>li{
 		background-color: rgba(173,216,230, 0.5);
 	}
 }
+@keyframes arcoiris {
+  0%{ 
+  	color: red; 
+  }
+  16.666% { 
+  	color: orange; 
+  }
+  33.333% { 
+  	color: yellow; 
+  }
+  50% { 
+  	color: green; 
+  }
+  66.666% { 
+  	color: blue; 
+  }
+  83.333% { 
+  	color: indigo; 
+  }
+  100% { 
+  	color: violet; 
+  }
+}
 
 /* Hovers */
 header ul>li:hover{
@@ -344,6 +367,13 @@ header ul>li:not(:hover){
 	-webkit-transition: all 1s;
 	-o-transition: all 1s;
 	transition: all 1s;
+}
+#powered:hover{
+	animation: arcoiris 2s alternate-reverse infinite;
+	text-decoration: none;
+}
+#powered:not(:hover){
+	color: black;
 }
 
 /* Dispositivos Mobiles */

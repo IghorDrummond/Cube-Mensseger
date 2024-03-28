@@ -119,14 +119,14 @@
 						<i class="fa-solid fa-house-user fa-xl"></i>
 					</a>
 				</li>
-				<li class="nav-item" title="Adicionar Amigos">
+				<li class="nav-item" title="Amigos">
 					<a onclick="rotaciona(1,1)" class="nav-link">
 						<i class="fa-solid fa-user-group fa-xl"></i>
 					</a>
 				</li>
-				<li class="nav-item" title="Mensagens">
+				<li class="nav-item" title="Adicionar Amigos">
 					<a onclick="rotaciona(2,2)" class="nav-link">
-						<i class="fa-solid fa-comments fa-xl"></i>
+						<i class="fa-solid fa-user-plus fa-xl"></i>
 					</a>
 				</li>
 				<li class="nav-item" title="Configuração">
@@ -164,13 +164,13 @@
 					<li class="nav-item p-2">
 						<a onclick="rotaciona(1)" class="nav-link">
 							<i class="fa-solid fa-user-group fa-xl"></i>
-							Adicionar Amigos
+							Amigos
 						</a>
 					</li>
 					<li class="nav-item p-2">
 						<a onclick="rotaciona(2)" class="nav-link">
 							<i class="fa-solid fa-comments fa-xl"></i>
-							Mensagens
+							
 						</a>
 					</li>
 					<li class="nav-item p-2">
@@ -230,8 +230,11 @@
 								<time>26/03/2024</time>: Adicionada uma tela de carregamento interativa para melhorar a experiência do usuário.
 								<br>
 								<time>25/03/2024</time>: Adicionada a página inicial (Home).
-								<br>																						
+								<br>																				
 							</pre>
+							<a id="powered" href="https://ighordrummond.netlify.app">
+								<h6>Desenvolvido por Ighor Drummond©</h6>
+							</a>
 						</div>
 					</div>
 					<div class="cubo-face back">back</div>
