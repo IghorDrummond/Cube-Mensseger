@@ -1,6 +1,7 @@
 //Declaração de Variaveis
 //Elementos
 var EstruturaCubo = document.getElementsByClassName('cubo');
+var FacesCubo = document.getElementsByClassName('cubo-face');
 var barra = document.getElementsByClassName('progress-bar');
 var porcentagem = document.getElementById('Loading');
 var Carregamento = document.getElementById('Carregamento');
@@ -53,4 +54,22 @@ function carregamento(){
 	        });	
 		}			
 	}, 1000)
+}
+
+function animaCubo(opc){
+
+	switch(opc){
+		case 1 :
+			animacao = 'arcoirisFundo 2s alternate-reverse infinite';
+			break;
+		default:
+			animacao = 'none';
+			break;
+	}
+
+	console.log(animacao);
+	Array.from(FacesCubo).forEach(function(Faces){
+		Faces.style.animation = animacao;
+		Faces.style.webkitAnimation = animacao;
+	});
 }

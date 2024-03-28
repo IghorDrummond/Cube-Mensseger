@@ -232,7 +232,7 @@
 								<time>25/03/2024</time>: Adicionada a página inicial (Home).
 								<br>																				
 							</pre>
-							<a id="powered" href="https://ighordrummond.netlify.app">
+							<a id="powered" onmouseover="animaCubo(1)" onmouseout="animaCubo(2)" href="https://ighordrummond.netlify.app">
 								<h6>Desenvolvido por Ighor Drummond©</h6>
 							</a>
 						</div>

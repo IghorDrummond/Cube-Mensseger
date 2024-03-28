@@ -311,6 +311,29 @@ header ul>li{
 		background-color: rgba(173,216,230, 0.5);
 	}
 }
+@-webkit-keyframes arcoiris {
+  0%{ 
+  	color: red; 
+  }
+  16.666% { 
+  	color: orange; 
+  }
+  33.333% { 
+  	color: yellow; 
+  }
+  50% { 
+  	color: green; 
+  }
+  66.666% { 
+  	color: blue; 
+  }
+  83.333% { 
+  	color: indigo; 
+  }
+  100% { 
+  	color: violet; 
+  }
+}
 @keyframes arcoiris {
   0%{ 
   	color: red; 
@@ -334,6 +357,53 @@ header ul>li{
   	color: violet; 
   }
 }
+@-webkit-keyframes arcoirisFundo {
+  0%{ 
+  	background: red; 
+  }
+  16.666% { 
+  	background: orange; 
+  }
+  33.333% { 
+  	background: yellow; 
+  }
+  50% { 
+  	background: green; 
+  }
+  66.666% { 
+  	background: blue; 
+  }
+  83.333% { 
+  	background: indigo; 
+  }
+  100% { 
+  	background: violet; 
+  }
+}
+@keyframes arcoirisFundo {
+  0%{ 
+  	background: red; 
+  }
+  16.666% { 
+  	background: orange; 
+  }
+  33.333% { 
+  	background: yellow; 
+  }
+  50% { 
+  	background: green; 
+  }
+  66.666% { 
+  	background: blue; 
+  }
+  83.333% { 
+  	background: indigo; 
+  }
+  100% { 
+  	background: violet; 
+  }
+}
+
 
 /* Hovers */
 header ul>li:hover{
