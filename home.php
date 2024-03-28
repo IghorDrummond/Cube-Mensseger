@@ -136,9 +136,10 @@ $_SESSION['Pagina'] = 'Home';
 				</li>
 				<li class="nav-item">
 					<a href="script/validaLogin.php" class="nav-link">
-						<img src="<?php echo ($Usuario[2]); ?>" class="imagem border p-1" width="30" height="30"
-							title="Conectado: <?php echo ($Usuario[0]); ?>"></div>
+						<img src="<?php echo ($Usuario[2]); ?>" class="imagem border" width="30" height="30"
+							title="Conectado: <?php echo ($Usuario[0]); ?>">
 						<i class="fa-solid fa-right-from-bracket fa-xl" title="Sair"></i>
+						<?php echo ($Usuario[0]); ?>
 					</a>
 				</li>
 			</ul>
@@ -178,10 +179,11 @@ $_SESSION['Pagina'] = 'Home';
 							Configuração
 						</a>
 					</li>
-					<li class="nav-item p-2">
+					<li class="nav-item p-2 text-center">
 						<a href="script/validaLogin.php" class="nav-link">
-							<img src="<?php echo ($Usuario[2]); ?>" class="imagem border p-1" width="30" height="30">
+							<img src="<?php echo ($Usuario[2]); ?>" class="imagem border" width="30" height="30">
 							<i class="fa-solid fa-right-from-bracket fa-xl d-inline d-lg-none" title="Sair"></i>
+							<br>
 							<?php echo ($Usuario[0]); ?>
 						</a>
 					</li>
