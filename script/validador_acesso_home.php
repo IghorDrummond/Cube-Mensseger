@@ -3,7 +3,7 @@
 
 	if(isset($_SESSION['Login'])){
 		if($_SESSION['Login'] === false){
-			header('Location: index.php');
+			header('Location: login.php');
 		}else if($_SESSION['Login']){
 			verificaOnline($_SESSION['Email']) === false ? header('Location: login.php') : '';
 		}

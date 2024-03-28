@@ -213,19 +213,23 @@
 								<?php echo ($Usuario[0]); ?>!
 							</h5>
 							<pre><span class="text-warning">Notas de Atualização!</span> 
-								<time>27/03/2024</time>: Adicionado Navegação para Dispositivos Mobile(Celurares, Tablets, Netbook e Outbooks).
+								<time>28/03/2024</time>: Se você estiver conectado em mais de um navegador e, em um deles, sua conta for desconectada, os demais também serão automaticamente desconectados por motivos de segurança.
+								<br>
+								<time>28/03/2024</time>: Corrigido bug de login em vários navegadores simultaneamente.
+								<br>															
+								<time>27/03/2024</time>: Adicionada navegação para dispositivos móveis (celulares, tablets, netbooks e notebooks).
 								<br>								
-								<time>27/03/2024</time>: Adicionado a opção Logoff do Site.
+								<time>27/03/2024</time>: Adicionada a opção de logout do site.
 								<br>
-								<time>27/03/2024</time>: A lista de Amigos agora é funcional! Registra se o usuário está online ou não.
+								<time>27/03/2024</time>: A lista de amigos agora está funcional! Registra se o usuário está online ou offline.
 								<br>								
-								<time>26/03/2024</time>: Adicionado uma Lista de Amigos ao qual informa se seus amigos estão Onlines.
+								<time>26/03/2024</time>: Adicionada uma lista de amigos que informa se seus contatos estão online.
 								<br>
-								<time>26/03/2024</time>: Adicionado a barra de navegação para orientação do Usuário de acordo com a navegação dentro da página
+								<time>26/03/2024</time>: Adicionada barra de navegação para orientar o usuário conforme sua navegação dentro da página.
 								<br>
-								<time>26/03/2024</time>: Adicionado uma tela de carregamento interativa com o usuário.
+								<time>26/03/2024</time>: Adicionada uma tela de carregamento interativa para melhorar a experiência do usuário.
 								<br>
-								<time>25/03/2024</time>: Adicionado a Página Home.
+								<time>25/03/2024</time>: Adicionada a página inicial (Home).
 								<br>																						
 							</pre>
 						</div>
