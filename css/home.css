@@ -19,7 +19,7 @@ main{
 pre{
 	background-color: #eeeeee;
 	overflow: auto;
-    white-space: pre-line !important;	
+  white-space: pre-line !important;	
 }
 i{
 	color: blue;
@@ -179,11 +179,7 @@ header ul>li{
 #Amigos pre ul>li{
 	margin-top: 5px;
 }
-.Amigos-lista>pre>ul li>img{
-	border-radius: 90px;
-	width: 50px;
-	height: 50px;
-}
+
 .Amigos-lista{
 	width: 90%;
 	height: 90%;
@@ -218,7 +214,13 @@ header ul>li{
 	color: black;
 	display: none;
 }
-
+.Amigos-lista>pre>ul li>img, 
+#AddAmigos pre>ul li>img 
+{
+	border-radius: 90px;
+	width: 50px;
+	height: 50px;
+}
 
 /* Animação */
 @-webkit-keyframes surgi{

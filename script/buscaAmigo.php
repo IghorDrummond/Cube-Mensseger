@@ -13,6 +13,7 @@
 	define('BD_USUARIO', '../BDs/bd_usuarios.txt');
 	define('BD_AMIGO', '../BDs/bd_listamigos.txt');
 
+//========================Escopo===========================
 	$ChaveBanco = fopen(BD_USUARIO, 'r');
 
 	while (!feof($ChaveBanco)) {
@@ -32,8 +33,6 @@
 	//Fecha Leitura do Arquivo
 	fclose($ChaveBanco);
 
-	print_r($Amigo);
-
 	//Valida se os amigos buscados já estão adicionados
 	//Abre o arquivo para leitura
 	$ChaveBanco = fopen(BD_AMIGO, 'r');
@@ -47,15 +46,21 @@
 		}
 		
 		if($Linha[0] === $_SESSION['Email']){
-			if($Linha[1] === $Amigo[$nCont][0]){
-				//Caso o Amigo procurado já existir na lista de amigos com o mesmo usuário, ele deleta da busca
-				unset($Amigo[$nCont]);
+			//Caso o Amigo procurado já existir na lista de amigos com o mesmo usuário, ele deleta da busca
+			for($nCont = 0; $nCont <= count($Amigo)-1; $nCont++){
+				if($Linha[1] === $Amigo[$nCont][0] or $Linha[0] === $Amigo[$nCont][0]){
+					unset($Amigo[$nCont]);//
+					$Amigo = array_values($Amigo);//Organiza a matriz após deletação do Indice
+				}
 			}
 		}
 	}
 	//Fecha Leitura do Arquivo
 	fclose($ChaveBanco);
-
+	//Devolve os Valores para a página de adicionar Amigos
+	$_SESSION['Amigos'] = $Amigo;
+	$_SESSION['Pagina'] = 'Amigos';
+	header('Location: ../home.php');
 //============================Funções=================================
 	function verificaAmigo($Nome, $Busca){
 		//Declaração de variaveis

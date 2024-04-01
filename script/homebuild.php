@@ -177,8 +177,10 @@
 	<!--Fim da Navegação -->
 
 	<div id="Carregamento" class="d-flex justify-content-center align-items-center m-auto flex-column">
-		<h6 id="Loading">5%</h6>
-		<div class="spinner-border text-info"></div>
+		<div class="d-flex ">
+			<h6 id="Loading">5%</h6>
+			<div class="spinner-border spinner-border-sm mx-1"></div>
+		</div>
 		<div class="progress w-50">
 			<div class="progress-bar bg-info progress-bar-striped progress-bar-animated" style="width: 5%;"></div>
 		</div>
@@ -231,9 +233,24 @@
 					<div class="cubo-face top">
 						<div id="AddAmigos" class="w-100 h-100 d-flex justify-content-center align-items-center flex-column">
 							<h6 class="text-white">Adicione Amigos!</h6>
-							<form class=" w-75 h-75 p-1 d-flex flex-column" action="script/buscaAmigo.php" method="POST">
-								<pre class="w-100 h-100">
-									wdwd
+							<form class="border border-white w-75 h-75 p-1 d-flex flex-column" action="script/buscaAmigo.php" method="POST">
+								<pre class="w-100 h-100 bg-transparent">
+									<ul class="list-group">
+									<?php
+										$Lista = isset($_SESSION['Amigos']) ? $_SESSION['Amigos'] : '';
+										unset($_SESSION['Amigos']);
+
+										if(isset($Lista[0][1])){
+
+									?>
+										<li class="list-group-item bg-info text-center w-100" id="<? echo ($Lista[0][1]); ?>">
+											<img src="<? echo ($Lista[0][2]); ?>" class="border border-dark" align="left">
+											<h6 class="d-inline"><? echo ($Lista[0][1]); ?></h6>
+										</li>
+									<?php											
+										}
+									?>
+									</ul>
 								</pre>
 								<div class="input-group align-self-end">
 									<input class="form-control" type="text" name="Amigo" placeholder="Pesquise Seus Amigos(as) Aqui..." required>
