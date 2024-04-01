@@ -190,9 +190,29 @@ header ul>li{
 	margin: auto;
 	border: 2px solid white;
 }
+/* Adicionar Amigos */
+#AddAmigos form{
+	background: url('../img/9731573.jpg') no-repeat center;
+	background-size: 100% 100%;  
+}
+#AddAmigos input::-webkit-input-placeholder{
+	color: #92eff3;
+}
+#AddAmigos input::-moz-placeholder{
+	color: #92eff3;
+}
+#AddAmigos input:-ms-input-placeholder{
+	color: #92eff3;
+}
+#AddAmigos input::-ms-input-placeholder{
+	color: #92eff3;
+}
+#AddAmigos input::placeholder{
+	color: #92eff3;
+}
 
-
-#Novidades, #Amigos{
+/* Configuração Geral para as Abas */
+#Novidades, #Amigos, #AddAmigos{
 	-webkit-animation: aparecer 2s;
 	        animation: aparecer 2s;
 	color: black;
@@ -402,6 +422,28 @@ header ul>li{
   100% { 
   	background: violet; 
   }
+}
+@-webkit-keyframes adicionar{
+	0%{
+		color: blue;
+	}
+	50%{
+		color: green;
+	}
+	100%{
+		color: yellow;
+	}
+}
+@keyframes adicionar{
+	0%{
+		color: blue;
+	}
+	50%{
+		color: green;
+	}
+	100%{
+		color: yellow;
+	}
 }
 
 

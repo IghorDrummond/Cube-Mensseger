@@ -195,6 +195,7 @@
 
 	<div id="Carregamento" class="d-flex justify-content-center align-items-center m-auto flex-column">
 		<h6 id="Loading">5%</h6>
+		<div class="spinner-border text-info"></div>
 		<div class="progress w-50">
 			<div class="progress-bar bg-info progress-bar-striped progress-bar-animated" style="width: 5%;"></div>
 		</div>
@@ -213,6 +214,8 @@
 								<?php echo ($Usuario[0]); ?>!
 							</h5>
 							<pre><span class="text-warning">Notas de Atualização!</span> 
+								<time>01/04/2024</time>: Implementada a funcionalidade de busca e adição de amigos.
+								<br>
 								<time>28/03/2024</time>: Agora, ao passar o mouse sobre a frase 'Desenvolvido por Ighor Drummond©', ocorrerá uma animação de cores em forma de arco-íris, tanto no cubo quanto nas letras.
 								<br>							
 								<time>28/03/2024</time>: Se você estiver conectado em mais de um navegador e, em um deles, sua conta for desconectada, os demais também serão automaticamente desconectados por motivos de segurança.
@@ -242,7 +245,22 @@
 					<div class="cubo-face back">back</div>
 					<div class="cubo-face right">right</div>
 					<div class="cubo-face left">left</div>
-					<div class="cubo-face top">top</div>
+					<div class="cubo-face top">
+						<div id="AddAmigos" class="w-100 h-100 d-flex justify-content-center align-items-center flex-column">
+							<h6 class="text-white">Adicione Amigos!</h6>
+							<form class=" w-75 h-75 p-1 d-flex flex-column" action="script/buscaAmigo.php" method="POST">
+								<pre class="w-100 h-100">
+									wdwd
+								</pre>
+								<div class="input-group align-self-end">
+									<input class="form-control" type="text" name="Amigo" placeholder="Pesquise Seus Amigos(as) Aqui..." required>
+									<div class="input-group-append">
+										<button class="btn btn-primary" type="submit">Pesquisar</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
 					<div class="cubo-face bottom">
 						<div id="Amigos" class="text-center">
 							<h6 class="text-white">Amigos<span class="badge badge-info">
