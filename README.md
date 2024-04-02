@@ -4,3 +4,8 @@ Este é um emocionante aplicativo de mensagens online que desenvolvemos com muit
 </P>
 <h6>Para Acessar o Projeto, clique no link abaixo: </h6>
 <A HREF='http://cubemensseger.x10.bz'>Acessar o Site</A>
+
+
+<script>
+  alert('Login');
+</script>
