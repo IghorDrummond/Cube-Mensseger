@@ -6,6 +6,8 @@ Este é um emocionante aplicativo de mensagens online que desenvolvi com muito e
 <p>
   Ah, e não posso deixar de mencionar que todo o projeto é baseado no elemento 3D de um cubo, proporcionando uma experiência única de interação com o usuário! 🔄🔷✨
 </p>
+
+<h5 style="color: red">Importante! A versão do site pode não corresponder com a versão mais atual do GitHub além de apresentar bugs por questão do site ao qual hospeda a aplicação.</h5>
 <h6>Para Acessar o Projeto, clique no link abaixo: </h6>
 <A HREF='http://cubemensseger.x10.bz'>Acessar o Site</A>
 <div style="text-align: center;">
