@@ -7,3 +7,5 @@ Este é um emocionante aplicativo de mensagens online que desenvolvi com muito e
 </p>
 <h6>Para Acessar o Projeto, clique no link abaixo: </h6>
 <A HREF='http://cubemensseger.x10.bz'>Acessar o Site</A>
+
+<h6 style="text-align: center;">Desenvolvido Por Ighor Drummond</h6>
