@@ -171,7 +171,7 @@
 			</div>
 
 			<pre class="pre_amigos my-2">
-				<form class="form-group p-1" action="adicionarAmigo.php" method="POST">
+				<form class="form-group p-1" action="script/adicionarAmigo.php" method="POST">
 					<?php
 						for($nCont = 0; $nCont <= $nPed -1; $nCont++){
 					?>
@@ -182,7 +182,10 @@
 							<p>
 								Olá! 😊 Gostaria de me conectar com você. Seria um prazer compartilhar momentos juntos. Aguardo sua resposta! 🌟
 							</p>
-							<input class="btn btn-info p-1" type="submit" name="Adicionar" value="Adicionar <?php echo($Pedidos[$nCont][3]); ?>">
+							<div class="d-flex justify-content-center">
+								<input class="btn btn-info p-1 m-1" type="submit" name="Adicionar" value="Adicionar <?php echo($Pedidos[$nCont][3]); ?>">
+							<input class="btn btn-info p-1 m-1" type="submit" name="Adicionar" value="Recusar <?php echo($Pedidos[$nCont][3]); ?>">
+							</div>
 						</div>
 					</fieldset>	
 					<?php
@@ -316,6 +319,8 @@
 								<?php echo ($Usuario[0]); ?>!
 							</h5>
 							<pre><span class="text-warning">Notas de Atualização!</span> 
+								<time>04/04/2024</time>: Agora você pode Recusar Pedidos de Amizades.
+								<br>	
 								<time>04/04/2024</time>: Adicionado à lista de pedidos de amizade.
 								<br>	
 								<time>01/04/2024</time>: Implementada a funcionalidade de busca e adição de amigos.
