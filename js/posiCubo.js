@@ -3,6 +3,7 @@
 var EstruturaCubo = document.getElementsByClassName('cubo');
 var Navegacao = document.getElementsByTagName('header');
 var NavOpc = document.getElementsByTagName('li');
+var ListAmigos = document.getElementsByClassName('lista_amigos');
 //Numerico
 var antOpc = 0;
 var nAntPosic = 0;
@@ -10,6 +11,8 @@ var nAntPosic = 0;
 var posic = [0, 90, 180, 270, 360];
 //String
 var Parametro = document.getElementsByName('Amigos');
+//Booleano
+var lAbriu = false;
 
 //===================================Escopo=========================================
 if(Parametro.length > 0){
@@ -50,4 +53,21 @@ function rotaciona(opc) {
     antOpc = opc;
 }
 
+
+function lista_amigos(){
+
+    if(lAbriu === false){
+        lAbriu = true;
+       ListAmigos[0].style.display = 'flex';     
+    }else{
+        ListAmigos[0].style.animation = 'sumir 1s'; 
+        var X = setTimeout(()=>{
+            lAbriu = false;
+            ListAmigos[0].style.display = 'none'; 
+            ListAmigos[0].style.animation = 'aparecer 1s'; 
+            clearTimeout(X);
+        }, 1000)
+    }
+
+}
 

@@ -98,6 +98,37 @@
 
 	?>
 
+	<!-- Lista de Amigos -->
+	<div class="lista_amigos justify-content-center align-items-center text-dark">
+		<div class="container bg-white">
+			<div class="row">
+				<div class="col-6 text-left">
+					<p>
+						Pedidos de Amizades<span class="ml-1 badge badge-pill badge-success">0</span>
+					</p>
+				</div>
+				<div class="col-6 text-right">
+					<button onclick="lista_amigos()" type="button" class="btn btn-outline-danger mt-1">X</button>
+				</div>
+			</div>
+
+			<pre class="pre_amigos my-2">
+				<form class="form-group p-1" action="adicionarAmigo.php" method="POST">
+					<fieldset class="form-group border border-dark rounded bg-secondary">
+						<legend>Nome do Usuário</legend>
+						<div class="text-center">
+							<img class="rounded-circle border border-dark" src="BDs/BD_FOTOS/foto_user.png" width="150" height="150">
+							<p>
+								Olá! 😊 Gostaria de me conectar com você. Seria um prazer compartilhar momentos juntos. Aguardo sua resposta! 🌟
+							</p>
+							<input class="btn btn-info p-1" type="submit" name="nome do usuario" value="Adicionar">
+						</div>
+					</fieldset>											
+				</form>
+			</pre>
+		</div>
+	</div>
+
 	<!--Inicio da Navegação -->
 	<header class="d-none w-100 bg-light my-1">
 		<!-- Inicio do Menu Desktop -->
@@ -177,6 +208,13 @@
 							Configuração
 						</a>
 					</li>
+					<li class="nav-item p-2" title="Lista de Pedidos de Amizades">
+						<a onclick="lista_amigos()" class="nav-link">
+							<i class="fa-regular fa-address-book fa-xl">
+								<span id="lista_amigos" class="badge badge-pill badge-success">0</span>
+							</i> Pedidos de Amizades
+						</a>
+					</li>						
 					<li class="nav-item p-2 text-center">
 						<a href="script/validaLogin.php" class="nav-link">
 							<img src="<?php echo ($Usuario[2]); ?>" class="imagem border" width="30" height="30">
