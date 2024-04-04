@@ -7,7 +7,7 @@ Este é um emocionante aplicativo de mensagens online que desenvolvi com muito e
   Ah, e não posso deixar de mencionar que todo o projeto é baseado no elemento 3D de um cubo, proporcionando uma experiência única de interação com o usuário! 🔄🔷✨
 </p>
 <h6> As Ultimas Atualizações:</h6>
-<pre style=" background-color: #eeeeee; overflow: auto;  white-space: pre-line !important;"><span class="text-warning">Notas de Atualização!</span> 
+<span class="text-warning">Notas de Atualização!</span> 
 								<time>04/04/2024</time>: Adicionado à lista de pedidos de amizade.
 								<br>	
 								<time>01/04/2024</time>: Implementada a funcionalidade de busca e adição de amigos.
@@ -32,7 +32,7 @@ Este é um emocionante aplicativo de mensagens online que desenvolvi com muito e
 								<br>
 								<time>25/03/2024</time>: Adicionada a página inicial (Home).
 								<br>																				
-	</pre>
+
 <!--
 <h5 style="color: red">Importante! A versão do site pode não corresponder com a versão mais atual do GitHub além de apresentar bugs por questão do site ao qual hospeda a aplicação.</h5>
 <h6>Para Acessar o Projeto, clique no link abaixo: </h6>
