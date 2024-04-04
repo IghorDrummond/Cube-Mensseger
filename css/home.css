@@ -206,6 +206,9 @@ header ul>li{
 #AddAmigos input::placeholder{
 	color: #92eff3;
 }
+#Adicionar{
+	list-style-type: none;
+}
 
 /* Configuração Geral para as Abas */
 #Novidades, #Amigos, #AddAmigos{

@@ -59,8 +59,8 @@
 	fclose($ChaveBanco);
 	//Devolve os Valores para a página de adicionar Amigos
 	$_SESSION['Amigos'] = $Amigo;
-	$_SESSION['Pagina'] = 'Amigos';
-	header('Location: ../home.php');
+	;
+	header('Location: ../home.php?Tela=Amigos');
 //============================Funções=================================
 	function verificaAmigo($Nome, $Busca){
 		//Declaração de variaveis

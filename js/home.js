@@ -8,19 +8,36 @@ var Carregamento = document.getElementById('Carregamento');
 var Navegacao = document.getElementsByTagName('header');
 var Telas = [
 		document.getElementById('Novidades'),
-		document.getElementById('Amigos')
+		document.getElementById('Amigos'),
+		document.getElementById('AddAmigos')
 ];
+//String
+var Parametro = (window.location.search).substring(6, (window.location.search).length);
 
 //===================================Escopo=========================================
-carregamento();//Ativa a tela de carregamento
+
+if(Parametro.length > 0 && Parametro === 'Amigos'){
+	tela_Amigos();
+}else{
+	//Ativa o Carregamento Automatico
+	Carregamento.className = "d-flex justify-content-center align-items-center m-auto flex-column";
+	carregamento();//Ativa a tela de carregamento
+}
 
 //===================================Funções=========================================
 function carregamento(){
 	var nCont = 20;
 	var nCont2 = 0;
 
+	for(nCont = 0; nCont <= Telas.length -1; nCont++){
+		Telas[nCont].style.animation = 'aparecer 2s';
+		Telas[nCont].style.webkitAnimation = 'aparecer 2s';
+	}
+
+
 	Telas[0].style.display = 'block';
 	Telas[1].style.display = 'block';
+	Telas[2].style.display = 'block';
 
 	var Z = setInterval(() =>{
 		nCont += 20;
@@ -70,4 +87,16 @@ function animaCubo(opc){
 		Faces.style.animation = animacao;
 		Faces.style.webkitAnimation = animacao;
 	});
+}
+
+function tela_Amigos(){
+	//Retira Animações
+	for(nCont = 0; nCont <= Telas.length -1; nCont++){
+		Telas[nCont].style.animation = 'none';
+		Telas[nCont].style.webkitAnimation = 'none';
+		Telas[nCont].style.display = 'block'
+	}
+
+	EstruturaCubo[0].style.transform = "rotateY(180deg)";
+	Navegacao[0].className = 'd-block w-100 bg-light my-1 p-1';//Ativa a Navegação
 }

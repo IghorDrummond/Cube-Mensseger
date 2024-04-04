@@ -1,6 +1,5 @@
 <?php
 	require_once ('script/validador_acesso_home.php');
-	$_SESSION['Pagina'] = 'Home';
 ?>
 <!DOCTYPE html>
 <html>
@@ -19,10 +18,9 @@
 	<!--Fim do Corpo -->
 	<!-- Scripts Obrigatórios -->
 	<script type="text/javascript" src="js/ajustaTamanho.js"></script>
-	<script type="text/javascript" src="js/home.js"></script>
 	<script type="text/javascript" src="js/posiCubo.js"></script>
 	<?php require_once ('script/scripts.php'); ?>
-	<?php ?>
+	<script type="text/javascript" src="js/home.js"></script>
 </body>
 
 </html>

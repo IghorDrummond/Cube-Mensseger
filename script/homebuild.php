@@ -21,6 +21,10 @@
 	define('BD_AMIGO', 'BDs/bd_listamigos.txt');
 	define('BD_USUARIO', 'BDs/bd_usuarios.txt');
 
+	if($_SESSION[''])
+
+	$_SESSION['Pagina'] = 'Home';//Seta na Página Home
+
 	function verificaUsuario($Email)
 	{
 		$Ret = [false, ''];
@@ -153,7 +157,7 @@
 					<li class="nav-item p-2">
 						<a onclick="rotaciona(2)" class="nav-link">
 							<i class="fa-solid fa-comments fa-xl"></i>
-							
+							Add Amigos
 						</a>
 					</li>
 					<li class="nav-item p-2">
@@ -176,7 +180,7 @@
 	</header>
 	<!--Fim da Navegação -->
 
-	<div id="Carregamento" class="d-flex justify-content-center align-items-center m-auto flex-column">
+	<div id="Carregamento" class="d-none justify-content-center align-items-center m-auto flex-column">
 		<div class="d-flex ">
 			<h6 id="Loading">5%</h6>
 			<div class="spinner-border spinner-border-sm mx-1"></div>
@@ -227,7 +231,10 @@
 							</a>
 						</div>
 					</div>
-					<div class="cubo-face back">back</div>
+					<div class="cubo-face back">
+						<!-- Configuração -->
+
+					</div>
 					<div class="cubo-face right">right</div>
 					<div class="cubo-face left">left</div>
 					<div class="cubo-face top">
@@ -237,15 +244,18 @@
 								<pre class="w-100 h-100 bg-transparent">
 									<ul class="list-group">
 									<?php
-										$Lista = isset($_SESSION['Amigos']) ? $_SESSION['Amigos'] : '';
+										$Lista = isset($_SESSION['Amigos']) ? $_SESSION['Amigos'] : [];
 										unset($_SESSION['Amigos']);
 
 										if(isset($Lista[0][1])){
 
 									?>
-										<li class="list-group-item bg-info text-center w-100" id="<? echo ($Lista[0][1]); ?>">
+										<li class="list-group-item bg-info text-center w-100 d-flex justify-content-between align-items-center" id="<? echo ($Lista[0][1]); ?>">
 											<img src="<? echo ($Lista[0][2]); ?>" class="border border-dark" align="left">
 											<h6 class="d-inline"><? echo ($Lista[0][1]); ?></h6>
+											<button class="btn btn-success d-flex justify-content-center align-items-center p-3 border border-dark" onclick="adicionar()">
+												<i class="fa-solid fa-user-plus fa-lg" style="color: black;"></i>
+											</button>
 										</li>
 									<?php											
 										}
