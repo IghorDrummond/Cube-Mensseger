@@ -9,29 +9,29 @@ Este é um emocionante aplicativo de mensagens online que desenvolvi com muito e
 <h6> As Ultimas Atualizações:</h6>
 <span class="text-warning">Notas de Atualização!</span> 
 								<time>04/04/2024</time>: Adicionado à lista de pedidos de amizade.
-								<br>	
+								<hr>	
 								<time>01/04/2024</time>: Implementada a funcionalidade de busca e adição de amigos.
-								<br>
+								<hr>
 								<time>28/03/2024</time>: Agora, ao passar o mouse sobre a frase 'Desenvolvido por Ighor Drummond©', ocorrerá uma animação de cores em forma de arco-íris, tanto no cubo quanto nas letras.
-								<br>							
+								<hr>							
 								<time>28/03/2024</time>: Se você estiver conectado em mais de um navegador e, em um deles, sua conta for desconectada, os demais também serão automaticamente desconectados por motivos de segurança.
-								<br>
+								<hr>
 								<time>28/03/2024</time>: Corrigido bug de login em vários navegadores simultaneamente.
-								<br>															
+								<hr>															
 								<time>27/03/2024</time>: Adicionada navegação para dispositivos móveis (celulares, tablets, netbooks e notebooks).
-								<br>								
+								<hr>								
 								<time>27/03/2024</time>: Adicionada a opção de logout do site.
-								<br>
+								<hr>
 								<time>27/03/2024</time>: A lista de amigos agora está funcional! Registra se o usuário está online ou offline.
-								<br>								
+								<hr>								
 								<time>26/03/2024</time>: Adicionada uma lista de amigos que informa se seus contatos estão online.
-								<br>
+								<hr>
 								<time>26/03/2024</time>: Adicionada barra de navegação para orientar o usuário conforme sua navegação dentro da página.
-								<br>
+								<hr>
 								<time>26/03/2024</time>: Adicionada uma tela de carregamento interativa para melhorar a experiência do usuário.
-								<br>
+								<hr>
 								<time>25/03/2024</time>: Adicionada a página inicial (Home).
-								<br>																				
+								<hr>																				
 
 <!--
 <h5 style="color: red">Importante! A versão do site pode não corresponder com a versão mais atual do GitHub além de apresentar bugs por questão do site ao qual hospeda a aplicação.</h5>
