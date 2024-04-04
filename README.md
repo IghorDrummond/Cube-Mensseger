@@ -8,7 +8,7 @@ Este é um emocionante aplicativo de mensagens online que desenvolvi com muito e
 </p>
 <h6> As Ultimas Atualizações:</h6>
 								<time>04/04/2024</time>: Agora você pode Recusar Pedidos de Amizades.
-								<br>
+								<hr>
 								<time>04/04/2024</time>: Adicionado à lista de pedidos de amizade.
 								<hr>	
 								<time>01/04/2024</time>: Implementada a funcionalidade de busca e adição de amigos.
