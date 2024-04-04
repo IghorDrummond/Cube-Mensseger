@@ -15,12 +15,7 @@
 
 <body onresize="adaptar()">
 	<?php require_once('script/homebuild.php'); ?>
-	<!--Fim do Corpo -->
-	<!-- Scripts Obrigatórios -->
-	<script type="text/javascript" src="js/ajustaTamanho.js"></script>
-	<script type="text/javascript" src="js/posiCubo.js"></script>
 	<?php require_once ('script/scripts.php'); ?>
-	<script type="text/javascript" src="js/home.js"></script>
 </body>
 
 </html>

@@ -9,10 +9,10 @@ var nAntPosic = 0;
 //Array
 var posic = [0, 90, 180, 270, 360];
 //String
-var Parametro = (window.location.search).substring(6, (window.location.search).length);
+var Parametro = document.getElementsByName('Amigos');
 
 //===================================Escopo=========================================
-if(Parametro.length > 0 && Parametro === 'Amigos'){
+if(Parametro.length > 0){
     NavOpc[0].className = 'nav-item';
     NavOpc[2].className = 'nav-item actived';
     antOpc = 2;

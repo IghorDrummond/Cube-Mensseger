@@ -16,13 +16,9 @@ var Parametro = (window.location.search).substring(6, (window.location.search).l
 
 //===================================Escopo=========================================
 
-if(Parametro.length > 0 && Parametro === 'Amigos'){
-	tela_Amigos();
-}else{
-	//Ativa o Carregamento Automatico
-	Carregamento.className = "d-flex justify-content-center align-items-center m-auto flex-column";
-	carregamento();//Ativa a tela de carregamento
-}
+//Ativa o Carregamento Automatico
+Carregamento.className = "d-flex justify-content-center align-items-center m-auto flex-column";
+carregamento();//Ativa a tela de carregamento
 
 //===================================Funções=========================================
 function carregamento(){
@@ -66,11 +62,11 @@ function carregamento(){
 	            { transform: "rotateY(" + (nCont2).toString() +"deg)" }
 	        ], {
 	            // timing options
-	            duration: 900,
+	            duration: 1000,
 	            iterations: 1
 	        });	
 		}			
-	}, 1000);
+	}, 1200);
 }
 
 function animaCubo(opc){

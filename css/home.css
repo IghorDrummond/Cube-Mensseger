@@ -52,6 +52,9 @@ header ul>li{
 	    -ms-flex-align: center;
 	        align-items: center;
 }
+#lista_amigos{
+	font-size: 10px !important;
+}
 
 /* Cubo */
 .cena{
@@ -186,6 +189,7 @@ header ul>li{
 	margin: auto;
 	border: 2px solid white;
 }
+
 /* Adicionar Amigos */
 #AddAmigos form{
 	background: url('../img/9731573.jpg') no-repeat center;

@@ -7,7 +7,8 @@
 	$Amigos = 0;
 	$Off = 0;
 	$On = 0;
-	$nCont = 0;
+	$nCont = 0;	
+	$opc = 99;
 	//Array
 	$Usuario = [
 		$_SESSION['Nome'],
@@ -21,8 +22,9 @@
 	define('BD_AMIGO', 'BDs/bd_listamigos.txt');
 	define('BD_USUARIO', 'BDs/bd_usuarios.txt');
 
-	if($_SESSION[''])
-
+	if($_SESSION['Pagina'] === 'Amigos'){
+		$opc = 1;
+	}
 	$_SESSION['Pagina'] = 'Home';//Seta na Página Home
 
 	function verificaUsuario($Email)
@@ -121,11 +123,20 @@
 						<i class="fa-solid fa-gear fa-xl"></i>
 					</a>
 				</li>
-				<li class="nav-item">
+				<li class="nav-item" title="Lista de Pedidos de Amizades">
+					<a onclick="lista_amigos()" class="nav-link">
+						<i class="fa-regular fa-address-book fa-xl">
+							<span id="lista_amigos" class="badge badge-pill badge-success">0</span>
+						</i>
+					</a>
+				</li>				
+				<li class="nav-item d-flex align-items-center">
 					<a href="script/validaLogin.php" class="nav-link">
 						<img src="<?php echo ($Usuario[2]); ?>" class="imagem border" width="30" height="30"
 							title="Conectado: <?php echo ($Usuario[0]); ?>">
-						<i class="fa-solid fa-right-from-bracket fa-xl" title="Sair"></i>
+						<i class="fa-solid fa-right-from-bracket fa-xl" title="Sair">
+							
+						</i>
 						<?php echo ($Usuario[0]); ?>
 					</a>
 				</li>
@@ -318,3 +329,24 @@
 			</div>
 		</section><!-- Fim do Cubo -->
 	</main>
+	<!--Fim do Corpo -->
+	<!-- Scripts Obrigatórios -->
+	<script type="text/javascript" src="js/ajustaTamanho.js"></script>
+	<?php
+		switch ($opc) {
+			case 1:
+	?>
+				<script type="text/javascript" src="js/home_add.js"></script>
+				<input class="d-none" readonly name="Amigos" value="Amigos">
+	<?php
+				break;
+	?>	
+	<?php
+			default:
+	?>			
+				<script type="text/javascript" src="js/home.js"></script>
+	<?php
+				break;
+		}
+	?>
+	<script type="text/javascript" src="js/posiCubo.js"></script>
