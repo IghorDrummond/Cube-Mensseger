@@ -149,9 +149,25 @@
 	?>
 		<div class="alert alert-danger alert-dismissible fade show">
 			<button type="button" class="close" data-dismiss="alert">&times;</button>
-  			<strong>Pedido não Enviado!</strong> Pedido de Amizade já foi enviado para este usuário.</a>.
+  			<strong>Pedido não Enviado!</strong> Pedido de Amizade já foi enviado para este usuário.</a>
 		</div>
 	<?php
+			}
+			if($_SESSION['Validacao'] === 'Envio'){
+	?>	
+		<div class="alert alert-success alert-dismissible fade show">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+  			<strong>Pedido Enviado!</strong> Pedido de Amizade Enviado com Sucesso!</a>
+		</div>	
+	<?php
+			}
+			if($_SESSION['Validacao'] === 'Aceito'){
+	?>		
+		<div class="alert alert-success alert-dismissible fade show">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+  			<strong>Pedido Aceito!</strong> Pedido de Amizade foi Aceito com Sucesso!</a>
+		</div>				
+	<?php		
 			}
 			$_SESSION['Validacao'] = '';
 		}
