@@ -71,3 +71,7 @@ function lista_amigos(){
 
 }
 
+function adicionar(Nome){
+    window.location.href = '../script/adicionarAmigo.php?Nome=' + Nome;
+}
+

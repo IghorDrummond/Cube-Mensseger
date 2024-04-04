@@ -2,20 +2,25 @@
 	session_start();
 	//Declaração de Variaveis Globais
 	//String
-	$Email = $_POST['Amigo'];
+	$Nome = isset($_GET['Nome']) ? $_GET['Nome']: $_POST['Adicionar'] ;
 	$ChaveBanco = "";
 	//Constante
 	define('BD_ADD', '../BDs/bd_addamigo.txt');
 
-	if(verificaAmigo($Email) === false){
+	if(verificaAmigo($Nome) === false){
 		$ChaveBanco = fopen(BD_ADD, 'a+');
 		//Primeiro Email é o que recebeu o convite, o segundo é o que enviou, terceiro é o nome de quem enviou
-		fwrite($ChaveBanco, $Email . ';' . $_SESSION['Email'] . ';' . $_SESSION['Nome'] . PHP_EOL );
+		fwrite($ChaveBanco, $Nome . ';' . $_SESSION['Email'] . ';' . $_SESSION['Nome'] . PHP_EOL );
 		fclose($ChaveBanco);
-	}
+		
+	}else{
+		$_SESSION['Validacao'] = 'Add';
+	}		
 
-
-	function verificaAmigo($Email){
+	$_SESSION['Pagina'] = 'Amigos';
+	header('Location: ../home.php');
+//=================================Funções========================	
+	function verificaAmigo($Nome){
 		$Ret = false;
 
 		$ChaveBanco = fopen(BD_ADD, 'r');
@@ -23,7 +28,7 @@
 		while (!feof($ChaveBanco)) {
 			$Linha = explode(';', fgets($ChaveBanco));
 
-			if($Email === $Linha[0]){
+			if($Nome === $Linha[0]){
 				$Ret = true;
 				break;
 			}

@@ -3,32 +3,37 @@
 	//String
 	$ChaveBanco = "";
 	$ChaveBanco2 = "";
+	$ChaveBanco3 = "";
 	//Numerico
 	$Amigos = 0;
 	$Off = 0;
 	$On = 0;
 	$nCont = 0;	
 	$opc = 99;
+	$nPed = 0;
 	//Array
 	$Usuario = [
 		$_SESSION['Nome'],
 		$_SESSION['Email'],
 		$_SESSION['FotoPerfil']
 	];
+	$Pedidos = [];
 	$Linha = [];
 	$Linha2 = [];
 	$Dados = [];
 	//Constantes
 	define('BD_AMIGO', 'BDs/bd_listamigos.txt');
 	define('BD_USUARIO', 'BDs/bd_usuarios.txt');
+	define('BD_ADD', 'BDs/bd_addamigo.txt');
 
-	if($_SESSION['Pagina'] === 'Amigos'){
+	if(isset($_SESSION['Pagina']) and $_SESSION['Pagina'] === 'Amigos'){
 		$opc = 1;
 	}
 	$_SESSION['Pagina'] = 'Home';//Seta na Página Home
 
-	function verificaUsuario($Email)
-	{
+	//==========================Funções============================
+	//Retorna os dados do usuário exigido para construir o mesmo na lista de amigos
+	function verificaUsuario($Email){
 		$Ret = [false, ''];
 
 		$ChaveBanco3 = fopen(BD_USUARIO, 'r');
@@ -55,8 +60,30 @@
 		return $Ret;
 	}
 
+	function retornaUsuario($Email){
+		$ChaveBanco3 = fopen(BD_USUARIO, 'r');
+
+		while(!feof($ChaveBanco3)){
+			$Ret = explode(';', fgets($ChaveBanco3));
+
+			if (isset($Ret[1]) === false) {
+				continue;
+			}			
+
+			if($Ret[1] === $Email){
+				break;
+			}
+		}
+
+		fclose($ChaveBanco3);
+		
+		return $Ret;
+	}
+
 	?>
 	<?
+
+	//================Valida os Amigos que o usuário tem adicionado ====================
 	//Abre o arquivo para leitura
 	$ChaveBanco = fopen(BD_AMIGO, 'r');
 
@@ -96,15 +123,46 @@
 	//Fecha Arquivo
 	fclose($ChaveBanco);
 
+	//================Valida Pedidos de Amizades caso existir para o usuário logado ====================
+	$ChaveBanco = fopen(BD_ADD, 'r');
+
+	while (!feof($ChaveBanco)) {
+		$Linha = explode(';', fgets($ChaveBanco));
+
+		if (isset($Linha[1]) === false) {
+			continue;
+		}
+
+		if($Linha[0] === $_SESSION['Nome']){
+			$Pedidos[$nPed] = retornaUsuario($Linha[1]);
+			$nPed++;
+		}
+	}
+
+	//Fecha Arquivo
+	fclose($ChaveBanco);
 	?>
 
+	<?php
+		if(isset($_SESSION['Validacao'])){
+			if($_SESSION['Validacao'] === 'Add'){
+	?>
+		<div class="alert alert-danger alert-dismissible fade show">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+  			<strong>Pedido não Enviado!</strong> Pedido de Amizade já foi enviado para este usuário.</a>.
+		</div>
+	<?php
+			}
+			$_SESSION['Validacao'] = '';
+		}
+	?>	
 	<!-- Lista de Amigos -->
 	<div class="lista_amigos justify-content-center align-items-center text-dark">
 		<div class="container bg-white">
 			<div class="row">
 				<div class="col-6 text-left">
 					<p>
-						Pedidos de Amizades<span class="ml-1 badge badge-pill badge-success">0</span>
+						Pedidos de Amizades<span class="ml-1 badge badge-pill badge-success"><?php echo($nPed); ?></span>
 					</p>
 				</div>
 				<div class="col-6 text-right">
@@ -114,16 +172,22 @@
 
 			<pre class="pre_amigos my-2">
 				<form class="form-group p-1" action="adicionarAmigo.php" method="POST">
+					<?php
+						for($nCont = 0; $nCont <= $nPed -1; $nCont++){
+					?>
 					<fieldset class="form-group border border-dark rounded bg-secondary">
-						<legend>Nome do Usuário</legend>
+						<legend><?php echo($Pedidos[$nCont][3]); ?></legend>
 						<div class="text-center">
-							<img class="rounded-circle border border-dark" src="BDs/BD_FOTOS/foto_user.png" width="150" height="150">
+							<img class="rounded-circle border border-dark" src="<?php echo($Pedidos[$nCont][5]); ?>" width="150" height="150">
 							<p>
 								Olá! 😊 Gostaria de me conectar com você. Seria um prazer compartilhar momentos juntos. Aguardo sua resposta! 🌟
 							</p>
-							<input class="btn btn-info p-1" type="submit" name="nome do usuario" value="Adicionar">
+							<input class="btn btn-info p-1" type="submit" name="Adicionar" value="Adicionar <?php echo($Pedidos[$nCont][3]); ?>">
 						</div>
-					</fieldset>											
+					</fieldset>	
+					<?php
+						}
+					?>
 				</form>
 			</pre>
 		</div>
@@ -157,7 +221,7 @@
 				<li class="nav-item" title="Lista de Pedidos de Amizades">
 					<a onclick="lista_amigos()" class="nav-link">
 						<i class="fa-regular fa-address-book fa-xl">
-							<span id="lista_amigos" class="badge badge-pill badge-success">0</span>
+							<span id="lista_amigos" class="badge badge-pill badge-success"><?php echo($nPed); ?></span>
 						</i>
 					</a>
 				</li>				
@@ -211,7 +275,7 @@
 					<li class="nav-item p-2" title="Lista de Pedidos de Amizades">
 						<a onclick="lista_amigos()" class="nav-link">
 							<i class="fa-regular fa-address-book fa-xl">
-								<span id="lista_amigos" class="badge badge-pill badge-success">0</span>
+								<span id="lista_amigos" class="badge badge-pill badge-success"><?php echo($nPed); ?></span>
 							</i> Pedidos de Amizades
 						</a>
 					</li>						
@@ -252,6 +316,8 @@
 								<?php echo ($Usuario[0]); ?>!
 							</h5>
 							<pre><span class="text-warning">Notas de Atualização!</span> 
+								<time>04/04/2024</time>: Adicionado à lista de pedidos de amizade.
+								<br>	
 								<time>01/04/2024</time>: Implementada a funcionalidade de busca e adição de amigos.
 								<br>
 								<time>28/03/2024</time>: Agora, ao passar o mouse sobre a frase 'Desenvolvido por Ighor Drummond©', ocorrerá uma animação de cores em forma de arco-íris, tanto no cubo quanto nas letras.
@@ -297,16 +363,17 @@
 										unset($_SESSION['Amigos']);
 
 										if(isset($Lista[0][1])){
-
+											for($nCont = 0; $nCont <= count($Lista) -1; $nCont++){
 									?>
-										<li class="list-group-item bg-info text-center w-100 d-flex justify-content-between align-items-center" id="<? echo ($Lista[0][1]); ?>">
-											<img src="<? echo ($Lista[0][2]); ?>" class="border border-dark" align="left">
-											<h6 class="d-inline"><? echo ($Lista[0][1]); ?></h6>
-											<button class="btn btn-success d-flex justify-content-center align-items-center p-3 border border-dark" onclick="adicionar()">
+										<li class="list-group-item bg-info text-center w-100 d-flex justify-content-between align-items-center" id="<? echo ($Lista[$nCont][1]); ?>">
+											<img src="<? echo ($Lista[$nCont][2]); ?>" class="border border-dark" align="left">
+											<h6 class="d-inline"><? echo ($Lista[$nCont][1]); ?></h6>
+											<button class="btn btn-success d-flex justify-content-center align-items-center p-3 border border-dark" onclick="adicionar('<?php echo($Lista[$nCont][1]) ?>')">
 												<i class="fa-solid fa-user-plus fa-lg" style="color: black;"></i>
 											</button>
 										</li>
-									<?php											
+									<?php	
+											}										
 										}
 									?>
 									</ul>

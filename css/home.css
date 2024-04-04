@@ -249,6 +249,14 @@ header ul>li{
 	height: 50px;
 }
 
+/* Alertas */
+.alert{
+	position: absolute;
+	width: 100%;
+	animation: aparecer 1s;
+	z-index: 8;
+}
+
 /* Animação */
 @-webkit-keyframes surgi{
 	from {
