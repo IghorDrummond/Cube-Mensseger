@@ -7,6 +7,8 @@ Este é um emocionante aplicativo de mensagens online que desenvolvi com muito e
   Ah, e não posso deixar de mencionar que todo o projeto é baseado no elemento 3D de um cubo, proporcionando uma experiência única de interação com o usuário! 🔄🔷✨
 </p>
 <h6> As Ultimas Atualizações:</h6>
+								<time>09/04/2024</time>: Aprimoramos a funcionalidade de busca e adição de amigos, eliminando a necessidade de recarregar a página para atualizar os dados. Agora, essas operações são realizadas em 									tempo real, proporcionando uma experiência mais fluida. 	Em breve, outras áreas da página também serão atualizadas dinamicamente, aproveitando esse recurso.
+								<br>
 								<time>04/04/2024</time>: Agora você pode Recusar Pedidos de Amizades.
 								<hr>
 								<time>04/04/2024</time>: Adicionado à lista de pedidos de amizade.
