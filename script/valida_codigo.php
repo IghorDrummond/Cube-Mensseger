@@ -11,7 +11,7 @@
 	//Booleano
 	$lTem = false;
 	//Constante
-	define("BD_CODIGO", '../BDs/bd_codigos.txt');
+	define("BD_CODIGO", '../BDs/bd_codigos.csv');
 
 	//Abre o arquivo para leitura
 	$ChaveBanco = fopen(BD_CODIGO, 'r');

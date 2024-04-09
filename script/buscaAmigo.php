@@ -2,7 +2,7 @@
 	session_start();
 	//Declaração de Variavel
 	//String
-	$Pesquisa = $_POST['Amigo'];
+	$Pesquisa = $_GET['Nome'];
 	$ChaveBanco = '';
 	//Numerico
 	$nCont = 0;
@@ -10,8 +10,8 @@
 	$Linha = [];
 	$Amigo = [];
 	//Constantes
-	define('BD_USUARIO', '../BDs/bd_usuarios.txt');
-	define('BD_AMIGO', '../BDs/bd_listamigos.txt');
+	define('BD_USUARIO', '../BDs/bd_usuarios.csv');
+	define('BD_AMIGO', '../BDs/bd_listamigos.csv');
 
 //========================Escopo===========================
 	$ChaveBanco = fopen(BD_USUARIO, 'r');
@@ -32,7 +32,6 @@
 	}
 	//Fecha Leitura do Arquivo
 	fclose($ChaveBanco);
-
 	//Valida se os amigos buscados já estão adicionados
 	//Abre o arquivo para leitura
 	$ChaveBanco = fopen(BD_AMIGO, 'r');
@@ -58,9 +57,6 @@
 	//Fecha Leitura do Arquivo
 	fclose($ChaveBanco);
 	//Devolve os Valores para a página de adicionar Amigos
-	$_SESSION['Amigos'] = $Amigo;
-	$_SESSION['Pagina'] = 'Amigos';
-	header('Location: ../home.php');
 //============================Funções=================================
 	function verificaAmigo($Nome, $Busca){
 		//Declaração de variaveis
@@ -100,3 +96,24 @@
 		return $Ret;
 	}
 ?>
+									<ul class="list-group">
+									<?php
+										if(isset($Amigo[0][1])){
+									?>	
+									<span id="lista_amigos" class="badge badge-pill badge-success sticky-top">Encontrados: <?php echo($nCont); ?></span>
+									<?php			
+															
+											for($nCont = 0; $nCont <= count($Amigo) -1; $nCont++){
+									?>
+										<li class="list-group-item bg-info text-center w-100 d-flex justify-content-between align-items-center" id="<? echo ($Amigo[$nCont][1]); ?>">
+											<img src="<? echo ($Amigo[$nCont][2]); ?>" class="border border-dark" align="left">
+											<h6 class="d-inline"><? echo ($Amigo[$nCont][1]); ?></h6>
+											<button class="btn btn-success d-flex justify-content-center align-items-center p-3 border border-dark" onclick="adicionar('<?php echo($Amigo[$nCont][1]) ?>')">
+												<i class="fa-solid fa-user-plus fa-lg" style="color: black;"></i>
+											</button>
+										</li>
+									<?php	
+											}										
+										}
+									?>
+									</ul>

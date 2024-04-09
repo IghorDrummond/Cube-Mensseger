@@ -10,7 +10,8 @@
 	//Numerico
 	$Id = 0;
 	//Constantes
-	define('BD_USUARIO', '../BDs/bd_usuarios.txt');
+	define('BD_USUARIO', '../BDs/bd_usuarios.csv');
+	define('BD_AMIGO', '../BDs/bd_listamigos.csv');
 
 	//Verifica se já existe o Email
 	if(verificaExistencia($Email) === false){
@@ -23,9 +24,16 @@
 		//Abre banco para leitura e escrita
 		$ChaveBanco3 = fopen(BD_USUARIO, 'a+');
 		//Escreve o Novo usuário no banco
-		$Linha = $Id . ';' . $Email . ';' . $Senhas[0] . ';' . $Nome . ';' . 'Off' . ';' . 'BDs/BD_FOTOS/novo-usuario.png' . ';' . '' . PHP_EOL;
+		$Linha = $Id . ';' . $Email . ';' . $Senhas[0] . ';' . $Nome . ';' . 'Off' . ';' . 'BDs/BD_FOTOS/novo-usuario.png' . ';' . 'Ultimo Acesso' . PHP_EOL;
 		fwrite($ChaveBanco3, $Linha);
 		//Fecha Conexão com Banco
+		fclose($ChaveBanco3);
+
+		$ChaveBanco3 = fopen(BD_AMIGO, 'a+');
+		//Define a Data do Sistema
+		date_default_timezone_set('America/Sao_Paulo');
+		fwrite($ChaveBanco3, $Email . ';admin@email.com;Administrador do Sistema;0;'. Date('d/m/Y') . PHP_EOL);
+		fwrite($ChaveBanco3, 'admin@email.com;'. $Email .';'. $Nome .';0;'. Date('d/m/Y') . PHP_EOL);
 		fclose($ChaveBanco3);
 		//Concluí o Cadastro do Usuário
 		$_SESSION['Validacao'] = 'Cadastrado';
@@ -64,7 +72,7 @@
 
 	function recuperaId(){
 		$ChaveBanco2 = fopen(BD_USUARIO, 'r');
-		$nRet = -1;
+		$nRet = 0;
 
 		while(!feof($ChaveBanco2)){
 			$Linha =  explode(';', fgets($ChaveBanco2));

@@ -11,7 +11,7 @@
 
 	//==================Funções==========================
 	function verificaOnline($Email){
-		$Dir = 'BDs/bd_usuarios.txt';
+		$Dir = 'BDs/bd_usuarios.csv';
 		$lRet = true;
 
 		$ChaveBanco = fopen($Dir, 'r');

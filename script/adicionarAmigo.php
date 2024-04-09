@@ -4,10 +4,11 @@
 	//String
 	$Nome = isset($_GET['Nome']) ? $_GET['Nome']: $_POST['Adicionar'] ;
 	$ChaveBanco = "";
+	$Validacao = "";
 	//Constante
-	define('BD_ADD', '../BDs/bd_addamigo.txt');
-	define('BD_AMIGO', '../BDs/bd_listamigos.txt');
-	define('BD_NUM', '../BDs/bd_num.txt');
+	define('BD_ADD', '../BDs/bd_addamigo.csv');
+	define('BD_AMIGO', '../BDs/bd_listamigos.csv');
+	define('BD_NUM', '../BDs/bd_num.csv');
 	define('BD_CONVERSA', '../BDs/BD_CONVERSA');
 
 	#Valida se é um pedido de aceitaçção pu Recusa
@@ -28,15 +29,14 @@
 		//Primeiro Email é o que recebeu o convite, o segundo é o que enviou, terceiro é o nome de quem enviou
 		fwrite($ChaveBanco, $Nome . ';' . $_SESSION['Email'] . ';' . $_SESSION['Nome'] . PHP_EOL );
 		fclose($ChaveBanco);
-		$_SESSION['Validacao'] = 'Envio';
+		$Validacao = 'Envio';
 		
 	}else{
 		//Caso a solicitação já foi enviada para o usuário, será retornado que o envio já foi feito
-		$_SESSION['Validacao'] = 'Add';
+		$Validacao = 'Add';
 	}		
 
 	$_SESSION['Pagina'] = 'Amigos';
-	header('Location: ../home.php');
 //=================================Funções========================	
 	function verificaAmigo($Nome){
 		$Ret = false;
@@ -65,6 +65,8 @@
 		$Linha = [];
 		$Nova_Linha = [''];
 		$ChaveBanco = "";
+		//Numerico
+		$nCont = 0;
 		//Data
 		$Data = null;
 
@@ -92,11 +94,17 @@
 		fclose($ChaveBanco);
 
 		//Escreve todos os dados deletando o convite anterior
-		$ChaveBanco = fopen(BD_ADD, 'r+');
-		for($nCont = 0; $nCont <= count($Nova_Linha) -1; $nCont++){
-			fwrite($ChaveBanco, $Nova_Linha[$nCont]);
+		if($nCont === 0){
+			unlink(BD_ADD);
+			$ChaveBanco = fopen(BD_ADD, 'x');
+			fclose($ChaveBanco);
+		}else{
+			$ChaveBanco = fopen(BD_ADD, 'r+');
+			for($nCont = 0; $nCont <= count($Nova_Linha) -1; $nCont++){
+				fwrite($ChaveBanco, $Nova_Linha[$nCont]);
+			}
+			fclose($ChaveBanco);			
 		}
-		fclose($ChaveBanco);
 
 		//Define a Data do Sistema
 		date_default_timezone_set('America/Sao_Paulo');
@@ -116,7 +124,7 @@
 		$ChaveBanco = fopen(BD_CONVERSA ."/$NumC.txt", 'x');
 		//Fecha arquivo 
 		fclose($ChaveBanco);
-		$_SESSION['Validacao'] = 'Aceito';	
+		$Validacao = 'Aceito';	
 	}
 
 	function retornaNumero(){
@@ -132,3 +140,23 @@
 	}
 
 ?>
+
+
+	<?php
+			if($Validacao === 'Envio'){
+	?>	
+		<div class="alert alert-success alert-dismissible fade show">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+  			<strong>Pedido Enviado!</strong> Pedido de Amizade Enviado com Sucesso!</a>
+		</div>	
+	<?php
+			}
+			if($Validacao === 'Add'){ 
+	?>
+		<div class="alert alert-danger alert-dismissible fade show">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+  			<strong>Pedido não Enviado!</strong> Pedido de Amizade já foi enviado para este usuário.</a>
+		</div>				
+	<?php				
+			}
+	?>

@@ -9,7 +9,7 @@
 	//Array
 	$Linha = [];
 	//Constantes
-	define('BD_USUARIO', '../BDs/bd_usuarios.txt');
+	define('BD_USUARIO', '../BDs/bd_usuarios.csv');
 
 	//Define um retorno de página padrão
 	$Ret = '../login.php';

@@ -11,7 +11,7 @@
 	$Linha = [];
 	$Nova_Linha = [];
 	//Constantes
-	define("BD_USUARIOS", "../BDs/bd_usuarios.txt");
+	define("BD_USUARIOS", "../BDs/bd_usuarios.csv");
 
 	//Verifica se as senhas são iguais
 	if($Senha[0] != $Senha[1]){

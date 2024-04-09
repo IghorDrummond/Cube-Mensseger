@@ -191,7 +191,7 @@ header ul>li{
 }
 
 /* Adicionar Amigos */
-#AddAmigos form{
+#AddAmigos div{
 	background: url('../img/9731573.jpg') no-repeat center;
 	background-size: 100% 100%;  
 }

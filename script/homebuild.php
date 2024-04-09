@@ -22,9 +22,9 @@
 	$Linha2 = [];
 	$Dados = [];
 	//Constantes
-	define('BD_AMIGO', 'BDs/bd_listamigos.txt');
-	define('BD_USUARIO', 'BDs/bd_usuarios.txt');
-	define('BD_ADD', 'BDs/bd_addamigo.txt');
+	define('BD_AMIGO', 'BDs/bd_listamigos.csv');
+	define('BD_USUARIO', 'BDs/bd_usuarios.csv');
+	define('BD_ADD', 'BDs/bd_addamigo.csv');
 
 	if(isset($_SESSION['Pagina']) and $_SESSION['Pagina'] === 'Amigos'){
 		$opc = 1;
@@ -41,7 +41,7 @@
 		while (!feof($ChaveBanco3)) {
 			$Linha2 = explode(';', fgets($ChaveBanco3));
 
-			if (isset($Linha2) === false) {
+			if (isset($Linha2[1]) === false) {
 				continue;
 			}
 
@@ -86,14 +86,14 @@
 	//================Valida os Amigos que o usuário tem adicionado ====================
 	//Abre o arquivo para leitura
 	$ChaveBanco = fopen(BD_AMIGO, 'r');
-
+	$nLinha = 0;
 	while (!feof($ChaveBanco)) {
 		$Linha = explode(';', fgets($ChaveBanco));
 
 		if (isset($Linha[1]) === false) {
 			continue;
 		}
-
+		$nLinha++;
 		//Verifica se o usuário é amigo ou não dos outros demais
 		if ($Usuario[1] === $Linha[0]) {
 
@@ -145,22 +145,6 @@
 
 	<?php
 		if(isset($_SESSION['Validacao'])){
-			if($_SESSION['Validacao'] === 'Add'){
-	?>
-		<div class="alert alert-danger alert-dismissible fade show">
-			<button type="button" class="close" data-dismiss="alert">&times;</button>
-  			<strong>Pedido não Enviado!</strong> Pedido de Amizade já foi enviado para este usuário.</a>
-		</div>
-	<?php
-			}
-			if($_SESSION['Validacao'] === 'Envio'){
-	?>	
-		<div class="alert alert-success alert-dismissible fade show">
-			<button type="button" class="close" data-dismiss="alert">&times;</button>
-  			<strong>Pedido Enviado!</strong> Pedido de Amizade Enviado com Sucesso!</a>
-		</div>	
-	<?php
-			}
 			if($_SESSION['Validacao'] === 'Aceito'){
 	?>		
 		<div class="alert alert-success alert-dismissible fade show">
@@ -172,6 +156,9 @@
 			$_SESSION['Validacao'] = '';
 		}
 	?>	
+	<!-- Campo Responsaveis por avisos -->
+	<div id="avisos"></div>	
+
 	<!-- Lista de Amigos -->
 	<div class="lista_amigos justify-content-center align-items-center text-dark">
 		<div class="container bg-white">
@@ -335,6 +322,12 @@
 								<?php echo ($Usuario[0]); ?>!
 							</h5>
 							<pre><span class="text-warning">Notas de Atualização!</span> 
+								<time>09/04/2024</time>: Aprimoramos a funcionalidade de busca e adição de amigos, eliminando a necessidade de recarregar a página para atualizar os dados. Agora, essas operações são realizadas em tempo real, proporcionando uma experiência mais fluida. 	Em breve, outras áreas da página também serão atualizadas dinamicamente, aproveitando esse recurso.
+								<br>																
+								<time>04/04/2024</time>: Agora você pode Relatar Bugs, problemas de desempenho, erros ortográficos e entre outros, direto do contato 'Administrador de Sistemas' que ficará disponivel para você conversar.
+								<br>																
+								<time>04/04/2024</time>: Agora você pode Aceitar Pedidos de Amizades.
+								<br>	
 								<time>04/04/2024</time>: Agora você pode Recusar Pedidos de Amizades.
 								<br>	
 								<time>04/04/2024</time>: Adicionado à lista de pedidos de amizade.
@@ -376,36 +369,18 @@
 					<div class="cubo-face top">
 						<div id="AddAmigos" class="w-100 h-100 d-flex justify-content-center align-items-center flex-column">
 							<h6 class="text-white">Adicione Amigos!</h6>
-							<form class="border border-white w-75 h-75 p-1 d-flex flex-column" action="script/buscaAmigo.php" method="POST">
-								<pre class="w-100 h-100 bg-transparent">
+							<div class="border border-white w-75 h-75 p-1 d-flex flex-column">
+								<pre id="lista_adds" class="w-100 h-100 bg-transparent">
 									<ul class="list-group">
-									<?php
-										$Lista = isset($_SESSION['Amigos']) ? $_SESSION['Amigos'] : [];
-										unset($_SESSION['Amigos']);
-
-										if(isset($Lista[0][1])){
-											for($nCont = 0; $nCont <= count($Lista) -1; $nCont++){
-									?>
-										<li class="list-group-item bg-info text-center w-100 d-flex justify-content-between align-items-center" id="<? echo ($Lista[$nCont][1]); ?>">
-											<img src="<? echo ($Lista[$nCont][2]); ?>" class="border border-dark" align="left">
-											<h6 class="d-inline"><? echo ($Lista[$nCont][1]); ?></h6>
-											<button class="btn btn-success d-flex justify-content-center align-items-center p-3 border border-dark" onclick="adicionar('<?php echo($Lista[$nCont][1]) ?>')">
-												<i class="fa-solid fa-user-plus fa-lg" style="color: black;"></i>
-											</button>
-										</li>
-									<?php	
-											}										
-										}
-									?>
 									</ul>
 								</pre>
 								<div class="input-group align-self-end">
-									<input class="form-control" type="text" name="Amigo" placeholder="Pesquise Seus Amigos(as) Aqui..." required>
+									<input id="nomeAmigo" class="form-control" type="text" name="Amigo" placeholder="Pesquise Seus Amigos(as) Aqui..." required>
 									<div class="input-group-append">
-										<button class="btn btn-primary" type="submit">Pesquisar</button>
+										<button id="buscarAmg" class="btn btn-primary">Pesquisar</button>
 									</div>
 								</div>
-							</form>
+							</div>
 						</div>
 					</div>
 					<div class="cubo-face bottom">
@@ -476,3 +451,5 @@
 		}
 	?>
 	<script type="text/javascript" src="js/posiCubo.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<script type="text/javascript" src="js/homeControl.js"></script>

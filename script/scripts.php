@@ -7,5 +7,6 @@
         <!-- Scripts Obrigatórios -->
         <script type="text/javascript" src="js/janelas.js"></script> 
         <script src="https://kit.fontawesome.com/c488e9ed48.js" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
       
