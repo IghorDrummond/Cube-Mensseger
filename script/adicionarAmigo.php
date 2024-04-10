@@ -49,15 +49,20 @@
 			if(isset($Linha[1]) === false){
 				continue;
 			}
-
+			//Valida se já tem um convite existente para convidado do mesmo convidante 
 			if ($Email === $Linha[0] and $Linha[1] === $_SESSION['Email']) {
 				$Ret = false;
 				break;
+			//Valida se já tem um convite enviado pelo usuário convidado ao convidante
+			}else if($Email === $Linha[1] and $Linha[0] === $_SESSION['Email']){
+				$Ret = false;
+				break;				
 			}
 		}
 
 		fclose($ChaveBanco);
 
+		//Valida se já não tem como amigo 
 		if($Ret){
 			$ChaveBanco = fopen(BD_AMIGO, 'r');
 
@@ -195,7 +200,6 @@
 		fclose($ChaveBanco);
 		return $Ret;
 	}
-
 ?>
 
 
@@ -230,6 +234,14 @@
 			<button type="button" class="close" data-dismiss="alert">&times;</button>
 			<strong>Pedido Recusado!</strong> Pedido de Amizade foi Recusado!</a>
 		</div>
+<?php
+	}
+	if ($Validacao === 'Duplicado') {
+?>
+		<div class="alert alert-warning alert-dismissible fade show">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+			<strong>Pedido Duplicado!</strong> Usuário Convidado já enviou um Pedido de Amizade para você.</a>
+		</div>		
 <?php
 	}
 ?>

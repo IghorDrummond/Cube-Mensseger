@@ -13,7 +13,6 @@ $("#buscarAmg").click(function(){
 });
 
 function adicionar(Email){
-	alert(Email);
 	$("#avisos").load("script/adicionarAmigo.php?Email=" + Email);
 }
 
