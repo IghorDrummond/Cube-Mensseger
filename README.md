@@ -7,6 +7,10 @@ Este é um emocionante aplicativo de mensagens online que desenvolvi com muito e
   Ah, e não posso deixar de mencionar que todo o projeto é baseado no elemento 3D de um cubo, proporcionando uma experiência única de interação com o usuário! 🔄🔷✨
 </p>
 <h6> As Ultimas Atualizações:</h6>
+								<time>10/04/2024</time>: Aprimoramos nossa plataforma para corrigir o problema que permitia o envio de múltiplos convites simultâneos para o mesmo usuário. Agora, essa questão foi resolvida, 										garantindo uma experiência mais fluida e sem duplicidade de convites.
+								<hr>									
+								<time>10/04/2024</time>: Atualizamos a barra de navegação para exibir os pedidos de amizade em tempo real, acompanhados pela contagem de solicitações recebidas. Assim, você pode acompanhar facilmente 								quem deseja se conectar com você.
+								<hr>
 								<time>09/04/2024</time>: Bug corrigido na função de adição na lista de amigos.
 								<hr>	
 								<time>09/04/2024</time>: Aprimoramos a funcionalidade de busca e adição de amigos, eliminando a necessidade de recarregar a página para atualizar os dados. Agora, essas operações são realizadas em 									tempo real, proporcionando uma experiência mais fluida. 	Em breve, outras áreas da página também serão atualizadas dinamicamente, aproveitando esse recurso.
@@ -31,10 +35,7 @@ Este é um emocionante aplicativo de mensagens online que desenvolvi com muito e
 								<hr>								
 								<time>26/03/2024</time>: Adicionada uma lista de amigos que informa se seus contatos estão online.
 								<hr>
-								<time>26/03/2024</time>: Adicionada barra de navegação para orientar o usuário conforme sua navegação dentro da página.
-								<hr>
-								<time>26/03/2024</time>: Adicionada uma tela de carregamento interativa para melhorar a experiência do usuário.
-								<hr>
+
 																		
 
 <!--
