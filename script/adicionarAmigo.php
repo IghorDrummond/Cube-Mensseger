@@ -2,7 +2,7 @@
 	session_start();
 	//Declaração de Variaveis Globais
 	//String
-	$Nome = $_GET['Nome'];
+	$Email = $_GET['Email'];
 	$ChaveBanco = "";
 	$Validacao = "";
 	//Constante
@@ -11,52 +11,76 @@
 	define('BD_NUM', '../BDs/bd_num.csv');
 	define('BD_CONVERSA', '../BDs/BD_CONVERSA');
 
-
-	$Nome = str_replace('*', ' ', $Nome);
-	#Valida se é um pedido de aceitaçção ou Recusa
-	if(strpos($Nome, 'Adicionar') === 0 or strpos($Nome, 'Recusar') === 0){
-		$Vld = substr($Nome, 0, strpos($Nome, ' '));#Recebe a Validação da Operação
-		$Nome = substr($Nome, (strpos($Nome, ' ') +1), (strlen($Nome)));#Recebe o Nome do Usuário
-		switch($Vld){
+	$Email = str_replace('*', ' ', $Email);
+	#Valida se é um pedido de aceitação ou Recusa
+	if (strpos($Email, 'Adicionar') === 0 or strpos($Email, 'Recusar') === 0) {
+		$Vld = substr($Email, 0, strpos($Email, ' '));#Recebe a Validação da Operação
+		$Email = substr($Email, (strpos($Email, ' ') + 1), (strlen($Email)));#Recebe o Nome do Usuário
+		switch ($Vld) {
 			case 'Adicionar':
-				$Validacao = adicionaAmigo($Nome);
+				$Validacao = adicionaAmigo($Email);
 				break;
 			default:
-				recusaAmigo($Nome);
+				$Validacao = removeAmigo($Email);
 				break;
 		}
 	}#Valida se o Usuário já enviou esta mesma solicitação
-	else if(verificaAmigo($Nome) === false){
+	else if (verificaAmigo($Email)) {
 		$ChaveBanco = fopen(BD_ADD, 'a+');
-		//Primeiro Email é o que recebeu o convite, o segundo é o que enviou, terceiro é o nome de quem enviou
-		fwrite($ChaveBanco, $Nome . ';' . $_SESSION['Email'] . ';' . $_SESSION['Nome'] . PHP_EOL );
+
+		//Email da pessoa Convidada/Email de quem convidou/nome de quem convidou
+		fwrite($ChaveBanco, $Email . ';' . $_SESSION['Email'] . ';' . $_SESSION['Nome'] . PHP_EOL);
 		fclose($ChaveBanco);
 		$Validacao = 'Envio';
-		
-	}else{
+	} else {
 		//Caso a solicitação já foi enviada para o usuário, será retornado que o envio já foi feito
 		$Validacao = 'Add';
-	}		
-//=================================Funções========================	
-	function verificaAmigo($Nome){
-		$Ret = false;
+	}
+	//=================================Funções========================	
+	function verificaAmigo($Email)
+	{
+		$Ret = true;
 
 		$ChaveBanco = fopen(BD_ADD, 'r');
 
 		while (!feof($ChaveBanco)) {
 			$Linha = explode(';', fgets($ChaveBanco));
+			
+			if(isset($Linha[1]) === false){
+				continue;
+			}
 
-			if($Nome === $Linha[0] and $Linha[1] === $_SESSION['Email']){
-				$Ret = true;
+			if ($Email === $Linha[0] and $Linha[1] === $_SESSION['Email']) {
+				$Ret = false;
 				break;
 			}
 		}
 
 		fclose($ChaveBanco);
 
+		if($Ret){
+			$ChaveBanco = fopen(BD_AMIGO, 'r');
+
+			while (!feof($ChaveBanco)) {
+				$Linha = explode(';', fgets($ChaveBanco));
+				
+				if(isset($Linha[1]) === false){
+					continue;
+				}
+	
+				if ($Linha[0] === $_SESSION['Email'] and $Linha[1] === $Email) {
+					$Ret = false;
+					break;
+				}
+			}
+	
+			fclose($ChaveBanco);			
+		}
+
 		return $Ret;
 	}
-	function adicionaAmigo($Nome){
+	function adicionaAmigo($Nome)
+	{
 		//Declaração de Variaveis
 		//String
 		$NumC = '';
@@ -69,24 +93,23 @@
 		$nCont = 0;
 		//Data
 		$Data = null;
-		
+
 		#Procura Convite enviado pelo Usuário
 		$ChaveBanco = fopen(BD_ADD, 'r');
 
-		while(!feof($ChaveBanco)){
+		while (!feof($ChaveBanco)) {
 			$Linha = explode(';', fgets($ChaveBanco));
 
-			if(isset($Linha[1]) === false){
+			if (isset($Linha[1]) === false) {
 				continue;
 			}
-			$Linha[2] = str_replace(PHP_EOL, '', $Linha[2]);
-			$Aux[0] = strtoupper(str_replace(' ', '', $Linha[0]));
-			$Aux[1] = strtoupper(str_replace(' ', '', $Linha[2]));
 
-			if($Aux[0] === strtoupper(str_replace(' ', '', $_SESSION['Nome'])) and $Aux[1] === strtoupper(str_replace(' ', '', $Nome))){
+			$Linha[2] = str_replace(PHP_EOL, '', $Linha[2]);
+			if ($Linha[0] === $_SESSION['Email'] and $Linha[1] === $Nome) {
 				$Novo[0] = $Linha[1];
 				$Novo[1] = $_SESSION['Email'];
-			}else{
+				$Novo[2] = $Linha[2];
+			} else {
 				$Nova_Linha[$nCont] = implode(';', $Linha);
 				$nCont++;
 			}
@@ -95,40 +118,79 @@
 
 		//Escreve todos os dados deletando o convite anterior
 		$ChaveBanco = fopen(BD_ADD, 'w+');
-		for($nCont = 0; $nCont <= count($Nova_Linha) -1; $nCont++){
+		for ($nCont = 0; $nCont <= count($Nova_Linha) - 1; $nCont++) {
 			fwrite($ChaveBanco, $Nova_Linha[$nCont] . PHP_EOL);
 		}
-		fclose($ChaveBanco);			
+		fclose($ChaveBanco);
 
 		//Define a Data do Sistema
 		date_default_timezone_set('America/Sao_Paulo');
 		$Data = date('d/m/Y');
 		$NumC = retornaNumero();
 		//Criar Amizade no arquivo lista de amigos
-		$Novo[2] = $Novo[0] . ';' . $Novo[1] . ';' . $_SESSION['Nome'] . ';' . $NumC . ';' . $Data . PHP_EOL;
-		$Novo[3] = $Novo[1] . ';' . $Novo[0] . ';' . $Nome . ';' . $NumC . ';' . $Data . PHP_EOL;
+		$Novo[3] = $Novo[0] . ';' . $Novo[1] . ';' . $_SESSION['Nome'] . ';' . $NumC . ';' . $Data . PHP_EOL;
+		$Novo[4] = $Novo[1] . ';' . $Novo[0] . ';' . $Novo[2] . ';' . $NumC . ';' . $Data . PHP_EOL;
 		//Escreve a nova Amizade na Lista
 		$ChaveBanco = fopen(BD_AMIGO, 'a+');
-		fwrite($ChaveBanco, $Novo[2]);
 		fwrite($ChaveBanco, $Novo[3]);
+		fwrite($ChaveBanco, $Novo[4]);
 		//Fecha arquivo 
 		fclose($ChaveBanco);
 
 		//Criar o Banco de Conversa
-		$ChaveBanco = fopen(BD_CONVERSA ."/$NumC.txt", 'x');
+		$ChaveBanco = fopen(BD_CONVERSA . "/$NumC.txt", 'x');
 		//Fecha arquivo 
 		fclose($ChaveBanco);
-		return 'Aceito';	
+		return 'Aceito';
 	}
 
-	function retornaNumero(){
+	function removeAmigo($Nome)
+	{
+		$ChaveBanco = fopen(BD_ADD, 'r');
+		$nCont = 0;
+		$Nova_Linha = [];
+		$Aux = [];
+		$Linha = [];
+
+		while (!feof($ChaveBanco)) {
+			$Linha = explode(';', fgets($ChaveBanco));
+
+			if (isset($Linha[1]) === false) {
+				continue;
+			}
+
+			$Linha[2] = str_replace(PHP_EOL, '', $Linha[2]);
+			$Aux[0] = strtoupper(str_replace(' ', '', $Linha[0]));
+			$Aux[1] = strtoupper(str_replace(' ', '', $Linha[2]));
+
+			if ($Aux[0] === strtoupper(str_replace(' ', '', $_SESSION['Nome'])) and $Aux[1] === strtoupper(str_replace(' ', '', $Nome))) {
+				continue;
+			}
+
+			$Nova_Linha[$nCont] = implode(';', $Linha);
+			$nCont++;
+		}
+		fclose($ChaveBanco);
+
+		$ChaveBanco = fopen(BD_ADD, 'w+');
+
+		for ($nCont = 0; $nCont <= count($Nova_Linha) - 1; $nCont++) {
+			fwrite($ChaveBanco, $Nova_Linha[$nCont] . PHP_EOL);
+		}
+		fclose($ChaveBanco);
+
+		return 'Deletado';
+	}
+
+	function retornaNumero()
+	{
 		$ChaveBanco = fopen(BD_NUM, 'r+');
-    	// Move o ponteiro para a penúltima linha
-    	fseek($ChaveBanco, -1, SEEK_END);
+		// Move o ponteiro para a penúltima linha
+		fseek($ChaveBanco, -1, SEEK_END);
 		$Ret = fgets($ChaveBanco);
 		$Ret = strval((intval($Ret) + 1));
 		fseek($ChaveBanco, 0, SEEK_END);
-		fwrite($ChaveBanco, PHP_EOL. $Ret );
+		fwrite($ChaveBanco, PHP_EOL . $Ret);
 		fclose($ChaveBanco);
 		return $Ret;
 	}
@@ -136,29 +198,37 @@
 ?>
 
 
-	<?php
-			if($Validacao === 'Envio'){
-	?>	
+<?php
+	if ($Validacao === 'Envio') {
+?>
 		<div class="alert alert-success alert-dismissible fade show">
 			<button type="button" class="close" data-dismiss="alert">&times;</button>
-  			<strong>Pedido Enviado!</strong> Pedido de Amizade Enviado com Sucesso!</a>
-		</div>	
-	<?php
-			}
-			if($Validacao === 'Add'){ 
-	?>
+			<strong>Pedido Enviado!</strong> Pedido de Amizade Enviado com Sucesso!</a>
+		</div>
+<?php
+	}
+	if ($Validacao === 'Add') {
+?>
 		<div class="alert alert-danger alert-dismissible fade show">
 			<button type="button" class="close" data-dismiss="alert">&times;</button>
-  			<strong>Pedido não Enviado!</strong> Pedido de Amizade já foi enviado para este usuário.</a>
-		</div>				
-		<?php
-			}
-			if($Validacao === 'Aceito'){ 
-	?>
+			<strong>Pedido não Enviado!</strong> Pedido de Amizade já foi enviado para este usuário.</a>
+		</div>
+<?php
+	}
+	if ($Validacao === 'Aceito') {
+?>
 		<div class="alert alert-success alert-dismissible fade show">
 			<button type="button" class="close" data-dismiss="alert">&times;</button>
-  			<strong>Pedido Aceito!</strong> Pedido de Amizade foi Aceito com Sucesso!</a>
-		</div>	
-	<?php
-			}
-	?>	
+			<strong>Pedido Aceito!</strong> Pedido de Amizade foi Aceito com Sucesso!</a>
+		</div>
+<?php
+	}
+	if ($Validacao === 'Deletado') {
+?>
+		<div class="alert alert-success alert-dismissible fade show">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+			<strong>Pedido Recusado!</strong> Pedido de Amizade foi Recusado!</a>
+		</div>
+<?php
+	}
+?>

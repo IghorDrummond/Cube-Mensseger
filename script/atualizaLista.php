@@ -6,6 +6,8 @@
 	define('BD_USUARIO', '../BDs/bd_usuarios.csv');
 	define('BD_ADD', '../BDs/bd_addamigo.csv');
 
+
+	//================Valida Pedidos de Amizades caso existir para o usuário logado ====================
 	$ChaveBanco = fopen(BD_ADD, 'r');
 
 		while (!feof($ChaveBanco)) {
@@ -15,7 +17,7 @@
 			continue;
 		}
 
-		if($Linha[0] === $_SESSION['Nome']){
+			if($Linha[0] === $_SESSION['Email']){
 			$Pedidos[$nPed] = retornaUsuario($Linha[1]);
 			$nPed++;
 		}
@@ -23,6 +25,8 @@
 
 	//Fecha Arquivo
 	fclose($ChaveBanco);
+	
+	//==========================Funções============================
 
 	function retornaUsuario($Email){
 		$ChaveBanco3 = fopen(BD_USUARIO, 'r');
@@ -56,8 +60,8 @@
 								Olá! 😊 Gostaria de me conectar com você. Seria um prazer compartilhar momentos juntos. Aguardo sua resposta! 🌟
 							</p>
 							<div class="d-flex justify-content-center">
-								<input class="btn btn-info p-1 m-1" type="button" onclick="adicionar('Adicionar*<?php echo($Pedidos[$nCont][3]); ?>')" value="Adicionar <?php echo($Pedidos[$nCont][3]); ?>">
-								<input class="btn btn-info p-1 m-1" type="button" onclick="adicionar('Recusar*<?php echo($Pedidos[$nCont][3]); ?>')" value="Recusar <?php echo($Pedidos[$nCont][3]); ?>">
+								<input class="btn btn-info p-1 m-1" type="button" onclick="adicionar('Adicionar*<?php echo($Pedidos[$nCont][1]); ?>')" value="Adicionar <?php echo($Pedidos[$nCont][3]); ?>">
+								<input class="btn btn-warning p-1 m-1 text-white" type="button" onclick="adicionar('Recusar*<?php echo($Pedidos[$nCont][1]); ?>')" value="Recusar <?php echo($Pedidos[$nCont][3]); ?>">
 							</div>
 						</div>
 					</fieldset>	

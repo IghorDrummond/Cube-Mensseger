@@ -108,7 +108,7 @@
 										<li class="list-group-item bg-info text-center w-100 d-flex justify-content-between align-items-center" id="<? echo ($Amigo[$nCont][1]); ?>">
 											<img src="<? echo ($Amigo[$nCont][2]); ?>" class="border border-dark" align="left">
 											<h6 class="d-inline"><? echo ($Amigo[$nCont][1]); ?></h6>
-											<button class="btn btn-success d-flex justify-content-center align-items-center p-3 border border-dark" onclick="adicionar('<?php echo($Amigo[$nCont][1]) ?>')">
+											<button class="btn btn-success d-flex justify-content-center align-items-center p-3 border border-dark" onclick="adicionar('<?php echo($Amigo[$nCont][0]) ?>')">
 												<i class="fa-solid fa-user-plus fa-lg" style="color: black;"></i>
 											</button>
 										</li>

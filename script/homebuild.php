@@ -59,27 +59,6 @@
 
 		return $Ret;
 	}
-
-	function retornaUsuario($Email){
-		$ChaveBanco3 = fopen(BD_USUARIO, 'r');
-
-		while(!feof($ChaveBanco3)){
-			$Ret = explode(';', fgets($ChaveBanco3));
-
-			if (isset($Ret[1]) === false) {
-				continue;
-			}			
-
-			if($Ret[1] === $Email){
-				break;
-			}
-		}
-
-		fclose($ChaveBanco3);
-		
-		return $Ret;
-	}
-
 	?>
 	<?
 
@@ -123,24 +102,6 @@
 	//Fecha Arquivo
 	fclose($ChaveBanco);
 
-	//================Valida Pedidos de Amizades caso existir para o usuário logado ====================
-	$ChaveBanco = fopen(BD_ADD, 'r');
-
-	while (!feof($ChaveBanco)) {
-		$Linha = explode(';', fgets($ChaveBanco));
-
-		if (isset($Linha[1]) === false) {
-			continue;
-		}
-
-		if($Linha[0] === $_SESSION['Nome']){
-			$Pedidos[$nPed] = retornaUsuario($Linha[1]);
-			$nPed++;
-		}
-	}
-
-	//Fecha Arquivo
-	fclose($ChaveBanco);
 	?>
 	<!-- Campo Responsaveis por avisos -->
 	<div id="avisos"></div>	
@@ -161,25 +122,6 @@
 
 			<pre class="pre_amigos my-2">
 				<div id="pedidos_amizades" class="form-group p-1" action="script/adicionarAmigo.php" method="POST">
-					<?php
-						for($nCont = 0; $nCont <= $nPed -1; $nCont++){
-					?>
-					<fieldset class="form-group border border-dark rounded bg-secondary">
-						<legend><?php echo($Pedidos[$nCont][3]); ?></legend>
-						<div class="text-center">
-							<img class="rounded-circle border border-dark" src="<?php echo($Pedidos[$nCont][5]); ?>" width="150" height="150">
-							<p>
-								Olá! 😊 Gostaria de me conectar com você. Seria um prazer compartilhar momentos juntos. Aguardo sua resposta! 🌟
-							</p>
-							<div class="d-flex justify-content-center">
-								<input class="btn btn-info p-1 m-1" type="submit" name="Adicionar" value="adicionar(Adicionar <?php echo($Pedidos[$nCont][3]); ?>)">
-								<input class="btn btn-info p-1 m-1" type="submit" name="Adicionar" value="adicionar(Recusar <?php echo($Pedidos[$nCont][3]); ?>)">
-							</div>
-						</div>
-					</fieldset>	
-					<?php
-						}
-					?>
 				</div>
 			</pre>
 		</div>
@@ -213,7 +155,7 @@
 				<li class="nav-item" title="Lista de Pedidos de Amizades">
 					<a onclick="lista_amigos()" class="nav-link">
 						<i class="fa-regular fa-address-book fa-xl">
-							<span id="lista_amigos" class="badge badge-pill badge-success"><?php echo($nPed); ?></span>
+							<span id="lista_amigos" class="badge badge-pill badge-success">0</span>
 						</i>
 					</a>
 				</li>				
@@ -265,7 +207,7 @@
 						</a>
 					</li>
 					<li class="nav-item p-2" title="Lista de Pedidos de Amizades">
-						<a onclick="lista_amigos()" class="nav-link">
+						<a onclick="lista_amigos()" class="nav-link ped">
 							<i class="fa-regular fa-address-book fa-xl">
 								<span id="lista_amigos" class="badge badge-pill badge-success"><?php echo($nPed); ?></span>
 							</i> Pedidos de Amizades
@@ -308,6 +250,10 @@
 								<?php echo ($Usuario[0]); ?>!
 							</h5>
 							<pre><span class="text-warning">Notas de Atualização!</span>
+								<time>10/04/2024</time>: Aprimoramos nossa plataforma para corrigir o problema que permitia o envio de múltiplos convites simultâneos para o mesmo usuário. Agora, essa questão foi resolvida, garantindo uma experiência mais fluida e sem duplicidade de convites.
+								<br>									
+								<time>10/04/2024</time>: Atualizamos a barra de navegação para exibir os pedidos de amizade em tempo real, acompanhados pela contagem de solicitações recebidas. Assim, você pode acompanhar facilmente quem deseja se conectar com você.
+								<br>									
 								<time>09/04/2024</time>: Bug corrigido na função de adição e na lista de amigos.
 								<br>														
 								<time>09/04/2024</time>: Aprimoramos a funcionalidade de busca e adição de amigos, eliminando a necessidade de recarregar a página para atualizar os dados. Agora, essas operações são realizadas em tempo real, proporcionando uma experiência mais fluida. 	Em breve, outras áreas da página também serão atualizadas dinamicamente, aproveitando esse recurso.
