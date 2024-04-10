@@ -7,7 +7,7 @@ Este é um emocionante aplicativo de mensagens online que desenvolvi com muito e
   Ah, e não posso deixar de mencionar que todo o projeto é baseado no elemento 3D de um cubo, proporcionando uma experiência única de interação com o usuário! 🔄🔷✨
 </p>
 <blockquote cite="https://cubemensseger.000webhostapp.com/">
-	O site está ainda em Desenvolvimento. fique ciente que possa ocorrer bugs, erros ortograficos e etc. você pode relatar enviando um email para mim 'ighordrummond2001@gmail.com'.
+	O site está ainda em Desenvolvimento. fique ciente que possa ocorrer bugs, erros ortograficos e etc. você pode relatar enviando um email para mim 'ighordrummond2001@gmail.com'.<br>
 	<a href="https://cubemensseger.000webhostapp.com/">Acessar o Site!</a>
 </blockquote>
 <h6> As Ultimas Atualizações:</h6>
