@@ -144,13 +144,16 @@
 		return 'Aceito';
 	}
 
-	function removeAmigo($Nome)
+	function removeAmigo($Email)
 	{
 		$ChaveBanco = fopen(BD_ADD, 'r');
 		$nCont = 0;
 		$Nova_Linha = [];
 		$Aux = [];
 		$Linha = [];
+
+		#Procura Convite enviado pelo Usuário
+		$ChaveBanco = fopen(BD_ADD, 'r');
 
 		while (!feof($ChaveBanco)) {
 			$Linha = explode(';', fgets($ChaveBanco));
@@ -160,24 +163,22 @@
 			}
 
 			$Linha[2] = str_replace(PHP_EOL, '', $Linha[2]);
-			$Aux[0] = strtoupper(str_replace(' ', '', $Linha[0]));
-			$Aux[1] = strtoupper(str_replace(' ', '', $Linha[2]));
-
-			if ($Aux[0] === strtoupper(str_replace(' ', '', $_SESSION['Nome'])) and $Aux[1] === strtoupper(str_replace(' ', '', $Nome))) {
+			if ($Linha[0] === $_SESSION['Email'] and $Linha[1] === $Email) {
 				continue;
+			} else {
+				$Nova_Linha[$nCont] = implode(';', $Linha);
+				$nCont++;
 			}
-
-			$Nova_Linha[$nCont] = implode(';', $Linha);
-			$nCont++;
 		}
 		fclose($ChaveBanco);
 
+		//Escreve todos os dados deletando o convite anterior
 		$ChaveBanco = fopen(BD_ADD, 'w+');
-
 		for ($nCont = 0; $nCont <= count($Nova_Linha) - 1; $nCont++) {
 			fwrite($ChaveBanco, $Nova_Linha[$nCont] . PHP_EOL);
 		}
 		fclose($ChaveBanco);
+
 
 		return 'Deletado';
 	}
