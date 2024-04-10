@@ -56,17 +56,11 @@
 		}
 	}else if(isset($_SESSION['Login']) and $_SESSION['Login']){
 		disponibilidade(false, $_SESSION['Email']);//Coloca usuário como Offline no banco de dados
-		/*
-		unset($_SESSION['Nome']);
-		unset($_SESSION['Email']);
-		unset($_SESSION['FotoPerfil']);
-		*/
 		session_destroy();
 		$_SESSION['Login'] = false;
 	}
 	//Direciona para página correspondente
 	header('Location: ' . $Ret);
-
 
 	//=============================Funções===============================
 	function disponibilidade($opc, $Email){

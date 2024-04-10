@@ -2,7 +2,7 @@
 	session_start();
 	//Declaração de Variaveis Globais
 	//String
-	$Nome = isset($_GET['Nome']) ? $_GET['Nome']: $_POST['Adicionar'] ;
+	$Nome = $_GET['Nome'];
 	$ChaveBanco = "";
 	$Validacao = "";
 	//Constante
@@ -11,13 +11,15 @@
 	define('BD_NUM', '../BDs/bd_num.csv');
 	define('BD_CONVERSA', '../BDs/BD_CONVERSA');
 
-	#Valida se é um pedido de aceitaçção pu Recusa
+
+	$Nome = str_replace('*', ' ', $Nome);
+	#Valida se é um pedido de aceitaçção ou Recusa
 	if(strpos($Nome, 'Adicionar') === 0 or strpos($Nome, 'Recusar') === 0){
 		$Vld = substr($Nome, 0, strpos($Nome, ' '));#Recebe a Validação da Operação
 		$Nome = substr($Nome, (strpos($Nome, ' ') +1), (strlen($Nome)));#Recebe o Nome do Usuário
 		switch($Vld){
 			case 'Adicionar':
-				adicionaAmigo($Nome);
+				$Validacao = adicionaAmigo($Nome);
 				break;
 			default:
 				recusaAmigo($Nome);
@@ -35,8 +37,6 @@
 		//Caso a solicitação já foi enviada para o usuário, será retornado que o envio já foi feito
 		$Validacao = 'Add';
 	}		
-
-	$_SESSION['Pagina'] = 'Amigos';
 //=================================Funções========================	
 	function verificaAmigo($Nome){
 		$Ret = false;
@@ -69,7 +69,7 @@
 		$nCont = 0;
 		//Data
 		$Data = null;
-
+		
 		#Procura Convite enviado pelo Usuário
 		$ChaveBanco = fopen(BD_ADD, 'r');
 
@@ -79,32 +79,26 @@
 			if(isset($Linha[1]) === false){
 				continue;
 			}
-
 			$Linha[2] = str_replace(PHP_EOL, '', $Linha[2]);
+			$Aux[0] = strtoupper(str_replace(' ', '', $Linha[0]));
+			$Aux[1] = strtoupper(str_replace(' ', '', $Linha[2]));
 
-			if($Linha[2] != $Nome){
+			if($Aux[0] === strtoupper(str_replace(' ', '', $_SESSION['Nome'])) and $Aux[1] === strtoupper(str_replace(' ', '', $Nome))){
+				$Novo[0] = $Linha[1];
+				$Novo[1] = $_SESSION['Email'];
+			}else{
 				$Nova_Linha[$nCont] = implode(';', $Linha);
 				$nCont++;
-			}else{
-				//Adiciona o usuário que enviou
-				$Novo[0] = $Linha[1];//Email do Usuário que enviou o convite
-				$Novo[1] = $_SESSION['Email'];//Email do Usuário que aceitou o convite
 			}
 		}
 		fclose($ChaveBanco);
 
 		//Escreve todos os dados deletando o convite anterior
-		if($nCont === 0){
-			unlink(BD_ADD);
-			$ChaveBanco = fopen(BD_ADD, 'x');
-			fclose($ChaveBanco);
-		}else{
-			$ChaveBanco = fopen(BD_ADD, 'r+');
-			for($nCont = 0; $nCont <= count($Nova_Linha) -1; $nCont++){
-				fwrite($ChaveBanco, $Nova_Linha[$nCont]);
-			}
-			fclose($ChaveBanco);			
+		$ChaveBanco = fopen(BD_ADD, 'w+');
+		for($nCont = 0; $nCont <= count($Nova_Linha) -1; $nCont++){
+			fwrite($ChaveBanco, $Nova_Linha[$nCont] . PHP_EOL);
 		}
+		fclose($ChaveBanco);			
 
 		//Define a Data do Sistema
 		date_default_timezone_set('America/Sao_Paulo');
@@ -124,7 +118,7 @@
 		$ChaveBanco = fopen(BD_CONVERSA ."/$NumC.txt", 'x');
 		//Fecha arquivo 
 		fclose($ChaveBanco);
-		$Validacao = 'Aceito';	
+		return 'Aceito';	
 	}
 
 	function retornaNumero(){
@@ -157,6 +151,14 @@
 			<button type="button" class="close" data-dismiss="alert">&times;</button>
   			<strong>Pedido não Enviado!</strong> Pedido de Amizade já foi enviado para este usuário.</a>
 		</div>				
-	<?php				
+		<?php
 			}
+			if($Validacao === 'Aceito'){ 
 	?>
+		<div class="alert alert-success alert-dismissible fade show">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+  			<strong>Pedido Aceito!</strong> Pedido de Amizade foi Aceito com Sucesso!</a>
+		</div>	
+	<?php
+			}
+	?>	
