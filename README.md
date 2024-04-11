@@ -11,6 +11,10 @@ Este é um emocionante aplicativo de mensagens online que desenvolvi com muito e
 	<a href="https://cubemensseger.000webhostapp.com/" target="_blank">Acessar o Site!</a>
 </blockquote>
 <h6> As Ultimas Atualizações:</h6>
+								<time>11/04/2024</time>: Ultimo Acesso agora relata corretamente ultimo login do Usuário Offiline.
+								<hr>	
+								<time>11/04/2024</time>: Adicionamos os elementos de 'Conversar', 'Silenciar', 'Bloquear' e Deletar' o usuário desejado. Ainda estamos implementando as funcionalidades para todos, bem como para exibir 								o último acesso, caso o usuário esteja offline.
+								<hr>	
 								<time>11/04/2024</time>: Corrigimos Bugs e Animações Incorretas na tela de Cadastro.
 								<hr>	
 								<time>10/04/2024</time>: Aprimoramos nossa plataforma para corrigir o problema que permitia o envio de múltiplos convites simultâneos para o mesmo usuário. Agora, essa questão foi resolvida, 										garantindo uma experiência mais fluida e sem duplicidade de convites.
@@ -35,10 +39,7 @@ Este é um emocionante aplicativo de mensagens online que desenvolvi com muito e
 								<hr>															
 								<time>27/03/2024</time>: Adicionada navegação para dispositivos móveis (celulares, tablets, netbooks e notebooks).
 								<hr>								
-								<time>27/03/2024</time>: Adicionada a opção de logout do site.
-								<hr>
-								<time>27/03/2024</time>: A lista de amigos agora está funcional! Registra se o usuário está online ou offline.
-								<hr>								
+							
 
 																		
 
