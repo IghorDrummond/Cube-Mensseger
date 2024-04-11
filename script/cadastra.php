@@ -35,8 +35,8 @@
 
 			$ChaveBanco3 = fopen(BD_AMIGO, 'a+');
 
-			fwrite($ChaveBanco3, $Email . ';admin@email.com;Administrador do Sistema;0;'. $Data . PHP_EOL);
-			fwrite($ChaveBanco3, 'admin@email.com;'. $Email .';'. $Nome .';0;'. $Data . PHP_EOL);
+			fwrite($ChaveBanco3, $Email . ';admin@cubemensseger.com;Administrador do Sistema;0;'. $Data . PHP_EOL);
+			fwrite($ChaveBanco3, 'admin@cubemensseger.com;'. $Email .';'. $Nome .';0;'. $Data . PHP_EOL);
 			fclose($ChaveBanco3);
 			//Concluí o Cadastro do Usuário
 			$_SESSION['Validacao'] = 'Cadastrado';

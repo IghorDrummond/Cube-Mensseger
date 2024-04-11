@@ -337,7 +337,7 @@
 													<li class="bg-primary p-1 border rounded" onclick="tarefa('Conversar <?php echo($Valor[1]); ?>')">Conversar</li>	
 											<?php
 												//Valida se o usuário está online
-												if ($Valor[1] != 'admin@email.com') {
+												if ($Valor[1] != 'admin@cubemensseger.com') {
 											?>
 													<li class="border p-1 bg-secondary rounded" onclick="tarefa('Silenciar<?php echo($Valor[1]); ?>')">Silenciar</li>
 													<li class="border p-1 bg-warning rounded" onclick="tarefa('Bloquear <?php echo($Valor[1]); ?>')">Bloquear</li>
