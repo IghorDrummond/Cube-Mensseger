@@ -1,8 +1,8 @@
 
 var W = setInterval(()=>{
-	$("#pedidos_amizades").load("script/atualizaLista.php");
-	$("#Amigos").load("script/atualizaAmigos.php");
-	$('#pedidos_amigos').load("script/atualizaNav.php");
+	$("#Amigos").load("script/atualizaDados.php?opc=1");
+	$("#pedidos_amizades").load("script/atualizaDados.php?opc=2");	
+	$('#pedidos_amigos').load("script/atualizaDados.php?opc=3");
 }, 1500);
 
 //Adicionar a Lista de Amigos

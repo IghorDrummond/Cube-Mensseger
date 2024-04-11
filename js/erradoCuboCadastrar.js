@@ -13,7 +13,8 @@ EstruturaCubo[0].style.transform = "rotateY(-90deg)";
 EstruturaCubo[0].style.webkitTransform = "rotateY(-90deg)";		
 
 //Balança o Cubo Negativamente
-var x = setInterval(function(){´
+var x = setInterval(function(){
+
 	if(nCont2 === -75){
 		nOpc = 2;
 	}else if(nCont2 === -106){
