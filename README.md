@@ -39,8 +39,6 @@ Este é um emocionante aplicativo de mensagens online que desenvolvi com muito e
 								<hr>
 								<time>27/03/2024</time>: A lista de amigos agora está funcional! Registra se o usuário está online ou offline.
 								<hr>								
-								<time>26/03/2024</time>: Adicionada uma lista de amigos que informa se seus contatos estão online.
-								<hr>
 
 																		
 
