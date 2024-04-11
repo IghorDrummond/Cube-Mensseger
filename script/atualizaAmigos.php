@@ -85,41 +85,41 @@
 ?>
 
 							<h6 class="text-white">Amigos<span class="badge badge-info">
-									<? echo ($Amigos) ?>
+									<?php echo ($Amigos) ?>
 								</span></h6>
 							<div class="Amigos-lista d-flex flex-column justify-content-center align-items-center">
 								<pre class="w-100 h-100"><!-- Inicio da Lista de Amigos -->
 									<ul class="list-group"><!-- Inicio da Lista -->
-						<?
+						<?php
 							foreach ($Dados as $Valor) {
 						?>
 											<li class="list-group-item bg-info text-center w-100" id="<? echo ($Valor[2]) ?>">
 												<img src="<? echo ($Valor[4]) ?>" class="border border-dark" align="left">
 												<h6 class="d-inline"><? echo ($Valor[0]) ?></h6>
-											<?
+											<?php
 												//Valida se o usuário está online
 												if ($Valor[3]) {
 											?>
 														<span class="badge badge-success ">Online</span>
-											<?
+											<?php
 												} else {
 											?>
 														<span class="badge badge-dark ">Offline</span>
-											<?
+											<?php
 												}
 											?>
 											</li>
-						<?
+						<?php
 							}
 						?>	
 									</ul><!-- Fim da Lista  -->
 								</pre><!-- Fim da Lista de Amigos -->
 								<div class="bg-white mt-auto w-100"><!-- Inicio da Metrica de Usuários -->
 									<h6 class="d-inline">Online<span class="badge badge-success">
-											<? echo ($On) ?>
+											<?php echo ($On) ?>
 										</span></h6>
 									<h6 class="d-inline">Offline<span class="badge badge-dark">
-											<? echo ($Off) ?>
+											<?php echo ($Off) ?>
 										</span></h6>
 								</div><!-- Fim da Metrica de Usuários -->
 							</div>

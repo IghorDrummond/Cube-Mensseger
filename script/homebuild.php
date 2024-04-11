@@ -10,7 +10,6 @@
 	$On = 0;
 	$nCont = 0;	
 	$opc = 99;
-	$nPed = 0;
 	//Array
 	$Usuario = [
 		$_SESSION['Nome'],
@@ -60,7 +59,7 @@
 		return $Ret;
 	}
 	?>
-	<?
+	<?php
 
 	//================Valida os Amigos que o usuário tem adicionado ====================
 	//Abre o arquivo para leitura
@@ -108,23 +107,7 @@
 
 	<!-- Lista de Amigos -->
 	<div class="lista_amigos justify-content-center align-items-center text-dark">
-		<div class="container bg-white">
-			<div class="row">
-				<div class="col-6 text-left">
-					<p>
-						Pedidos de Amizades<span class="ml-1 badge badge-pill badge-success"><?php echo($nPed); ?></span>
-					</p>
-				</div>
-				<div class="col-6 text-right">
-					<button onclick="lista_amigos()" type="button" class="btn btn-outline-danger mt-1">X</button>
-				</div>
-			</div>
-
-			<pre class="pre_amigos my-2">
-				<div id="pedidos_amizades" class="form-group p-1" action="script/adicionarAmigo.php" method="POST">
-				</div>
-			</pre>
-		</div>
+		<div id="pedidos_amizades" class="container bg-white"></div>
 	</div>
 
 	<!--Inicio da Navegação -->
@@ -153,7 +136,7 @@
 					</a>
 				</li>
 				<li class="nav-item" title="Lista de Pedidos de Amizades">
-					<a onclick="lista_amigos()" class="nav-link">
+					<a id="pedidos_amigos" onclick="lista_amigos()" class="nav-link">
 						<i class="fa-regular fa-address-book fa-xl">
 							<span id="lista_amigos" class="badge badge-pill badge-success">0</span>
 						</i>
@@ -163,9 +146,7 @@
 					<a href="script/validaLogin.php" class="nav-link">
 						<img src="<?php echo ($Usuario[2]); ?>" class="imagem border" width="30" height="30"
 							title="Conectado: <?php echo ($Usuario[0]); ?>">
-						<i class="fa-solid fa-right-from-bracket fa-xl" title="Sair">
-							
-						</i>
+						<i class="fa-solid fa-right-from-bracket fa-xl" title="Sair"></i>
 						<?php echo ($Usuario[0]); ?>
 					</a>
 				</li>
@@ -207,9 +188,9 @@
 						</a>
 					</li>
 					<li class="nav-item p-2" title="Lista de Pedidos de Amizades">
-						<a onclick="lista_amigos()" class="nav-link ped">
+						<a id="pedidos_amigos" onclick="lista_amigos()" class="nav-link ped">
 							<i class="fa-regular fa-address-book fa-xl">
-								<span id="lista_amigos" class="badge badge-pill badge-success"><?php echo($nPed); ?></span>
+								<span id="lista_amigos" class="badge badge-pill badge-success">0</span>
 							</i> Pedidos de Amizades
 						</a>
 					</li>						
@@ -320,41 +301,41 @@
 					<div class="cubo-face bottom">
 						<div id="Amigos" class="text-center">
 							<h6 class="text-white">Amigos<span class="badge badge-info">
-									<? echo ($Amigos) ?>
+									<?php echo ($Amigos) ?>
 								</span></h6>
 							<div class="Amigos-lista d-flex flex-column justify-content-center align-items-center">
 								<pre class="w-100 h-100"><!-- Inicio da Lista de Amigos -->
 									<ul class="list-group"><!-- Inicio da Lista -->
-						<?
+						<?php
 							foreach ($Dados as $Valor) {
 						?>
-											<li class="list-group-item bg-info text-center w-100" id="<? echo ($Valor[2]) ?>">
-												<img src="<? echo ($Valor[4]) ?>" class="border border-dark" align="left">
-												<h6 class="d-inline"><? echo ($Valor[0]) ?></h6>
-											<?
+											<li class="list-group-item bg-info text-center w-100" id="<?php echo ($Valor[2]) ?>">
+												<img src="<?php echo ($Valor[4]) ?>" class="border border-dark" align="left">
+												<h6 class="d-inline"><?php echo ($Valor[0]) ?></h6>
+											<?php
 												//Valida se o usuário está online
 												if ($Valor[3]) {
 											?>
 														<span class="badge badge-success ">Online</span>
-											<?
+											<?php
 												} else {
 											?>
 														<span class="badge badge-dark ">Offline</span>
-											<?
+											<?php
 												}
 											?>
 											</li>
-						<?
+						<?php
 							}
 						?>	
 									</ul><!-- Fim da Lista  -->
 								</pre><!-- Fim da Lista de Amigos -->
 								<div class="bg-white mt-auto w-100"><!-- Inicio da Metrica de Usuários -->
 									<h6 class="d-inline">Online<span class="badge badge-success">
-											<? echo ($On) ?>
+											<?php echo ($On) ?>
 										</span></h6>
 									<h6 class="d-inline">Offline<span class="badge badge-dark">
-											<? echo ($Off) ?>
+											<?php echo ($Off) ?>
 										</span></h6>
 								</div><!-- Fim da Metrica de Usuários -->
 							</div>

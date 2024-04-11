@@ -122,7 +122,7 @@
 		switch($opc){
 			case 1:
 	?>
-				<script type="text/javascript" src="js/telaCadastrar.js"></script>
+				<script type="text/javascript" src="js/telaCadastrar.js"></script>	
 				<script type="text/javascript" src="js/erradoCuboCadastrar.js"></script>	
 	<?php	
 				break;

@@ -2,7 +2,7 @@
 var W = setInterval(()=>{
 	$("#pedidos_amizades").load("script/atualizaLista.php");
 	$("#Amigos").load("script/atualizaAmigos.php");
-	$('.ped').load("script/atualizaLista.php");
+	$('#pedidos_amigos').load("script/atualizaNav.php");
 }, 1500);
 
 //Adicionar a Lista de Amigos

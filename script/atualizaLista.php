@@ -2,10 +2,8 @@
 	session_start();
 
 	$nPed = 0;
-	define('BD_AMIGO', '../BDs/bd_listamigos.csv');
 	define('BD_USUARIO', '../BDs/bd_usuarios.csv');
 	define('BD_ADD', '../BDs/bd_addamigo.csv');
-
 
 	//================Valida Pedidos de Amizades caso existir para o usuário logado ====================
 	$ChaveBanco = fopen(BD_ADD, 'r');
@@ -17,7 +15,7 @@
 			continue;
 		}
 
-			if($Linha[0] === $_SESSION['Email']){
+		if($Linha[0] === $_SESSION['Email']){
 			$Pedidos[$nPed] = retornaUsuario($Linha[1]);
 			$nPed++;
 		}
@@ -49,6 +47,19 @@
 	}	
 ?>
 
+			<div class="row">
+				<div class="col-6 text-left">
+					<p>
+						Pedidos de Amizades<span class="ml-1 badge badge-pill badge-success"><?php echo($nPed); ?></span>
+					</p>
+				</div>
+				<div class="col-6 text-right">
+					<button onclick="lista_amigos()" type="button" class="btn btn-outline-danger mt-1">X</button>
+				</div>
+			</div>
+
+			<pre class="pre_amigos my-2">
+				<div class="form-group p-1">
 					<?php
 						for($nCont = 0; $nCont <= $nPed -1; $nCont++){
 					?>
@@ -67,4 +78,6 @@
 					</fieldset>	
 					<?php
 						}
-					?>
+					?>					
+				</div>
+			</pre>					
