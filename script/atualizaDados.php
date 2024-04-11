@@ -272,21 +272,32 @@
 						<?php
 							foreach ($Dados as $Valor) {
 						?>
-											<li class="list-group-item bg-info text-center w-100" id="<?php echo ($Valor[2]) ?>">
+											<li class="list-group-item bg-info text-center w-100 d-flex justify-content-between align-items-center" id="<?php echo ($Valor[2]) ?>">
 												<img src="<?php echo ($Valor[4]) ?>" class="border border-dark" align="left">
-												<h6 class="d-inline"><?php echo ($Valor[0]) ?></h6>
+												<div>
+													<h6 class="d-inline"><?php echo ($Valor[0]) ?></h6>
 											<?php
 												//Valida se o usuário está online
 												if ($Valor[3]) {
 											?>
 														<span class="badge badge-success ">Online</span>
+														<time>⌛Agora</time>
 											<?php
 												} else {
 											?>
 														<span class="badge badge-dark ">Offline</span>
+														<time>⏳25/10/2024</time>
 											<?php
 												}
-											?>
+											?>	
+												</div>
+
+												<ul class="opcao_lista">
+													<li class="bg-primary p-1 border rounded" onclick="tarefa('Conversar <?php echo($Valor[1]); ?>')">Conversar</li>
+													<li class="border p-1 bg-secondary rounded" onclick="tarefa('Silenciar<?php echo($Valor[1]); ?>')">Silenciar</li>
+													<li class="border p-1 bg-warning rounded" onclick="tarefa('Bloquear <?php echo($Valor[1]); ?>')">Bloquear</li>
+													<li class="border p-1 bg-danger rounded" onclick="tarefa('Deletar <?php echo($Valor[1]); ?>')">Deletar</li>
+												</ul>
 											</li>
 						<?php
 							}

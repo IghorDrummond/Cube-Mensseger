@@ -84,10 +84,11 @@
 					<form class=" text-center formulario w-50 m-auto pt-1 fonte" action="script/cadastra.php" method="POST">
 						<fieldset >
 							<legend for="Email">Email:</legend>
-							<input class="form-control text-dark" name="Email" placeholder="seuemail@email.com" required>				
+							<label for="Email">Insira o Email: </label>
+							<input class="form-control text-dark" name="Email" placeholder="seuemail@email.com" required>			
 						</fieldset>
 						<fieldset >
-							<legend>Apelido</legend>
+							<legend>Apelido:</legend>
 							<label for="Nome">Insira o Nome: </label>
 							<input class="form-control text-dark" name="Nome" type="text" required placeholder="Nome">
 							<label for="Sobrenome">Insira o Sobrenome: </label>

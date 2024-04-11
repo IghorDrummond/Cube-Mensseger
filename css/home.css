@@ -189,6 +189,24 @@ header ul>li{
 	margin: auto;
 	border: 2px solid white;
 }
+.Amigos-lista time{
+	font-size: 0.7em;
+}
+.opcao_lista{
+	 list-style-type: thumbs;
+}
+.opcao_lista li{
+	font-size: 0.7rem;
+	color: white;
+	font-weight: bold;
+	cursor: pointer;
+	float: left;
+}
+@counter-style thumbs{
+	system: cyclic;
+	symbols: 💬 🔇 🚫 ❌ ;
+	suffix: "";
+}
 
 /* Adicionar Amigos */
 #AddAmigos div{
@@ -253,7 +271,8 @@ header ul>li{
 .alert{
 	position: absolute;
 	width: 100%;
-	animation: aparecer 1s;
+	-webkit-animation: aparecer 1s;
+	        animation: aparecer 1s;
 	z-index: 8;
 }
 
@@ -482,7 +501,6 @@ header ul>li{
 		color: yellow;
 	}
 }
-
 
 /* Hovers */
 header ul>li:hover{

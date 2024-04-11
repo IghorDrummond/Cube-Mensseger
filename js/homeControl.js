@@ -16,4 +16,3 @@ function adicionar(Email){
 	$("#avisos").load("script/adicionarAmigo.php?Email=" + Email);
 }
 
-
