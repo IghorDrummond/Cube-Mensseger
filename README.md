@@ -11,6 +11,8 @@ Este é um emocionante aplicativo de mensagens online que desenvolvi com muito e
 	<a href="https://cubemensseger.000webhostapp.com/">Acessar o Site!</a>
 </blockquote>
 <h6> As Ultimas Atualizações:</h6>
+								<time>11/04/2024</time>: Corrigimos Bugs e Animações Incorretas na tela de Cadastro.
+								<hr>	
 								<time>10/04/2024</time>: Aprimoramos nossa plataforma para corrigir o problema que permitia o envio de múltiplos convites simultâneos para o mesmo usuário. Agora, essa questão foi resolvida, 										garantindo uma experiência mais fluida e sem duplicidade de convites.
 								<hr>									
 								<time>10/04/2024</time>: Atualizamos a barra de navegação para exibir os pedidos de amizade em tempo real, acompanhados pela contagem de solicitações recebidas. Assim, você pode acompanhar facilmente 								quem deseja se conectar com você.
