@@ -1,3 +1,5 @@
+								<time>11/04/2024</time>: Ultimo Acesso agora relata corretamente ultimo login do Usuário Offiline.
+								<br>
 								<time>11/04/2024</time>: Adicionamos os elementos de 'Conversar', 'Silenciar', 'Bloquear' e Deletar' o usuário desejado. Ainda estamos implementando as funcionalidades para todos, bem como para exibir o último acesso, caso o usuário esteja offline.
 								<br>								
 								<time>11/04/2024</time>: Corrigimos Bugs e Animações Incorretas na tela de Cadastro.

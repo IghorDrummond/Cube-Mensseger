@@ -12,6 +12,9 @@
 	define('BD_ADD', '../BDs/bd_addamigo.csv');
 
 	//==========================Escopo========================================
+	//Define a Data do Sistema
+	date_default_timezone_set('America/Sao_Paulo');
+
 	//Valida qual operação a ser tratada
 	switch ($opc) {
 		case '1':
@@ -77,7 +80,8 @@
 				$Dados[$nCont][3] = false;
 				$Aux = verificaUsuario($Linha[1]);
 				$Dados[$nCont][4] = $Aux[1]; //Recebe a Imagem do Usuário
-		
+				$Dados[$nCont][5] = calculaData($Aux[2]);//Recebe o Ultimo Acesso do Usuário
+				
 				//Define se está online o Usuário Amigo
 				switch ($Aux[0]) {
 					case true:
@@ -190,7 +194,8 @@
 	--------------------------------------------------------------------------------------------------------------	
 	*/
 	function verificaUsuario($Email){
-		$Ret = [false, ''];
+		$Ret = [false, '', ''];
+		//Online ou Offline, Foto do Usuário, Ultimo Acesso do Usuário
 
 		$ChaveBanco3 = fopen(BD_USUARIO, 'r');
 
@@ -206,13 +211,13 @@
 				if ($Linha2[4] === 'On') {
 					$Ret[0] = true;
 				}
-				$Ret[1] = str_replace(PHP_EOL, '', $Linha2[5]);
+				$Ret[1] = $Linha2[5];
+				$Ret[2] = str_replace(PHP_EOL, '', $Linha2[6]);
 				break;
 			}
 		}
 
 		fclose($ChaveBanco3);
-
 		return $Ret;
 	}
 	/*
@@ -247,7 +252,44 @@
 	}	
 	/*
 	--------------------------------------------------------------------------------------------------------------	
-	Função: retornaItem()
+	Função: calculaData($Recebe a Data para ser Calculada)
+	--------------------------------------------------------------------------------------------------------------
+	Descrição: Retornara o Ultimo Acesso calculado do Usuário Offline
+	--------------------------------------------------------------------------------------------------------------	
+	Data: 11/04/2024
+	--------------------------------------------------------------------------------------------------------------	
+	Programador(A): Ighor Drummond
+	--------------------------------------------------------------------------------------------------------------	
+	*/	
+	function calculaData($Data){
+		//Declaração de Variaveis
+		//Numericos
+		$dataInicial = null;
+		$dataFinal = null;
+		$diferenca = null;
+
+		// Converte as datas em objetos DateTime
+		$dataInicial = new DateTime($Data);
+		$dataFinal = new DateTime(Date('Y-m-d H:i:s'));
+		//calcula a diferença de segundos entre as duas datas
+		$diferenca = $dataInicial->diff($dataFinal);
+
+		// Verifica se a diferença é em dias, horas ou minutos
+		if ($diferenca->days > 0) {
+			$Ret = $diferenca->days . " Dias Atrás";
+		} elseif ($diferenca->h > 0) {
+			$Ret = $diferenca->h . " Horas Atrás";
+		} elseif ($diferenca->i > 0) {
+			$Ret = $diferenca->i . " Minutos Atrás";
+		} else {
+			$Ret =  "Agora Pouco";
+		}
+
+		return $Ret;
+	}	
+	/*
+	--------------------------------------------------------------------------------------------------------------	
+	Função: retornaItem(Dados para Preencher os Elementos HTML, Operação Escolhida)
 	--------------------------------------------------------------------------------------------------------------
 	Descrição: Responsavel por retornar o Elemento HTML de determinada Opção
 	--------------------------------------------------------------------------------------------------------------	
@@ -286,19 +328,25 @@
 												} else {
 											?>
 														<span class="badge badge-dark ">Offline</span>
-														<time>⏳25/10/2024</time>
+														<time>⏳<?php echo($Valor[5]) ?></time>
 											<?php
 												}
 											?>	
 												</div>
-
 												<ul class="opcao_lista">
-													<li class="bg-primary p-1 border rounded" onclick="tarefa('Conversar <?php echo($Valor[1]); ?>')">Conversar</li>
+													<li class="bg-primary p-1 border rounded" onclick="tarefa('Conversar <?php echo($Valor[1]); ?>')">Conversar</li>	
+											<?php
+												//Valida se o usuário está online
+												if ($Valor[1] != 'admin@email.com') {
+											?>
 													<li class="border p-1 bg-secondary rounded" onclick="tarefa('Silenciar<?php echo($Valor[1]); ?>')">Silenciar</li>
 													<li class="border p-1 bg-warning rounded" onclick="tarefa('Bloquear <?php echo($Valor[1]); ?>')">Bloquear</li>
 													<li class="border p-1 bg-danger rounded" onclick="tarefa('Deletar <?php echo($Valor[1]); ?>')">Deletar</li>
+											<?php
+												}
+											?>	
 												</ul>
-											</li>
+											</li>												
 						<?php
 							}
 						?>	

@@ -11,6 +11,8 @@
 	//Constantes
 	define('BD_USUARIO', '../BDs/bd_usuarios.csv');
 
+	//Define a Data do Sistema
+	date_default_timezone_set('America/Sao_Paulo');
 	//Define um retorno de página padrão
 	$Ret = '../login.php';
 
@@ -87,7 +89,7 @@
 						$Linha2[4] = 'Off';
 						break;
 				}
-
+				$Linha2[6] = Date('Y-m-d H:i:s') . PHP_EOL;
 			}
 			//Salva os dados num array para escreve-los depois
 			$Nova_Linha[$nCont] = implode(';', $Linha2);
