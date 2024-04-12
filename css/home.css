@@ -52,7 +52,7 @@ header ul>li{
 	    -ms-flex-align: center;
 	        align-items: center;
 }
-#lista_amigos{
+.pedidos_amizades{
 	font-size: 10px !important;
 }
 
@@ -152,7 +152,7 @@ header ul>li{
 	background-color: white;
 	padding: 5px;
 	-webkit-box-sizing: border-box;
-	        box-sizing: border-box;	
+	        box-sizing: border-box;	             
 }
 #Novidades img{
 	width: 150px;
@@ -232,6 +232,11 @@ header ul>li{
 	list-style-type: none;
 }
 
+/* Configuração */
+#Configuracao{
+
+}
+
 /* Lista de Pedidos de Amizades */
 .lista_amigos{
 	position: absolute;
@@ -253,11 +258,10 @@ header ul>li{
 }
 
 /* Configuração Geral para as Abas */
-#Novidades, #Amigos, #AddAmigos{
-	-webkit-animation: aparecer 2s;
-	        animation: aparecer 2s;
+#Novidades, #Amigos, #AddAmigos, #Configuracao{
+	-webkit-animation: aparecer 3s;
+	        animation: aparecer 3s;
 	color: black;
-	display: none;
 }
 .Amigos-lista>pre>ul li>img, 
 #AddAmigos pre>ul li>img 

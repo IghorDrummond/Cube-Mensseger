@@ -9,7 +9,14 @@ var Navegacao = document.getElementsByTagName('header');
 var Telas = [
 		document.getElementById('Novidades'),
 		document.getElementById('Amigos'),
-		document.getElementById('AddAmigos')
+		document.getElementById('AddAmigos'),
+		document.getElementById('Configuracao')
+];
+var Classes = [
+	'd-block',
+	'text-center d-block',
+	'w-100 h-100 d-flex justify-content-center align-items-center flex-column',
+	'bg-white h-100 w-100 d-block'
 ];
 //String
 var Parametro = (window.location.search).substring(6, (window.location.search).length);
@@ -24,21 +31,19 @@ carregamento();//Ativa a tela de carregamento
 function carregamento(){
 	var nCont = 20;
 	var nCont2 = 0;
+	var nCont3 = 0;
 
-	for(nCont = 0; nCont <= Telas.length -1; nCont++){
-		Telas[nCont].style.animation = 'aparecer 2s';
-		Telas[nCont].style.webkitAnimation = 'aparecer 2s';
-	}
-
-
-	Telas[0].style.display = 'block';
-	Telas[1].style.display = 'block';
-	Telas[2].style.display = 'block';
+	Telas[nCont3].className = Classes[nCont3];
+	nCont3++;
 
 	var Z = setInterval(() =>{
 		nCont += 20;
 		nCont2 += 90;
-
+		
+		if(nCont3 <= 3){
+			Telas[nCont3].className = Classes[nCont3];
+			nCont3++;
+		}		
 		//Fixa na posição que ja foi rotacionada
 		EstruturaCubo[0].style.transform = "rotateY(" + (nCont2).toString() +"deg)";
 		EstruturaCubo[0].style.webkitTransform = "rotateY(" + (nCont2).toString() +"deg)";
@@ -54,8 +59,7 @@ function carregamento(){
 			//Ajusta a porcetagem da barra de progresso
 			barra[0].style.width = nCont.toString() + '%';
 			porcentagem.textContent = nCont.toString() + '%';
-
-			//Anima a rotação
+			//Anima a rotação		
 			EstruturaCubo[0].animate([
 	            // keyframes
 	            { transform: "rotateY(" + (nCont2 - 90).toString() +"deg)" },
@@ -64,8 +68,8 @@ function carregamento(){
 	            // timing options
 	            duration: 1000,
 	            iterations: 1
-	        });	
-		}			
+	        });	                   
+		}					
 	}, 1200);
 }
 

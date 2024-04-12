@@ -1,3 +1,5 @@
+								<time>11/04/2024</time>: Daqui em diante, ao receber um pedido de amizade, você não apenas será alertado visualmente com um ícone na barra de navegação, mas também receberá uma notificação sonora alegre e amigável, adicionando uma dimensão extra de interatividade à sua experiência.
+								<br>
 								<time>11/04/2024</time>: Ultimo Acesso agora relata corretamente ultimo login do Usuário Offiline.
 								<br>
 								<time>11/04/2024</time>: Adicionamos os elementos de 'Conversar', 'Silenciar', 'Bloquear' e Deletar' o usuário desejado. Ainda estamos implementando as funcionalidades para todos, bem como para exibir o último acesso, caso o usuário esteja offline.

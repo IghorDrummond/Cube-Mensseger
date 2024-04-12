@@ -11,6 +11,7 @@
 	$nCont = 0;
 	$opc = 99;
 	$nLinha = 0;
+	$nPed = 0;
 	//Array
 	$Usuario = [
 		$_SESSION['Nome'],
@@ -73,13 +74,29 @@
 		$diferenca = $dataInicial->diff($dataFinal);
 
 		// Verifica se a diferença é em dias, horas ou minutos
-		if ($diferenca->days > 0) {
+		//Declaração de Variaveis
+		//Numericos
+		$dataInicial = null;
+		$dataFinal = null;
+		$diferenca = null;
+
+		// Converte as datas em objetos DateTime
+		$dataInicial = new DateTime($Data);
+		$dataFinal = new DateTime(Date('Y-m-d H:i:s'));
+		//calcula a diferença de segundos entre as duas datas
+		$diferenca = $dataInicial->diff($dataFinal);
+
+		// Verifica se a diferença é em dias, horas ou minutos
+		if($diferenca->y > 0){
+			$Ret = $diferenca->y . ' Ano  Atrás' ;		
+		} elseif ($diferenca->days > 0) {
 			$Ret = $diferenca->days . " Dias Atrás";
 		} elseif ($diferenca->h > 0) {
 			$Ret = $diferenca->h . " Horas Atrás";
 		} elseif ($diferenca->i > 0) {
 			$Ret = $diferenca->i . " Minutos Atrás";
-		} else {
+		}
+		else {
 			$Ret =  "Agora Pouco";
 		}
 
@@ -125,6 +142,24 @@
 	}
 	//Fecha Arquivo
 	fclose($ChaveBanco);
+
+	//================Valida a quantidade de Pedidos Enviados ====================
+	$ChaveBanco = fopen(BD_ADD, 'r');
+
+	while (!feof($ChaveBanco)) {
+		$Linha = explode(';', fgets($ChaveBanco));
+
+		if (isset($Linha[1]) === false){
+			continue;
+		}
+
+		if($Linha[0] === $_SESSION['Email']){
+			$nPed++;
+		}
+	}
+
+	//Fecha Arquivo
+	fclose($ChaveBanco);
 ?>
 	<!-- Campo Responsaveis por avisos -->
 	<div id="avisos"></div>
@@ -162,7 +197,7 @@
 				<li class="nav-item" title="Lista de Pedidos de Amizades">
 					<a id="pedidos_amigos" onclick="lista_amigos()" class="nav-link">
 						<i class="fa-regular fa-address-book fa-xl">
-							<span id="lista_amigos" class="badge badge-pill badge-success">0</span>
+							<span class="badge badge-pill badge-success pedidos_amizades"><?php echo($nPed); ?></span>
 						</i>
 					</a>
 				</li>
@@ -214,7 +249,7 @@
 					<li class="nav-item p-2" title="Lista de Pedidos de Amizades">
 						<a id="pedidos_amigos" onclick="lista_amigos()" class="nav-link ped">
 							<i class="fa-regular fa-address-book fa-xl">
-								<span id="lista_amigos" class="badge badge-pill badge-success">0</span>
+								<span class="badge badge-pill badge-success pedidos_amizades"><?php echo($nPed); ?></span>
 							</i> Pedidos de Amizades
 						</a>
 					</li>
@@ -249,7 +284,7 @@
 			<div class="cena">
 				<div class="cubo">
 					<div class="cubo-face front d-flex align-items-center justify-content-center">
-						<div id="Novidades">
+						<div id="Novidades" class="d-none">
 							<img src="<?php echo ($Usuario[2]); ?>" class="img-fluid p-1">
 							<h5 class="mt-1">Olá,
 								<?php echo ($Usuario[0]); ?>!
@@ -263,15 +298,16 @@
 							</a>
 						</div>
 					</div>
-					<div class="cubo-face back">
+					<div class="cubo-face back p-2">
 						<!-- Configuração -->
-
+						<div id="Configuracao" class="bg-white h-100 w-100 d-none">
+							
+						</div>
 					</div>
 					<div class="cubo-face right">right</div>
 					<div class="cubo-face left">left</div>
 					<div class="cubo-face top">
-						<div id="AddAmigos"
-							class="w-100 h-100 d-flex justify-content-center align-items-center flex-column">
+						<div id="AddAmigos" class="w-100 h-100 d-none justify-content-center align-items-center flex-column">
 							<h6 class="text-white">Adicione Amigos!</h6>
 							<div class="border border-white w-75 h-75 p-1 d-flex flex-column">
 								<pre id="lista_adds" class="w-100 h-100 bg-transparent">
@@ -289,7 +325,7 @@
 						</div>
 					</div>
 					<div class="cubo-face bottom">
-						<div id="Amigos" class="text-center">
+						<div id="Amigos" class="text-center d-none">
 						<h6 class="text-white">Amigos<span class="badge badge-info">
 									<?php echo ($Amigos) ?>
 								</span></h6>

@@ -274,15 +274,18 @@
 		//calcula a diferença de segundos entre as duas datas
 		$diferenca = $dataInicial->diff($dataFinal);
 
-		// Verifica se a diferença é em dias, horas ou minutos
-		if ($diferenca->days > 0) {
+		// Verifica se a diferença é em Anos, Meses, Dias, Horas, Minutos ou Segundos.
+		if($diferenca->y > 0){
+			$Ret = $diferenca->y . ' Ano  Atrás' ;		
+		} elseif ($diferenca->days > 0) {
 			$Ret = $diferenca->days . " Dias Atrás";
 		} elseif ($diferenca->h > 0) {
 			$Ret = $diferenca->h . " Horas Atrás";
 		} elseif ($diferenca->i > 0) {
 			$Ret = $diferenca->i . " Minutos Atrás";
-		} else {
-			$Ret =  "Agora Pouco";
+		}
+		else {
+			$Ret = "Agora Pouco";
 		}
 
 		return $Ret;
@@ -408,7 +411,7 @@
 			$nPed = $Ret[0];			
 ?>
 						<i class="fa-regular fa-address-book fa-xl">
-							<span id="lista_amigos" class="badge badge-pill badge-success"><?php echo($nPed); ?></span>
+							<span class="badge badge-pill badge-success pedidos_amizades"><?php echo($nPed); ?></span>
 						</i>							
 <?php
 		}
