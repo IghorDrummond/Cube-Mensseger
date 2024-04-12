@@ -38,9 +38,7 @@ Este é um emocionante aplicativo de mensagens online que desenvolvi com muito e
 								<time>28/03/2024</time>: Se você estiver conectado em mais de um navegador e, em um deles, sua conta for desconectada, os demais também serão automaticamente desconectados por motivos de segurança.
 								<hr>
 								<time>28/03/2024</time>: Corrigido bug de login em vários navegadores simultaneamente.
-								<hr>															
-								<time>27/03/2024</time>: Adicionada navegação para dispositivos móveis (celulares, tablets, netbooks e notebooks).
-								<hr>								
+								<hr>																					
 							
 
 																		
