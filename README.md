@@ -11,6 +11,8 @@ Este é um emocionante aplicativo de mensagens online que desenvolvi com muito e
 	<a href="https://cubemensseger.000webhostapp.com/" target="_blank">Acessar o Site!</a>
 </blockquote>
 <h6> As Ultimas Atualizações:</h6>
+								<time>12/04/2024</time>: Os problemas de rolagem nas listas de amigos e de pedidos de amizade foram corrigidos.
+								<hr>	
 								<time>11/04/2024</time>: Daqui em diante, ao receber um pedido de amizade, você não apenas será alertado visualmente com um ícone na barra de navegação, mas também receberá uma notificação sonora 									alegre e amigável, adicionando uma dimensão extra de interatividade à sua experiência.
 								<hr>	
 								<time>11/04/2024</time>: Ultimo Acesso agora relata corretamente ultimo login do Usuário Offiline.
