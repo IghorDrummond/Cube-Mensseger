@@ -71,5 +71,3 @@ function lista_amigos(){
 
 }
 
-
-

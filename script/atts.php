@@ -1,3 +1,5 @@
+								<time>12/04/2024</time>: Os problemas de rolagem nas listas de amigos e de pedidos de amizade foram corrigidos.
+								<br>
 								<time>11/04/2024</time>: Daqui em diante, ao receber um pedido de amizade, você não apenas será alertado visualmente com um ícone na barra de navegação, mas também receberá uma notificação sonora alegre e amigável, adicionando uma dimensão extra de interatividade à sua experiência.
 								<br>
 								<time>11/04/2024</time>: Ultimo Acesso agora relata corretamente ultimo login do Usuário Offiline.

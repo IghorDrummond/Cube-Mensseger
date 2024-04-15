@@ -308,11 +308,9 @@
 			$Amigos = $Ret[2];
 			$Dados = $Ret[3];
 ?>
-							<h6 class="text-white">Amigos<span class="badge badge-info">
-									<?php echo ($Amigos) ?>
-								</span></h6>
+							<h6 class="text-white">Amigos<span class="badge badge-info"><?php echo ($Amigos) ?></span></h6>
 							<div class="Amigos-lista d-flex flex-column justify-content-center align-items-center">
-								<pre class="w-100 h-100"><!-- Inicio da Lista de Amigos -->
+								<pre onscroll="posicTag(3)" class="w-100 h-100"><!-- Inicio da Lista de Amigos -->
 									<ul class="list-group"><!-- Inicio da Lista -->
 						<?php
 							foreach ($Dados as $Valor) {
@@ -382,7 +380,7 @@
 				</div>
 			</div>
 
-			<pre class="pre_amigos my-2">
+			<pre onscroll="posicTag(0)" class="pre_amigos my-2">
 				<div class="form-group p-1">
 					<?php
 						for($nCont = 0; $nCont <= $nPed -1; $nCont++){

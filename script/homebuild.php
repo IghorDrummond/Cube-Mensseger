@@ -268,7 +268,7 @@
 	<!--Fim da Navegação -->
 
 	<div id="Carregamento" class="d-none justify-content-center align-items-center m-auto flex-column">
-		<div class="d-flex ">
+		<div class="d-flex">
 			<h6 id="Loading">5%</h6>
 			<div class="spinner-border spinner-border-sm mx-1"></div>
 		</div>
@@ -289,7 +289,7 @@
 							<h5 class="mt-1">Olá,
 								<?php echo ($Usuario[0]); ?>!
 							</h5>
-							<pre><span class="text-warning">Notas de Atualização!</span>
+							<pre onscroll="posicTag(1)" ><span class="text-warning">Notas de Atualização!</span>
 									<?php require_once ('script/atts.php'); ?>		
 								</pre>
 							<a id="powered" onmouseover="animaCubo(1)" onmouseout="animaCubo(2)"
@@ -310,7 +310,7 @@
 						<div id="AddAmigos" class="w-100 h-100 d-none justify-content-center align-items-center flex-column">
 							<h6 class="text-white">Adicione Amigos!</h6>
 							<div class="border border-white w-75 h-75 p-1 d-flex flex-column">
-								<pre id="lista_adds" class="w-100 h-100 bg-transparent">
+								<pre onscroll="posicTag(2)" id="lista_adds" class="w-100 h-100 bg-transparent">
 										<ul class="list-group">
 										</ul>
 									</pre>
@@ -326,11 +326,9 @@
 					</div>
 					<div class="cubo-face bottom">
 						<div id="Amigos" class="text-center d-none">
-						<h6 class="text-white">Amigos<span class="badge badge-info">
-									<?php echo ($Amigos) ?>
-								</span></h6>
+						<h6 class="text-white">Amigos<span class="badge badge-info"><?php echo ($Amigos) ?></span></h6>
 							<div class="Amigos-lista d-flex flex-column justify-content-center align-items-center">
-								<pre class="w-100 h-100"><!-- Inicio da Lista de Amigos -->
+								<pre onscroll="posicTag(3)" class="w-100 h-100"><!-- Inicio da Lista de Amigos -->
 									<ul class="list-group"><!-- Inicio da Lista -->
 						<?php
 							foreach ($Dados as $Valor) {
