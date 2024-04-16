@@ -1,12 +1,14 @@
 var audio = new Audio('audio/Amigos.mp3');
 var Pedidos = document.getElementsByClassName('pedidos_amizades');
+var Itens = document.getElementsByClassName('Amigos-lista')
 var nAnt = parseInt(Pedidos[0].innerText);
-var Posic  = [0,0,0,0];
+var Posic  = [0,0,0,0,0];
 var preTag = document.getElementsByTagName('pre');
 var nCont = 0;
 /*
 	Lista de Pedidos
 	Notas de Atts
+	Conversa
 	Lista de Adds 
 	Lista de Amigos
 */
@@ -15,15 +17,7 @@ audio.volume = 0.5;
 var W = setInterval(() => {
     $("#Amigos").load("script/atualizaDados.php?opc=1", function() {
         // Restaura a posição do scroll y após a atualização
-        preTag[3].scrollTop = Posic[3];
-
-	    $(document).on('mouseenter', '#Amigos', function() {
-	        // Código para animação hover no evento de mouseenter
-	    });
-
-	    $(document).on('mouseleave', '#Amigos', function() {
-	        // Código para animação hover no evento de mouseleave
-	    });
+        preTag[4].scrollTop = Posic[4];
     });
 
     $('#pedidos_amizades').load('script/atualizaDados.php?opc=2', function() {

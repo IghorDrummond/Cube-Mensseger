@@ -71,3 +71,47 @@ function lista_amigos(){
 
 }
 
+function tarefa(val){
+    console.log
+    var opc  = val.indexOf(' ') >= 0 ? val.substring(0, val.indexOf(' ')) : val;
+    var email = val.substring(val.indexOf(' ') +1, val.length);
+
+    if(opc === 'Conversar'){
+        var J = setTimeout(()=>{
+            Navegacao[0].className = "d-none w-100 bg-light my-1";
+            EstruturaCubo[0].style.transform = "rotateY(0deg) rotateX(90deg)";
+            EstruturaCubo[0].style.webkitTransform = "rotateY(0deg) rotateX(90deg)";    
+            clearTimeout(J);        
+        }, 1000);
+
+        EstruturaCubo[0].animate([
+            // keyframes
+            { transform: "rotateY( "+ nAntPosic.toString() + "deg) rotateX(0deg)" },
+            { transform: "rotateY(0deg) rotateX(90deg)" }
+        ], {
+            // timing options
+            duration: 1000,
+            iterations: 1
+        });      
+        Navegacao[0].style.animation = "sumir 1s";   
+    }else if(opc === 'Sair'){
+
+        Navegacao[0].style.animation = "aparecer 1s";   
+        Navegacao[0].className = "d-block w-100 bg-light my-1";        
+        EstruturaCubo[0].animate([
+            // keyframes
+            { transform: "rotateY(0deg) rotateX(90deg)" },
+            { transform: "rotateY( "+ nAntPosic.toString() + "deg) rotateX(0deg)" },            
+        ], {
+            // timing options
+            duration: 1000,
+            iterations: 1
+        });    
+
+        var J = setTimeout(()=>{
+            EstruturaCubo[0].style.transform = "rotateY( "+ nAntPosic.toString() + "deg) rotateX(0deg)";
+            EstruturaCubo[0].style.webkitTransform = "rotateY( "+ nAntPosic.toString() + "deg) rotateX(0deg)";    
+            clearTimeout(J);        
+        }, 1000);                
+    }
+}

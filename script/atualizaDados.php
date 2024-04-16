@@ -310,7 +310,7 @@
 ?>
 							<h6 class="text-white">Amigos<span class="badge badge-info"><?php echo ($Amigos) ?></span></h6>
 							<div class="Amigos-lista d-flex flex-column justify-content-center align-items-center">
-								<pre onscroll="posicTag(3)" class="w-100 h-100"><!-- Inicio da Lista de Amigos -->
+								<pre onscroll="posicTag(4)" class="w-100 h-100"><!-- Inicio da Lista de Amigos -->
 									<ul class="list-group"><!-- Inicio da Lista -->
 						<?php
 							foreach ($Dados as $Valor) {

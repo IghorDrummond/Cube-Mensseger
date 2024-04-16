@@ -234,7 +234,7 @@ header ul>li{
 
 /* Configuração */
 #Configuracao{
-
+	max-height: 70%;
 }
 
 /* Lista de Pedidos de Amizades */
@@ -257,6 +257,22 @@ header ul>li{
 	max-height: 90%;
 }
 
+/* Conversa */
+#Conversar{
+	background: transparent;
+}
+.amigo{
+	border-radius: 10% 30% 50% 70%;
+}
+.you{
+	border-radius: 30% 10% 50% 70%;
+}
+.you, .amigo{
+	font-weight: bold;
+	color: white;
+	font-size: 15px;
+	line-height: 10px;
+}
 /* Configuração Geral para as Abas */
 #Novidades, #Amigos, #AddAmigos, #Configuracao{
 	-webkit-animation: aparecer 3s;
