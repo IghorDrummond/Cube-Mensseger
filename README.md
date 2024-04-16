@@ -11,6 +11,8 @@ Este é um emocionante aplicativo de mensagens online que desenvolvi com muito e
 	<a href="https://cubemensseger.000webhostapp.com/" target="_blank">Acessar o Site!</a>
 </blockquote>
 <h6> As Ultimas Atualizações:</h6>
+								<time>15/04/2024</time>: Estamos implementando o Chat Online. Até o momento, oferecemos apenas a opção de entrar ou sair. Em breve, estará totalmente disponível, com todas as funcionalidades.
+								<hr>	
 								<time>12/04/2024</time>: Os problemas de rolagem nas listas de amigos e de pedidos de amizade foram corrigidos.
 								<hr>	
 								<time>11/04/2024</time>: Daqui em diante, ao receber um pedido de amizade, você não apenas será alertado visualmente com um ícone na barra de navegação, mas também receberá uma notificação sonora 									alegre e amigável, adicionando uma dimensão extra de interatividade à sua experiência.
@@ -37,8 +39,6 @@ Este é um emocionante aplicativo de mensagens online que desenvolvi com muito e
 								<hr>
 								<time>28/03/2024</time>: Agora, ao passar o mouse sobre a frase 'Desenvolvido por Ighor Drummond©', ocorrerá uma animação de cores em forma de arco-íris, tanto no cubo quanto nas letras.
 								<hr>							
-								<time>28/03/2024</time>: Se você estiver conectado em mais de um navegador e, em um deles, sua conta for desconectada, os demais também serão automaticamente desconectados por motivos de segurança.
-								<hr>
 																			
 							
 
