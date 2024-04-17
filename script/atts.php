@@ -1,3 +1,5 @@
+								<time>17/04/2024</time>: O chat Online agora funciona Perfeitamente! Experimente conversar com seus amigos ou mande uma mensagem caso encontrar algum bug, erro ortografico ou demais problemas para o chat do Administrador do Sistema.
+								<br>
 								<time>15/04/2024</time>: Estamos implementando o Chat Online. Até o momento, oferecemos apenas a opção de entrar ou sair. Em breve, estará totalmente disponível, com todas as funcionalidades.
 								<br>
 								<time>12/04/2024</time>: Os problemas de rolagem nas listas de amigos e de pedidos de amizade foram corrigidos.	

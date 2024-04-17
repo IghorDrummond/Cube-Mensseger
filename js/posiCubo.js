@@ -4,15 +4,25 @@ var EstruturaCubo = document.getElementsByClassName('cubo');
 var Navegacao = document.getElementsByTagName('header');
 var NavOpc = document.getElementsByTagName('li');
 var ListAmigos = document.getElementsByClassName('lista_amigos');
+var CampoMensagem = document.getElementsByClassName('Mensagem');
+var BotaoEnviar = document.getElementsByClassName('Enviar');
 //Numerico
 var antOpc = 0;
 var nAntPosic = 0;
+var Chat = 0;
 //Array
 var posic = [0, 90, 180, 270, 360];
 //String
 var Parametro = document.getElementsByName('Amigos');
+var idEnv = '';
 //Booleano
 var lAbriu = false;
+//Funções Anonimas
+var atualizaParametro = function(id){
+    return function(){
+        tarefa('Enviar ' + id);
+    }
+}
 
 //===================================Escopo=========================================
 if(Parametro.length > 0){
@@ -53,7 +63,6 @@ function rotaciona(opc) {
     antOpc = opc;
 }
 
-
 function lista_amigos(){
 
     if(lAbriu === false){
@@ -72,18 +81,22 @@ function lista_amigos(){
 }
 
 function tarefa(val){
-    console.log
     var opc  = val.indexOf(' ') >= 0 ? val.substring(0, val.indexOf(' ')) : val;
-    var email = val.substring(val.indexOf(' ') +1, val.length);
+    var id = val.substring(val.indexOf(' ') +1, val.length);
+    var posic = 0;
+    var Mensagem = '';
 
     if(opc === 'Conversar'){
+        idEnv = id;
+        AtivaChat(id);//Ativa o Chat
         var J = setTimeout(()=>{
+            //Retira o Display
             Navegacao[0].className = "d-none w-100 bg-light my-1";
             EstruturaCubo[0].style.transform = "rotateY(0deg) rotateX(90deg)";
-            EstruturaCubo[0].style.webkitTransform = "rotateY(0deg) rotateX(90deg)";    
+            EstruturaCubo[0].style.webkitTransform = "rotateY(0deg) rotateX(90deg)";   
             clearTimeout(J);        
         }, 1000);
-
+        //Anima a Rotação para a face da Conversa
         EstruturaCubo[0].animate([
             // keyframes
             { transform: "rotateY( "+ nAntPosic.toString() + "deg) rotateX(0deg)" },
@@ -93,9 +106,10 @@ function tarefa(val){
             duration: 1000,
             iterations: 1
         });      
+        //Delisga a Barra de Navegação
         Navegacao[0].style.animation = "sumir 1s";   
     }else if(opc === 'Sair'){
-
+        clearInterval(Chat);  
         Navegacao[0].style.animation = "aparecer 1s";   
         Navegacao[0].className = "d-block w-100 bg-light my-1";        
         EstruturaCubo[0].animate([
@@ -110,8 +124,23 @@ function tarefa(val){
 
         var J = setTimeout(()=>{
             EstruturaCubo[0].style.transform = "rotateY( "+ nAntPosic.toString() + "deg) rotateX(0deg)";
-            EstruturaCubo[0].style.webkitTransform = "rotateY( "+ nAntPosic.toString() + "deg) rotateX(0deg)";    
+            EstruturaCubo[0].style.webkitTransform = "rotateY( "+ nAntPosic.toString() + "deg) rotateX(0deg)";  
             clearTimeout(J);        
         }, 1000);                
+    }else if('Enviar'){
+        Mensagem = CampoMensagem[0].value;
+        //Forma os Espaços para ir completo para gravação de Mensagens
+        while(posic != -1){
+            Mensagem = Mensagem.replace(" ", "_");
+            posic = Mensagem.indexOf(" ");
+        }
+        CampoMensagem[0].value = "";//Reseta o Campo de Mensagem
+        $('#Conversar').load('script/mensagem.php?id=' + idEnv + '&Mensagem=' + Mensagem);
     }
+}
+
+function AtivaChat(id){
+    Chat = setInterval(() =>{
+        $('#Conversar').load('script/mensagem.php?id=' + idEnv);
+    }, 1000);
 }

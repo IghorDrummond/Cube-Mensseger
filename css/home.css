@@ -259,7 +259,12 @@ header ul>li{
 
 /* Conversa */
 #Conversar{
-	background: transparent;
+	margin: 5px 0;
+	background: white;
+	min-height: 41vh;
+	max-height: 41vh;
+	border: 2px solid white;
+	border-radius: 5px;
 }
 .amigo{
 	border-radius: 10% 30% 50% 70%;
@@ -271,8 +276,15 @@ header ul>li{
 	font-weight: bold;
 	color: white;
 	font-size: 15px;
-	line-height: 10px;
+	line-height: 25px;
 }
+blockquote p{
+	font-size: 0.8em;
+}
+blockquote time, blockquote cite{
+		font-size: 0.5em;
+}
+
 /* Configuração Geral para as Abas */
 #Novidades, #Amigos, #AddAmigos, #Configuracao{
 	-webkit-animation: aparecer 3s;
@@ -612,6 +624,14 @@ header ul>li:not(:hover){
 	.pre_amigos{
 			max-height: 75%;
 	}
+	#Conversar{
+		min-height: 38vh;
+		max-height: 38vh;
+	}	
+	.you, .amigo{
+		font-size: 10px;
+		line-height: none;
+	}	
 }
 @media(max-width: 240px){
 

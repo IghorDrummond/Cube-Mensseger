@@ -305,25 +305,19 @@
 						</div>
 					</div>
 					<div class="cubo-face right p-2 text-dark">
-						<!-- Conversa -->
-						<div class="d-flex justify-content-between align-items-center bg-white rounded p-2">
-							<img class="rounded-circle border img-fluid" src="BDs/BD_FOTOS/novo-usuario.png" width="25" height="25">
-							<h6>Seu Nome</h6>
-							<h6 onclick="tarefa('Sair')" class="text-info">Voltar</h6>
-						</div>
-						<div>
-							<pre id="Conversar" class="d-flex justify-content-center align-items-center flex-column text-dark text-left p-1">
-									<div class="amigo mr-auto sumir">
-										Oi
-									</div>
-									<div class="you ml-auto p-3 bg-info">
-										Olá
-									</div>	
-							</pre>							
-						</div>
-						<div>
-							
-						</div>
+
+						<pre id="Conversar">
+							<!-- Receberá  Atts Aqui das Mensagens -->
+						</pre>															
+						<div class="input-group">
+							<input class="form-control Mensagem" type="text" placeholder="Digite Algo...">
+							<div class="input-group-append">
+								<button class="Enviar btn btn-primary" onclick="tarefa('Enviar')">
+									<i class="fa-solid fa-paper-plane fa-xl" style="color: white;"></i>
+								</button>
+							</div>
+						</div>	
+
 					</div>
 					<div class="cubo-face left">left</div>
 					<div class="cubo-face top">

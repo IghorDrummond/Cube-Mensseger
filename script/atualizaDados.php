@@ -76,9 +76,9 @@
 				//Guarda Informação do Amigo Cadastrado
 				$Dados[$nCont][0] = $Linha[2];//Recebe o Nome do Amigo
 				$Dados[$nCont][1] = $Linha[1];//Recebe o Email do Amigo
-				$Dados[$nCont][2] = $Linha[4];//Recebe o Nome da Conversa do Amigo
-				$Dados[$nCont][3] = false;
-				$Aux = verificaUsuario($Linha[1]);
+				$Dados[$nCont][2] = $Linha[3];//Recebe o Nome da Conversa do Amigo
+				$Dados[$nCont][3] = false; //Valida se o usuário está Online ou Offiline
+				$Aux = verificaUsuario($Linha[1]);//Retorna Foto e Data do ultimo Login
 				$Dados[$nCont][4] = $Aux[1]; //Recebe a Imagem do Usuário
 				$Dados[$nCont][5] = calculaData($Aux[2]);//Recebe o Ultimo Acesso do Usuário
 				
@@ -335,7 +335,7 @@
 											?>	
 												</div>
 												<ul class="opcao_lista">
-													<li class="bg-primary p-1 border rounded" onclick="tarefa('Conversar <?php echo($Valor[1]); ?>')">Conversar</li>	
+													<li class="bg-primary p-1 border rounded" onclick="tarefa('Conversar <?php echo($Valor[2]); ?>')">Conversar</li>	
 											<?php
 												//Valida se o usuário está online
 												if ($Valor[1] != 'admin@cubemensseger.com') {
