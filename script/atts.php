@@ -1,4 +1,8 @@
-								<time>17/04/2024</time>: O chat Online agora funciona Perfeitamente! Experimente conversar com seus amigos ou mande uma mensagem caso encontrar algum bug, erro ortografico ou demais problemas para o chat do Administrador do Sistema.
+								<time>19/04/2024</time>: Incluído recurso de visualização de mensagens
+								<br>
+								<time>18/04/2024</time>: Agora você pode ver se seu amigo está online ou offline durante suas conversas, pois adicionamos essa informação recentemente.
+								<br>
+								<time>17/04/2024</time>: O Chat Online está agora funcionando perfeitamente! Sinta-se à vontade para conversar com seus amigos ou nos enviar uma mensagem caso encontre qualquer bug, erro ortográfico ou outros problemas. Estamos aqui para ajudar e garantir uma experiência excelente no Chat do Administrador do Sistema.
 								<br>
 								<time>15/04/2024</time>: Estamos implementando o Chat Online. Até o momento, oferecemos apenas a opção de entrar ou sair. Em breve, estará totalmente disponível, com todas as funcionalidades.
 								<br>

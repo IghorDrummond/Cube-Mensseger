@@ -10,6 +10,7 @@ var BotaoEnviar = document.getElementsByClassName('Enviar');
 var antOpc = 0;
 var nAntPosic = 0;
 var Chat = 0;
+var nAntMsg = 0;
 //Array
 var posic = [0, 90, 180, 270, 360];
 //String
@@ -83,8 +84,8 @@ function lista_amigos(){
 function tarefa(val){
     var opc  = val.indexOf(' ') >= 0 ? val.substring(0, val.indexOf(' ')) : val;
     var id = val.substring(val.indexOf(' ') +1, val.length);
-    var posic = 0;
     var Mensagem = '';
+    var Qtd = document.getElementsByTagName('blockquote');
 
     if(opc === 'Conversar'){
         idEnv = id;
@@ -128,14 +129,11 @@ function tarefa(val){
             clearTimeout(J);        
         }, 1000);                
     }else if('Enviar'){
-        Mensagem = CampoMensagem[0].value;
         //Forma os Espaços para ir completo para gravação de Mensagens
-        while(posic != -1){
-            Mensagem = Mensagem.replace(" ", "_");
-            posic = Mensagem.indexOf(" ");
-        }
+        Mensagem = trataMensagem("_", "'SaS'", CampoMensagem[0].value);  
+        Mensagem = trataMensagem(" ", "_", Mensagem);         
         CampoMensagem[0].value = "";//Reseta o Campo de Mensagem
-        $('#Conversar').load('script/mensagem.php?id=' + idEnv + '&Mensagem=' + Mensagem);
+        $('#Conversar').load('script/mensagem.php?id=' + idEnv + '&Mensagem=' + Mensagem + '&msgqtd=' + (Qtd.length).toString());
     }
 }
 
@@ -143,4 +141,15 @@ function AtivaChat(id){
     Chat = setInterval(() =>{
         $('#Conversar').load('script/mensagem.php?id=' + idEnv);
     }, 1000);
+}
+
+function trataMensagem(encontrar, substituir, Mensagem){
+    var posic = 0;
+
+    while(posic != -1){
+        Mensagem = Mensagem.replace(encontrar, substituir);
+        posic = Mensagem.indexOf(encontrar);
+    }    
+
+    return Mensagem;
 }

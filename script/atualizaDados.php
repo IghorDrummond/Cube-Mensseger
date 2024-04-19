@@ -81,6 +81,7 @@
 				$Aux = verificaUsuario($Linha[1]);//Retorna Foto e Data do ultimo Login
 				$Dados[$nCont][4] = $Aux[1]; //Recebe a Imagem do Usuário
 				$Dados[$nCont][5] = calculaData($Aux[2]);//Recebe o Ultimo Acesso do Usuário
+				$Dados[$nCont][6] = Mensagens($Linha[0], $Linha[1]);//Recebe o Ultimo Acesso do Usuário
 				
 				//Define se está online o Usuário Amigo
 				switch ($Aux[0]) {
@@ -292,6 +293,49 @@
 	}	
 	/*
 	--------------------------------------------------------------------------------------------------------------	
+	Função: Mensagem(Email a ser validado as Mensagens)
+	--------------------------------------------------------------------------------------------------------------
+	Descrição: Responsavel por validar quantidade de mensagens que foram enviadas
+	--------------------------------------------------------------------------------------------------------------	
+	Data: 19/04/2024
+	--------------------------------------------------------------------------------------------------------------	
+	Programador(A): Ighor Drummond
+	--------------------------------------------------------------------------------------------------------------	
+	*/	
+	function Mensagens($Email, $Amigo){
+		$ChaveBanco2 = fopen(BD_AMIGO, 'r');
+		$nQtdUser = [-1, -1];
+		$Ret = 0;
+
+		while(!feof($ChaveBanco2)){
+			$Linha = explode(';', fgets($ChaveBanco2));
+
+			if(isset($Linha[1]) === false){
+				continue;
+			}
+			str_replace(PHP_EOL, '', $Linha[5]);
+
+			if($Linha[0] === $_SESSION['Email'] and $Linha[1] === $Amigo){
+				$nQtdUser[0] = intval($Linha[5]);
+			}else if($Amigo  === $Linha[0] and $Linha[1] === $Email){
+				$nQtdUser[1] = intval($Linha[5]);
+ 			}
+
+			if($nQtdUser[0] != -1 and $nQtdUser[1] != -1){
+				break;
+			}
+		}
+
+		fclose($ChaveBanco2);
+
+		if($nQtdUser[0] < $nQtdUser[1]){
+			$Ret = $nQtdUser[1] - $nQtdUser[0];
+		}
+
+		return strval($Ret) . ' Mensagens';
+	}
+	/*
+	--------------------------------------------------------------------------------------------------------------	
 	Função: retornaItem(Dados para Preencher os Elementos HTML, Operação Escolhida)
 	--------------------------------------------------------------------------------------------------------------
 	Descrição: Responsavel por retornar o Elemento HTML de determinada Opção
@@ -324,12 +368,15 @@
 												if ($Valor[3]) {
 											?>
 														<span class="badge badge-success ">Online</span>
+														<span><?php echo($Valor[6]); ?></span>
 														<time>⌛Agora</time>
+														
 											<?php
 												} else {
 											?>
 														<span class="badge badge-dark ">Offline</span>
-														<time>⏳<?php echo($Valor[5]) ?></time>
+														<span><?php echo($Valor[6]); ?></span>
+														<time>⏳<?php echo($Valor[5]); ?></time>
 											<?php
 												}
 											?>	
@@ -410,7 +457,12 @@
 ?>
 						<i class="fa-regular fa-address-book fa-xl">
 							<span class="badge badge-pill badge-success pedidos_amizades"><?php echo($nPed); ?></span>
-						</i>							
+						</i>
+<?php
+		}
+		elseif ($opc === '4') {		
+?>		
+
 <?php
 		}
 	}

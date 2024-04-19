@@ -5,6 +5,7 @@
 	//String
 	$id = $_GET['id'];
 	$Mensagem = isset($_GET['Mensagem']) ? $_GET['Mensagem'] : '';
+	$Qtd = isset($_GET['msgqtd']) ? $_GET['msgqtd'] : '';
 	$ChaveBanco = '';
 	//Numerico
 	$nLinha = 0;
@@ -19,21 +20,35 @@
 	if(strlen($Mensagem) > 0){
 		$ChaveBanco = fopen(BD_MSG, 'a+');
 		$Mensagem = trataMensagem($Mensagem);
-		$Msg = $_SESSION['Nome'] . ';' . $_SESSION['Email'] . ';' . $Mensagem . ';' .  $_SESSION['FotoPerfil'] . ';' . Date('Y-m-d H:i:s') . PHP_EOL;
+		$Msg = $_SESSION['Nome'] . ';' . $_SESSION['Email'] . ';' . $Mensagem . ';' .  $_SESSION['FotoPerfil'] . ';' . Date('Y-m-d H:i:s') . ';' . 'N' . PHP_EOL;
 		fwrite($ChaveBanco, $Msg);
 		fclose($ChaveBanco);
 	}
+	//Adiciona Visto para as conversas caso não houver
+	atualizaVisto();
 
 	$Dados = retornaUsuario($id);
 	//Constrói o Cabeçalho do Chat
 ?>
 							<div class="d-flex justify-content-between align-items-center bg-white rounded p-2 border sticky-top">
 								<img class="rounded-circle border img-fluid" src="<?php echo($Dados[4]); ?>" width="25" height="25">
-								<h6><?php echo($Dados[0]); ?></h6>
+								<h6><?php echo($Dados[0]); ?>
+									<?php
+										if($Dados[5]){
+									?>
+										<span class="badge badge-pill badge-success" style="height: 15px;  width: 15px; border-radius: 90%;">&nbsp</span>
+									<?php
+										}else if($Dados[5] === false){
+									?>
+										<span class="badge badge-pill badge-secondary rounded-circle" style="height: 15px;  width: 15px; border-radius: 90%;">&nbsp</span>
+									<?php
+										}
+									?>
+								</h6>
 								<h6 onclick="tarefa('Sair <?php echo($id); ?>')" class="text-info">Voltar</h6>
 							</div>
 
-							<div class="d-flex justify-content-between flex-column Conversa_Amigo">
+							<div class="d-flex justify-content-between flex-column ">
 <?php
 	//Responsavel por trazer as mensagens para o usuário
 	$ChaveBanco = fopen(BD_MSG, 'r');
@@ -49,21 +64,43 @@
 		$Linha[4] = str_replace(PHP_EOL, '', $Linha[4]);
 
 		//Define a classe padrão para você mas caso não foi você que enviou, colocará como amigo
-		$Classe[0] = 'you';
-		$Classe[1] = 'ml-auto';
-		$Classe[2] = 'bg-success';		
+		$Classe = 'you ml-auto bg-success ';	
 		if($Linha[0] != $_SESSION['Nome']){
-			$Classe[0] = 'amigo';
-			$Classe[1] = 'mr-auto';
-			$Classe[2] = 'bg-info';
+			$Classe = 'amigo mr-auto bg-info ';
 		}
+
+		if(strlen($Linha[2]) <= 560){
+			$Classe .= 'p-1';
+		}else if(strlen($Linha[2]) > 560 and  strlen($Linha[2]) <= 1000){
+			$Classe .= 'p-3';
+		}else if(strlen($Linha[2]) > 1000 and  strlen($Linha[2]) <= 1440){
+			$Classe .= 'p-4';
+		}else if(strlen($Linha[2]) > 1440){
+			$Classe .= 'p-5';
+		}
+
+		$Classe .= " w-50 text-center m-2";
 ?>
-								<blockquote class="<?php echo($Classe[0]); ?> p-2 <?php echo($Classe[1]); ?> <?php echo($Classe[2]); ?> w-50 text-center m-2 ">
+								<blockquote class="<?php echo($Classe); ?>">
 									<div class="d-flex alig-items-center justify-content-center">
 										<cite class="info text-warning"><?php echo($Linha[0]); ?> -&nbsp</cite>
 										<time class="info"><?php print(calculaData($Linha[4])) ?></time>	
 									</div>
-								  	<p><?php print(destrataMensagem($Linha[2])); ?></p>						  	
+								  	<p><?php print(destrataMensagem($Linha[2])); ?></p>	
+								  	<?php 
+										if($Linha[1] === $_SESSION['Email']){
+											$Linha[5] = str_replace(PHP_EOL, '', $Linha[5]);
+								  			if($Linha[5] === 'N'){
+									?>
+											<img src="img/olho_fechado.png" class="img-fluid" width="15" height="15">
+											<?php 
+											}else if($Linha[5] === 'S'){
+									?>				
+											<img src="img/olho.png" class="img-fluid" width="15" height="15">						
+									<?php	
+											}	  
+								  		}
+								  	?>	
 								</blockquote>
 <?php
 	}
@@ -76,7 +113,7 @@
 ?>		
 	<div class="rounded border text-center p-1 text-info">
 		<p>
-			Você e <?php echo($Dados[0]); ?> não tem uma conversa ainda. Mande um 'Oi' para conversar.
+			Você e <?php echo($Dados[0]) ?> ainda não conversaram. Envie um 'Oi' para iniciar uma conversa.
 		</p>
 	</div>
 <?php		
@@ -134,29 +171,23 @@
 	*/
 	function verificaUsuario($Email){
 		$Ret = [false, '', ''];
+		$Linha = [];
+		$Linhas = file(BD_USUARIO);
+		$Tam = count($Linhas) -1;
+
 		//Online ou Offline, Foto do Usuário, Ultimo Acesso do Usuário
-
-		$ChaveBanco3 = fopen(BD_USUARIO, 'r');
-
-		while (!feof($ChaveBanco3)) {
-			$Linha2 = explode(';', fgets($ChaveBanco3));
-
-			if (isset($Linha2[1]) === false) {
-				continue;
-			}
-
-
-			if ($Linha2[1] === $Email) {
-				if ($Linha2[4] === 'On') {
+		for($nCont = 0; $nCont <= $Tam; $nCont++){
+			$Linha = explode(';', $Linhas[$nCont]);
+			if ($Linha[1] === $Email) {
+				if ($Linha[4] === 'On') {
 					$Ret[0] = true;
 				}
-				$Ret[1] = $Linha2[5];
-				$Ret[2] = str_replace(PHP_EOL, '', $Linha2[6]);
+				$Ret[1] = $Linha[5];
+				$Ret[2] = str_replace(PHP_EOL, '', $Linha[6]);
 				break;
-			}
+			}			
 		}
 
-		fclose($ChaveBanco3);
 		return $Ret;
 	}	
 	/*
@@ -194,24 +225,77 @@
 			$Ret = $diferenca->i . " Minutos Atrás";
 		}
 		else {
-			$Ret = "Agora Pouco";
+			$Ret = "Agora";
 		}
 
 		return $Ret;
 	}	
-
+	/*
+	--------------------------------------------------------------------------------------------------------------	
+	Função: trataMensagem(Mensagem a ser tratada)
+	--------------------------------------------------------------------------------------------------------------
+	Descrição: Trata String que será gravada no banco de dados .csv
+	--------------------------------------------------------------------------------------------------------------	
+	Data: 17/04/2024
+	--------------------------------------------------------------------------------------------------------------	
+	Programador(A): Ighor Drummond
+	--------------------------------------------------------------------------------------------------------------	
+	*/	
 	function trataMensagem($Val){
 		$Ret = str_replace(chr(155), "\r\n" , $Val);
 		$Ret = str_replace("_", " ", $Ret);
 		$Ret = str_replace(';', "'SpS'", $Ret);		
 		return $Ret;
 	}	
-
+	/*
+	--------------------------------------------------------------------------------------------------------------	
+	Função: destrataMensagem(Mensagem a ser tratada)
+	--------------------------------------------------------------------------------------------------------------
+	Descrição: Retira tratação da string que foi guardada do banco de dados .csv
+	--------------------------------------------------------------------------------------------------------------	
+	Data: 17/04/2024
+	--------------------------------------------------------------------------------------------------------------	
+	Programador(A): Ighor Drummond
+	--------------------------------------------------------------------------------------------------------------	
+	*/	
 	function destrataMensagem($val){
 		$Ret = str_replace("'SpS'", ";", $val);		
 		$Ret = str_replace("\r\n", chr(155), $Ret);
 		$Ret = str_replace("'SaS'", '_', $Ret);
 		return $Ret;
+	}
+	/*
+	--------------------------------------------------------------------------------------------------------------	
+	Função: atualizaVisto()
+	--------------------------------------------------------------------------------------------------------------
+	Descrição: Atualiza Visto da mensagem caso usuário viu a mesma.
+	--------------------------------------------------------------------------------------------------------------	
+	Data: 19/04/2024
+	--------------------------------------------------------------------------------------------------------------	
+	Programador(A): Ighor Drummond
+	--------------------------------------------------------------------------------------------------------------	
+	*/	
+	function atualizaVisto(){
+		$nCont = 0;
+		$Tam = 0;
+		$Linhas = file(BD_MSG);//lÊ TODAS AS LINHAS DO ARQUIVO
+		$Linha = [];
+
+		$Tam = count($Linhas) -1;
+
+		for($nCont = $Tam; $nCont >= 0; $nCont--){
+			$Linha = explode(';', $Linhas[$nCont]);
+			$Linha[5] = str_replace(PHP_EOL, '', $Linha[5]);
+
+			if($Linha[5] === 'N' and $Linha[1] != $_SESSION['Email']){
+				$Linha[5] = 'S' . PHP_EOL;
+				$Linhas[$nCont] = implode(';', $Linha);
+			}else if($Linha[5] === 'S' and $Linha[1] != $_SESSION['Email']){
+				break;
+			}
+		}
+		//ESCREVE TODAS AS LINHAS DO ARQUVO
+		file_put_contents(BD_MSG, $Linhas);
 	}
 
 ?>
