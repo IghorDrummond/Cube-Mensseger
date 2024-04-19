@@ -11,6 +11,10 @@ Este é um emocionante aplicativo de mensagens online que desenvolvi com muito e
 	<a href="https://cubemensseger.000webhostapp.com/" target="_blank">Acessar o Site!</a>
 </blockquote>
 <h6> As Ultimas Atualizações:</h6>
+								<time>19/04/2024</time>: Incluído recurso de visualização de mensagens.
+								<hr>
+								<time>18/04/2024</time>: Agora você pode ver se seu amigo está online ou offline durante suas conversas, pois adicionamos essa informação recentemente.
+								<hr>
 								<time>17/04/2024</time>: O Chat Online está agora funcionando perfeitamente! Sinta-se à vontade para conversar com seus amigos ou nos enviar uma mensagem caso encontre qualquer bug, erro ortográfico 									ou outros problemas. Estamos aqui para ajudar e garantir uma experiência excelente no Chat do Administrador do Sistema.
 								<hr>
 								<time>15/04/2024</time>: Estamos implementando o Chat Online. Até o momento, oferecemos apenas a opção de entrar ou sair. Em breve, estará totalmente disponível, com todas as funcionalidades.
@@ -34,10 +38,6 @@ Este é um emocionante aplicativo de mensagens online que desenvolvi com muito e
 								<time>09/04/2024</time>: Aprimoramos a funcionalidade de busca e adição de amigos, eliminando a necessidade de recarregar a página para atualizar os dados. Agora, essas operações são realizadas em 									tempo real, proporcionando uma experiência mais fluida. 	Em breve, outras áreas da página também serão atualizadas dinamicamente, aproveitando esse recurso.
 								<hr>
 								<time>04/04/2024</time>: Agora você pode Recusar Pedidos de Amizades.
-								<hr>
-								<time>04/04/2024</time>: Adicionado à lista de pedidos de amizade.
-								<hr>	
-								<time>01/04/2024</time>: Implementada a funcionalidade de busca e adição de amigos.
 								<hr>						
 																			
 							
