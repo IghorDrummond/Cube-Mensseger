@@ -11,6 +11,10 @@ Este é um emocionante aplicativo de mensagens online que desenvolvi com muito e
 	<a href="https://cubemensseger.000webhostapp.com/" target="_blank">Acessar o Site!</a>
 </blockquote>
 <h6> As Ultimas Atualizações:</h6>
+								<time>22/04/2024</time>: A opção 'Deletar' está ativa e você pode remover o usuário.
+								<hr>
+								<time>19/04/2024</time>: Adicionamos notificações de mensagens, juntamente com alertas sonoros para mantê-lo informado.
+								<hr>
 								<time>19/04/2024</time>: Incluído recurso de visualização de mensagens.
 								<hr>
 								<time>18/04/2024</time>: Agora você pode ver se seu amigo está online ou offline durante suas conversas, pois adicionamos essa informação recentemente.
@@ -35,10 +39,7 @@ Este é um emocionante aplicativo de mensagens online que desenvolvi com muito e
 								<hr>
 								<time>09/04/2024</time>: Bug corrigido na função de adição na lista de amigos.
 								<hr>	
-								<time>09/04/2024</time>: Aprimoramos a funcionalidade de busca e adição de amigos, eliminando a necessidade de recarregar a página para atualizar os dados. Agora, essas operações são realizadas em 									tempo real, proporcionando uma experiência mais fluida. 	Em breve, outras áreas da página também serão atualizadas dinamicamente, aproveitando esse recurso.
-								<hr>
-								<time>04/04/2024</time>: Agora você pode Recusar Pedidos de Amizades.
-								<hr>						
+					
 																			
 							
 
