@@ -39,7 +39,7 @@ Este é um emocionante aplicativo de mensagens online que desenvolvi com muito e
 								<hr>
 								<time>09/04/2024</time>: Bug corrigido na função de adição na lista de amigos.
 								<hr>	
-					
+<h6>Para mais Detalhes de Versões, Acesse o site.</h6>
 																			
 							
 
