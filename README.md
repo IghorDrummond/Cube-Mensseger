@@ -11,6 +11,10 @@ Este é um emocionante aplicativo de mensagens online que desenvolvi com muito e
 	<a href="https://cubemensseger.000webhostapp.com/" target="_blank">Acessar o Site!</a>
 </blockquote>
 <h6> As Ultimas Atualizações:</h6>
+								<time>22/04/2024</time>: Agora, se você bloquear um usuário e esse mesmo usuário o deletar após essa operação, ambos não poderão mais enviar convites de amizade um ao outro até que você o desbloqueie. 								O mesmo se aplicará à outra parte caso ela o bloqueie.
+								<hr>
+								<time>22/04/2024</time>:  A opção 'Bloquear' está disponível e você pode bloquear usuários específicos, mas atenção! Por favor, note que, até a data atual do projeto, a 												funcionalidade de desbloqueio ainda não foi adicionada. Portanto, recomendamos que evite bloquear usuários neste momento até que a opção desbloquear fique disponivel.
+								<hr>
 								<time>22/04/2024</time>: A opção 'Deletar' está ativa e você pode remover o usuário.
 								<hr>
 								<time>19/04/2024</time>: Adicionamos notificações de mensagens, juntamente com alertas sonoros para mantê-lo informado.
@@ -35,10 +39,6 @@ Este é um emocionante aplicativo de mensagens online que desenvolvi com muito e
 								<hr>	
 								<time>10/04/2024</time>: Aprimoramos nossa plataforma para corrigir o problema que permitia o envio de múltiplos convites simultâneos para o mesmo usuário. Agora, essa questão foi resolvida, 										garantindo uma experiência mais fluida e sem duplicidade de convites.
 								<hr>									
-								<time>10/04/2024</time>: Atualizamos a barra de navegação para exibir os pedidos de amizade em tempo real, acompanhados pela contagem de solicitações recebidas. Assim, você pode acompanhar facilmente 								quem deseja se conectar com você.
-								<hr>
-								<time>09/04/2024</time>: Bug corrigido na função de adição na lista de amigos.
-								<hr>	
 <h6>Para mais Detalhes de Versões, Acesse o site.</h6>
 																			
 							
