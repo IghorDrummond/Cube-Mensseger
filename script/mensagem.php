@@ -11,8 +11,8 @@
 	$nLinha = 0;
 	//Constantes
 	define('BD_USUARIO', '../BDs/bd_usuarios.csv');
-	define('BD_AMIGO', '../BDs/bd_listamigos.csv');
-	define('BD_MSG', '../BDs/BD_CONVERSA/'. $id .'.txt');
+	define('BD_AMIGO', '../BDs/bd_listamigos.csv');	
+	define('BD_MSG', '../BDs/BD_CONVERSA/'. $id);
 
 	//Define o horario 
 	date_default_timezone_set('America/Sao_Paulo');

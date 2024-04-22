@@ -319,7 +319,7 @@
 			}
 		}
 
-		return strval($Ret) . ' <i class="fa-solid fa-message"></i>';
+		return strval($Ret) . ' <i class="fa-solid fa-message" style="color: white;"></i>';
 	}	
 	/*
 	--------------------------------------------------------------------------------------------------------------	
@@ -336,7 +336,7 @@
 		$nCont = 0;
 		$Tam = 0;
 		$Ret  = 0;
-		$Linhas = file('../BDs/BD_CONVERSA/'. $id .'.txt');//lÊ TODAS AS LINHAS DO ARQUIVO
+		$Linhas = file('../BDs/BD_CONVERSA/'. $id);//lÊ TODAS AS LINHAS DO ARQUIVO
 		$Linha = [];
 
 		$Tam = count($Linhas) -1;

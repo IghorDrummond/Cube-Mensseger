@@ -131,19 +131,20 @@
 		//Define a Data do Sistema
 		date_default_timezone_set('America/Sao_Paulo');
 		$Data = date('d/m/Y');
-		$NumC = retornaNumero();
+		$chat = $Novo[0] . '_' . $Novo[1].'.csv';
+		if(file_exists(BD_CONVERSA . "/". $chat) === false){
+			//Criar o Banco de Conversa
+			$ChaveBanco = fopen(BD_CONVERSA . "/". $chat, 'x');
+			//Fecha arquivo 
+			fclose($ChaveBanco);
+		}
 		//Criar Amizade no arquivo lista de amigos
-		$Novo[3] = $Novo[0] . ';' . $Novo[1] . ';' . $_SESSION['Nome'] . ';' . $NumC . ';' . $Data . ';' . '0' . PHP_EOL;
-		$Novo[4] = $Novo[1] . ';' . $Novo[0] . ';' . $Novo[2] . ';' . $NumC . ';' . $Data . ';' . '0' . PHP_EOL;
+		$Novo[3] = $Novo[0] . ';' . $Novo[1] . ';' . $_SESSION['Nome'] . ';' . $chat . ';' . $Data . PHP_EOL;
+		$Novo[4] = $Novo[1] . ';' . $Novo[0] . ';' . $Novo[2] . ';' . $chat . ';' . $Data . PHP_EOL;
 		//Escreve a nova Amizade na Lista
 		$ChaveBanco = fopen(BD_AMIGO, 'a+');
 		fwrite($ChaveBanco, $Novo[3]);
 		fwrite($ChaveBanco, $Novo[4]);
-		//Fecha arquivo 
-		fclose($ChaveBanco);
-
-		//Criar o Banco de Conversa
-		$ChaveBanco = fopen(BD_CONVERSA . "/$NumC.txt", 'x');
 		//Fecha arquivo 
 		fclose($ChaveBanco);
 		return 'Aceito';
@@ -186,19 +187,6 @@
 
 
 		return 'Deletado';
-	}
-
-	function retornaNumero()
-	{
-		$ChaveBanco = fopen(BD_NUM, 'r+');
-		// Move o ponteiro para a penúltima linha
-		fseek($ChaveBanco, -1, SEEK_END);
-		$Ret = fgets($ChaveBanco);
-		$Ret = strval((intval($Ret) + 1));
-		fseek($ChaveBanco, 0, SEEK_END);
-		fwrite($ChaveBanco, PHP_EOL . $Ret);
-		fclose($ChaveBanco);
-		return $Ret;
 	}
 ?>
 

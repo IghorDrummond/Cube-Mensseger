@@ -13,6 +13,7 @@
 	//Constantes
 	define('BD_USUARIO', '../BDs/bd_usuarios.csv');
 	define('BD_AMIGO', '../BDs/bd_listamigos.csv');
+	define('BD_CONVERSA', '../BDs/BD_CONVERSA');	
 
 	//Define a Data do Sistema
 	date_default_timezone_set('America/Sao_Paulo');
@@ -32,11 +33,19 @@
 			fwrite($ChaveBanco3, $Linha);
 			//Fecha Conexão com Banco
 			fclose($ChaveBanco3);
-
-			$ChaveBanco3 = fopen(BD_AMIGO, 'a+');
-
-			fwrite($ChaveBanco3, $Email . ';admin@cubemensseger.com;Administrador do Sistema;0;'. $Data . PHP_EOL);
-			fwrite($ChaveBanco3, 'admin@cubemensseger.com;'. $Email .';'. $Nome .';0;'. $Data . PHP_EOL);
+			//Constroí o chat para ambos usuários
+			$chat = $Email . '_admin@cubemensseger.com.csv';
+			//Valida se já existe um chat para este usuário			
+			if(file_exists(BD_CONVERSA . "/". $chat) === false){
+				//Criar o Banco de Conversa
+				$ChaveBanco = fopen(BD_CONVERSA . "/". $chat, 'x');
+				//Fecha arquivo 
+				fclose($ChaveBanco);
+			}
+			$ChaveBanco3 = fopen(BD_AMIGO, 'a+');			
+			//Escreve a nova amizade no arquivo csv de amizades
+			fwrite($ChaveBanco3, $Email . ';admin@cubemensseger.com;Administrador do Sistema;'. $chat .';'. $Data . PHP_EOL);
+			fwrite($ChaveBanco3, 'admin@cubemensseger.com;'. $Email .';'. $Nome .';'. $chat .';'. $Data . PHP_EOL);
 			fclose($ChaveBanco3);
 			//Concluí o Cadastro do Usuário
 			$_SESSION['Validacao'] = 'Cadastrado';

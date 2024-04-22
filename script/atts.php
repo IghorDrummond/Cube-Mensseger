@@ -1,4 +1,4 @@
-								<time>22/04/2024</time>: A função 'Deletar' agora está disponível para uso. Por favor, esteja ciente de que ao deletar um amigo, o histórico de conversas entre vocês dois também será removido. Tome sua decisão com cuidado.
+								<time>22/04/2024</time>: A opção 'Deletar' está ativa e você pode remover o usuário.
 								<br>
 								<time>19/04/2024</time>: Adicionamos notificações de mensagens, juntamente com alertas sonoros para mantê-lo informado.
 								<br>

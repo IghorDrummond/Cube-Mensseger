@@ -90,9 +90,9 @@
 						<fieldset >
 							<legend>Apelido:</legend>
 							<label for="Nome">Insira o Nome: </label>
-							<input class="form-control text-dark" name="Nome" type="text" required placeholder="Nome">
+							<input class="form-control text-dark" name="Nome" type="text" maxlength="10" required placeholder="Nome">
 							<label for="Sobrenome">Insira o Sobrenome: </label>
-							<input class="form-control text-dark" name="Sobrenome" type="text" required placeholder="Sobrenome">														
+							<input class="form-control text-dark" name="Sobrenome" maxlength="10" type="text" required placeholder="Sobrenome">														
 						</fieldset>
 						<fieldset >
 							<legend for="Senha">Senha:</legend>
