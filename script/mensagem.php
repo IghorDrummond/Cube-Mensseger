@@ -13,6 +13,7 @@
 	define('BD_USUARIO', '../BDs/bd_usuarios.csv');
 	define('BD_AMIGO', '../BDs/bd_listamigos.csv');	
 	define('BD_MSG', '../BDs/BD_CONVERSA/'. $id);
+	define('BD_BLOQUEADO', '../BDs/bd_bloqueado.csv');	
 
 	//Define o horario 
 	date_default_timezone_set('America/Sao_Paulo');
@@ -34,11 +35,11 @@
 								<img class="rounded-circle border img-fluid" src="<?php echo($Dados[4]); ?>" width="25" height="25">
 								<h6><?php echo($Dados[0]); ?>
 									<?php
-										if($Dados[5]){
+										if($Dados[5] and validaBloqueado($Dados[1], $_SESSION['Email']) === false){
 									?>
 										<span class="badge badge-pill badge-success" style="height: 15px;  width: 15px; border-radius: 90%;">&nbsp</span>
 									<?php
-										}else if($Dados[5] === false){
+										}else if($Dados[5] === false ){
 									?>
 										<span class="badge badge-pill badge-secondary rounded-circle" style="height: 15px;  width: 15px; border-radius: 90%;">&nbsp</span>
 									<?php
@@ -302,5 +303,23 @@
 		//ESCREVE TODAS AS LINHAS DO ARQUVO
 		file_put_contents(BD_MSG, $Linhas);
 	}
-
+	/*
+	--------------------------------------------------------------------------------------------------------------	
+	Função: validaBloqueado(Recebe o Email do amigo a ser validade)
+	--------------------------------------------------------------------------------------------------------------
+	Descrição: Valida amigos que estão bloqueados
+	--------------------------------------------------------------------------------------------------------------	
+	Data: 22/04/2024
+	--------------------------------------------------------------------------------------------------------------	
+	Programador(A): Ighor Drummond
+	--------------------------------------------------------------------------------------------------------------	
+	*/	
+	function validaBloqueado($User, $User2){
+	    $Linhas = file(BD_BLOQUEADO);
+	    $nCont = in_array($User . ';' . $User2, str_replace(PHP_EOL, '', $Linhas));
+	    if ($nCont) {
+	        return true;
+	    }
+	    return false;
+	}
 ?>

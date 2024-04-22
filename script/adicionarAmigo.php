@@ -131,13 +131,18 @@
 		//Define a Data do Sistema
 		date_default_timezone_set('America/Sao_Paulo');
 		$Data = date('d/m/Y');
-		$chat = $Novo[0] . '_' . $Novo[1].'.csv';
+
+		$chat = $Novo[1] . '_' . $Novo[0] . '.csv';
 		if(file_exists(BD_CONVERSA . "/". $chat) === false){
-			//Criar o Banco de Conversa
-			$ChaveBanco = fopen(BD_CONVERSA . "/". $chat, 'x');
-			//Fecha arquivo 
-			fclose($ChaveBanco);
+			$chat = $Novo[0] . '_' . $Novo[1].'.csv';
+			if(file_exists(BD_CONVERSA . "/". $chat) === false){
+				//Criar o Banco de Conversa
+				$ChaveBanco = fopen(BD_CONVERSA . "/". $chat, 'x');
+				//Fecha arquivo 
+				fclose($ChaveBanco);
+			}
 		}
+
 		//Criar Amizade no arquivo lista de amigos
 		$Novo[3] = $Novo[0] . ';' . $Novo[1] . ';' . $_SESSION['Nome'] . ';' . $chat . ';' . $Data . PHP_EOL;
 		$Novo[4] = $Novo[1] . ';' . $Novo[0] . ';' . $Novo[2] . ';' . $chat . ';' . $Data . PHP_EOL;

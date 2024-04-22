@@ -54,11 +54,11 @@
 
 	function bloquearUser($user, $user1){
 		$Linhas = file(BD_BLOQUEADO);
-		$Linha = [];
 		$nCont = 0;	
 
 		$nCont = count($Linhas) -1;
-		$Linhas[$nCont++] = $user . ';' . $user1 . PHP_EOL;
+		$nCont++;
+		$Linhas[$nCont] = $user . ';' . $user1 . PHP_EOL;
 		//Escreve os novos dados
 		file_put_contents(BD_BLOQUEADO, $Linhas);		
 	}	

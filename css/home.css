@@ -183,7 +183,8 @@ header ul>li{
 	margin-top: 5px;
 }
 .nova_mensagem{
-	animation: mensagem 2s infinite;
+	-webkit-animation: mensagem 2s infinite;
+	        animation: mensagem 2s infinite;
 }
 
 .Amigos-lista{
@@ -534,6 +535,17 @@ blockquote time, blockquote cite{
 	}
 	100%{
 		color: yellow;
+	}
+}
+@-webkit-keyframes mensagem{
+	0%{
+		border: 2px solid yellow;
+	}
+	50%{
+		border: 2px solid green;
+	}
+	100%{
+		border: 2px solid yellow;
 	}
 }
 @keyframes mensagem{

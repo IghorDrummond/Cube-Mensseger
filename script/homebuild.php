@@ -26,6 +26,7 @@
 	define('BD_AMIGO', 'BDs/bd_listamigos.csv');
 	define('BD_USUARIO', 'BDs/bd_usuarios.csv');
 	define('BD_ADD', 'BDs/bd_addamigo.csv');
+	define('BD_BLOQUEADO', 'BDs/bd_bloqueado.csv');		
 
 	if (isset($_SESSION['Pagina']) and $_SESSION['Pagina'] === 'Amigos') {
 		$opc = 1;
@@ -151,43 +152,66 @@
 
 		return $Ret;
 	}
+	/*
+	--------------------------------------------------------------------------------------------------------------	
+	Função: validaBloqueado(Recebe o Email do amigo a ser validade)
+	--------------------------------------------------------------------------------------------------------------
+	Descrição: Valida amigos que estão bloqueados
+	--------------------------------------------------------------------------------------------------------------	
+	Data: 22/04/2024
+	--------------------------------------------------------------------------------------------------------------	
+	Programador(A): Ighor Drummond
+	--------------------------------------------------------------------------------------------------------------	
+	*/	
+	function validaBloqueado($User, $User2){
+	    $Linhas = file(BD_BLOQUEADO);
+	    $nCont = in_array($User . ';' . $User2, str_replace(PHP_EOL, '', $Linhas));
+	    if ($nCont) {
+	        return true;
+	    }
+	    return false;
+	}	
 
 	//================Valida os Amigos que o usuário tem adicionado ====================
-	$ChaveBanco = fopen(BD_AMIGO, 'r');
-	while (!feof($ChaveBanco)) {
-		$Linha = explode(';', fgets($ChaveBanco));
+		$ChaveBanco = fopen(BD_AMIGO, 'r');
+		while (!feof($ChaveBanco)) {
+			$Linha = explode(';', fgets($ChaveBanco));
 
-		if (isset($Linha[1]) === false) {
-			continue;
-		}
-		$nLinha++;
-		//Verifica se o usuário é amigo ou não dos outros demais
-		if ($Usuario[1] === $Linha[0]) {
-
-			$Amigos++;
-			//Guarda Informação do Amigo Cadastrado
-			$Dados[$nCont][0] = $Linha[2];//Recebe o Nome do Amigo
-			$Dados[$nCont][1] = $Linha[1];//Recebe o Email do Amigo
-			$Dados[$nCont][2] = $Linha[3];//Recebe o Nome da Conversa do Amigo
-			$Dados[$nCont][3] = false; //Valida se o usuário está Online ou Offiline
-			$Aux = verificaUsuario($Linha[1]);//Retorna Foto e Data do ultimo Login
-			$Dados[$nCont][4] = $Aux[1]; //Recebe a Imagem do Usuário
-			$Dados[$nCont][5] = calculaData($Aux[2]);//Recebe o Ultimo Acesso do Usuário
-			$Dados[$nCont][6] = Mensagens($Linha[0], $Linha[1]);//Recebe o Ultimo Acesso do Usuário
-
-			//Define se está online o Usuário Amigo
-			switch ($Aux[0]) {
-				case true:
-					$On++;
-					$Dados[$nCont][3] = true;
-					break;
-				default:
-					$Off++;
-					break;
+ 			if (isset($Linha[1]) === false) {
+				continue;
 			}
-			$nCont++;
+			$nLinha++;
+			//Verifica se o usuário é amigo ou não dos outros demais
+			if ($Usuario[1] === $Linha[0]) {
+				//Verifica se o amigo está bloqueado para o usuário.
+				if(validaBloqueado($_SESSION['Email'], $Linha[1])){
+					continue;
+				}
+
+				$Amigos++;
+				//Guarda Informação do Amigo Cadastrado
+				$Dados[$nCont][0] = $Linha[2];//Recebe o Nome do Amigo
+				$Dados[$nCont][1] = $Linha[1];//Recebe o Email do Amigo
+				$Dados[$nCont][2] = $Linha[3];//Recebe o Nome da Conversa do Amigo
+				$Dados[$nCont][3] = false; //Valida se o usuário está Online ou Offiline
+				$Aux = verificaUsuario($Linha[1]);//Retorna Foto e Data do ultimo Login
+				$Dados[$nCont][4] = $Aux[1]; //Recebe a Imagem do Usuário
+				$Dados[$nCont][5] = calculaData($Aux[2]);//Recebe o Ultimo Acesso do Usuário
+				$Dados[$nCont][6] = Mensagens($Linha[0], $Linha[1]);//Recebe o Ultimo Acesso do Usuário
+				
+				//Define se está online o Usuário Amigo
+				switch ($Aux[0]) {
+					case true:
+						$On++;
+						$Dados[$nCont][3] = true;
+						break;
+					default:
+						$Off++;
+						break;
+				}
+				$nCont++;
+			}
 		}
-	}
 
 	//Fecha Arquivo
 	fclose($ChaveBanco);
@@ -407,18 +431,23 @@
 													<h6 class="d-inline"><?php echo ($Valor[0]) ?></h6>
 											<?php
 												//Valida se o usuário está online
-												if ($Valor[3]) {
-											?>
+												if(validaBloqueado($Valor[1], $_SESSION['Email']) === false){
+													if ($Valor[3]) {
+											?>	
 														<span class="badge badge-success ">Online</span>
 														<time>⌛Agora</time>
 														
 											<?php
-												} else {
+													} else {
 											?>
 														<span class="badge badge-dark ">Offline</span>
 														<time>⏳<?php echo($Valor[5]); ?></time>
 											<?php
-												}
+													}
+												}else{
+													$On--;
+													$Off++;
+												}	
 											?>	
 														<span class="Mensagens">
 															<?php echo($Valor[6]); ?>
@@ -427,14 +456,14 @@
 												<ul class="opcao_lista">
 													<li class="bg-primary p-1 border rounded" onclick="tarefa('Conversar <?php echo($Valor[2]); ?>')">Conversar</li>	
 											<?php
-												//Valida se o usuário está online
-												if ($Valor[1] != 'admin@cubemensseger.com') {
+													//Valida se o usuário está online
+													if ($Valor[1] != 'admin@cubemensseger.com') {
 											?>
 													<li class="border p-1 bg-secondary rounded" onclick="tarefa('Silenciar<?php echo($Valor[1]); ?>')">Silenciar</li>
 													<li class="border p-1 bg-warning rounded" onclick="tarefa('Bloquear <?php echo($Valor[1]); ?>')">Bloquear</li>
 													<li class="border p-1 bg-danger rounded" onclick="tarefa('Deletar <?php echo($Valor[1]); ?>')">Deletar</li>
 											<?php
-												}
+													}
 											?>	
 												</ul>
 											</li>												

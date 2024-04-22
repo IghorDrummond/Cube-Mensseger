@@ -1,3 +1,7 @@
+								<time>22/04/2024</time>: Agora, se você bloquear um usuário e esse mesmo usuário o deletar após essa operação, ambos não poderão mais enviar convites de amizade um ao outro até que você o desbloqueie. O mesmo se aplicará à outra parte caso ela o bloqueie.
+								<br>
+								<time>22/04/2024</time>: A opção 'Bloquear' está disponível e você pode bloquear usuários específicos, mas <span style="color: orangered;">atenção! Por favor, note que, até a data atual do projeto, a funcionalidade de desbloqueio ainda não foi adicionada. Portanto, recomendamos que evite bloquear usuários neste momento até que a opção desbloquear fique disponivel.</span>
+								<br>
 								<time>22/04/2024</time>: A opção 'Deletar' está ativa e você pode remover o usuário.
 								<br>
 								<time>19/04/2024</time>: Adicionamos notificações de mensagens, juntamente com alertas sonoros para mantê-lo informado.

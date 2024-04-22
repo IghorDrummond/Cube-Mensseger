@@ -110,11 +110,13 @@ function tarefa(val){
         //Delisga a Barra de Navegação
         Navegacao[0].style.animation = "sumir 1s"; 
     }else if(opc === 'Deletar'){
-
         if(confirm('Tem certeza de que deseja excluir este usuário?')){
             $('#Amigos').load('script/operacao.php?Email=' + id + '&opc=Deletar');
         }
-
+    }else if(opc === 'Bloquear'){
+        if(confirm('em certeza de que deseja bloquear este usuário? Após o bloqueio, você não verá mais esta pessoa na lista de amigos e não receberá mais mensagens dela.')){
+            $('#Amigos').load('script/operacao.php?Email=' + id + '&opc=Bloquear');
+        }        
     }else if(opc === 'Sair'){
         clearInterval(Chat);  
         Navegacao[0].style.animation = "aparecer 1s";   

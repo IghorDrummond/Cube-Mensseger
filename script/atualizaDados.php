@@ -10,6 +10,7 @@
 	define('BD_AMIGO', '../BDs/bd_listamigos.csv');
 	define('BD_USUARIO', '../BDs/bd_usuarios.csv');
 	define('BD_ADD', '../BDs/bd_addamigo.csv');
+	define('BD_BLOQUEADO', '../BDs/bd_bloqueado.csv');	
 
 	//==========================Escopo========================================
 	//Define a Data do Sistema
@@ -71,6 +72,10 @@
 			$nLinha++;
 			//Verifica se o usuário é amigo ou não dos outros demais
 			if ($Usuario[1] === $Linha[0]) {
+				//Verifica se o amigo está bloqueado para o usuário.
+				if(validaBloqueado($_SESSION['Email'], $Linha[1])){
+					continue;
+				}
 
 				$Amigos++;
 				//Guarda Informação do Amigo Cadastrado
@@ -361,6 +366,25 @@
 	}	
 	/*
 	--------------------------------------------------------------------------------------------------------------	
+	Função: validaBloqueado(Recebe o Email do amigo a ser validade)
+	--------------------------------------------------------------------------------------------------------------
+	Descrição: Valida amigos que estão bloqueados
+	--------------------------------------------------------------------------------------------------------------	
+	Data: 22/04/2024
+	--------------------------------------------------------------------------------------------------------------	
+	Programador(A): Ighor Drummond
+	--------------------------------------------------------------------------------------------------------------	
+	*/	
+	function validaBloqueado($User, $User2){
+	    $Linhas = file(BD_BLOQUEADO);
+	    $nCont = in_array($User . ';' . $User2, str_replace(PHP_EOL, '', $Linhas));
+	    if ($nCont) {
+	        return true;
+	    }
+	    return false;
+	}
+	/*
+	--------------------------------------------------------------------------------------------------------------	
 	Função: retornaItem(Dados para Preencher os Elementos HTML, Operação Escolhida)
 	--------------------------------------------------------------------------------------------------------------
 	Descrição: Responsavel por retornar o Elemento HTML de determinada Opção
@@ -390,18 +414,23 @@
 													<h6 class="d-inline"><?php echo ($Valor[0]) ?></h6>
 											<?php
 												//Valida se o usuário está online
-												if ($Valor[3]) {
-											?>
+												if(validaBloqueado($Valor[1], $_SESSION['Email']) === false){
+													if ($Valor[3]) {
+											?>	
 														<span class="badge badge-success ">Online</span>
 														<time>⌛Agora</time>
 														
 											<?php
-												} else {
+													} else {
 											?>
 														<span class="badge badge-dark ">Offline</span>
 														<time>⏳<?php echo($Valor[5]); ?></time>
 											<?php
-												}
+													}
+												}else{
+													$On--;
+													$Off++;
+												}	
 											?>	
 														<span class="Mensagens">
 															<?php echo($Valor[6]); ?>
@@ -410,14 +439,14 @@
 												<ul class="opcao_lista">
 													<li class="bg-primary p-1 border rounded" onclick="tarefa('Conversar <?php echo($Valor[2]); ?>')">Conversar</li>	
 											<?php
-												//Valida se o usuário está online
-												if ($Valor[1] != 'admin@cubemensseger.com') {
+													//Valida se o usuário está online
+													if ($Valor[1] != 'admin@cubemensseger.com') {
 											?>
 													<li class="border p-1 bg-secondary rounded" onclick="tarefa('Silenciar<?php echo($Valor[1]); ?>')">Silenciar</li>
 													<li class="border p-1 bg-warning rounded" onclick="tarefa('Bloquear <?php echo($Valor[1]); ?>')">Bloquear</li>
 													<li class="border p-1 bg-danger rounded" onclick="tarefa('Deletar <?php echo($Valor[1]); ?>')">Deletar</li>
 											<?php
-												}
+													}
 											?>	
 												</ul>
 											</li>												
