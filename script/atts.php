@@ -1,4 +1,8 @@
-								<time>19/04/2024</time>: Incluído recurso de visualização de mensagens
+								<time>22/04/2024</time>: A função 'Deletar' agora está disponível para uso. Por favor, esteja ciente de que ao deletar um amigo, o histórico de conversas entre vocês dois também será removido. Tome sua decisão com cuidado.
+								<br>
+								<time>19/04/2024</time>: Adicionamos notificações de mensagens, juntamente com alertas sonoros para mantê-lo informado.
+								<br>
+								<time>19/04/2024</time>: Incluído recurso de visualização de mensagens.
 								<br>
 								<time>18/04/2024</time>: Agora você pode ver se seu amigo está online ou offline durante suas conversas, pois adicionamos essa informação recentemente.
 								<br>

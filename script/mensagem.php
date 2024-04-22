@@ -285,6 +285,11 @@
 
 		for($nCont = $Tam; $nCont >= 0; $nCont--){
 			$Linha = explode(';', $Linhas[$nCont]);
+
+			if (isset($Linha[1]) === false) {
+				continue;
+			}
+
 			$Linha[5] = str_replace(PHP_EOL, '', $Linha[5]);
 
 			if($Linha[5] === 'N' and $Linha[1] != $_SESSION['Email']){

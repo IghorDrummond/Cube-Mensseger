@@ -65,7 +65,7 @@
 		while (!feof($ChaveBanco)) {
 			$Linha = explode(';', fgets($ChaveBanco));
 
-			if (isset($Linha[1]) === false) {
+ 			if (isset($Linha[1]) === false) {
 				continue;
 			}
 			$nLinha++;
@@ -293,47 +293,72 @@
 	}	
 	/*
 	--------------------------------------------------------------------------------------------------------------	
-	Função: Mensagem(Email a ser validado as Mensagens)
+	Função: Mensagens()
 	--------------------------------------------------------------------------------------------------------------
-	Descrição: Responsavel por validar quantidade de mensagens que foram enviadas
+	Descrição: Atualiza a quantidade de mensagens não vista pelo usuário
 	--------------------------------------------------------------------------------------------------------------	
 	Data: 19/04/2024
 	--------------------------------------------------------------------------------------------------------------	
 	Programador(A): Ighor Drummond
 	--------------------------------------------------------------------------------------------------------------	
 	*/	
-	function Mensagens($Email, $Amigo){
-		$ChaveBanco2 = fopen(BD_AMIGO, 'r');
-		$nQtdUser = [-1, -1];
-		$Ret = 0;
+	function Mensagens($User, $User2){
+		$nCont = 0;
+		$Tam = 0;
+		$Linhas = file(BD_AMIGO);//lÊ TODAS AS LINHAS DO ARQUIVO
+		$Linha = [];
 
-		while(!feof($ChaveBanco2)){
-			$Linha = explode(';', fgets($ChaveBanco2));
+		$Tam = count($Linhas) -1;
 
-			if(isset($Linha[1]) === false){
-				continue;
-			}
-			str_replace(PHP_EOL, '', $Linha[5]);
+		for($nCont = $Tam; $nCont >= 0; $nCont--){
+			$Linha = explode(';', $Linhas[$nCont]);
 
-			if($Linha[0] === $_SESSION['Email'] and $Linha[1] === $Amigo){
-				$nQtdUser[0] = intval($Linha[5]);
-			}else if($Amigo  === $Linha[0] and $Linha[1] === $Email){
-				$nQtdUser[1] = intval($Linha[5]);
- 			}
-
-			if($nQtdUser[0] != -1 and $nQtdUser[1] != -1){
+			if($Linha[0] === $User2 and $Linha[1] === $User){
+				$Ret = retornaVistos($Linha[3]);
 				break;
 			}
 		}
 
-		fclose($ChaveBanco2);
+		return strval($Ret) . ' <i class="fa-solid fa-message"></i>';
+	}	
+	/*
+	--------------------------------------------------------------------------------------------------------------	
+	Função: retornaVistos(Nome do Id do banco de dados)
+	--------------------------------------------------------------------------------------------------------------
+	Descrição: Valida vistos do bd de mensagens
+	--------------------------------------------------------------------------------------------------------------	
+	Data: 19/04/2024
+	--------------------------------------------------------------------------------------------------------------	
+	Programador(A): Ighor Drummond
+	--------------------------------------------------------------------------------------------------------------	
+	*/	
+	function retornaVistos($id){
+		$nCont = 0;
+		$Tam = 0;
+		$Ret  = 0;
+		$Linhas = file('../BDs/BD_CONVERSA/'. $id .'.txt');//lÊ TODAS AS LINHAS DO ARQUIVO
+		$Linha = [];
 
-		if($nQtdUser[0] < $nQtdUser[1]){
-			$Ret = $nQtdUser[1] - $nQtdUser[0];
+		$Tam = count($Linhas) -1;
+
+		for($nCont = $Tam; $nCont >= 0; $nCont--){
+			$Linha = explode(';', $Linhas[$nCont]);
+
+			if(isset($Linha[1]) === false){
+				continue;
+			}
+
+			$Linha[5] = str_replace(PHP_EOL, '', $Linha[5]);
+
+			if($Linha[5] === 'N' and $Linha[1] != $_SESSION['Email']){
+				$Ret++;
+			}else if($Linha[5] === 'S' and $Linha[1] != $_SESSION['Email']){
+				break;
+			}
 		}
 
-		return strval($Ret) . ' Mensagens';
-	}
+		return $Ret;
+	}	
 	/*
 	--------------------------------------------------------------------------------------------------------------	
 	Função: retornaItem(Dados para Preencher os Elementos HTML, Operação Escolhida)
@@ -359,7 +384,7 @@
 						<?php
 							foreach ($Dados as $Valor) {
 						?>
-											<li class="list-group-item bg-info text-center w-100 d-flex justify-content-between align-items-center" id="<?php echo ($Valor[2]) ?>">
+											<li class="list-group-item bg-info text-center w-100 d-flex justify-content-between align-items-center amigo_lista_item" id="<?php echo ($Valor[2]) ?>">
 												<img src="<?php echo ($Valor[4]) ?>" class="border border-dark" align="left">
 												<div>
 													<h6 class="d-inline"><?php echo ($Valor[0]) ?></h6>
@@ -368,18 +393,19 @@
 												if ($Valor[3]) {
 											?>
 														<span class="badge badge-success ">Online</span>
-														<span><?php echo($Valor[6]); ?></span>
 														<time>⌛Agora</time>
 														
 											<?php
 												} else {
 											?>
 														<span class="badge badge-dark ">Offline</span>
-														<span><?php echo($Valor[6]); ?></span>
 														<time>⏳<?php echo($Valor[5]); ?></time>
 											<?php
 												}
 											?>	
+														<span class="Mensagens">
+															<?php echo($Valor[6]); ?>
+														</span>
 												</div>
 												<ul class="opcao_lista">
 													<li class="bg-primary p-1 border rounded" onclick="tarefa('Conversar <?php echo($Valor[2]); ?>')">Conversar</li>	

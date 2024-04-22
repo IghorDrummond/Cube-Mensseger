@@ -52,7 +52,7 @@ header ul>li{
 	    -ms-flex-align: center;
 	        align-items: center;
 }
-.pedidos_amizades{
+.pedidos_amizades, .notificacao_msg{
 	font-size: 10px !important;
 }
 
@@ -181,6 +181,9 @@ header ul>li{
 }
 #Amigos pre ul>li{
 	margin-top: 5px;
+}
+.nova_mensagem{
+	animation: mensagem 2s infinite;
 }
 
 .Amigos-lista{
@@ -533,6 +536,18 @@ blockquote time, blockquote cite{
 		color: yellow;
 	}
 }
+@keyframes mensagem{
+	0%{
+		border: 2px solid yellow;
+	}
+	50%{
+		border: 2px solid green;
+	}
+	100%{
+		border: 2px solid yellow;
+	}
+}
+
 
 /* Hovers */
 header ul>li:hover{
@@ -614,6 +629,10 @@ header ul>li:not(:hover){
 		-webkit-transform: rotateX(-90deg) translateZ(50px);
 		transform: rotateX(-90deg) translateZ(50px);
 	}	
+
+	.font h6{
+		font-size: 1em;
+	}
 	#Novidades img{
 		width: 50px;
 		height: 50px;
