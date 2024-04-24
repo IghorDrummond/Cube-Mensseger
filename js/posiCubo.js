@@ -4,7 +4,7 @@ var EstruturaCubo = document.getElementsByClassName('cubo');
 var Navegacao = document.getElementsByTagName('header');
 var NavOpc = document.getElementsByTagName('li');
 var ListAmigos = document.getElementsByClassName('lista_amigos');
-var CampoMensagem = document.getElementsByClassName('Mensagem');
+var CampoMensagem = document.getElementsByClassName('Mensagem');    
 var BotaoEnviar = document.getElementsByClassName('Enviar');
 //Numerico
 var antOpc = 0;
@@ -79,85 +79,4 @@ function lista_amigos(){
         }, 1000)
     }
 
-}
-
-function tarefa(val){
-    var opc  = val.indexOf(' ') >= 0 ? val.substring(0, val.indexOf(' ')) : val;
-    var id = val.substring(val.indexOf(' ') +1, val.length);
-    var Mensagem = '';
-    var Qtd = document.getElementsByTagName('blockquote');
-
-    if(opc === 'Conversar'){
-        idEnv = id;
-        AtivaChat(id);//Ativa o Chat
-        var J = setTimeout(()=>{
-            //Retira o Display
-            Navegacao[0].className = "d-none w-100 bg-light my-1";
-            EstruturaCubo[0].style.transform = "rotateY(0deg) rotateX(90deg)";
-            EstruturaCubo[0].style.webkitTransform = "rotateY(0deg) rotateX(90deg)";   
-            clearTimeout(J);        
-        }, 1000);
-        //Anima a Rotação para a face da Conversa
-        EstruturaCubo[0].animate([
-            // keyframes
-            { transform: "rotateY( "+ nAntPosic.toString() + "deg) rotateX(0deg)" },
-            { transform: "rotateY(0deg) rotateX(90deg)" }
-        ], {
-            // timing options
-            duration: 1000,
-            iterations: 1
-        });      
-        //Delisga a Barra de Navegação
-        Navegacao[0].style.animation = "sumir 1s"; 
-    }else if(opc === 'Deletar'){
-        if(confirm('Tem certeza de que deseja excluir este usuário?')){
-            $('#Amigos').load('script/operacao.php?Email=' + id + '&opc=Deletar');
-        }
-    }else if(opc === 'Bloquear'){
-        if(confirm('em certeza de que deseja bloquear este usuário? Após o bloqueio, você não verá mais esta pessoa na lista de amigos e não receberá mais mensagens dela.')){
-            $('#Amigos').load('script/operacao.php?Email=' + id + '&opc=Bloquear');
-        }        
-    }else if(opc === 'Sair'){
-        clearInterval(Chat);  
-        Navegacao[0].style.animation = "aparecer 1s";   
-        Navegacao[0].className = "d-block w-100 bg-light my-1";        
-        EstruturaCubo[0].animate([
-            // keyframes
-            { transform: "rotateY(0deg) rotateX(90deg)" },
-            { transform: "rotateY( "+ nAntPosic.toString() + "deg) rotateX(0deg)" },            
-        ], {
-            // timing options
-            duration: 1000,
-            iterations: 1
-        });    
-
-        var J = setTimeout(()=>{
-            EstruturaCubo[0].style.transform = "rotateY( "+ nAntPosic.toString() + "deg) rotateX(0deg)";
-            EstruturaCubo[0].style.webkitTransform = "rotateY( "+ nAntPosic.toString() + "deg) rotateX(0deg)";  
-            clearTimeout(J);        
-        }, 1000);                
-    }else if('Enviar'){
-        //Forma os Espaços para ir completo para gravação de Mensagens
-        Mensagem = trataMensagem("_", "'SaS'", CampoMensagem[0].value);  
-        Mensagem = trataMensagem(" ", "_", Mensagem);         
-        CampoMensagem[0].value = "";//Reseta o Campo de Mensagem
-        $('#Conversar').load('script/mensagem.php?id=' + idEnv + '&Mensagem=' + Mensagem + '&msgqtd=' + (Qtd.length).toString());
-    }
-}
-
-function AtivaChat(id){
-    Chat = setInterval(() =>{
-        $('#Conversar').load('script/mensagem.php?id=' + idEnv);
-    }, 1000);
-}
-
-function trataMensagem(encontrar, substituir, Mensagem){
-    var posic = 0;
-
-    while(posic != -1){
-        Mensagem = Mensagem.replace(encontrar, substituir);
-        posic = Mensagem.indexOf(encontrar);
-    }    
-
-    return Mensagem;
 }

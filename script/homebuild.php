@@ -368,7 +368,7 @@
 						</h5>
 						<pre onscroll="posicTag(1)"><span class="text-warning">Notas de Atualização!</span>
 									<?php require_once ('script/atts.php'); ?>		
-								</pre>
+						</pre>
 						<a id="powered" onmouseover="animaCubo(1)" onmouseout="animaCubo(2)"
 							href="https://ighordrummond.netlify.app">
 							<h6>Desenvolvido por Ighor Drummond©</h6>
@@ -382,8 +382,8 @@
 					</div>
 				</div>
 				<div class="cubo-face right p-2 text-dark">
-
-					<pre id="Conversar">
+						<!-- Conversar -->
+						<pre id="Conversar">
 							<!-- Receberá  Atts Aqui das Mensagens -->
 						</pre>
 					<div class="input-group">

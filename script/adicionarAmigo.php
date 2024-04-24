@@ -144,8 +144,8 @@
 		}
 
 		//Criar Amizade no arquivo lista de amigos
-		$Novo[3] = $Novo[0] . ';' . $Novo[1] . ';' . $_SESSION['Nome'] . ';' . $chat . ';' . $Data . PHP_EOL;
-		$Novo[4] = $Novo[1] . ';' . $Novo[0] . ';' . $Novo[2] . ';' . $chat . ';' . $Data . PHP_EOL;
+		$Novo[3] = $Novo[0] . ';' . $Novo[1] . ';' . $_SESSION['Nome'] . ';' . $chat . ';' . $Data . ';' . 'A' . PHP_EOL;
+		$Novo[4] = $Novo[1] . ';' . $Novo[0] . ';' . $Novo[2] . ';' . $chat . ';' . $Data . ';' . 'A' . PHP_EOL;
 		//Escreve a nova Amizade na Lista
 		$ChaveBanco = fopen(BD_AMIGO, 'a+');
 		fwrite($ChaveBanco, $Novo[3]);

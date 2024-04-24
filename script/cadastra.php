@@ -44,8 +44,8 @@
 			}
 			$ChaveBanco3 = fopen(BD_AMIGO, 'a+');			
 			//Escreve a nova amizade no arquivo csv de amizades
-			fwrite($ChaveBanco3, $Email . ';admin@cubemensseger.com;Administrador do Sistema;'. $chat .';'. $Data . PHP_EOL);
-			fwrite($ChaveBanco3, 'admin@cubemensseger.com;'. $Email .';'. $Nome .';'. $chat .';'. $Data . PHP_EOL);
+			fwrite($ChaveBanco3, $Email . ';admin@cubemensseger.com;Administrador do Sistema;'. $chat .';'. $Data . ';' . 'A' . PHP_EOL);
+			fwrite($ChaveBanco3, 'admin@cubemensseger.com;'. $Email .';'. $Nome .';'. $chat .';'. $Data . ';' . 'A' . PHP_EOL);
 			fclose($ChaveBanco3);
 			//Concluí o Cadastro do Usuário
 			$_SESSION['Validacao'] = 'Cadastrado';

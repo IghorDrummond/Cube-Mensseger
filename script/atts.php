@@ -1,4 +1,12 @@
-								<time>22/04/2024</time>: Agora, se você bloquear um usuário e esse mesmo usuário o deletar após essa operação, ambos não poderão mais enviar convites de amizade um ao outro até que você o desbloqueie. O mesmo se aplicará à outra parte caso ela o bloqueie.
+								<time>24/04/2024</time>: Um botão foi adicionado para rolar até a última mensagem do chat. Além disso, caso você esteja navegando entre mensagens antigas e seu amigo envie uma nova mensagem no mesmo chat, o botão agora mostrará a quantidade de mensagens que ele enviou, acompanhada de um novo alerta sonoro exclusivo para novas mensagens no chat de conversa.
+								<br>
+								<time>24/04/2024</time>: A partir de agora, os alertas sonoros para novas mensagens serão emitidos apenas nos chats que você ainda não visualizou, corrigindo o problema que causava o disparo de alertas sonoros mesmo quando você já estava ativo no chat do remetente da mensagem.
+								<br>
+								<time>23/04/2024</time>: Agora o Chat Online está praticamente dinamico pois caso o amigo adicionado ou você enviar uma mensagem durante um bate-papo, o chat logo posicionará sempre para ultima mensagem enviada, a não ser que você desloque o scroll do chat para cima navegando pelas antigas mensagens. 
+								<br>
+								<time>23/04/2024</time>: Agora a opção 'Silenciar' está disponivel para uso. 
+								<br>
+								<time>22/04/2024</time>: Agora, se você bloquear um usuário e esse mesmo usuário o deletar após essa operação, ambos não poderão mais enviar convites de amizade um ao outro até que você o desbloqueie. O mesmo se aplicará à outra parte caso ela o bloqueie,  mas <span style="color: orangered;">atenção! Por favor, note que, até a data atual do projeto, a funcionalidade de desbloqueio ainda não foi adicionada. Portanto, recomendamos que evite bloquear usuários neste momento até que a opção desbloquear fique disponivel.</span>
 								<br>
 								<time>22/04/2024</time>: A opção 'Bloquear' está disponível e você pode bloquear usuários específicos, mas <span style="color: orangered;">atenção! Por favor, note que, até a data atual do projeto, a funcionalidade de desbloqueio ainda não foi adicionada. Portanto, recomendamos que evite bloquear usuários neste momento até que a opção desbloquear fique disponivel.</span>
 								<br>

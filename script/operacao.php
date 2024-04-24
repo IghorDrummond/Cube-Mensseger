@@ -15,7 +15,13 @@
 			break;
 		case 'Bloquear':
 			bloquearUser($_SESSION['Email'], $email);
+			break;
+		case 'Silenciar':
+			silenciarUser($_SESSION['Email'], $email, 'S');
 			break;		
+		case 'Reativar':
+			silenciarUser($_SESSION['Email'], $email, 'A');
+			break;								
 		default:
 			// code...
 			break;
@@ -61,5 +67,25 @@
 		$Linhas[$nCont] = $user . ';' . $user1 . PHP_EOL;
 		//Escreve os novos dados
 		file_put_contents(BD_BLOQUEADO, $Linhas);		
-	}	
+	}
+
+	function silenciarUser($user, $user1, $Opc){
+		$Linhas = file(BD_AMIGO);
+		$nCont = 0;	
+		$Silenciar = '';
+		$Linha = [];
+
+		foreach($Linhas as $indice => $Valor){
+			$Linha = explode(';', $Valor);
+			if($Linha[0] === $user and $Linha[1] === $user1){
+				$Linha[5] = $Opc . PHP_EOL;
+				$Silenciar = implode(';', $Linha);
+				$nCont = $indice;
+				break;
+			}
+		}
+		$Linhas[$nCont] = $Silenciar;
+		//Escreve os novos dados
+		file_put_contents(BD_AMIGO, $Linhas);		
+	}		
 ?>

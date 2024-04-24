@@ -1,4 +1,4 @@
-/*Estrutura Básica*/
+/*Estrutura Basica*/
 *{
 	padding: 0;
 	margin: 0;
@@ -236,7 +236,7 @@ header ul>li{
 	list-style-type: none;
 }
 
-/* Configuração */
+/* ConfiguraÃ§Ã£o */
 #Configuracao{
 	max-height: 70%;
 }
@@ -265,10 +265,22 @@ header ul>li{
 #Conversar{
 	margin: 5px 0;
 	background: white;
-	min-height: 41vh;
-	max-height: 41vh;
+	min-height: 85%;
+	max-height: 85%;
 	border: 2px solid white;
 	border-radius: 5px;
+}
+#Conversar::-webkit-scrollbar{
+	 width: 10px;
+}
+#Conversar::-webkit-scrollbar-thumb{
+	background: rgb(0,36,23);
+	background: -webkit-gradient(linear, left bottom, left top, from(rgba(0,36,23,0.9514180672268907)), color-stop(78%, rgba(0,255,96,1)));
+	background: linear-gradient(360deg, rgba(0,36,23,0.9514180672268907) 0%, rgba(0,255,96,1) 78%);
+	border-radius: 90px;
+}
+#Conversar button{
+	display: none;
 }
 .amigo{
 	border-radius: 10% 20% 30% 30%;
@@ -280,10 +292,13 @@ header ul>li{
 	font-weight: bold;
 	color: white;
 	font-size: 15px;
-	line-height: 25px;
+	max-width: 90%;
 }
 blockquote p{
 	font-size: 0.8em;
+  word-break: break-all;
+  overflow-wrap: break-word;
+  white-space: pre-line;
 }
 blockquote time, blockquote cite{
 		font-size: 0.5em;
@@ -601,6 +616,11 @@ header ul>li:not(:hover){
 #powered:not(:hover){
 	color: black;
 }
+#Conversar::-webkit-scrollbar-thumb:hover{
+	background: rgb(0,36,23);
+	background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,36,23,0.9514180672268907)), color-stop(78%, rgba(0,255,96,1)));
+	background: linear-gradient(180deg, rgba(0,36,23,0.9514180672268907) 0%, rgba(0,255,96,1) 78%);
+}
 
 /* Dispositivos Mobiles */
 /* Dispositivos extra small (telefones em modo retrato, com menos de 576px)*/
@@ -656,12 +676,15 @@ header ul>li:not(:hover){
 			max-height: 75%;
 	}
 	#Conversar{
-		min-height: 38vh;
-		max-height: 38vh;
+		min-height: 29vh;
+		max-height: 29vh;
 	}	
 	.you, .amigo{
 		font-size: 10px;
 		line-height: none;
+	}	
+	#Conversar button{
+		margin: 55px auto;
 	}	
 }
 @media(max-width: 240px){
@@ -706,4 +729,7 @@ header ul>li:not(:hover){
 		-webkit-transform: rotateX(-90deg) translateZ(75px);
 		transform: rotateX(-90deg) translateZ(75px);
 	}
+	#Conversar button{
+		margin: 55px auto;
+	}		
 }

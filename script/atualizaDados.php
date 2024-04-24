@@ -87,6 +87,7 @@
 				$Dados[$nCont][4] = $Aux[1]; //Recebe a Imagem do Usuário
 				$Dados[$nCont][5] = calculaData($Aux[2]);//Recebe o Ultimo Acesso do Usuário
 				$Dados[$nCont][6] = Mensagens($Linha[0], $Linha[1]);//Recebe o Ultimo Acesso do Usuário
+				$Dados[$nCont][7] = str_replace(PHP_EOL, '', $Linha[5]);//Recebe se o amigo está silenciado ou não
 				
 				//Define se está online o Usuário Amigo
 				switch ($Aux[0]) {
@@ -400,15 +401,17 @@
 			$Off = $Ret[1];
 			$Amigos = $Ret[2];
 			$Dados = $Ret[3];
+			$Style = '';
 ?>
 							<h6 class="text-white">Amigos<span class="badge badge-info"><?php echo ($Amigos) ?></span></h6>
 							<div class="Amigos-lista d-flex flex-column justify-content-center align-items-center">
 								<pre onscroll="posicTag(4)" class="w-100 h-100"><!-- Inicio da Lista de Amigos -->
 									<ul class="list-group"><!-- Inicio da Lista -->
 						<?php
-							foreach ($Dados as $Valor) {
+							foreach ($Dados as $i => $Valor) {
+								$Valor[7] === 'S' ? $Style = 'style="opacity: 0.7;"' : '';
 						?>
-											<li class="list-group-item bg-info text-center w-100 d-flex justify-content-between align-items-center amigo_lista_item" id="<?php echo ($Valor[2]) ?>">
+											<li class="list-group-item bg-info text-center w-100 d-flex justify-content-between align-items-center amigo_lista_item " id="<?php echo ($Valor[2]) ?>" <?php echo ($Style) ?>>
 												<img src="<?php echo ($Valor[4]) ?>" class="border border-dark" align="left">
 												<div>
 													<h6 class="d-inline"><?php echo ($Valor[0]) ?></h6>
@@ -419,7 +422,6 @@
 											?>	
 														<span class="badge badge-success ">Online</span>
 														<time>⌛Agora</time>
-														
 											<?php
 													} else {
 											?>
@@ -432,17 +434,29 @@
 													$Off++;
 												}	
 											?>	
+											<?php
+												if($Valor[7] === 'A'){
+											?>	
 														<span class="Mensagens">
 															<?php echo($Valor[6]); ?>
 														</span>
+											<?php
+												}
+											?>												
 												</div>
 												<ul class="opcao_lista">
 													<li class="bg-primary p-1 border rounded" onclick="tarefa('Conversar <?php echo($Valor[2]); ?>')">Conversar</li>	
 											<?php
 													//Valida se o usuário está online
 													if ($Valor[1] != 'admin@cubemensseger.com') {
+														if($Valor[7] === 'A'){
 											?>
-													<li class="border p-1 bg-secondary rounded" onclick="tarefa('Silenciar<?php echo($Valor[1]); ?>')">Silenciar</li>
+													<li class="border p-1 bg-secondary rounded" onclick="tarefa('Silenciar <?php echo($Valor[1]); ?>')">Silenciar</li><?php
+													}else{
+											?>
+													<li class="border p-1 bg-secondary rounded" onclick="tarefa('Reativar <?php echo($Valor[1]); ?>')">Reativar</li><?php
+													}
+											?>																							
 													<li class="border p-1 bg-warning rounded" onclick="tarefa('Bloquear <?php echo($Valor[1]); ?>')">Bloquear</li>
 													<li class="border p-1 bg-danger rounded" onclick="tarefa('Deletar <?php echo($Valor[1]); ?>')">Deletar</li>
 											<?php
@@ -464,7 +478,6 @@
 										</span></h6>
 								</div><!-- Fim da Metrica de Usuários -->
 							</div>
-
 <?php
 	 	}
 		elseif ($opc === '2') {

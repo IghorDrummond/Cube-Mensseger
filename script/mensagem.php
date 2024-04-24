@@ -91,22 +91,16 @@
 								  	<?php 
 										if($Linha[1] === $_SESSION['Email']){
 											$Linha[5] = str_replace(PHP_EOL, '', $Linha[5]);
-								  			if($Linha[5] === 'N'){
-									?>
-											<img src="img/olho_fechado.png" class="img-fluid" width="15" height="15">
-											<?php 
-											}else if($Linha[5] === 'S'){
-									?>				
-											<img src="img/olho.png" class="img-fluid" width="15" height="15">						
-									<?php	
-											}	  
+											echo(retornaVisualizacao($Linha[5]));								  			
 								  		}
-								  	?>	
+									?>	
 								</blockquote>
 <?php
 	}
 ?>
-							</div><!-- Fim das Mensagens-->						
+							</div><!-- Fim das Mensagens-->		
+							<button class="w-25 btn btn-primary fixed-bottom m-auto descer" title="Mensagens Não Lidas" onclick="desceChat()">Descer <span class="descer badge badge-dark"></span> <span class="sr-only">Mensagens não lidas</span>
+							</button>					
 <?php
 	fclose($ChaveBanco);//Fecha arquivo
 
@@ -321,5 +315,17 @@
 	        return true;
 	    }
 	    return false;
+	}
+
+	function retornaVisualizacao($Vizu){
+		$Ret = '';
+
+		if($Vizu === 'N'){
+			$Ret = '<img src="img/olho_fechado.png" class="img-fluid" width="15" height="15">';
+		}else if($Vizu === 'S'){
+			$Ret = '<img src="img/olho.png" class="img-fluid" width="15" height="15">';
+		}
+
+		return $Ret;	  
 	}
 ?>
