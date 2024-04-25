@@ -14,11 +14,17 @@ var Vistos = document.getElementById('Conversar').getElementsByTagName('img');
 //Arrays
 var Posic  = [0,0,0,0,0];
 var nAntScroll = [0,0];
-var nAntMsg = Array.from({ length: Mensagens.length }, () => [0, false, false]);
+var nAntMsg = Array.from({ length: Mensagens.length }, () => [0, false, false, false]);
+/*
+    Quantidades de Mensagens
+    se há uma nova mensagem para somar mais uma
+    se o usuário está silenciado ou não
+*/
 //Numerico
 var nCont = 0;
 var nMsg = 0;
 var nAnt = parseInt(Pedidos[0].innerText);
+var Acao = -1;
 //Booleano
 var lEnvio = false;
 var lTrava = false;
@@ -38,7 +44,7 @@ var W = setInterval(() => {
         }
 
         nAntMsg.forEach(function(valor, indice){
-        	if(valor[1] && valor[2] === false){
+        	if(valor[1] && valor[2] === false && valor[3] === false){
         		itensAmigo[indice].classList.add('nova_mensagem');
         	}
         });
@@ -62,8 +68,15 @@ var W = setInterval(() => {
 
     //Valida se há nova mensagem, caso houver, emite um som ao usuário
     for(nCont = 0; nCont <= Mensagens.length -1; nCont++){
-    	aux = parseInt((Mensagens[nCont].innerText).substring(0,(Mensagens[nCont].innerText).indexOf(' ')));
+    	aux = (Mensagens[nCont].innerText).substring(0,(Mensagens[nCont].innerText).indexOf(' ')).trim();
 
+        if(aux === 'ø'){
+            nAntMsg[nCont][3] = true;
+            continue;
+        }
+
+        //Converte o Valor String para Numerico
+        aux = parseInt(aux);
     	//Caso a mensagem for nova, ele atualiza soltando um som sonoro apenas para chats não ativos
     	if(nAntMsg[nCont][0] < aux && nAntMsg[nCont][2] === false){
     		audioMensagem.play();
@@ -120,11 +133,13 @@ function tarefa(val){
     var opc  = val.indexOf(' ') >= 0 ? val.substring(0, val.indexOf(' ')) : val;
     var id = val.substring(val.indexOf(' ') +1, val.length);
     var Mensagem = '';
-    var Qtd = document.getElementsByTagName('blockquote');
+    var Qtd = null;//Guarda quantidade de elementos blockquote
 
     if(opc === 'Conversar'){
+        Acao = parseInt(val.substring(val.indexOf('[') +1, val.indexOf(']')));
+        id = val.substring(val.indexOf(' ') +1, val.indexOf('.csv') +4);
         idEnv = id;
-        AtivaChat(id, 1);//Ativa o Chat
+        AtivaChat(id, Acao);//Ativa o Chat
         var J = setTimeout(()=>{
             //Retira o Display
             Navegacao[0].className = "d-none w-100 bg-light my-1";
@@ -153,13 +168,25 @@ function tarefa(val){
             $('#Amigos').load('script/operacao.php?Email=' + id + '&opc=Bloquear');
         }  
     }else if(opc === 'Silenciar'){
+        Acao = parseInt(val.substring(val.indexOf('[') +1, val.indexOf(']')));
+        id = val.substring(val.indexOf(' ') +1, val.indexOf('.com')+4);
+
+        nAntMsg[Acao][3] = true;
+
         if(confirm('Tem certeza de que deseja silenciar este usuário? Ao fazê-lo, você não receberá mais notificações relacionadas a ele.')){
             $('#Amigos').load('script/operacao.php?Email=' + id + '&opc=Silenciar');
         }
     }else if(opc === 'Reativar'){
+        Acao = parseInt(val.substring(val.indexOf('[') +1, val.indexOf(']')));
+        id = val.substring(val.indexOf(' ') +1, val.indexOf('.com')+4);
+
+        nAntMsg[Acao][3] = false;
+
         $('#Amigos').load('script/operacao.php?Email=' + id + '&opc=Reativar');                                               
     }else if(opc === 'Sair'){
-        nAntMsg[1][2] = false;
+        Qtd = document.getElementsByTagName('blockquote');
+        nAntMsg[Acao][2] = false;
+        Acao = -1;
         clearInterval(Chat);  
         Navegacao[0].style.animation = "aparecer 1s";   
         Navegacao[0].className = "d-block w-100 bg-light my-1";        
@@ -179,6 +206,7 @@ function tarefa(val){
             clearTimeout(J);        
         }, 1000);                
     }else if(opc === 'Enviar'){
+        Qtd = document.getElementsByTagName('blockquote');
         //Forma os Espaços para ir completo para gravação de Mensagens
         Mensagem = trataMensagem("_", "'SaS'", CampoMensagem[0].value);  
         Mensagem = trataMensagem(" ", "_", Mensagem);         

@@ -11,6 +11,7 @@
 	define('BD_USUARIO', '../BDs/bd_usuarios.csv');
 	define('BD_ADD', '../BDs/bd_addamigo.csv');
 	define('BD_BLOQUEADO', '../BDs/bd_bloqueado.csv');	
+	define('USER_SL', 'ø <i class="fa-solid fa-message" style="color: white;"></i>');
 
 	//==========================Escopo========================================
 	//Define a Data do Sistema
@@ -86,9 +87,9 @@
 				$Aux = verificaUsuario($Linha[1]);//Retorna Foto e Data do ultimo Login
 				$Dados[$nCont][4] = $Aux[1]; //Recebe a Imagem do Usuário
 				$Dados[$nCont][5] = calculaData($Aux[2]);//Recebe o Ultimo Acesso do Usuário
-				$Dados[$nCont][6] = Mensagens($Linha[0], $Linha[1]);//Recebe o Ultimo Acesso do Usuário
-				$Dados[$nCont][7] = str_replace(PHP_EOL, '', $Linha[5]);//Recebe se o amigo está silenciado ou não
-				
+				$Dados[$nCont][6] = str_replace(PHP_EOL, '', $Linha[5]);//Recebe se o amigo está silenciado ou não 
+				$Dados[$nCont][7] = $Dados[$nCont][6] === 'A' ? Mensagens($Linha[0], $Linha[1]): USER_SL;//Recebe as Ultimas Mensagens não vista 
+
 				//Define se está online o Usuário Amigo
 				switch ($Aux[0]) {
 					case true:
@@ -409,7 +410,7 @@
 									<ul class="list-group"><!-- Inicio da Lista -->
 						<?php
 							foreach ($Dados as $i => $Valor) {
-								$Valor[7] === 'S' ? $Style = 'style="opacity: 0.7;"' : '';
+								$Valor[6] === 'S' ? $Style = 'style="opacity: 0.7;"' : $Style = '';
 						?>
 											<li class="list-group-item bg-info text-center w-100 d-flex justify-content-between align-items-center amigo_lista_item " id="<?php echo ($Valor[2]) ?>" <?php echo ($Style) ?>>
 												<img src="<?php echo ($Valor[4]) ?>" class="border border-dark" align="left">
@@ -434,27 +435,21 @@
 													$Off++;
 												}	
 											?>	
-											<?php
-												if($Valor[7] === 'A'){
-											?>	
 														<span class="Mensagens">
-															<?php echo($Valor[6]); ?>
-														</span>
-											<?php
-												}
-											?>												
+															<?php echo($Valor[7]); ?>
+														</span>											
 												</div>
 												<ul class="opcao_lista">
-													<li class="bg-primary p-1 border rounded" onclick="tarefa('Conversar <?php echo($Valor[2]); ?>')">Conversar</li>	
+													<li class="bg-primary p-1 border rounded" onclick="tarefa('Conversar <?php echo($Valor[2]); ?> <?php echo('['. strval($i) .']') ?>')">Conversar</li>	
 											<?php
 													//Valida se o usuário está online
 													if ($Valor[1] != 'admin@cubemensseger.com') {
-														if($Valor[7] === 'A'){
+														if($Valor[6] === 'A'){
 											?>
-													<li class="border p-1 bg-secondary rounded" onclick="tarefa('Silenciar <?php echo($Valor[1]); ?>')">Silenciar</li><?php
+													<li class="border p-1 bg-secondary rounded" onclick="tarefa('Silenciar <?php echo($Valor[1]); ?> <?php echo('['. strval($i) .']') ?>')">Silenciar</li><?php
 													}else{
 											?>
-													<li class="border p-1 bg-secondary rounded" onclick="tarefa('Reativar <?php echo($Valor[1]); ?>')">Reativar</li><?php
+													<li class="border p-1 bg-secondary rounded" onclick="tarefa('Reativar <?php echo($Valor[1]); ?> <?php echo('['. strval($i) .']') ?>')">Reativar</li><?php
 													}
 											?>																							
 													<li class="border p-1 bg-warning rounded" onclick="tarefa('Bloquear <?php echo($Valor[1]); ?>')">Bloquear</li>
