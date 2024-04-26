@@ -61,51 +61,51 @@
 			$_SESSION['FotoPerfil']
 		];	
 
-		//================Valida os Amigos que o usuário tem adicionado ====================
-		//Abre o arquivo para leitura
-		$ChaveBanco = fopen(BD_AMIGO, 'r');
-		while (!feof($ChaveBanco)) {
-			$Linha = explode(';', fgets($ChaveBanco));
+			//================Valida os Amigos que o usuário tem adicionado ====================
+			//Abre o arquivo para leitura
+			$ChaveBanco = fopen(BD_AMIGO, 'r');
+			while (!feof($ChaveBanco)) {
+				$Linha = explode(';', fgets($ChaveBanco));
 
- 			if (isset($Linha[1]) === false) {
-				continue;
-			}
-			$nLinha++;
-			//Verifica se o usuário é amigo ou não dos outros demais
-			if ($Usuario[1] === $Linha[0]) {
-				//Verifica se o amigo está bloqueado para o usuário.
-				if(validaBloqueado($_SESSION['Email'], $Linha[1])){
+	 			if (isset($Linha[1]) === false) {
 					continue;
 				}
+				$nLinha++;
+				//Verifica se o usuário é amigo ou não dos outros demais
+				if ($Usuario[1] === $Linha[0]) {
+					//Verifica se o amigo está bloqueado para o usuário.
+					if(validaBloqueado($_SESSION['Email'], $Linha[1])){
+						continue;
+					}
 
-				$Amigos++;
-				//Guarda Informação do Amigo Cadastrado
-				$Dados[$nCont][0] = $Linha[2];//Recebe o Nome do Amigo
-				$Dados[$nCont][1] = $Linha[1];//Recebe o Email do Amigo
-				$Dados[$nCont][2] = $Linha[3];//Recebe o Nome da Conversa do Amigo
-				$Dados[$nCont][3] = false; //Valida se o usuário está Online ou Offiline
-				$Aux = verificaUsuario($Linha[1]);//Retorna Foto e Data do ultimo Login
-				$Dados[$nCont][4] = $Aux[1]; //Recebe a Imagem do Usuário
-				$Dados[$nCont][5] = calculaData($Aux[2]);//Recebe o Ultimo Acesso do Usuário
-				$Dados[$nCont][6] = str_replace(PHP_EOL, '', $Linha[5]);//Recebe se o amigo está silenciado ou não 
-				$Dados[$nCont][7] = $Dados[$nCont][6] === 'A' ? Mensagens($Linha[0], $Linha[1]): USER_SL;//Recebe as Ultimas Mensagens não vista 
+					$Amigos++;
+					//Guarda Informação do Amigo Cadastrado
+					$Dados[$nCont][0] = $Linha[2];//Recebe o Nome do Amigo
+					$Dados[$nCont][1] = $Linha[1];//Recebe o Email do Amigo
+					$Dados[$nCont][2] = $Linha[3];//Recebe o Nome da Conversa do Amigo
+					$Dados[$nCont][3] = false; //Valida se o usuário está Online ou Offiline
+					$Aux = verificaUsuario($Linha[1]);//Retorna Foto e Data do ultimo Login
+					$Dados[$nCont][4] = $Aux[1]; //Recebe a Imagem do Usuário
+					$Dados[$nCont][5] = calculaData($Aux[2]);//Recebe o Ultimo Acesso do Usuário
+					$Dados[$nCont][6] = str_replace(PHP_EOL, '', $Linha[5]);//Recebe se o amigo está silenciado ou não 
+					$Dados[$nCont][7] = $Dados[$nCont][6] === 'A' ? Mensagens($Linha[0], $Linha[1]): USER_SL;//Recebe as Ultimas Mensagens não vista 
 
-				//Define se está online o Usuário Amigo
-				switch ($Aux[0]) {
-					case true:
-						$On++;
-						$Dados[$nCont][3] = true;
-						break;
-					default:
-						$Off++;
-						break;
+					//Define se está online o Usuário Amigo
+					switch ($Aux[0]) {
+						case true:
+							$On++;
+							$Dados[$nCont][3] = true;
+							break;
+						default:
+							$Off++;
+							break;
+					}
+					$nCont++;
 				}
-				$nCont++;
 			}
-		}
 
-		//Fecha Arquivo
-		fclose($ChaveBanco);
+			//Fecha Arquivo
+			fclose($ChaveBanco);
 		//Dados para retornar
 		$Ret[0] = $On;
 		$Ret[1] = $Off;
@@ -406,7 +406,7 @@
 ?>
 							<h6 class="text-white">Amigos<span class="badge badge-info"><?php echo ($Amigos) ?></span></h6>
 							<div class="Amigos-lista d-flex flex-column justify-content-center align-items-center">
-								<pre onscroll="posicTag(4)" class="w-100 h-100"><!-- Inicio da Lista de Amigos -->
+								<pre onscroll="posicTag(5)" class="w-100 h-100"><!-- Inicio da Lista de Amigos -->
 									<ul class="list-group"><!-- Inicio da Lista -->
 						<?php
 							foreach ($Dados as $i => $Valor) {
@@ -498,7 +498,7 @@
 					<fieldset class="form-group border border-dark rounded bg-secondary">
 						<legend><?php echo($Pedidos[$nCont][3]); ?></legend>
 						<div class="text-center">
-							<img class="rounded-circle border border-dark" src="<?php echo($Pedidos[$nCont][5]); ?>" width="150" height="150">
+							<img class="rounded-circle border border-dark img-fluid" src="<?php echo($Pedidos[$nCont][5]); ?>" width="130" height="130">
 							<p>
 								Olá! 😊 Gostaria de me conectar com você. Seria um prazer compartilhar momentos juntos. Aguardo sua resposta! 🌟
 							</p>

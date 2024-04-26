@@ -238,7 +238,20 @@ header ul>li{
 
 /* ConfiguraÃ§Ã£o */
 #Configuracao{
-	max-height: 70%;
+	max-height: 100%;
+}
+#Configuracao pre{
+	max-height: 100%;
+}
+#Configuracao input{
+	width: 50%;
+	display: inline-block;
+	margin: 5px auto;
+}
+.tela_senha{
+	display: none;
+	position: absolute;
+	z-index: 5;
 }
 
 /* Lista de Pedidos de Amizades */
@@ -282,6 +295,10 @@ header ul>li{
 #Conversar button{
 	display: none;
 }
+.logo_conversa{
+	width: 30px;
+	height: 30px;
+}
 .amigo{
 	border-radius: 10% 20% 30% 30%;
 }
@@ -311,7 +328,8 @@ blockquote time, blockquote cite{
 	color: black;
 }
 .Amigos-lista>pre>ul li>img, 
-#AddAmigos pre>ul li>img 
+#AddAmigos pre>ul li>img,
+#Configuracao img
 {
 	border-radius: 90px;
 	width: 50px;

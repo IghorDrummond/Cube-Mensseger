@@ -32,7 +32,7 @@
 	//Constrói o Cabeçalho do Chat
 ?>
 							<div class="d-flex justify-content-between align-items-center bg-white rounded p-2 border sticky-top">
-								<img class="rounded-circle border img-fluid" src="<?php echo($Dados[4]); ?>" width="25" height="25">
+								<img class="rounded-circle border img-fluid logo_conversa" src="<?php echo($Dados[4]); ?>">
 								<h6><?php echo($Dados[0]); ?>
 									<?php
 										if($Dados[5] and validaBloqueado($Dados[1], $_SESSION['Email']) === false){

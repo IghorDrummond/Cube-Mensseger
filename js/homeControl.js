@@ -12,7 +12,7 @@ var Conversa = document.getElementsByTagName('blockquote');
 var Descer = document.getElementsByClassName('descer');
 var Vistos = document.getElementById('Conversar').getElementsByTagName('img');
 //Arrays
-var Posic  = [0,0,0,0,0];
+var Posic  = [0,0,0,0,0,0];
 var nAntScroll = [0,0];
 var nAntMsg = Array.from({ length: Mensagens.length }, () => [0, false, false, false]);
 /*
@@ -29,18 +29,19 @@ var Acao = -1;
 var lEnvio = false;
 var lTrava = false;
 /*
-	Lista de Pedidos
-	Notas de Atts
-	Conversa
-	Lista de Adds 
-	Lista de Amigos
+	Lista de Pedidos -0
+	Notas de Atts -1
+    Configuração -2
+	Conversa -3
+	Lista de Adds -4
+	Lista de Amigos -5
 */
 audioAmigo.volume = 0.5;
 var W = setInterval(() => {
     $("#Amigos").load("script/atualizaDados.php?opc=1", function() {
         // Restaura a posição do scroll y após a atualização
         if((preTag.length -1 ) > 3){
-        	preTag[4].scrollTop = Posic[4];
+        	preTag[5].scrollTop = Posic[5];
         }
 
         nAntMsg.forEach(function(valor, indice){
@@ -71,7 +72,6 @@ var W = setInterval(() => {
     	aux = (Mensagens[nCont].innerText).substring(0,(Mensagens[nCont].innerText).indexOf(' ')).trim();
 
         if(aux === 'ø'){
-            nAntMsg[nCont][3] = true;
             continue;
         }
 
@@ -221,7 +221,7 @@ function AtivaChat(id, divPosic){
     nAntMsg[divPosic][2] = true;
     //Carrega o chat pela primeira vez para posicionar o scroll na ultima mensagem enviada.
     $('#Conversar').load('script/mensagem.php?id=' + idEnv, function() {
-        preTag[2].scrollTop = preTag[2].scrollHeight;
+        preTag[3].scrollTop = preTag[3].scrollHeight;
     });
 
     Chat = setInterval(() =>{
@@ -229,14 +229,14 @@ function AtivaChat(id, divPosic){
             //Valida se o usuário enviou uma mensagem
             if(!lEnvio){
                 //Valida se o usuário está na ultima mensagem
-                if(preTag[2].offsetHeight + preTag[2].scrollTop >= nAntScroll[1]){
+                if(preTag[2].offsetHeight + preTag[3].scrollTop >= nAntScroll[1]){
                     Descer[0].style.display = 'none';
                     lTrava = false;
                     nMsg = 0;
                     //Valida se chegou uma nova mensagem para você do usuário
                     if(validaNovaMensagem()){                    
                         //Aqui também desativará o botão descer
-                        preTag[2].scrollTop = preTag[2].scrollHeight;  //Caso houver nova mensagem, ele ajusta o scroll para ultima
+                        preTag[3].scrollTop = preTag[3].scrollHeight;  //Caso houver nova mensagem, ele ajusta o scroll para ultima
                     }
                 }else{
                     if(!lTrava){
@@ -255,12 +255,12 @@ function AtivaChat(id, divPosic){
                 }
 
             }else{
-                preTag[2].scrollTop = preTag[2].scrollHeight;  
+                preTag[3].scrollTop = preTag[3].scrollHeight;  
                 lEnvio = false;
             } 
 
             nAntScroll[0] = Conversa.length; //Guarda Quantidade de mensagens enviadas     
-            nAntScroll[1] = (preTag[2].scrollHeight);//Guarda a ultimo tamanho da caixa de mensagens
+            nAntScroll[1] = (preTag[3].scrollHeight);//Guarda a ultimo tamanho da caixa de mensagens
         });
     }, 1000);
 
@@ -286,8 +286,84 @@ function validaNovaMensagem(){
 }
 
 function desceChat(){
-    preTag[2].scrollTop = preTag[2].scrollHeight;
+    preTag[3].scrollTop = preTag[3].scrollHeight;
     Descer[0].style.display = 'none';
     lTrava = false;
     nMsg = 0;
+}
+
+function Configuracao(val){
+    if (val === 'Foto') {
+        var formData = new FormData();
+        formData.append('foto', $('#Arquivo')[0].files[0]);
+        $.ajax({
+            url: 'script/Configuracao.php?Opc='+val,
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                // Aqui você pode lidar com a resposta do servidor
+                $('#avisos').html(response);
+                var K = setTimeout(()=>{
+                    clearTimeout(K);
+                    location.reload();
+                },5000);
+            }
+        });
+    }else if(val === 'Senhas'){
+        
+    }
+}
+
+function trataLink(Link){
+    var posic = 0;
+
+    while(posic != -1){
+        Link = Link.replace(' ', '|');
+        posic = Link.indexOf(' ');
+    }    
+
+    return Link;
+}
+
+/*
+================================================================
+Função: ValidaSenha()
+Descrição: Analisa se o Usuário Inseriu os caracteres exigidos
+Data: 26/03/2024
+Progamador(a): Ighor Drummond
+================================================================
+*/
+function ValidaSenha(){
+    //Declaração de Variaveis
+    //Elementos
+    var Lista = document.getElementById('regras_senha').getElementsByTagName('li');
+    var Input = document.getElementsByName('Senha');
+    //String
+    var Carac = "";
+    //Array
+    var Simbolo = [['ABCDEFGHIJKLMNOPQRSTUVWXYZ'], ['@#_-%¨&;?!$()*><:Ç~´^,.=\/{}`´|[]+""£'] ,['0123456789'] ];
+    //Numerico
+    var nCont = 0;
+    var nCont2 = 0;
+
+    //Recupera o valor Digitado no Campo Senha
+    Carac = Input[0].value;
+
+    //Verifica o Tamanho da Senha
+    (Carac.length +1) >= 8 ? Lista[0].className = "text-success" : Lista[0].className = "text-warning";
+
+    //Verifica os Caracteres existentes dentro da String
+    for(nCont = 0; nCont <= Simbolo.length -1; nCont++){
+        for(nCont2 = 0; nCont2 <= Simbolo[nCont][0].length -1; nCont2++){
+            if( Carac.indexOf(Simbolo[nCont][0].charAt(nCont2)) >= 0 ){
+                Lista[nCont +1].className = "text-success";
+                break;
+            }
+            else{
+                Lista[nCont +1].className = "text-warning";
+            }
+        }
+    }
 }

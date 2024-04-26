@@ -172,7 +172,8 @@
 	    return false;
 	}	
 
-	//================Valida os Amigos que o usuário tem adicionado ====================
+		//================Valida os Amigos que o usuário tem adicionado ====================
+		//Abre o arquivo para leitura
 		$ChaveBanco = fopen(BD_AMIGO, 'r');
 		while (!feof($ChaveBanco)) {
 			$Linha = explode(';', fgets($ChaveBanco));
@@ -197,8 +198,9 @@
 				$Aux = verificaUsuario($Linha[1]);//Retorna Foto e Data do ultimo Login
 				$Dados[$nCont][4] = $Aux[1]; //Recebe a Imagem do Usuário
 				$Dados[$nCont][5] = calculaData($Aux[2]);//Recebe o Ultimo Acesso do Usuário
-				$Dados[$nCont][6] = Mensagens($Linha[0], $Linha[1]);//Recebe o Ultimo Acesso do Usuário
-				
+				$Dados[$nCont][6] = str_replace(PHP_EOL, '', $Linha[5]);//Recebe se o amigo está silenciado ou não 
+				$Dados[$nCont][7] = $Dados[$nCont][6] === 'A' ? Mensagens($Linha[0], $Linha[1]): USER_SL;//Recebe as Ultimas Mensagens não vista 
+
 				//Define se está online o Usuário Amigo
 				switch ($Aux[0]) {
 					case true:
@@ -213,8 +215,8 @@
 			}
 		}
 
-	//Fecha Arquivo
-	fclose($ChaveBanco);
+		//Fecha Arquivo
+		fclose($ChaveBanco);
 
 	//================Valida a quantidade de Pedidos Enviados ====================
 	$ChaveBanco = fopen(BD_ADD, 'r');
@@ -370,7 +372,7 @@
 									<?php require_once ('script/atts.php'); ?>		
 						</pre>
 						<a id="powered" onmouseover="animaCubo(1)" onmouseout="animaCubo(2)"
-							href="https://ighordrummond.netlify.app">
+							href="https://ighordrummond.netlify.app" target="_blank">
 							<h6>Desenvolvido por Ighor Drummond©</h6>
 						</a>
 					</div>
@@ -379,6 +381,52 @@
 					<!-- Configuração -->
 					<div id="Configuracao" class="bg-white h-100 w-100 d-none">
 
+						<pre class="p-3 text-white">
+							<!-- Trocar Foto de Perfil -->
+							<div class="w-100 bg-primary rounded text-center">
+								<h6>Altere Sua Foto</h6>
+								<img src="<?php echo ($Usuario[2]); ?>" class="img-fluid border border-dark" width="50" height="50">
+						        <div class="form-group">
+						            <label for="Arquivo">Arquivo</label>
+						            <input class="form-control-file" name="Foto" type="file" id="Arquivo" required>
+						        </div>
+							    <h6>Tamanho Máximo de 500kb</h6>
+							    <h6>Formatos "jpg", "jpeg", "png" e "gif"</h6>
+							    <input type="button" name="Foto" class="form-control btn btn-success w-50" onclick="Configuracao('Foto')" value="Enviar"> 
+							</div>
+							<!-- Trocar Nome -->
+							<div class="w-100 bg-primary rounded text-center">
+								<h6>Altere Seu Nome</h6>
+								<form class="form-group" action="script/Configuracao.php" method="POST">
+									<label for="Nome">Insira seu Nome: </label>
+									<input class="form-control" type="text" maxlength="10" name="Nome" required>
+									<label for="Nome">Insira seu Sobrenome: </label>
+									<input class="form-control" type="text" maxlength="10" name="Sobrenome" required>
+							        <input type="submit" name="Nomes" class="form-control btn btn-success w-50" value="Enviar">
+								</form> 
+							</div>							
+							<!-- Desbloquear Pessoas -->
+							<div class="w-100 bg-primary rounded text-center">
+								<h6>Desbloqueie Pessoas:</h6>
+
+							</div>	
+							<!-- Troca Senha -->
+							<div class="w-100 bg-primary rounded text-center">
+								<h6>Troque a Senha</h6>
+								<h6>Digite a Senha:</h6>
+								<input type="password" name="Senha" onkeyup="ValidaSenha()" pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\W+)(?=^.{8,50}$).*$" required>
+								<h6>Confirme a Senha:</h6>
+								<input type="password" name="ConfirmeSenha" pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\W+)(?=^.{8,50}$).*$" required>
+								<input type="submit" name="Nomes" class="form-control btn btn-success w-50" value="Enviar">
+								<h6>Digite a Nova Senha respeitando a Regra listadas abaixo:</h6>
+								<ul id="regras_senha">
+									<li class="text-warning">Maxímo de 8 Caracteres</li>
+									<li class="text-warning">Um ou Mais Letra Maíscula</li>
+									<li class="text-warning">Um ou Mais Símbolo</li>
+									<li class="text-warning">Um ou Mais Numero</li>
+								</ul>								
+							</div>	
+						</pre>
 					</div>
 				</div>
 				<div class="cubo-face right p-2 text-dark">
@@ -398,8 +446,7 @@
 				</div>
 				<div class="cubo-face left">left</div>
 				<div class="cubo-face top">
-					<div id="AddAmigos"
-						class="w-100 h-100 d-none justify-content-center align-items-center flex-column">
+					<div id="AddAmigos" class="w-100 h-100 d-none justify-content-center align-items-center flex-column">
 						<h6 class="text-white">Adicione Amigos!</h6>
 						<div class="border border-white w-75 h-75 p-1 d-flex flex-column">
 							<pre onscroll="posicTag(2)" id="lista_adds" class="w-100 h-100 bg-transparent">
@@ -420,12 +467,13 @@
 					<div id="Amigos" class="text-center d-none">
 							<h6 class="text-white">Amigos<span class="badge badge-info"><?php echo ($Amigos) ?></span></h6>
 							<div class="Amigos-lista d-flex flex-column justify-content-center align-items-center">
-								<pre onscroll="posicTag(4)" class="w-100 h-100"><!-- Inicio da Lista de Amigos -->
+								<pre onscroll="posicTag(5)" class="w-100 h-100"><!-- Inicio da Lista de Amigos -->
 									<ul class="list-group"><!-- Inicio da Lista -->
 						<?php
-							foreach ($Dados as $Valor) {
+							foreach ($Dados as $i => $Valor) {
+								$Valor[6] === 'S' ? $Style = 'style="opacity: 0.7;"' : $Style = '';
 						?>
-											<li class="list-group-item bg-info text-center w-100 d-flex justify-content-between align-items-center amigo_lista_item" id="<?php echo ($Valor[2]) ?>">
+											<li class="list-group-item bg-info text-center w-100 d-flex justify-content-between align-items-center amigo_lista_item " id="<?php echo ($Valor[2]) ?>" <?php echo ($Style) ?>>
 												<img src="<?php echo ($Valor[4]) ?>" class="border border-dark" align="left">
 												<div>
 													<h6 class="d-inline"><?php echo ($Valor[0]) ?></h6>
@@ -436,7 +484,6 @@
 											?>	
 														<span class="badge badge-success ">Online</span>
 														<time>⌛Agora</time>
-														
 											<?php
 													} else {
 											?>
@@ -450,16 +497,22 @@
 												}	
 											?>	
 														<span class="Mensagens">
-															<?php echo($Valor[6]); ?>
-														</span>
+															<?php echo($Valor[7]); ?>
+														</span>											
 												</div>
 												<ul class="opcao_lista">
-													<li class="bg-primary p-1 border rounded" onclick="tarefa('Conversar <?php echo($Valor[2]); ?>')">Conversar</li>	
+													<li class="bg-primary p-1 border rounded" onclick="tarefa('Conversar <?php echo($Valor[2]); ?> <?php echo('['. strval($i) .']') ?>')">Conversar</li>	
 											<?php
 													//Valida se o usuário está online
 													if ($Valor[1] != 'admin@cubemensseger.com') {
+														if($Valor[6] === 'A'){
 											?>
-													<li class="border p-1 bg-secondary rounded" onclick="tarefa('Silenciar<?php echo($Valor[1]); ?>')">Silenciar</li>
+													<li class="border p-1 bg-secondary rounded" onclick="tarefa('Silenciar <?php echo($Valor[1]); ?> <?php echo('['. strval($i) .']') ?>')">Silenciar</li><?php
+													}else{
+											?>
+													<li class="border p-1 bg-secondary rounded" onclick="tarefa('Reativar <?php echo($Valor[1]); ?> <?php echo('['. strval($i) .']') ?>')">Reativar</li><?php
+													}
+											?>																							
 													<li class="border p-1 bg-warning rounded" onclick="tarefa('Bloquear <?php echo($Valor[1]); ?>')">Bloquear</li>
 													<li class="border p-1 bg-danger rounded" onclick="tarefa('Deletar <?php echo($Valor[1]); ?>')">Deletar</li>
 											<?php
@@ -490,6 +543,7 @@
 	</section><!-- Fim do Cubo -->
 </main>
 <!--Fim do Corpo -->
+<?php require_once ('script/scripts.php'); ?>
 <!-- Scripts Obrigatórios -->
 <script type="text/javascript" src="js/ajustaTamanho.js"></script>
 <?php

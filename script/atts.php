@@ -1,5 +1,10 @@
+								<time>25/04/2024</time>: Agora você pode trocar sua senha na aba de configurações.
+								<br>
+								<time>25/04/2024</time>: Agora você pode atualizar sua foto de perfil na aba de configurações.
+								<br>
 								<time>25/04/2024</time>: Na aba de configuração agora voçê pode desbloquear amigos bloqueados.
 								<br>
+
 								<time>24/04/2024</time>: Um botão foi adicionado para rolar até a última mensagem do chat. Além disso, caso você esteja navegando entre mensagens antigas e seu amigo envie uma nova mensagem no mesmo chat, o botão agora mostrará a quantidade de mensagens que ele enviou, acompanhada de um novo alerta sonoro exclusivo para novas mensagens no chat de conversa.
 								<br>
 								<time>24/04/2024</time>: A partir de agora, os alertas sonoros para novas mensagens serão emitidos apenas nos chats que você ainda não visualizou, corrigindo o problema que causava o disparo de alertas sonoros mesmo quando você já estava ativo no chat do remetente da mensagem.
