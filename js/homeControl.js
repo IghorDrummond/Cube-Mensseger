@@ -25,6 +25,12 @@ var nCont = 0;
 var nMsg = 0;
 var nAnt = parseInt(Pedidos[0].innerText);
 var Acao = -1;
+//Objeto
+var data = {
+    // Definindo os dados a serem enviados
+    Senha: '',
+    ConfirmeSenha: ''
+}
 //Booleano
 var lEnvio = false;
 var lTrava = false;
@@ -57,6 +63,8 @@ var W = setInterval(() => {
     });
 
     $('#pedidos_amigos').load("script/atualizaDados.php?opc=3");
+
+    $('#bloqueados').load("script/Configuracao.php?Opc=Bloqueado");
 
     //Caso houver uma nova adição de amigo, ele atualiza o tamanho do array de mensagens não lida
     if(Mensagens.length > nAntMsg.length){
@@ -182,7 +190,16 @@ function tarefa(val){
 
         nAntMsg[Acao][3] = false;
 
-        $('#Amigos').load('script/operacao.php?Email=' + id + '&opc=Reativar');                                               
+        $('#Amigos').load('script/operacao.php?Email=' + id + '&opc=Reativar');   
+    }else if(opc === 'Desbloquear'){
+        confirm("Confirmar Desbloqueio de Usuário?") ? $('#Amigos').load('script/operacao.php?Email=' + id + '&opc=Desbloquear') : ''; 
+    }else if(opc === 'Trocar'){
+        //Confirmar a Troca de Senha
+        if(confirm("Confirmar a troca da Senha? você será deslogado e direcionado para a tela de Login.")){
+            data.Senha = encodeURIComponent(document.getElementsByName('Senha')[0].value);
+            data.ConfirmeSenha = encodeURIComponent(document.getElementsByName('ConfirmeSenha')[0].value);
+            $('#avisos').load('script/operacao.php?opc=Trocar&Senha=' + data.Senha + '&ConfirmeSenha=' + data.ConfirmeSenha);
+        }
     }else if(opc === 'Sair'){
         Qtd = document.getElementsByTagName('blockquote');
         nAntMsg[Acao][2] = false;
@@ -312,7 +329,7 @@ function Configuracao(val){
             }
         });
     }else if(val === 'Senhas'){
-        
+
     }
 }
 

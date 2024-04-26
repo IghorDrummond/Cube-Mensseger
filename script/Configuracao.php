@@ -6,6 +6,7 @@
 	$Acao = $_GET['Opc'];
 	//Constantes
 	define('BD_USUARIO', '../BDs/bd_usuarios.csv');
+	define('BD_BLOQUEADO', '../BDs/bd_bloqueado.csv');
 	define('SV_IMG', '../BDs/BD_FOTOS/');
 	define('BYTES', 500000);
 
@@ -16,6 +17,8 @@
 		case 'Senhas':
 			trocaSenhas($_GET['Senha'], $_GET['ConfirmaSenha']);
 			break;
+		case 'Bloqueado':
+			bloqueado($_SESSION['Email'], 'N');	
 		default:
 			break;
 	}
@@ -70,6 +73,10 @@
 		foreach($Linhas as $i => $Valor){
 			$Linha = explode(';', $Valor);
 
+			if (isset($Linha[1]) === false) {
+				continue;
+			}
+
 			if($_SESSION['Email'] === $Linha[1] and $_SESSION['Nome'] === $Linha[3]){
 				$Linha[5] = substr(SV_IMG, 3, strlen(SV_IMG)) . $Imagem;
 				$Linhas[$i] = implode(';', $Linha);
@@ -86,6 +93,8 @@
 	function trocaSenhas($Senha, $Csenha){
 		$Linhas = [];
 		$Linha = [];
+
+
 		if($Senha != $Csenha){
 			Error("Senhas não se correspondem!");
 			return  null;
@@ -94,6 +103,48 @@
 		sucesso('A senha foi alterada com sucesso!');
 	}
 
+	function bloqueado($Email){
+		$Linhas = file(BD_BLOQUEADO);
+		$Linha = [];
+		//Booleano
+		$lTem = false;
+		cabec();
+
+		foreach($Linhas as $i => $Valor){
+			$Linha = explode(';', $Valor);
+
+			if (isset($Linha[1]) === false) {
+				continue;
+			}
+
+			$Linha[0] === $Email ? $lTem = imprime(verificaUsuario(str_replace(PHP_EOL, '', $Linha[1]))) : '';
+		}
+
+		if(!$lTem){
+			naoTem();
+		}
+	}	
+
+	function verificaUsuario($Email){
+		$Ret = [];
+		$Linhas = file(BD_USUARIO);
+
+		foreach($Linhas as $Valor){
+			$Linha = explode(';', $Valor);
+
+			if (isset($Linha[1]) === false) {
+				continue;
+			}
+
+			if ($Linha[1] === $Email) {
+				$Ret[0] = $Linha[5];//Foto do usuário
+				$Ret[1] = $Linha[3];//Nome do Usuário
+				$Ret[2] = $Linha[1];//Retorna o Email do usuário
+				break;
+			}
+		}
+		return $Ret;
+	}	
 
 	function Error($Log){
 ?>
@@ -109,8 +160,29 @@
 ?>
 		<div class="alert alert-success alert-dismissible fade show">
 			<button type="button" class="close" data-dismiss="alert">&times;</button>
-			<strong>Salvo com Sucesso!</strong> <?php echo($Log) ?></a>
+			<strong>Operação Concluída!</strong> <?php echo($Log) ?></a>
 		</div>	
+<?php
+	}
+
+	function imprime($V){
+?>
+		<div class="bg-warning w-75 rounded m-auto">
+			<img src="<?php echo ($V[0]); ?>" class="img-fluid border border-dark" width="70" height="70">
+			<h6 class="text-dark"><i style="color: black;"><?php echo($V[1]);?></i> Está bloqueado.</h6>
+			<button class="btn btn-info rounded my-2 w-" onclick="tarefa('Desbloquear <?php echo ($V[2]); ?>')">Desbloquear <?php echo($V[1]); ?></button>
+		</div>
+<?php
+		return true;
+	}
+	function cabec(){
+?>
+	<h6>Desbloqueie Pessoas:</h6>
+<?php
+	}
+	function naoTem(){
+?>	
+	<h6>Não há nenhum usuário bloqueado por enquanto...</h6>
 <?php
 	}
 ?>

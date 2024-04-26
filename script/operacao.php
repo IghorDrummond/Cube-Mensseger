@@ -3,11 +3,12 @@
 	session_start();
 	//Declaração de Variaveis
 	//String
-	$email = $_GET['Email'];
-	$op = $_GET['opc'];
+	$email = isset($_GET['Email']) ?$_GET['Email'] : '' ;
+	$op = isset($_GET['opc']) ?$_GET['opc'] : '' ;
 	//Constantes
 	define('BD_AMIGO', '../BDs/bd_listamigos.csv');
 	define('BD_BLOQUEADO', '../BDs/bd_bloqueado.csv');
+	define('BD_USUARIO', '../BDs/bd_usuarios.csv');
 
 	switch ($op) {
 		case 'Deletar':
@@ -21,7 +22,13 @@
 			break;		
 		case 'Reativar':
 			silenciarUser($_SESSION['Email'], $email, 'A');
-			break;								
+			break;	
+		case 'Desbloquear':
+			desbloquearUser($_SESSION['Email'], $email);
+			break;		
+		case 'Trocar':
+			trocaSenha($_GET['Senha'], $_GET['ConfirmeSenha']);
+			break;													
 		default:
 			// code...
 			break;
@@ -87,5 +94,63 @@
 		$Linhas[$nCont] = $Silenciar;
 		//Escreve os novos dados
 		file_put_contents(BD_AMIGO, $Linhas);		
-	}		
+	}	
+
+	function desbloquearUser($user, $user1){
+		$Linhas = file(BD_BLOQUEADO);
+
+		$Posic = array_search($user . ';' . $user1 . PHP_EOL, $Linhas);
+
+		if($Posic >= 0){
+			unset($Linhas[$Posic]);
+			$Linhas = array_values($Linhas);
+		}
+		//Escreve os novos dados
+		file_put_contents(BD_BLOQUEADO, $Linhas);			
+	}
+
+	function trocaSenha($Senha, $ConfirmaSenha){
+		$Linhas = [];
+		$Linha = [];
+
+		if($Senha != $ConfirmaSenha){
+			Error("Senhas não se correspondem.");
+			return null;
+		}
+
+		$Linhas = file(BD_USUARIO);
+
+		foreach($Linhas as $i => $Valor){
+			$Linha = explode(';', $Valor);
+			if(isset($Linha[1]) === false){
+				continue;
+			}
+			if($Linha[1] === $_SESSION['Email']){
+				$Linha[2] = $Senha;
+				$Linhas[$i] = implode(';', $Linha);
+				break;
+			}
+		}
+		//Escreve os novos dados
+		file_put_contents(BD_USUARIO, $Linhas);		
+		sucesso("A senha foi alterada com sucesso!");		
+	}				
+?>
+<?php
+	function sucesso($Log){
+?>
+		<div class="alert alert-success alert-dismissible fade show">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+			<strong>Operação Concluída!</strong> <?php echo($Log) ?></a>
+		</div>	
+<?php
+	}
+	function Error($Log){
+?>
+		<div class="alert alert-danger alert-dismissible fade show">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+			<strong>Ocorreu um Problema!</strong> <?php echo($Log) ?></a>
+		</div>	
+<?php
+	}
 ?>

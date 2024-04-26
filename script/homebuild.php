@@ -388,7 +388,7 @@
 								<img src="<?php echo ($Usuario[2]); ?>" class="img-fluid border border-dark" width="50" height="50">
 						        <div class="form-group">
 						            <label for="Arquivo">Arquivo</label>
-						            <input class="form-control-file" name="Foto" type="file" id="Arquivo" required>
+						            <input class="form-control-file" name="Foto" class="form-control" type="file" id="Arquivo" required>
 						        </div>
 							    <h6>Tamanho Máximo de 500kb</h6>
 							    <h6>Formatos "jpg", "jpeg", "png" e "gif"</h6>
@@ -406,25 +406,27 @@
 								</form> 
 							</div>							
 							<!-- Desbloquear Pessoas -->
-							<div class="w-100 bg-primary rounded text-center">
+							<div id="bloqueados" class="w-100 bg-primary rounded text-center">
 								<h6>Desbloqueie Pessoas:</h6>
 
 							</div>	
 							<!-- Troca Senha -->
 							<div class="w-100 bg-primary rounded text-center">
-								<h6>Troque a Senha</h6>
-								<h6>Digite a Senha:</h6>
-								<input type="password" name="Senha" onkeyup="ValidaSenha()" pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\W+)(?=^.{8,50}$).*$" required>
-								<h6>Confirme a Senha:</h6>
-								<input type="password" name="ConfirmeSenha" pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\W+)(?=^.{8,50}$).*$" required>
-								<input type="submit" name="Nomes" class="form-control btn btn-success w-50" value="Enviar">
-								<h6>Digite a Nova Senha respeitando a Regra listadas abaixo:</h6>
-								<ul id="regras_senha">
-									<li class="text-warning">Maxímo de 8 Caracteres</li>
-									<li class="text-warning">Um ou Mais Letra Maíscula</li>
-									<li class="text-warning">Um ou Mais Símbolo</li>
-									<li class="text-warning">Um ou Mais Numero</li>
-								</ul>								
+								<form class="form-group" action="script/operacao.php" method="POST">
+									<h6>Troque a Senha</h6>
+									<h6>Digite a Senha:</h6>
+									<input type="password" class="form-control" name="Senha" onkeyup="ValidaSenha()" pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\W+)(?=^.{8,50}$).*$" required>
+									<h6>Confirme a Senha:</h6>
+									<input type="password" class="form-control" name="ConfirmeSenha" pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\W+)(?=^.{8,50}$).*$" required>
+									<input type="submit" name="Nomes" class="form-control btn btn-success w-50" onclick="tarefa('Trocar ')" value="Enviar">
+									<h6>Digite a Nova Senha respeitando a Regra listadas abaixo:</h6>
+									<ul id="regras_senha">
+										<li class="text-warning">Maxímo de 8 Caracteres</li>
+										<li class="text-warning">Um ou Mais Letra Maíscula</li>
+										<li class="text-warning">Um ou Mais Símbolo</li>
+										<li class="text-warning">Um ou Mais Numero</li>
+									</ul>									
+								</form>								
 							</div>	
 						</pre>
 					</div>
