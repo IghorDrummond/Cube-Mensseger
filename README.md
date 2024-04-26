@@ -11,6 +11,12 @@ Este é um emocionante aplicativo de mensagens online que desenvolvi com muito e
 	<a href="https://cubemensseger.000webhostapp.com/" target="_blank">Acessar o Site!</a>
 </blockquote>
 <h6> As Ultimas Atualizações:</h6>
+								<time>25/04/2024</time>: Agora você pode alterar sua senha facilmente na seção de configurações.
+								<hr>
+								<time>25/04/2024</time>: Agora é possível atualizar sua foto de perfil diretamente na seção de configurações.
+								<hr>
+								<time>25/04/2024</time>: Na seção de configurações, agora você pode desbloquear amigos que foram bloqueados.
+								<hr>
 								<time>24/04/2024</time>: Um botão foi adicionado para rolar até a última mensagem do chat. Além disso, caso você esteja navegando entre mensagens antigas e seu amigo envie uma nova mensagem no mesmo 									chat, o botão agora mostrará a quantidade de mensagens que ele enviou, acompanhada de um novo alerta sonoro exclusivo para novas mensagens no chat de conversa.
 								<hr>
 								<time>24/04/2024</time>: A partir de agora, os alertas sonoros para novas mensagens serão emitidos apenas nos chats que você ainda não visualizou, corrigindo o problema que causava o disparo de 									alertas sonoros mesmo quando você já estava ativo no chat do remetente da mensagem.
@@ -32,12 +38,6 @@ Este é um emocionante aplicativo de mensagens online que desenvolvi com muito e
 								<time>18/04/2024</time>: Agora você pode ver se seu amigo está online ou offline durante suas conversas, pois adicionamos essa informação recentemente.
 								<hr>
 								<time>17/04/2024</time>: O Chat Online está agora funcionando perfeitamente! Sinta-se à vontade para conversar com seus amigos ou nos enviar uma mensagem caso encontre qualquer bug, erro ortográfico 									ou outros problemas. Estamos aqui para ajudar e garantir uma experiência excelente no Chat do Administrador do Sistema.
-								<hr>
-								<time>15/04/2024</time>: Estamos implementando o Chat Online. Até o momento, oferecemos apenas a opção de entrar ou sair. Em breve, estará totalmente disponível, com todas as funcionalidades.
-								<hr>	
-								<time>12/04/2024</time>: Os problemas de rolagem nas listas de amigos e de pedidos de amizade foram corrigidos.
-								<hr>	
-								<time>11/04/2024</time>: Daqui em diante, ao receber um pedido de amizade, você não apenas será alertado visualmente com um ícone na barra de navegação, mas também receberá uma notificação sonora 									alegre e amigável, adicionando uma dimensão extra de interatividade à sua experiência.
 								<hr>									
 <h6>Para mais Detalhes de Versões, Acesse o site.</h6>
 																			
