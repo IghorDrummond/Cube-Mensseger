@@ -1,240 +1,242 @@
 <?php
-	//Declaração de Variaveis Globais
-	//String
-	$ChaveBanco = "";
-	$ChaveBanco2 = "";
-	$ChaveBanco3 = "";
-	//Numerico
-	$Amigos = 0;
-	$Off = 0;
-	$On = 0;
+//Declaração de Variaveis Globais
+//String
+$ChaveBanco = "";
+$ChaveBanco2 = "";
+$ChaveBanco3 = "";
+//Numerico
+$Amigos = 0;
+$Off = 0;
+$On = 0;
+$nCont = 0;
+$opc = 99;
+$nLinha = 0;
+$nPed = 0;
+//Array
+$Usuario = [
+	$_SESSION['Nome'],
+	$_SESSION['Email'],
+	$_SESSION['FotoPerfil']
+];
+$Pedidos = [];
+$Linha = [];
+$Linha2 = [];
+$Dados = [];
+//Constantes
+define('BD_AMIGO', 'BDs/bd_listamigos.csv');
+define('BD_USUARIO', 'BDs/bd_usuarios.csv');
+define('BD_ADD', 'BDs/bd_addamigo.csv');
+define('BD_BLOQUEADO', 'BDs/bd_bloqueado.csv');
+define('USER_SL', 'ø <i class="fa-solid fa-message" style="color: white;"></i>');
+
+if (isset($_SESSION['Pagina']) and $_SESSION['Pagina'] === 'Amigos') {
+	$opc = 1;
+}
+$_SESSION['Pagina'] = 'Home';//Seta na Página Home
+
+//==========================Funções============================
+//Retorna os dados do usuário exigido para construir o mesmo na lista de amigos
+function verificaUsuario($Email)
+{
+	$Ret = [false, '', ''];
+	//Online ou Offline, Foto do Usuário, Ultimo Acesso do Usuário
+
+	$ChaveBanco3 = fopen(BD_USUARIO, 'r');
+
+	while (!feof($ChaveBanco3)) {
+		$Linha2 = explode(';', fgets($ChaveBanco3));
+
+		if (isset($Linha2[1]) === false) {
+			continue;
+		}
+
+		if ($Linha2[1] === $Email) {
+			if ($Linha2[4] === 'On') {
+				$Ret[0] = true;
+			}
+			$Ret[1] = $Linha2[5];
+			$Ret[2] = str_replace(PHP_EOL, '', $Linha2[6]);
+			break;
+		}
+	}
+
+	fclose($ChaveBanco3);
+	return $Ret;
+}
+function calculaData($Data)
+{
+	//Declaração de Variaveis
+	//Numericos
+	$dataInicial = null;
+	$dataFinal = null;
+	$diferenca = null;
+
+	// Converte as datas em objetos DateTime
+	$dataInicial = new DateTime($Data);
+	$dataFinal = new DateTime(Date('Y-m-d H:i:s'));
+	//calcula a diferença de segundos entre as duas datas
+	$diferenca = $dataInicial->diff($dataFinal);
+
+	// Verifica se a diferença é em dias, horas ou minutos
+	//Declaração de Variaveis
+	//Numericos
+	$dataInicial = null;
+	$dataFinal = null;
+	$diferenca = null;
+
+	// Converte as datas em objetos DateTime
+	$dataInicial = new DateTime($Data);
+	$dataFinal = new DateTime(Date('Y-m-d H:i:s'));
+	//calcula a diferença de segundos entre as duas datas
+	$diferenca = $dataInicial->diff($dataFinal);
+
+	// Verifica se a diferença é em dias, horas ou minutos
+	if ($diferenca->y > 0) {
+		$Ret = $diferenca->y . ' Ano  Atrás';
+	} elseif ($diferenca->days > 0) {
+		$Ret = $diferenca->days . " Dias Atrás";
+	} elseif ($diferenca->h > 0) {
+		$Ret = $diferenca->h . " Horas Atrás";
+	} elseif ($diferenca->i > 0) {
+		$Ret = $diferenca->i . " Minutos Atrás";
+	} else {
+		$Ret = "Agora Pouco";
+	}
+
+	return $Ret;
+}
+function Mensagens($User, $User2)
+{
 	$nCont = 0;
-	$opc = 99;
-	$nLinha = 0;
-	$nPed = 0;
-	//Array
-	$Usuario = [
-		$_SESSION['Nome'],
-		$_SESSION['Email'],
-		$_SESSION['FotoPerfil']
-	];
-	$Pedidos = [];
+	$Tam = 0;
+	$Linhas = file(BD_AMIGO);//lÊ TODAS AS LINHAS DO ARQUIVO
 	$Linha = [];
-	$Linha2 = [];
-	$Dados = [];
-	//Constantes
-	define('BD_AMIGO', 'BDs/bd_listamigos.csv');
-	define('BD_USUARIO', 'BDs/bd_usuarios.csv');
-	define('BD_ADD', 'BDs/bd_addamigo.csv');
-	define('BD_BLOQUEADO', 'BDs/bd_bloqueado.csv');		
 
-	if (isset($_SESSION['Pagina']) and $_SESSION['Pagina'] === 'Amigos') {
-		$opc = 1;
-	}
-	$_SESSION['Pagina'] = 'Home';//Seta na Página Home
+	$Tam = count($Linhas) - 1;
 
-	//==========================Funções============================
-	//Retorna os dados do usuário exigido para construir o mesmo na lista de amigos
-	function verificaUsuario($Email)
-	{
-		$Ret = [false, '', ''];
-		//Online ou Offline, Foto do Usuário, Ultimo Acesso do Usuário
+	for ($nCont = $Tam; $nCont >= 0; $nCont--) {
+		$Linha = explode(';', $Linhas[$nCont]);
 
-		$ChaveBanco3 = fopen(BD_USUARIO, 'r');
-
-		while (!feof($ChaveBanco3)) {
-			$Linha2 = explode(';', fgets($ChaveBanco3));
-
-			if (isset($Linha2[1]) === false) {
-				continue;
-			}
-
-			if ($Linha2[1] === $Email) {
-				if ($Linha2[4] === 'On') {
-					$Ret[0] = true;
-				}
-				$Ret[1] = $Linha2[5];
-				$Ret[2] = str_replace(PHP_EOL, '', $Linha2[6]);
-				break;
-			}
+		if ($Linha[0] === $User2 and $Linha[1] === $User) {
+			$Ret = retornaVistos($Linha[3]);
+			break;
 		}
-
-		fclose($ChaveBanco3);
-		return $Ret;
 	}
-	function calculaData($Data)
-	{
-		//Declaração de Variaveis
-		//Numericos
-		$dataInicial = null;
-		$dataFinal = null;
-		$diferenca = null;
 
-		// Converte as datas em objetos DateTime
-		$dataInicial = new DateTime($Data);
-		$dataFinal = new DateTime(Date('Y-m-d H:i:s'));
-		//calcula a diferença de segundos entre as duas datas
-		$diferenca = $dataInicial->diff($dataFinal);
+	return strval($Ret) . ' <i class="fa-solid fa-message" style="color: white;"></i>';
+}
+function retornaVistos($id)
+{
+	$nCont = 0;
+	$Tam = 0;
+	$Ret = 0;
+	$Linhas = file('BDs/BD_CONVERSA/' . $id);//lÊ TODAS AS LINHAS DO ARQUIVO
+	$Linha = [];
 
-		// Verifica se a diferença é em dias, horas ou minutos
-		//Declaração de Variaveis
-		//Numericos
-		$dataInicial = null;
-		$dataFinal = null;
-		$diferenca = null;
+	$Tam = count($Linhas) - 1;
 
-		// Converte as datas em objetos DateTime
-		$dataInicial = new DateTime($Data);
-		$dataFinal = new DateTime(Date('Y-m-d H:i:s'));
-		//calcula a diferença de segundos entre as duas datas
-		$diferenca = $dataInicial->diff($dataFinal);
-
-		// Verifica se a diferença é em dias, horas ou minutos
-		if ($diferenca->y > 0) {
-			$Ret = $diferenca->y . ' Ano  Atrás';
-		} elseif ($diferenca->days > 0) {
-			$Ret = $diferenca->days . " Dias Atrás";
-		} elseif ($diferenca->h > 0) {
-			$Ret = $diferenca->h . " Horas Atrás";
-		} elseif ($diferenca->i > 0) {
-			$Ret = $diferenca->i . " Minutos Atrás";
-		} else {
-			$Ret = "Agora Pouco";
-		}
-
-		return $Ret;
-	}
-	function Mensagens($User, $User2)
-	{
-		$nCont = 0;
-		$Tam = 0;
-		$Linhas = file(BD_AMIGO);//lÊ TODAS AS LINHAS DO ARQUIVO
-		$Linha = [];
-
-		$Tam = count($Linhas) - 1;
-
-		for ($nCont = $Tam; $nCont >= 0; $nCont--) {
-			$Linha = explode(';', $Linhas[$nCont]);
-
-			if ($Linha[0] === $User2 and $Linha[1] === $User) {
-				$Ret = retornaVistos($Linha[3]);
-				break;
-			}
-		}
-
-		return strval($Ret) . ' <i class="fa-solid fa-message" style="color: white;"></i>';
-	}
-	function retornaVistos($id)
-	{
-		$nCont = 0;
-		$Tam = 0;
-		$Ret = 0;
-		$Linhas = file('BDs/BD_CONVERSA/' . $id);//lÊ TODAS AS LINHAS DO ARQUIVO
-		$Linha = [];
-
-		$Tam = count($Linhas) - 1;
-
-		for ($nCont = $Tam; $nCont >= 0; $nCont--) {
-			$Linha = explode(';', $Linhas[$nCont]);
-
-			if (isset($Linha[1]) === false) {
-				continue;
-			}
-
-			$Linha[5] = str_replace(PHP_EOL, '', $Linha[5]);
-
-			if ($Linha[5] === 'N' and $Linha[1] != $_SESSION['Email']) {
-				$Ret++;
-			} else if ($Linha[5] === 'S' and $Linha[1] != $_SESSION['Email']) {
-				break;
-			}
-		}
-
-		return $Ret;
-	}
-	/*
-	--------------------------------------------------------------------------------------------------------------	
-	Função: validaBloqueado(Recebe o Email do amigo a ser validade)
-	--------------------------------------------------------------------------------------------------------------
-	Descrição: Valida amigos que estão bloqueados
-	--------------------------------------------------------------------------------------------------------------	
-	Data: 22/04/2024
-	--------------------------------------------------------------------------------------------------------------	
-	Programador(A): Ighor Drummond
-	--------------------------------------------------------------------------------------------------------------	
-	*/	
-	function validaBloqueado($User, $User2){
-	    $Linhas = file(BD_BLOQUEADO);
-	    $nCont = in_array($User . ';' . $User2, str_replace(PHP_EOL, '', $Linhas));
-	    if ($nCont) {
-	        return true;
-	    }
-	    return false;
-	}	
-
-		//================Valida os Amigos que o usuário tem adicionado ====================
-		//Abre o arquivo para leitura
-		$ChaveBanco = fopen(BD_AMIGO, 'r');
-		while (!feof($ChaveBanco)) {
-			$Linha = explode(';', fgets($ChaveBanco));
-
- 			if (isset($Linha[1]) === false) {
-				continue;
-			}
-			$nLinha++;
-			//Verifica se o usuário é amigo ou não dos outros demais
-			if ($Usuario[1] === $Linha[0]) {
-				//Verifica se o amigo está bloqueado para o usuário.
-				if(validaBloqueado($_SESSION['Email'], $Linha[1])){
-					continue;
-				}
-
-				$Amigos++;
-				//Guarda Informação do Amigo Cadastrado
-				$Dados[$nCont][0] = $Linha[2];//Recebe o Nome do Amigo
-				$Dados[$nCont][1] = $Linha[1];//Recebe o Email do Amigo
-				$Dados[$nCont][2] = $Linha[3];//Recebe o Nome da Conversa do Amigo
-				$Dados[$nCont][3] = false; //Valida se o usuário está Online ou Offiline
-				$Aux = verificaUsuario($Linha[1]);//Retorna Foto e Data do ultimo Login
-				$Dados[$nCont][4] = $Aux[1]; //Recebe a Imagem do Usuário
-				$Dados[$nCont][5] = calculaData($Aux[2]);//Recebe o Ultimo Acesso do Usuário
-				$Dados[$nCont][6] = str_replace(PHP_EOL, '', $Linha[5]);//Recebe se o amigo está silenciado ou não 
-				$Dados[$nCont][7] = $Dados[$nCont][6] === 'A' ? Mensagens($Linha[0], $Linha[1]): USER_SL;//Recebe as Ultimas Mensagens não vista 
-
-				//Define se está online o Usuário Amigo
-				switch ($Aux[0]) {
-					case true:
-						$On++;
-						$Dados[$nCont][3] = true;
-						break;
-					default:
-						$Off++;
-						break;
-				}
-				$nCont++;
-			}
-		}
-
-		//Fecha Arquivo
-		fclose($ChaveBanco);
-
-	//================Valida a quantidade de Pedidos Enviados ====================
-	$ChaveBanco = fopen(BD_ADD, 'r');
-
-	while (!feof($ChaveBanco)) {
-		$Linha = explode(';', fgets($ChaveBanco));
+	for ($nCont = $Tam; $nCont >= 0; $nCont--) {
+		$Linha = explode(';', $Linhas[$nCont]);
 
 		if (isset($Linha[1]) === false) {
 			continue;
 		}
 
-		if ($Linha[0] === $_SESSION['Email']) {
-			$nPed++;
+		$Linha[5] = str_replace(PHP_EOL, '', $Linha[5]);
+
+		if ($Linha[5] === 'N' and $Linha[1] != $_SESSION['Email']) {
+			$Ret++;
+		} else if ($Linha[5] === 'S' and $Linha[1] != $_SESSION['Email']) {
+			break;
 		}
 	}
 
-	//Fecha Arquivo
-	fclose($ChaveBanco);
+	return $Ret;
+}
+/*
+   --------------------------------------------------------------------------------------------------------------	
+   Função: validaBloqueado(Recebe o Email do amigo a ser validade)
+   --------------------------------------------------------------------------------------------------------------
+   Descrição: Valida amigos que estão bloqueados
+   --------------------------------------------------------------------------------------------------------------	
+   Data: 22/04/2024
+   --------------------------------------------------------------------------------------------------------------	
+   Programador(A): Ighor Drummond
+   --------------------------------------------------------------------------------------------------------------	
+   */
+function validaBloqueado($User, $User2)
+{
+	$Linhas = file(BD_BLOQUEADO);
+	$nCont = in_array($User . ';' . $User2, str_replace(PHP_EOL, '', $Linhas));
+	if ($nCont) {
+		return true;
+	}
+	return false;
+}
+
+//================Valida os Amigos que o usuário tem adicionado ====================
+//Abre o arquivo para leitura
+$ChaveBanco = fopen(BD_AMIGO, 'r');
+while (!feof($ChaveBanco)) {
+	$Linha = explode(';', fgets($ChaveBanco));
+
+	if (isset($Linha[1]) === false) {
+		continue;
+	}
+	$nLinha++;
+	//Verifica se o usuário é amigo ou não dos outros demais
+	if ($Usuario[1] === $Linha[0]) {
+		//Verifica se o amigo está bloqueado para o usuário.
+		if (validaBloqueado($_SESSION['Email'], $Linha[1])) {
+			continue;
+		}
+
+		$Amigos++;
+		//Guarda Informação do Amigo Cadastrado
+		$Dados[$nCont][0] = $Linha[2];//Recebe o Nome do Amigo
+		$Dados[$nCont][1] = $Linha[1];//Recebe o Email do Amigo
+		$Dados[$nCont][2] = $Linha[3];//Recebe o Nome da Conversa do Amigo
+		$Dados[$nCont][3] = false; //Valida se o usuário está Online ou Offiline
+		$Aux = verificaUsuario($Linha[1]);//Retorna Foto e Data do ultimo Login
+		$Dados[$nCont][4] = $Aux[1]; //Recebe a Imagem do Usuário
+		$Dados[$nCont][5] = calculaData($Aux[2]);//Recebe o Ultimo Acesso do Usuário
+		$Dados[$nCont][6] = str_replace(PHP_EOL, '', $Linha[5]);//Recebe se o amigo está silenciado ou não 
+		$Dados[$nCont][7] = $Dados[$nCont][6] === 'A' ? Mensagens($Linha[0], $Linha[1]) : USER_SL;//Recebe as Ultimas Mensagens não vista 
+
+		//Define se está online o Usuário Amigo
+		switch ($Aux[0]) {
+			case true:
+				$On++;
+				$Dados[$nCont][3] = true;
+				break;
+			default:
+				$Off++;
+				break;
+		}
+		$nCont++;
+	}
+}
+
+//Fecha Arquivo
+fclose($ChaveBanco);
+
+//================Valida a quantidade de Pedidos Enviados ====================
+$ChaveBanco = fopen(BD_ADD, 'r');
+
+while (!feof($ChaveBanco)) {
+	$Linha = explode(';', fgets($ChaveBanco));
+
+	if (isset($Linha[1]) === false) {
+		continue;
+	}
+
+	if ($Linha[0] === $_SESSION['Email']) {
+		$nPed++;
+	}
+}
+
+//Fecha Arquivo
+fclose($ChaveBanco);
 ?>
 <!-- Campo Responsaveis por avisos -->
 <div id="avisos"></div>
@@ -386,54 +388,50 @@
 							<div class="w-100 bg-primary rounded text-center">
 								<h6>Altere Sua Foto</h6>
 								<img src="<?php echo ($Usuario[2]); ?>" class="img-fluid border border-dark" width="50" height="50">
-						        <div class="form-group">
-						            <label for="Arquivo">Arquivo</label>
-						            <input class="form-control-file" name="Foto" class="form-control" type="file" id="Arquivo" required>
-						        </div>
-							    <h6>Tamanho Máximo de 500kb</h6>
-							    <h6>Formatos "jpg", "jpeg", "png" e "gif"</h6>
-							    <input type="button" name="Foto" class="form-control btn btn-success w-50" onclick="Configuracao('Foto')" value="Enviar"> 
+								<div class="form-group">
+									<label for="Arquivo">Arquivo</label>
+									<input class="form-control-file" name="Foto" class="form-control" type="file" id="Arquivo" required>
+								</div>
+								<h6>Tamanho Máximo de 500kb</h6>
+								<h6>Formatos "jpg", "jpeg", "png" e "gif"</h6>
+								<input type="button" name="Foto" class="form-control btn btn-success w-50" onclick="Configuracao('Foto')" value="Enviar"> 
 							</div>
 							<!-- Trocar Nome -->
 							<div class="w-100 bg-primary rounded text-center">
 								<h6>Altere Seu Nome</h6>
-								<form class="form-group" action="script/Configuracao.php" method="POST">
 									<label for="Nome">Insira seu Nome: </label>
 									<input class="form-control" type="text" maxlength="10" name="Nome" required>
 									<label for="Nome">Insira seu Sobrenome: </label>
 									<input class="form-control" type="text" maxlength="10" name="Sobrenome" required>
-							        <input type="submit" name="Nomes" class="form-control btn btn-success w-50" value="Enviar">
-								</form> 
+									<input type="button" name="Nomes" class="form-control btn btn-success w-50" onclick="tarefa('Nome <?php echo($_SESSION['Email']); ?>')" value="Enviar">
 							</div>							
 							<!-- Desbloquear Pessoas -->
 							<div id="bloqueados" class="w-100 bg-primary rounded text-center">
 								<h6>Desbloqueie Pessoas:</h6>
-
+								<h6>Carregando...</h6>
 							</div>	
 							<!-- Troca Senha -->
 							<div class="w-100 bg-primary rounded text-center">
-								<form class="form-group" action="script/operacao.php" method="POST">
 									<h6>Troque a Senha</h6>
 									<h6>Digite a Senha:</h6>
 									<input type="password" class="form-control" name="Senha" onkeyup="ValidaSenha()" pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\W+)(?=^.{8,50}$).*$" required>
 									<h6>Confirme a Senha:</h6>
 									<input type="password" class="form-control" name="ConfirmeSenha" pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\W+)(?=^.{8,50}$).*$" required>
-									<input type="submit" name="Nomes" class="form-control btn btn-success w-50" onclick="tarefa('Trocar ')" value="Enviar">
+									<input type="button" name="Nomes" class="form-control btn btn-success w-50" onclick="tarefa('Trocar ')" value="Enviar">
 									<h6>Digite a Nova Senha respeitando a Regra listadas abaixo:</h6>
 									<ul id="regras_senha">
 										<li class="text-warning">Maxímo de 8 Caracteres</li>
 										<li class="text-warning">Um ou Mais Letra Maíscula</li>
 										<li class="text-warning">Um ou Mais Símbolo</li>
 										<li class="text-warning">Um ou Mais Numero</li>
-									</ul>									
-								</form>								
+									</ul>																
 							</div>	
 						</pre>
 					</div>
 				</div>
 				<div class="cubo-face right p-2 text-dark">
-						<!-- Conversar -->
-						<pre id="Conversar">
+					<!-- Conversar -->
+					<pre id="Conversar">
 							<!-- Receberá  Atts Aqui das Mensagens -->
 						</pre>
 					<div class="input-group">
@@ -448,7 +446,8 @@
 				</div>
 				<div class="cubo-face left">left</div>
 				<div class="cubo-face top">
-					<div id="AddAmigos" class="w-100 h-100 d-none justify-content-center align-items-center flex-column">
+					<div id="AddAmigos"
+						class="w-100 h-100 d-none justify-content-center align-items-center flex-column">
 						<h6 class="text-white">Adicione Amigos!</h6>
 						<div class="border border-white w-75 h-75 p-1 d-flex flex-column">
 							<pre onscroll="posicTag(2)" id="lista_adds" class="w-100 h-100 bg-transparent">
@@ -467,85 +466,84 @@
 				</div>
 				<div class="cubo-face bottom">
 					<div id="Amigos" class="text-center d-none">
-							<h6 class="text-white">Amigos<span class="badge badge-info"><?php echo ($Amigos) ?></span></h6>
-							<div class="Amigos-lista d-flex flex-column justify-content-center align-items-center">
-								<pre onscroll="posicTag(5)" class="w-100 h-100"><!-- Inicio da Lista de Amigos -->
+						<h6 class="text-white">Amigos<span class="badge badge-info"><?php echo ($Amigos) ?></span></h6>
+						<div class="Amigos-lista d-flex flex-column justify-content-center align-items-center">
+							<pre onscroll="posicTag(5)" class="w-100 h-100"><!-- Inicio da Lista de Amigos -->
 									<ul class="list-group"><!-- Inicio da Lista -->
 						<?php
-							foreach ($Dados as $i => $Valor) {
-								$Valor[6] === 'S' ? $Style = 'style="opacity: 0.7;"' : $Style = '';
-						?>
-											<li class="list-group-item bg-info text-center w-100 d-flex justify-content-between align-items-center amigo_lista_item " id="<?php echo ($Valor[2]) ?>" <?php echo ($Style) ?>>
-												<img src="<?php echo ($Valor[4]) ?>" class="border border-dark" align="left">
-												<div>
-													<h6 class="d-inline"><?php echo ($Valor[0]) ?></h6>
-											<?php
+						foreach ($Dados as $i => $Valor) {
+							$Valor[6] === 'S' ? $Style = 'style="opacity: 0.7;"' : $Style = '';
+							?>
+												<li class="list-group-item bg-info text-center w-100 d-flex justify-content-between align-items-center amigo_lista_item " id="<?php echo ($Valor[2]) ?>" <?php echo ($Style) ?>>
+													<img src="<?php echo ($Valor[4]) ?>" class="border border-dark" align="left">
+													<div>
+														<h6 class="d-inline"><?php echo ($Valor[0]) ?></h6>
+												<?php
 												//Valida se o usuário está online
-												if(validaBloqueado($Valor[1], $_SESSION['Email']) === false){
+												if (validaBloqueado($Valor[1], $_SESSION['Email']) === false) {
 													if ($Valor[3]) {
-											?>	
-														<span class="badge badge-success ">Online</span>
-														<time>⌛Agora</time>
-											<?php
+														?>	
+																	<span class="badge badge-success ">Online</span>
+																	<time>⌛Agora</time>
+														<?php
 													} else {
-											?>
-														<span class="badge badge-dark ">Offline</span>
-														<time>⏳<?php echo($Valor[5]); ?></time>
-											<?php
+														?>
+																	<span class="badge badge-dark ">Offline</span>
+																	<time>⏳<?php echo ($Valor[5]); ?></time>
+														<?php
 													}
-												}else{
+												} else {
 													$On--;
 													$Off++;
-												}	
-											?>	
-														<span class="Mensagens">
-															<?php echo($Valor[7]); ?>
-														</span>											
-												</div>
-												<ul class="opcao_lista">
-													<li class="bg-primary p-1 border rounded" onclick="tarefa('Conversar <?php echo($Valor[2]); ?> <?php echo('['. strval($i) .']') ?>')">Conversar</li>	
-											<?php
-													//Valida se o usuário está online
-													if ($Valor[1] != 'admin@cubemensseger.com') {
-														if($Valor[6] === 'A'){
-											?>
-													<li class="border p-1 bg-secondary rounded" onclick="tarefa('Silenciar <?php echo($Valor[1]); ?> <?php echo('['. strval($i) .']') ?>')">Silenciar</li><?php
-													}else{
-											?>
-													<li class="border p-1 bg-secondary rounded" onclick="tarefa('Reativar <?php echo($Valor[1]); ?> <?php echo('['. strval($i) .']') ?>')">Reativar</li><?php
+												}
+												?>	
+															<span class="Mensagens">
+																<?php echo ($Valor[7]); ?>
+															</span>											
+													</div>
+													<ul class="opcao_lista">
+														<li class="bg-primary p-1 border rounded" onclick="tarefa('Conversar <?php echo ($Valor[2]); ?> <?php echo ('[' . strval($i) . ']') ?>')">Conversar</li>	
+												<?php
+												//Valida se o usuário está online
+												if ($Valor[1] != 'admin@cubemensseger.com') {
+													if ($Valor[6] === 'A') {
+														?>
+																<li class="border p-1 bg-secondary rounded" onclick="tarefa('Silenciar <?php echo ($Valor[1]); ?> <?php echo ('[' . strval($i) . ']') ?>')">Silenciar</li><?php
+													} else {
+														?>
+																<li class="border p-1 bg-secondary rounded" onclick="tarefa('Reativar <?php echo ($Valor[1]); ?> <?php echo ('[' . strval($i) . ']') ?>')">Reativar</li><?php
 													}
-											?>																							
-													<li class="border p-1 bg-warning rounded" onclick="tarefa('Bloquear <?php echo($Valor[1]); ?>')">Bloquear</li>
-													<li class="border p-1 bg-danger rounded" onclick="tarefa('Deletar <?php echo($Valor[1]); ?>')">Deletar</li>
-											<?php
-													}
-											?>	
-												</ul>
-											</li>												
-						<?php
-							}
+													?>																							
+															<li class="border p-1 bg-warning rounded" onclick="tarefa('Bloquear <?php echo ($Valor[1]); ?>')">Bloquear</li>
+															<li class="border p-1 bg-danger rounded" onclick="tarefa('Deletar <?php echo ($Valor[1]); ?>')">Deletar</li>
+													<?php
+												}
+												?>	
+													</ul>
+												</li>												
+							<?php
+						}
 						?>	
 									</ul><!-- Fim da Lista  -->
 								</pre><!-- Fim da Lista de Amigos -->
-								<div class="bg-white mt-auto w-100"><!-- Inicio da Metrica de Usuários -->
-									<h6 class="d-inline">Online<span class="badge badge-success">
-											<?php echo ($On) ?>
-										</span></h6>
-									<h6 class="d-inline">Offline<span class="badge badge-dark">
-											<?php echo ($Off) ?>
-										</span></h6>
-								</div><!-- Fim da Metrica de Usuários -->
-							</div>
+							<div class="bg-white mt-auto w-100"><!-- Inicio da Metrica de Usuários -->
+								<h6 class="d-inline">Online<span class="badge badge-success">
+										<?php echo ($On) ?>
+									</span></h6>
+								<h6 class="d-inline">Offline<span class="badge badge-dark">
+										<?php echo ($Off) ?>
+									</span></h6>
+							</div><!-- Fim da Metrica de Usuários -->
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 		</div>
+		</div>
 	</section><!-- Fim do Cubo -->
 </main>
 <!--Fim do Corpo -->
-<?php require_once ('script/scripts.php'); ?>
 <!-- Scripts Obrigatórios -->
 <script type="text/javascript" src="js/ajustaTamanho.js"></script>
 <?php

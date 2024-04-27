@@ -18,6 +18,7 @@ var Parametro = document.getElementsByName('Amigos');
 var idEnv = '';
 //Booleano
 var lAbriu = false;
+var lFoi = false;
 //Funções Anonimas
 var atualizaParametro = function(id){
     return function(){
@@ -50,6 +51,16 @@ function rotaciona(opc) {
         duration: 1000,
         iterations: 1
     });
+    //se for a tela de bloqueio ele ativa 
+    if(opc === 3){
+        lFoi = true;
+        var L = setInterval(()=>{
+            $('#bloqueados').load("script/Configuracao.php?Opc=Bloqueado");
+        }, 1500);
+    }else if(lFoi){
+        lFoi = false;
+        clearInterval(L);
+    }
 
     //Fixa na Posição Atual
     EstruturaCubo[0].style.transform = "rotateY(" + (posic[opc]).toString() + "deg)";

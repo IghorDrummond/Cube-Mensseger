@@ -412,7 +412,7 @@
 							foreach ($Dados as $i => $Valor) {
 								$Valor[6] === 'S' ? $Style = 'style="opacity: 0.7;"' : $Style = '';
 						?>
-											<li class="list-group-item bg-info text-center w-100 d-flex justify-content-between align-items-center amigo_lista_item " id="<?php echo ($Valor[2]) ?>" <?php echo ($Style) ?>>
+										<li class="list-group-item bg-info text-center w-100 d-flex justify-content-between align-items-center amigo_lista_item " id="<?php echo ($Valor[2]) ?>" <?php echo ($Style) ?>>
 												<img src="<?php echo ($Valor[4]) ?>" class="border border-dark" align="left">
 												<div>
 													<h6 class="d-inline"><?php echo ($Valor[0]) ?></h6>
@@ -446,19 +446,21 @@
 													if ($Valor[1] != 'admin@cubemensseger.com') {
 														if($Valor[6] === 'A'){
 											?>
-													<li class="border p-1 bg-secondary rounded" onclick="tarefa('Silenciar <?php echo($Valor[1]); ?> <?php echo('['. strval($i) .']') ?>')">Silenciar</li><?php
+													<li class="border p-1 bg-secondary rounded" onclick="tarefa('Silenciar <?php echo($Valor[1]); ?> <?php echo('['. strval($i) .']') ?>')">Silenciar</li>
+											<?php
 													}else{
 											?>
-													<li class="border p-1 bg-secondary rounded" onclick="tarefa('Reativar <?php echo($Valor[1]); ?> <?php echo('['. strval($i) .']') ?>')">Reativar</li><?php
+													<li class="border p-1 bg-secondary rounded" onclick="tarefa('Reativar <?php echo($Valor[1]); ?> <?php echo('['. strval($i) .']') ?>')">Reativar</li>
+											<?php
 													}
-											?>																							
-													<li class="border p-1 bg-warning rounded" onclick="tarefa('Bloquear <?php echo($Valor[1]); ?>')">Bloquear</li>
+											?>
+													<li class="border p-1 bg-warning rounded" onclick="tarefa('Bloquear <?php echo($Valor[1]);?> <?php echo('['. strval($i) .']') ?>')">Bloquear</li>
 													<li class="border p-1 bg-danger rounded" onclick="tarefa('Deletar <?php echo($Valor[1]); ?>')">Deletar</li>
 											<?php
 													}
 											?>	
 												</ul>
-											</li>												
+										</li>												
 						<?php
 							}
 						?>	

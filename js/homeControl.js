@@ -11,20 +11,17 @@ var itensAmigo = document.getElementsByClassName('amigo_lista_item');
 var Conversa = document.getElementsByTagName('blockquote');
 var Descer = document.getElementsByClassName('descer');
 var Vistos = document.getElementById('Conversar').getElementsByTagName('img');
+var Emails = document.getElementsByClassName('opcao_lista')[0].getElementsByTagName('li');
 //Arrays
 var Posic  = [0,0,0,0,0,0];
 var nAntScroll = [0,0];
-var nAntMsg = Array.from({ length: Mensagens.length }, () => [0, false, false, false]);
-/*
-    Quantidades de Mensagens
-    se há uma nova mensagem para somar mais uma
-    se o usuário está silenciado ou não
-*/
+var nAntMsg = Array.from({ length: Mensagens.length }, () => [0, false, false, false, 'Email']);
 //Numerico
 var nCont = 0;
 var nMsg = 0;
 var nAnt = parseInt(Pedidos[0].innerText);
 var Acao = -1;
+var Execucao = 0;
 //Objeto
 var data = {
     // Definindo os dados a serem enviados
@@ -42,6 +39,11 @@ var lTrava = false;
 	Lista de Adds -4
 	Lista de Amigos -5
 */
+
+for(nCont = 0; nCont <= itensAmigo.length -1 ; nCont++){
+    nAntMsg[nCont][4] = itensAmigo[nCont].id;//Adiciona um Id para cada campo
+}
+
 audioAmigo.volume = 0.5;
 var W = setInterval(() => {
     $("#Amigos").load("script/atualizaDados.php?opc=1", function() {
@@ -51,7 +53,7 @@ var W = setInterval(() => {
         }
 
         nAntMsg.forEach(function(valor, indice){
-        	if(valor[1] && valor[2] === false && valor[3] === false){
+        	if(valor[1] && valor[2] === false){
         		itensAmigo[indice].classList.add('nova_mensagem');
         	}
         });
@@ -64,17 +66,12 @@ var W = setInterval(() => {
 
     $('#pedidos_amigos').load("script/atualizaDados.php?opc=3");
 
-    $('#bloqueados').load("script/Configuracao.php?Opc=Bloqueado");
-
     //Caso houver uma nova adição de amigo, ele atualiza o tamanho do array de mensagens não lida
     if(Mensagens.length > nAntMsg.length){
-    	var nTam = (nAntMsg.length -1) +1;	
-    	nAntMsg[nTam] = [];
-    	nAntMsg[nTam][0] = 0;
-    	nAntMsg[nTam][1] = false;
-        nAntMsg[nTam][2] = false;
+        reconstroiIndice();             
     }
-
+    //Destroi o indice do array após deletação
+    Execucao > 0 ? destroiIndice(Acao) : '';
     //Valida se há nova mensagem, caso houver, emite um som ao usuário
     for(nCont = 0; nCont <= Mensagens.length -1; nCont++){
     	aux = (Mensagens[nCont].innerText).substring(0,(Mensagens[nCont].innerText).indexOf(' ')).trim();
@@ -172,33 +169,45 @@ function tarefa(val){
             $('#Amigos').load('script/operacao.php?Email=' + id + '&opc=Deletar');
         }
     }else if(opc === 'Bloquear'){
+        Acao = parseInt(val.substring(val.indexOf('[') +1, val.indexOf(']')));
+        id = val.substring(val.indexOf(' ') +1, val.indexOf('.com')+4);
+
         if(confirm('Tem certeza de que deseja bloquear este usuário? Após o bloqueio, você não verá mais esta pessoa na lista de amigos e não receberá mais mensagens dela.')){
             $('#Amigos').load('script/operacao.php?Email=' + id + '&opc=Bloquear');
-        }  
+            Execucao = 1;
+        }         
     }else if(opc === 'Silenciar'){
         Acao = parseInt(val.substring(val.indexOf('[') +1, val.indexOf(']')));
         id = val.substring(val.indexOf(' ') +1, val.indexOf('.com')+4);
 
-        nAntMsg[Acao][3] = true;
-
         if(confirm('Tem certeza de que deseja silenciar este usuário? Ao fazê-lo, você não receberá mais notificações relacionadas a ele.')){
             $('#Amigos').load('script/operacao.php?Email=' + id + '&opc=Silenciar');
+            nAntMsg[Acao][2] = true;//Ativa silenciamento para usuário
+            //Formata as Mensagens para padrão
+            if(nAntMsg[Acao][0] > 0){
+                ajustaQtdMensagens(false);
+                nAntMsg[Acao][0] = 0;
+                nAntMsg[Acao][1] = false;
+            }            
         }
     }else if(opc === 'Reativar'){
         Acao = parseInt(val.substring(val.indexOf('[') +1, val.indexOf(']')));
         id = val.substring(val.indexOf(' ') +1, val.indexOf('.com')+4);
-
-        nAntMsg[Acao][3] = false;
-
+        nAntMsg[Acao][2] = false;
         $('#Amigos').load('script/operacao.php?Email=' + id + '&opc=Reativar');   
+
     }else if(opc === 'Desbloquear'){
-        confirm("Confirmar Desbloqueio de Usuário?") ? $('#Amigos').load('script/operacao.php?Email=' + id + '&opc=Desbloquear') : ''; 
+        if(confirm("Confirmar Desbloqueio de Usuário?")){
+            $('#Amigos').load('script/operacao.php?Email=' + id + '&opc=Desbloquear'); 
+        }
     }else if(opc === 'Trocar'){
         //Confirmar a Troca de Senha
         if(confirm("Confirmar a troca da Senha? você será deslogado e direcionado para a tela de Login.")){
             data.Senha = encodeURIComponent(document.getElementsByName('Senha')[0].value);
             data.ConfirmeSenha = encodeURIComponent(document.getElementsByName('ConfirmeSenha')[0].value);
             $('#avisos').load('script/operacao.php?opc=Trocar&Senha=' + data.Senha + '&ConfirmeSenha=' + data.ConfirmeSenha);
+            document.getElementsByName('Senha')[0].value = "";
+            document.getElementsByName('ConfirmeSenha')[0].value = "";
         }
     }else if(opc === 'Sair'){
         Qtd = document.getElementsByTagName('blockquote');
@@ -383,4 +392,49 @@ function ValidaSenha(){
             }
         }
     }
+}
+
+function destroiIndice(posic){
+    //Formata as Mensagens para padrão
+    if(nAntMsg[posic][0] > 0){
+        nAntMsg[posic][0] = 0;
+        nAntMsg[posic][1] = false;        
+        ajustaQtdMensagens(false);
+    }       
+
+    delete nAntMsg[posic];//Deleta o Indice desejado 
+    nAntMsg = nAntMsg.filter(Boolean);   
+    Execucao = 0;    
+}
+
+function reconstroiIndice(){
+    var nCont = 0;  
+    var nTam = 0;
+
+    //Verifica se há um elemento entre outros novo.
+    for(nCont = 0; nCont <= nAntMsg.length -1; nCont++){
+        if(nAntMsg[nCont][4] != itensAmigo[nCont].id){
+            nAntMsg.splice(nCont, 0, retornaFormato(itensAmigo[nCont].id));
+        }    
+    }
+    //Caso tiver um novo usuário, ele adiciona uma nova posição aqui
+    if(nAntMsg.length < Mensagens.length){
+        nTam = (nAntMsg.length -1) +1;  
+        nAntMsg[nTam] = [];
+        nAntMsg[nTam][0] = 0;//Quantidades de Mensagens
+        nAntMsg[nTam][1] = false;//se há uma nova mensagem para somar mais uma
+        nAntMsg[nTam][2] = false;//se o usuário está silenciado ou não
+        nAntMsg[nTam][3] = false;//se o usuário for bloqueado, ele guarda o valor caso for desbloqueado na mesma sessão
+        nAntMsg[nTam][4] = itensAmigo[(itensAmigo.length-1)].id;//recebe o Email do Usuário.       
+    }    
+}
+
+function retornaFormato(Id){
+    var Ret = [];
+    Ret[0] = 0;//Quantidades de Mensagens
+    Ret[1] = false;//se há uma nova mensagem para somar mais uma
+    Ret[2] = false;//se o usuário está silenciado ou não
+    Ret[3] = false;//se o usuário for bloqueado, ele guarda o valor caso for desbloqueado na mesma sessão
+    Ret[4] = Id;//recebe o Email do Usuário.
+    return Ret;     
 }

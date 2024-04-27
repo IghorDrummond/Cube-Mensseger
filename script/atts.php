@@ -1,3 +1,7 @@
+								<time>27/04/2024</time>: Foram corrigidos varios bugs no chat.
+								<br>
+								<time>26/04/2024</time>: Foram corrigidos varios bugs na aba de Amigos e nas Notificações de Mensagens.
+								<br>
 								<time>25/04/2024</time>: Agora você pode alterar sua senha facilmente na seção de configurações.
 								<br>
 								<time>25/04/2024</time>: Agora é possível atualizar sua foto de perfil diretamente na seção de configurações.
