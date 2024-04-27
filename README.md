@@ -38,10 +38,6 @@ Este é um emocionante aplicativo de mensagens online que desenvolvi com muito e
 								<time>19/04/2024</time>: Adicionamos notificações de mensagens, juntamente com alertas sonoros para mantê-lo informado.
 								<hr>
 								<time>19/04/2024</time>: Incluído recurso de visualização de mensagens.
-								<hr>
-								<time>18/04/2024</time>: Agora você pode ver se seu amigo está online ou offline durante suas conversas, pois adicionamos essa informação recentemente.
-								<hr>
-								<time>17/04/2024</time>: O Chat Online está agora funcionando perfeitamente! Sinta-se à vontade para conversar com seus amigos ou nos enviar uma mensagem caso encontre qualquer bug, erro ortográfico 									ou outros problemas. Estamos aqui para ajudar e garantir uma experiência excelente no Chat do Administrador do Sistema.
 								<hr>									
 <h6>Para mais Detalhes de Versões, Acesse o site.</h6>
 																			
