@@ -7,6 +7,8 @@
 	//Constantes
 	define('BD_USUARIO', '../BDs/bd_usuarios.csv');
 	define('BD_BLOQUEADO', '../BDs/bd_bloqueado.csv');
+	define('BD_AMIGO', '../BDs/bd_listamigos.csv');
+	define('BD_ADD', '../BDs/bd_addamigo.csv');
 	define('SV_IMG', '../BDs/BD_FOTOS/');
 	define('BYTES', 500000);
 
@@ -19,6 +21,10 @@
 			break;
 		case 'Bloqueado':
 			bloqueado($_SESSION['Email'], 'N');	
+			break;
+		case 'Nome':
+			atualizaNome($_SESSION['Email'], $_SESSION['Nome']);
+			break;
 		default:
 			break;
 	}
@@ -146,6 +152,65 @@
 		return $Ret;
 	}	
 
+	function atualizaNome($Email, $NomeSession){
+		$Const = [BD_USUARIO, BD_ADD, BD_AMIGO];
+		$NumLinha = [[1,3], [1,2], [1,2]];
+		$NomeNew = (trim(strtoupper($_GET['Nome'])) . ' ' . trim(strtoupper($_GET['Sobrenome'])));
+		//Atualiza a Lista de Usuário e Pedidos de Amizade
+		for($nCont = 0; $nCont <= 2; $nCont++){
+			atualizaDados($Email, $NomeSession, ($nCont === 1 ? $NomeNew . PHP_EOL : $NomeNew), $NumLinha[$nCont][0], $NumLinha[$nCont][1], $Const[$nCont]);		
+		}
+		//Atualiza as Conversas
+		$Linhas = file($Const[2]);
+		foreach ($Linhas as $i => $Valor) {
+			$Linha = explode(';', $Valor);
+			if(isset($Linha[1]) === false){
+				continue;
+			}
+			if($Linha[0] === $Email){
+				$Banco = '../BDs/BD_CONVERSA/'. $Linha[3];
+				$Linhas2 = file($Banco);
+				foreach($Linhas2 as $j => $Conv){
+					$Linha2 = explode(';', $Conv);
+
+					if(isset($Linha2[1]) === false){
+						continue;
+					}
+
+					if($Linha2[1] === $Email){
+						$Linha2[0] = $NomeNew;
+						$Linhas2[$j] = implode(';', $Linha2); 
+					}
+				}
+				//ESCREVE TODAS AS LINHAS DO ARQUVO
+				file_put_contents($Banco, $Linhas2);
+			}
+		}
+		//Atualiza os Dados da Sessão Atual
+		$_SESSION['Nome'] = $NomeNew;
+		//Retorna Sucesso ao usuário após a troca de Nome.
+		sucesso('Nome Atualizado com Sucesso! Página irá atualizar em 5 Segundos...');
+	}
+
+	function atualizaDados($Email, $NomeAnt, $NomeAtu, $PosicIni, $PosicFinal, $Banco){
+		$Linhas = file($Banco);
+		$Linha = [];
+
+		foreach ($Linhas as $i => $Valor) {
+			$Linha = explode(';', $Valor);
+			if(isset($Linha[1]) === false){
+				continue;
+			}
+			if($Linha[$PosicIni] === $Email){
+				$Linha[$PosicFinal] = $NomeAtu;
+				$Linhas[$i] = implode(';', $Linha); 
+			}
+		}
+
+		//ESCREVE TODAS AS LINHAS DO ARQUVO
+		file_put_contents($Banco, $Linhas);
+	}
+
 	function Error($Log){
 ?>
 		<div class="alert alert-danger alert-dismissible fade show">
@@ -169,7 +234,7 @@
 ?>
 		<div class="bg-warning w-75 rounded m-auto">
 			<img src="<?php echo ($V[0]); ?>" class="img-fluid border border-dark" width="70" height="70">
-			<h6 class="text-dark"><i style="color: black;"><?php echo($V[1]);?></i> Está bloqueado.</h6>
+			<h6 class="text-dark"><i style="color: black;"><?php echo(ucfirst(strtolower($V[1])));?></i> Está bloqueado.</h6>
 			<button class="btn btn-info rounded my-2 w-" onclick="tarefa('Desbloquear <?php echo ($V[2]); ?>')">Desbloquear <?php echo($V[1]); ?></button>
 		</div>
 <?php

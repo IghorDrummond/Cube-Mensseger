@@ -4,7 +4,7 @@
 	//Declaração das Variaveis Globais
 	//Strings
 	$Email = $_POST['Email'];
-	$Nome = $_POST['Nome'] . " " . $_POST['Sobrenome'];
+	$Nome = strtoupper(trim($_POST['Nome']) . " " . trim($_POST['Sobrenome']));
 	//Array
 	$Senhas = [$_POST['Senha'],$_POST['ConfirmeSenha']];
 	//Numerico

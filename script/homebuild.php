@@ -14,7 +14,7 @@ $nLinha = 0;
 $nPed = 0;
 //Array
 $Usuario = [
-	$_SESSION['Nome'],
+	ucfirst(strtolower($_SESSION['Nome'])),
 	$_SESSION['Email'],
 	$_SESSION['FotoPerfil']
 ];
@@ -401,7 +401,7 @@ fclose($ChaveBanco);
 								<h6>Altere Seu Nome</h6>
 									<label for="Nome">Insira seu Nome: </label>
 									<input class="form-control" type="text" maxlength="10" name="Nome" required>
-									<label for="Nome">Insira seu Sobrenome: </label>
+									<label for="Sobrenome">Insira seu Sobrenome: </label>
 									<input class="form-control" type="text" maxlength="10" name="Sobrenome" required>
 									<input type="button" name="Nomes" class="form-control btn btn-success w-50" onclick="tarefa('Nome <?php echo($_SESSION['Email']); ?>')" value="Enviar">
 							</div>							

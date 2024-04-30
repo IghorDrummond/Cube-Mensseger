@@ -200,6 +200,17 @@ function tarefa(val){
         if(confirm("Confirmar Desbloqueio de Usuário?")){
             $('#Amigos').load('script/operacao.php?Email=' + id + '&opc=Desbloquear'); 
         }
+    }else if(opc === 'Nome'){
+        if(confirm("Confirmar a Troca de Nome?")){
+            var Nome = document.getElementsByName('Nome')[0].value;
+            var Sobrenome = document.getElementsByName('Sobrenome')[0].value;
+            $('#avisos').load('script/Configuracao.php?Nome=' + Nome .trim() + '&Sobrenome='+ Sobrenome.trim() +'&Opc=Nome'); 
+
+            var O = setTimeout(() =>{
+                clearTimeout(O);
+                location.reload();
+            }, 5000);
+        }
     }else if(opc === 'Trocar'){
         //Confirmar a Troca de Senha
         if(confirm("Confirmar a troca da Senha? você será deslogado e direcionado para a tela de Login.")){

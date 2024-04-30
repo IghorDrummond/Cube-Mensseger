@@ -9,6 +9,8 @@
 	$ChaveBanco = '';
 	//Numerico
 	$nLinha = 0;
+	//Array
+	$Dados = [];
 	//Constantes
 	define('BD_USUARIO', '../BDs/bd_usuarios.csv');
 	define('BD_AMIGO', '../BDs/bd_listamigos.csv');	
@@ -29,6 +31,8 @@
 	atualizaVisto();
 
 	$Dados = retornaUsuario($id);
+	//Caso o valor retornado seja falso, apresenta o chat Morto
+	$Dados === false ? chatMorto($id) : "";
 	//Constrói o Cabeçalho do Chat
 ?>
 							<div class="d-flex justify-content-between align-items-center bg-white rounded p-2 border sticky-top">
@@ -69,6 +73,9 @@
 		if($Linha[0] != $_SESSION['Nome']){
 			$Classe = 'amigo mr-auto bg-info ';
 		}
+
+		//Formata Texto para caixa baixa.
+		$Linha[0] = ucfirst(strtolower($Linha[0]));
 
 		if(strlen($Linha[2]) <= 560){
 			$Classe .= 'p-1';
@@ -127,6 +134,8 @@
 	*/
 	function retornaUsuario($Id){
 		$ChaveBanco = fopen(BD_AMIGO, 'r');
+		$Dados = [];
+		$lTem = false;
 		
 		while (!feof($ChaveBanco)) {
 			$Linha = explode(';', fgets($ChaveBanco));
@@ -145,13 +154,14 @@
 				$Aux = verificaUsuario($Linha[1]);//Retorna Foto e Data do ultimo Login
 				$Dados[4] = $Aux[1]; //Recebe a Imagem do Usuário
 				$Dados[5] = $Aux[0]; //Recebe se ele está Online ou Não
+				$lTem = true;
 				break;
 			}
 		}
 
 		fclose($ChaveBanco);
-
-		return $Dados;
+		
+		return !$lTem ? false : $Dados;
 	}
 	/*
 	--------------------------------------------------------------------------------------------------------------	
@@ -316,7 +326,17 @@
 	    }
 	    return false;
 	}
-
+	/*
+	--------------------------------------------------------------------------------------------------------------	
+	Função: retornaVisualizacao(Recebe N ou S para validar Visualização)
+	--------------------------------------------------------------------------------------------------------------
+	Descrição: Retorna a tag responsavel por dizer graficamente se foi visualizado ou não
+	--------------------------------------------------------------------------------------------------------------	
+	Data: 27/04/2024
+	--------------------------------------------------------------------------------------------------------------	
+	Programador(A): Ighor Drummond
+	--------------------------------------------------------------------------------------------------------------	
+	*/	
 	function retornaVisualizacao($Vizu){
 		$Ret = '';
 
@@ -327,5 +347,39 @@
 		}
 
 		return $Ret;	  
+	}
+	/*
+	--------------------------------------------------------------------------------------------------------------	
+	Função: chatMorto()
+	--------------------------------------------------------------------------------------------------------------
+	Descrição: Responsavel por mostrar erro de chat não encontrado para usuário
+	--------------------------------------------------------------------------------------------------------------	
+	Data: 30/04/2024
+	--------------------------------------------------------------------------------------------------------------	
+	Programador(A): Ighor Drummond
+	--------------------------------------------------------------------------------------------------------------	
+	*/	
+	function chatMorto($id){
+?>
+	<div class="rounded border text-center p-1 text-secondary">
+		<p>
+			Lamentamos informar que o chat que você tentou acessar não está mais disponível. Isso pode ter ocorrido por diversos motivos, incluindo:
+
+			1. O usuário removeu você da lista de amigos.
+			2. Houve um erro interno no banco de dados.
+			3. É possível que você tenha removido o usuário em outro navegador ou aba enquanto estava na conversa.
+
+			Se o problema persistir, mesmo que o usuário não tenha removido você, por favor, entre em contato conosco através do chat "Administrador do Sistema" para relatar o erro.
+
+			Pedimos desculpas pelo inconveniente causado.
+
+			Atenciosamente,
+
+			Equipe Cube Messenger.
+		</p>
+		<h6 onclick="tarefa('Sair <?php echo($id); ?>')" class="text-info">Voltar</h6>
+	</div>
+<?php
+		Die();
 	}
 ?>

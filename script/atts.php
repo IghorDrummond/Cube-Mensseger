@@ -1,6 +1,8 @@
-								<time>27/04/2024</time>: Foram corrigidos varios bugs no chat.
+								<time>30/04/2024</time>: Agora você pode trocar o seu Nome e Sobrenome na Aba de Configurações.
+								<br>								
+								<time>27/04/2024</time>: Uma série de problemas técnicos no chat foram identificados e corrigidos, proporcionando uma experiência mais estável e confiável para os usuários.
 								<br>
-								<time>26/04/2024</time>: Foram corrigidos varios bugs na aba de Amigos e nas Notificações de Mensagens.
+								<time>26/04/2024</time>: Vários bugs foram corrigidos na seção de Amigos e nas Notificações de Mensagens.
 								<br>
 								<time>25/04/2024</time>: Agora você pode alterar sua senha facilmente na seção de configurações.
 								<br>

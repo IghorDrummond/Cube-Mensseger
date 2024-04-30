@@ -85,8 +85,7 @@
 				$nCont2++;
 				$Acertos++;
 			}else{
-				$nCont2 = 0;
-				$Acertos = 0;
+				break;
 			}	
 
 			//Valida os Acertos

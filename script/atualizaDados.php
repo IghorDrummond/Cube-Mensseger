@@ -80,7 +80,7 @@
 
 					$Amigos++;
 					//Guarda Informação do Amigo Cadastrado
-					$Dados[$nCont][0] = $Linha[2];//Recebe o Nome do Amigo
+					$Dados[$nCont][0] = ucfirst(strtolower($Linha[2]));//Recebe o Nome do Amigo
 					$Dados[$nCont][1] = $Linha[1];//Recebe o Email do Amigo
 					$Dados[$nCont][2] = $Linha[3];//Recebe o Nome da Conversa do Amigo
 					$Dados[$nCont][3] = false; //Valida se o usuário está Online ou Offiline
