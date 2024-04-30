@@ -38,9 +38,7 @@ Este é um emocionante aplicativo de mensagens online que desenvolvi com muito e
 								<time>22/04/2024</time>: A opção 'Deletar' está ativa e você pode remover o usuário.
 								<hr>
 								<time>19/04/2024</time>: Adicionamos notificações de mensagens, juntamente com alertas sonoros para mantê-lo informado.
-								<hr>
-								<time>19/04/2024</time>: Incluído recurso de visualização de mensagens.
-								<hr>									
+								<hr>								
 <h6>Para mais Detalhes de Versões, Acesse o site.</h6>
 																			
 							
