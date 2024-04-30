@@ -11,6 +11,8 @@ Este é um emocionante aplicativo de mensagens online que desenvolvi com muito e
 	<a href="https://cubemensseger.000webhostapp.com/" target="_blank">Acessar o Site!</a>
 </blockquote>
 <h6> As Ultimas Atualizações:</h6>
+								<time>30/04/2024</time>: Agora é possível atualizar seu nome e sobrenome na seção de configurações.
+								<hr>
 								<time>27/04/2024</time>: Uma série de problemas técnicos no chat foram identificados e corrigidos, proporcionando uma experiência mais estável e confiável para os usuários.
 								<hr>
 								<time>26/04/2024</time>: Vários bugs foram corrigidos na seção de Amigos e nas Notificações de Mensagens.
