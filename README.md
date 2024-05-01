@@ -8,7 +8,7 @@ Este é um emocionante aplicativo de mensagens online que desenvolvi com muito e
 </p>
 <blockquote cite="https://cubemensseger.000webhostapp.com/">
 	Estamos felizes em informar que o site foi finalizado com sucesso. Agora você pode acessá-lo tranquilamente para desfrutar de todos os recursos e conteúdos disponíveis. Agradecemos por sua paciência e apoio durante este processo. Se tiver alguma dúvida ou 	feedback, não hesite em nos contatar. Esperamos que sua experiência no site seja agradável e produtiva!.<br>
-	<a href="https://thecubemensseger.000webhostapp.com" target="_blank">Acessar o Site!</a>
+	<a href="https://cubemensseger0.000webhostapp.com" target="_blank">Acessar o Site!</a>
 </blockquote>
 <h6> As Ultimas Atualizações:</h6>
 								<time>30/04/2024</time>: Agora é possível atualizar seu nome e sobrenome na seção de configurações.
