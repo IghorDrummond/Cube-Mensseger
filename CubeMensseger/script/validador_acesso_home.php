@@ -1,13 +1,20 @@
 <?php
     session_start();	
-    
+
     if(isset($_SESSION['Login'])){
         if($_SESSION['Login'] === false){
             header('Location: login.php');
             exit; // Adicionando exit para garantir que o script seja encerrado após o redirecionamento
         } else if($_SESSION['Login']) {
-            verificaOnline($_SESSION['Email']) === false ? header('Location: login.php') : '';
+            // A função verificaOnline($_SESSION['Email']) retorna false, então não é necessário verificar a condição
+            if(verificaOnline($_SESSION['Email']) === false) {
+                header('Location: login.php');
+                exit; // Adicionando exit para garantir que o script seja encerrado após o redirecionamento
+            }
         }
+    }else{
+        header('Location: login.php');
+        exit;
     }
 
 	//==================Funções==========================
