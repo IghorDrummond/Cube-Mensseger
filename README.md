@@ -40,16 +40,13 @@ Este é um emocionante aplicativo de mensagens online que desenvolvi com muito e
 								<time>19/04/2024</time>: Adicionamos notificações de mensagens, juntamente com alertas sonoros para mantê-lo informado.
 								<hr>								
 <h6>Para mais Detalhes de Versões, Acesse o site.</h6>
-																			
-							
 
-																		
-
-<!--
-<h5 style="color: red">Importante! A versão do site pode não corresponder com a versão mais atual do GitHub além de apresentar bugs por questão do site ao qual hospeda a aplicação.</h5>
-<h6>Para Acessar o Projeto, clique no link abaixo: </h6>
-<A HREF='http://cubemensseger.x10.bz'>Acessar o Site</A>
-<div style="text-align: center;">
-  <h6 >Desenvolvido Por Ighor Drummond</h6>
-</div>
--->
+<h4>Desenvolvido pelas Linguangens:</h4>
+<ul>
+	<li><img aling="center" alt="PHP" src="https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white">  </li>
+	<li><img aling="center" alt="Html5" src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white"></li>
+	<li><img aling="center" alt="Css" src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white"> </li>
+	<li><img aling="center" alt="JavaScript" src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"> </li>
+	<li><img aling="center" alt="Jquery" src="https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white"></li>
+	<li> <img aling="center" alt="BootStrap" src="https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white"></li>
+</ul>
